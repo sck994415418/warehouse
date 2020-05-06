@@ -1,0 +1,449 @@
+---------------------------------------------------------------
+[ 2019-04-17T10:28:11+08:00 ] 127.0.0.1 GET www.xiaofang.com/
+[运行时间：0.654037s] [吞吐率：1.53req/s] [内存消耗：2,675.04kb] [文件加载：56]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'purpose' => 'prefetch',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.116006s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.035002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-17T10:28:11+08:00 ] 127.0.0.1 GET www.xiaofang.com/admin/common/login.shtml
+[运行时间：0.169009s] [吞吐率：5.92req/s] [内存消耗：2,695.63kb] [文件加载：55]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'purpose' => 'prefetch',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\Project\xiaofang\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\Project\xiaofang\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.017001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-17T10:28:12+08:00 ] 127.0.0.1 GET www.xiaofang.com/captcha.shtml
+[运行时间：0.165009s] [吞吐率：6.06req/s] [内存消耗：2,337.38kb] [文件加载：45]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'purpose' => 'prefetch',
+  'referer' => 'http://www.xiaofang.com/admin/common/login.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\Project\xiaofang\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-17T10:28:22+08:00 ] 127.0.0.1 GET www.xiaofang.com/admin/common/login.shtml
+[运行时间：0.133007s] [吞吐率：7.52req/s] [内存消耗：2,695.84kb] [文件加载：55]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\Project\xiaofang\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\Project\xiaofang\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-17T10:28:22+08:00 ] 127.0.0.1 GET www.xiaofang.com/captcha.shtml
+[运行时间：0.166009s] [吞吐率：6.02req/s] [内存消耗：2,337.19kb] [文件加载：45]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://www.xiaofang.com/admin/common/login.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\Project\xiaofang\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013001s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.032002s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-04-17T10:28:35+08:00 ] 127.0.0.1 GET www.xiaofang.com/
+[运行时间：0.142008s] [吞吐率：7.04req/s] [内存消耗：2,675.92kb] [文件加载：56]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'purpose' => 'prefetch',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.022002s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.021001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-17T10:28:35+08:00 ] 127.0.0.1 GET www.xiaofang.com/admin/common/login.shtml
+[运行时间：0.089005s] [吞吐率：11.24req/s] [内存消耗：2,696.04kb] [文件加载：55]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'purpose' => 'prefetch',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\Project\xiaofang\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\Project\xiaofang\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.022002s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-17T10:28:36+08:00 ] 127.0.0.1 GET www.xiaofang.com/captcha.shtml
+[运行时间：0.107006s] [吞吐率：9.35req/s] [内存消耗：2,337.43kb] [文件加载：45]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'purpose' => 'prefetch',
+  'referer' => 'http://www.xiaofang.com/admin/common/login.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\Project\xiaofang\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-17T11:10:57+08:00 ] 127.0.0.1 GET www.xiaofang.com/
+[运行时间：0.098005s] [吞吐率：10.20req/s] [内存消耗：2,675.92kb] [文件加载：56]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'purpose' => 'prefetch',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-04-17T11:10:58+08:00 ] 127.0.0.1 GET www.xiaofang.com/admin/common/login.shtml
+[运行时间：0.067004s] [吞吐率：14.92req/s] [内存消耗：2,696.04kb] [文件加载：55]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'purpose' => 'prefetch',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\Project\xiaofang\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\Project\xiaofang\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-04-17T11:10:58+08:00 ] 127.0.0.1 GET www.xiaofang.com/captcha.shtml
+[运行时间：0.076004s] [吞吐率：13.16req/s] [内存消耗：2,337.41kb] [文件加载：45]
+[ info ] [ LANG ] D:\Project\xiaofang\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.xiaofang.com',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'purpose' => 'prefetch',
+  'referer' => 'http://www.xiaofang.com/admin/common/login.shtml',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=l4veec0upcm7hl738tnpjk0m56',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\Project\xiaofang\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=xiaofang;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001001s ]

@@ -1,0 +1,2976 @@
+---------------------------------------------------------------
+[ 2020-04-30T15:37:13+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.169667s] [吞吐率：5.89req/s] [内存消耗：434.55kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'e-book'[D:\phpstudy_pro\WWW\warehouse\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2020-04-30T15:37:52+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.023295s] [吞吐率：42.93req/s] [内存消耗：237.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'e-book'[D:\phpstudy_pro\WWW\warehouse\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:06+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.021721s] [吞吐率：46.04req/s] [内存消耗：237.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'e-book'[D:\phpstudy_pro\WWW\warehouse\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:12+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.021078s] [吞吐率：47.44req/s] [内存消耗：237.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'e-book'[D:\phpstudy_pro\WWW\warehouse\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:13+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.015807s] [吞吐率：63.26req/s] [内存消耗：237.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'e-book'[D:\phpstudy_pro\WWW\warehouse\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:13+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.022253s] [吞吐率：44.94req/s] [内存消耗：237.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'e-book'[D:\phpstudy_pro\WWW\warehouse\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:13+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.022826s] [吞吐率：43.81req/s] [内存消耗：237.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'e-book'[D:\phpstudy_pro\WWW\warehouse\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:13+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.022056s] [吞吐率：45.34req/s] [内存消耗：237.80kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[HY000] [1049] Unknown database 'e-book'[D:\phpstudy_pro\WWW\warehouse\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:22+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.257045s] [吞吐率：3.89req/s] [内存消耗：555.91kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011281s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001165s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000634s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:22+08:00 ] 127.0.0.1 GET www.warehouse.com/static/admin/login/css/normalize.css
+[运行时间：0.012066s] [吞吐率：82.88req/s] [内存消耗：414.40kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'admin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/css,*/*;q=0.1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'css' => 'normalize.css',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001820s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000942s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000433s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:22+08:00 ] 127.0.0.1 GET www.warehouse.com/static/admin/login/css/style.css
+[运行时间：0.021276s] [吞吐率：47.00req/s] [内存消耗：413.27kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'admin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/css,*/*;q=0.1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'css' => 'style.css',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011753s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001084s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000469s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:38:22+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.050636s] [吞吐率：19.75req/s] [内存消耗：451.88kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001562s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001202s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000519s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:39:25+08:00 ] 127.0.0.1 GET www.warehouse.com/static/admin/login/css/style.css
+[运行时间：0.030941s] [吞吐率：32.32req/s] [内存消耗：413.27kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'admin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/css,*/*;q=0.1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'css' => 'style.css',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002673s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001033s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000420s ]
+480s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:05+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.053275s] [吞吐率：18.77req/s] [内存消耗：469.41kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011169s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001525s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000761s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:05+08:00 ] 127.0.0.1 GET www.warehouse.com/static/admin/login/css/style.css
+[运行时间：0.013101s] [吞吐率：76.33req/s] [内存消耗：413.98kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'admin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/css,*/*;q=0.1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'css' => 'style.css',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001324s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000892s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000447s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:05+08:00 ] 127.0.0.1 GET www.warehouse.com/static/admin/login/css/normalize.css
+[运行时间：0.015695s] [吞吐率：63.72req/s] [内存消耗：414.00kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'admin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/css,*/*;q=0.1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'css' => 'normalize.css',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001310s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000859s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000455s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:05+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.043288s] [吞吐率：23.10req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001281s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000818s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000434s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:07+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.030748s] [吞吐率：32.52req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010495s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001567s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000827s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:08+08:00 ] 127.0.0.1 GET www.warehouse.com/static/admin/login/css/normalize.css
+[运行时间：0.008791s] [吞吐率：113.75req/s] [内存消耗：414.00kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'admin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/css,*/*;q=0.1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'css' => 'normalize.css',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001643s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000931s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000481s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:08+08:00 ] 127.0.0.1 GET www.warehouse.com/static/admin/login/css/style.css
+[运行时间：0.008918s] [吞吐率：112.13req/s] [内存消耗：413.98kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'admin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/css,*/*;q=0.1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'css' => 'style.css',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001710s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000918s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000433s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:08+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.011925s] [吞吐率：83.86req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001428s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000926s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000498s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:17+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.036029s] [吞吐率：27.76req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010784s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001702s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000769s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:17+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.025778s] [吞吐率：38.79req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001351s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000929s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000456s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:41+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.013728s] [吞吐率：72.84req/s] [内存消耗：489.12kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002126s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000854s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000465s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:42+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.024295s] [吞吐率：41.16req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001907s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000840s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000434s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:44+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.010861s] [吞吐率：92.07req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001293s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000837s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000375s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:44+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.010503s] [吞吐率：95.21req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001318s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000822s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000417s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:45+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.024531s] [吞吐率：40.76req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010337s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001351s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000465s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:45+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.010838s] [吞吐率：92.27req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001551s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001053s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000501s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:45+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.020464s] [吞吐率：48.87req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011504s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000848s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000440s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:45+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.010915s] [吞吐率：91.62req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001535s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000969s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000389s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:45+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.019122s] [吞吐率：52.30req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010051s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000821s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000367s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:45+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.009720s] [吞吐率：102.88req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001347s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000903s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000399s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:46+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.020024s] [吞吐率：49.94req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011345s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000803s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000376s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:46+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.034745s] [吞吐率：28.78req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001226s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000797s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000420s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:46+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.020905s] [吞吐率：47.84req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011696s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000799s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000360s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:46+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.010384s] [吞吐率：96.30req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001544s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000779s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000501s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:46+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.011148s] [吞吐率：89.70req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001463s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000820s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000691s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:46+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.010235s] [吞吐率：97.70req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001328s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000821s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000401s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:46+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.021059s] [吞吐率：47.49req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011165s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000890s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000413s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:46+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.010946s] [吞吐率：91.36req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001358s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000845s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000398s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:54+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.028436s] [吞吐率：35.17req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011656s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001910s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001030s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:54+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.009874s] [吞吐率：101.28req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001259s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000756s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000365s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:57+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.012182s] [吞吐率：82.09req/s] [内存消耗：489.12kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001518s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000819s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000449s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:41:57+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.010710s] [吞吐率：93.37req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001375s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000975s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000408s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:42:09+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.025271s] [吞吐率：39.57req/s] [内存消耗：489.47kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010854s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000834s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000423s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:42:09+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.011993s] [吞吐率：83.38req/s] [内存消耗：451.88kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002657s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000420s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:42:15+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.022810s] [吞吐率：43.84req/s] [内存消耗：489.54kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010961s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000817s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000516s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:42:15+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.011017s] [吞吐率：90.77req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001370s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000806s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001206s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:42:29+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.011676s] [吞吐率：85.65req/s] [内存消耗：489.54kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001207s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001091s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000369s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:42:29+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.009863s] [吞吐率：101.39req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001409s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000836s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000397s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:42:50+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.042332s] [吞吐率：23.62req/s] [内存消耗：516.12kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001416s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001021s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000445s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:42:50+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.011397s] [吞吐率：87.74req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001327s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001389s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000410s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:43:58+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.098918s] [吞吐率：10.11req/s] [内存消耗：489.47kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.009973s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001261s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000523s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:43:58+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.137901s] [吞吐率：7.25req/s] [内存消耗：451.88kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011047s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001358s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000516s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:43:59+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.030657s] [吞吐率：32.62req/s] [内存消耗：469.34kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010740s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001678s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000949s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:43:59+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.026051s] [吞吐率：38.39req/s] [内存消耗：451.88kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002062s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000927s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000506s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:44:16+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.023362s] [吞吐率：42.80req/s] [内存消耗：489.47kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010786s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001011s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000497s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:44:16+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.021152s] [吞吐率：47.28req/s] [内存消耗：451.88kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001450s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000867s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000420s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:44:17+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.019942s] [吞吐率：50.15req/s] [内存消耗：469.34kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010521s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000827s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000407s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:44:17+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.010406s] [吞吐率：96.10req/s] [内存消耗：451.88kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001620s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000909s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000496s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:44:32+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.021353s] [吞吐率：46.83req/s] [内存消耗：489.47kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010741s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000984s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000486s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:44:32+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.044654s] [吞吐率：22.39req/s] [内存消耗：451.88kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001402s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000857s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000455s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:46:28+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.023082s] [吞吐率：43.32req/s] [内存消耗：489.54kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003128s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001063s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000361s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:46:28+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.028871s] [吞吐率：34.64req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002688s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000872s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000482s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:51:14+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.059321s] [吞吐率：16.86req/s] [内存消耗：489.54kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011806s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001357s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000474s ]
+---------------------------------------------------------------
+[ 2020-04-30T15:51:14+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.040679s] [吞吐率：24.58req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003355s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000823s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000372s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:01:36+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.064538s] [吞吐率：15.49req/s] [内存消耗：469.34kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013032s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001551s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000685s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:01:36+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.033236s] [吞吐率：30.09req/s] [内存消耗：451.88kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011424s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000900s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000399s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:01:48+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.036520s] [吞吐率：27.38req/s] [内存消耗：468.99kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001915s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001037s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000610s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:01:48+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.027904s] [吞吐率：35.84req/s] [内存消耗：452.59kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001452s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000971s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000338s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:02:03+08:00 ] 127.0.0.1 POST www.warehouse.com/admin_login.shtml
+[运行时间：0.201124s] [吞吐率：4.97req/s] [内存消耗：448.59kb] [文件加载：56]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'origin' => 'http://www.warehouse.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => '*/*',
+  'content-length' => '89',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'name' => 'admin',
+  'password' => 'admin',
+  'captcha' => 'fnxx',
+  '__token__' => '65aa9cd9279644b239f9ee43344a03e848a7ec85',
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002364s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001017s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000518s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.001824s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin` WHERE  `name` = 'admin' LIMIT 1 [ RunTime:0.000866s ]
+[ sql ] [ SQL ] UPDATE `tplay_admin`  SET `login_ip`='127.0.0.1',`login_time`=1588233723  WHERE  `id` = 1 [ RunTime:0.028870s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001809s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.001025s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.003271s ]
+[ sql ] [ SQL ] SELECT `id` FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Common'  AND `function` = 'login'  AND `parameter` = 'admin_login=' LIMIT 1 [ RunTime:0.015268s ]
+[ sql ] [ SQL ] SELECT `id` FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Common'  AND `function` = 'login' LIMIT 1 [ RunTime:0.001042s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_log` [ RunTime:0.003231s ]
+[ sql ] [ SQL ] INSERT INTO `tplay_admin_log` (`operation_id` , `admin_id` , `ip` , `create_time` , `admin_menu_id`) VALUES ('' , 1 , '127.0.0.1' , 1588233723 , 50) [ RunTime:0.001469s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:02:05+08:00 ] 127.0.0.1 GET www.warehouse.com/admin/index/index.shtml
+[运行时间：0.167184s] [吞吐率：5.98req/s] [内存消耗：545.70kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\index\index.html [ array (
+  0 => 'menus',
+  1 => 'cookie',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011516s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001663s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000805s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001904s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000958s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_cate` [ RunTime:0.003546s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000930s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.002810s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Index'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.001101s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `is_display` = 1 ORDER BY `orders` ASC [ RunTime:0.009537s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000852s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.002803s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000881s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_attachment` [ RunTime:0.008458s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_attachment` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.001263s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:02:09+08:00 ] 127.0.0.1 GET www.warehouse.com/admin/main/index
+[运行时间：0.100954s] [吞吐率：9.91req/s] [内存消耗：548.95kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'main',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin/index/index.shtml',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Main->index[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Main.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\main\index.html [ array (
+  0 => 'info',
+  1 => 'web',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.009877s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000941s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000456s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001616s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000448s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_cate` [ RunTime:0.001305s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000416s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.001359s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Main'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'main=' LIMIT 1 [ RunTime:0.000537s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Main'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.000477s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.001497s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin` LIMIT 1 [ RunTime:0.006933s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` LIMIT 1 [ RunTime:0.000437s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_attachment` [ RunTime:0.004199s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` LIMIT 1 [ RunTime:0.004026s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000500s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` WHERE  `status` = -1 LIMIT 1 [ RunTime:0.000459s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_messages` [ RunTime:0.001815s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_messages` LIMIT 1 [ RunTime:0.000344s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_messages` WHERE  `is_look` = 0 LIMIT 1 [ RunTime:0.000383s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_log` [ RunTime:0.001669s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587398400 AND `create_time` <= 1587484800 ) LIMIT 1 [ RunTime:0.000532s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587484800 AND `create_time` <= 1587571200 ) LIMIT 1 [ RunTime:0.000421s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587571200 AND `create_time` <= 1587657600 ) LIMIT 1 [ RunTime:0.000411s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587657600 AND `create_time` <= 1587744000 ) LIMIT 1 [ RunTime:0.000414s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587744000 AND `create_time` <= 1587830400 ) LIMIT 1 [ RunTime:0.000406s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587830400 AND `create_time` <= 1587916800 ) LIMIT 1 [ RunTime:0.000403s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587916800 AND `create_time` <= 1588003200 ) LIMIT 1 [ RunTime:0.000522s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588003200 AND `create_time` <= 1588089600 ) LIMIT 1 [ RunTime:0.000484s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588089600 AND `create_time` <= 1588176000 ) LIMIT 1 [ RunTime:0.000426s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588176000 AND `create_time` <= 1588262400 ) LIMIT 1 [ RunTime:0.000375s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:16:48+08:00 ] 127.0.0.1 GET www.warehouse.com/admin/index/index.shtml
+[运行时间：0.287248s] [吞吐率：3.48req/s] [内存消耗：521.04kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\index\index.html [ array (
+  0 => 'menus',
+  1 => 'cookie',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011739s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.036125s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000536s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.018430s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000646s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_cate` [ RunTime:0.020065s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000493s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.001246s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Index'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.000599s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `is_display` = 1 ORDER BY `orders` ASC [ RunTime:0.000649s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000367s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.001366s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000519s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_attachment` [ RunTime:0.004215s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_attachment` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000514s ]
+---------------------------------------------------------------
+[ 2020-04-30T16:16:49+08:00 ] 127.0.0.1 GET www.warehouse.com/admin/main/index
+[运行时间：0.069532s] [吞吐率：14.38req/s] [内存消耗：517.98kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'main',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=hkm9bppc32h82453r49qpfm2aa',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin/index/index.shtml',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Main->index[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Main.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\main\index.html [ array (
+  0 => 'info',
+  1 => 'web',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004309s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.008759s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000523s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001582s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000425s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_cate` [ RunTime:0.001402s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000354s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.001304s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Main'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'main=' LIMIT 1 [ RunTime:0.000428s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Main'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.000367s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.001336s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin` LIMIT 1 [ RunTime:0.000301s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` LIMIT 1 [ RunTime:0.000318s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_attachment` [ RunTime:0.004512s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` LIMIT 1 [ RunTime:0.000460s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000421s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` WHERE  `status` = -1 LIMIT 1 [ RunTime:0.000461s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_messages` [ RunTime:0.001502s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_messages` LIMIT 1 [ RunTime:0.000307s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_messages` WHERE  `is_look` = 0 LIMIT 1 [ RunTime:0.000299s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_log` [ RunTime:0.001254s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587398400 AND `create_time` <= 1587484800 ) LIMIT 1 [ RunTime:0.000398s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587484800 AND `create_time` <= 1587571200 ) LIMIT 1 [ RunTime:0.000306s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587571200 AND `create_time` <= 1587657600 ) LIMIT 1 [ RunTime:0.000306s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587657600 AND `create_time` <= 1587744000 ) LIMIT 1 [ RunTime:0.000296s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587744000 AND `create_time` <= 1587830400 ) LIMIT 1 [ RunTime:0.000308s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587830400 AND `create_time` <= 1587916800 ) LIMIT 1 [ RunTime:0.000311s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587916800 AND `create_time` <= 1588003200 ) LIMIT 1 [ RunTime:0.000411s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588003200 AND `create_time` <= 1588089600 ) LIMIT 1 [ RunTime:0.000371s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588089600 AND `create_time` <= 1588176000 ) LIMIT 1 [ RunTime:0.000301s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588176000 AND `create_time` <= 1588262400 ) LIMIT 1 [ RunTime:0.000315s ]

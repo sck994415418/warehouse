@@ -1,0 +1,203 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html";i:1588232793;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>网站后台登录</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link href="/static/public/layui/css/layui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/admin/css/admin-1.css" media="all">
+  <link href="/static/admin/css/login-1.css" rel="stylesheet" />
+  <link href="/static/public/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+  <!--sy-->
+  <link rel="stylesheet" href="/static/admin/login/css/normalize.css">
+
+  <link rel="stylesheet" href="/static/admin/login/css/style.css" media="screen" type="text/css" />
+  <style>
+    #whale{
+      background: linear-gradient(to top,rgba(255,255,255,0.5),rgba(0, 213, 255, 1));
+    }
+
+    #whale{
+      display: none;
+    }
+    /*#box{*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*}*/
+
+    #whale{
+      display: none;
+    }
+    #h2{
+      color:white;
+    }
+  </style>
+</head>
+<body class="layui-layout-body" style="width: 100%;">
+
+
+<div style="text-align:center;clear:both">
+</div>
+<div id="whale" style="position: relative;z-index: -1;"></div>
+
+<script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+
+<!--<script src="/static/admin/login/js/index.js"></script>-->
+
+
+<div id="LAY_app" style="position: absolute;top:0;margin:0 auto;z-index: 1; width: 100%;">
+  <div class="layadmin-user-login" id="LAY-user-login" style="display: none;">
+
+    <div class="layadmin-user-login-main" id="box" style="border-radius:1%;background: rgba(255,255,255,.5)">
+      <div class="layadmin-user-login-box layadmin-user-login-header">
+        <h2 id="h2">网站后台管理</h2>
+        <p></p>
+      </div>
+      <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+        <form class="layui-form" id="login">
+          <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon" for="LAY-user-login-username"><i class="fa fa-user"></i></label>
+            <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="用户名" class="layui-input" <?php if(!(empty($usermember) || (($usermember instanceof \think\Collection || $usermember instanceof \think\Paginator ) && $usermember->isEmpty()))): ?>value="<?php echo $usermember; ?>"<?php endif; ?>>
+          </div>
+          <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon " for="LAY-user-login-password"><i class="fa fa-unlock-alt"></i></label>
+            <input type="password" name="password" lay-verify="required" autocomplete="off" placeholder="密码" class="layui-input">
+          </div>
+          <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon " for="LAY-user-login-password"><i class="fa fa-code"></i></label>
+            <input type="text" name="captcha" lay-verify="required" autocomplete="off" placeholder="验证码" class="layui-input" style="width:62%;float: left;margin-right:11px;"><img src="<?php echo captcha_src(); ?>" alt="captcha" onclick="this.src='<?php echo captcha_src(); ?>?seed='+Math.random()" height="36" id="captcha" style="margin-top: 1px" />
+          </div>
+          <div class="layui-form-item">
+            <input type="checkbox" lay-skin="primary" title="记住账号" name="remember" value="1" <?php if(!(empty($usermember) || (($usermember instanceof \think\Collection || $usermember instanceof \think\Paginator ) && $usermember->isEmpty()))): ?>checked=""<?php endif; ?>><div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>记住账号?</span><i class="layui-icon"></i></div>
+          </div>
+          <div class="layui-form-item">
+            <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登 录</button>
+          </div>
+          <?php echo token('__token__', 'sha1'); ?>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="/static/public/layui/layui.js"></script>
+<script src="/static/public/jquery/jquery.min.js"></script>
+<script>
+  layui.use(['layer', 'form'], function() {
+    var layer = layui.layer,
+            $ = layui.jquery,
+            form = layui.form;
+    $(window).on('load', function() {
+      form.on('submit(login)', function(data) {
+        $.ajax({
+          url:"<?php echo url('admin/common/login'); ?>",
+          data:$('#login').serialize(),
+          type:'post',
+          async: false,
+          success:function(res) {
+            //alert(res.msg);
+            layer.msg(res.msg,{offset: '50px',anim: 1});
+            // location.href = res.url;
+            if(res.code == 1) {
+              setTimeout(function() {
+                location.href = res.url;
+              }, 1500);
+            } else {
+              $('#captcha').click();
+              // location.href = res.url;
+            }
+          }
+        })
+        return false;
+      });
+    });
+  });
+</script>
+<script>
+  function stop() {
+    return false;
+  }
+  stop();
+  //获取元素
+  var box = document.getElementById('box');
+  var close = document.getElementsByTagName("img")[0];
+  //允许的left最大值
+  var maxleft = document.documentElement.clientWidth-box.offsetWidth;
+  //允许的top最大值
+  var maxtop=  document.documentElement.clientHeight-box.offsetHeight;
+  //设置一下响应式 当屏幕变化的时候获取新值
+  window.onresize=function () {
+    maxleft = document.documentElement.clientWidth-box.offsetWidth;
+    maxtop=  document.documentElement.clientHeight-box.offsetHeight;
+  }
+  //距上距离每次变化的值  单位px
+  var t=4;
+  //距左距离每次变化的值  单位px
+  var l=4;
+  //漂浮函数
+  function  piaofu() {
+    //获取初始距左的距离
+    var oldleft=box.offsetLeft;
+    //设置新距左的距离
+    var newleft =oldleft+l;
+    //获取初始距上的距离
+    var oldtop=box.offsetTop;
+    //设置新距上的距离
+    var newtop =oldtop+t;
+    //如果距上的距离超过高度最大值，重新赋值为高度最大值
+    if(newtop>maxtop){
+      newtop=maxtop;
+    }
+    //如果距左的距离超过距左的最大值，重新赋值为距左最大值
+    if(newleft>maxleft){
+      newleft=maxleft;
+    }
+    //如果距上的距离小于高度最小值，重新赋值为高度最小值
+    if(newtop<0){
+      newtop=0
+    }
+    //如果距左的距离小于距左的最小值，重新赋值为距左最小值
+    if(newleft<0){
+      newleft=0
+    }
+    box.style.left=newleft+"px";
+    box.style.top=newtop+"px";
+    //进行判断
+    if(newtop==maxtop ||newtop==0){
+      t=-1*t;
+    }
+    if(newleft==maxleft ||newleft==0){
+      l=-1*l;
+    }
+    // if(box.style.display=="none"){
+    //     setTimeout(function () {
+    //         box.style.display="block"
+    //     },3000)
+    // }
+  }
+
+  //设置定时器
+  var timer= setInterval(piaofu,20)
+  //当鼠标放上的时候清楚定时器
+  box.onmouseover=function () {
+    clearInterval(timer)
+  }
+  //当鼠标移走的时候定时器继续
+  box.onmouseout=function () {
+    timer= setInterval(piaofu,20)
+  }
+  //当点击关闭按钮时隐藏
+  close.onclick=function () {
+    box.style.display='none'
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1141 @@
+---------------------------------------------------------------
+[ 2020-05-06T09:07:41+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：2.322851s] [吞吐率：0.43req/s] [内存消耗：667.23kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.510621s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.380958s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.009764s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:09:29+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.106928s] [吞吐率：9.35req/s] [内存消耗：593.53kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002191s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001354s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000366s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:09:34+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.010511s] [吞吐率：95.14req/s] [内存消耗：459.80kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001305s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001346s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000447s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:09:50+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.031560s] [吞吐率：31.69req/s] [内存消耗：459.08kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011750s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.002795s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.001048s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:09:50+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.029653s] [吞吐率：33.72req/s] [内存消耗：459.08kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011602s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.002539s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000903s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:09:50+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.019940s] [吞吐率：50.15req/s] [内存消耗：459.08kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010777s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001315s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000542s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:09:50+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.020803s] [吞吐率：48.07req/s] [内存消耗：459.08kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010424s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001394s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000504s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:10:01+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.019896s] [吞吐率：50.26req/s] [内存消耗：459.08kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010879s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001338s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000424s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:10:03+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.010854s] [吞吐率：92.13req/s] [内存消耗：459.80kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001319s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001487s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000461s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:10:16+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.020519s] [吞吐率：48.74req/s] [内存消耗：459.08kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011398s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001411s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000394s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:10:25+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.020510s] [吞吐率：48.76req/s] [内存消耗：459.80kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\index\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\thinkphp\tpl\dispatch_jump.tpl [ array (
+  0 => 'code',
+  1 => 'msg',
+  2 => 'data',
+  3 => 'url',
+  4 => 'wait',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011352s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001324s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000431s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:11:38+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.367313s] [吞吐率：2.72req/s] [内存消耗：448.50kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001526s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001775s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000496s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.025310s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000477s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:11:38+08:00 ] 127.0.0.1 GET www.cdw.com/admin_login.shtml
+[运行时间：0.053714s] [吞吐率：18.62req/s] [内存消耗：468.78kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001327s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001244s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000375s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:11:40+08:00 ] 127.0.0.1 GET www.cdw.com/captcha.shtml
+[运行时间：0.644607s] [吞吐率：1.55req/s] [内存消耗：453.21kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.cdw.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001367s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001309s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000420s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:11:49+08:00 ] 127.0.0.1 POST www.cdw.com/admin_login.shtml
+[运行时间：0.352599s] [吞吐率：2.84req/s] [内存消耗：454.74kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.cdw.com/admin_login.shtml',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://www.cdw.com',
+  'accept' => '*/*',
+  'content-length' => '90',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+  'name' => 'admin',
+  'password' => 'adminh',
+  'captcha' => 'rxey',
+  '__token__' => 'e6776a201a5222c74279564aaf1412e46501a5b6',
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001259s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001292s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000369s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.209722s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin` WHERE  `name` = 'admin' LIMIT 1 [ RunTime:0.000521s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:11:58+08:00 ] 127.0.0.1 GET www.cdw.com/admin_login.shtml
+[运行时间：0.012013s] [吞吐率：83.24req/s] [内存消耗：468.26kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002053s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000893s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000415s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:12:00+08:00 ] 127.0.0.1 GET www.cdw.com/admin_login.shtml
+[运行时间：0.011361s] [吞吐率：88.02req/s] [内存消耗：468.26kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001370s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001400s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000727s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:12:00+08:00 ] 127.0.0.1 GET www.cdw.com/admin_login.shtml
+[运行时间：0.011433s] [吞吐率：87.47req/s] [内存消耗：468.26kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002284s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000887s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000385s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:13:14+08:00 ] 127.0.0.1 GET www.warehouse.com/
+[运行时间：0.067772s] [吞吐率：14.76req/s] [内存消耗：447.19kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36 Edg/81.0.416.68',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.009141s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.045265s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000541s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001375s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000398s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:13:14+08:00 ] 127.0.0.1 GET www.warehouse.com/admin_login.shtml
+[运行时间：0.036306s] [吞吐率：27.54req/s] [内存消耗：467.80kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=ddjn84v183t7fadu6sdbm45j3i',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36 Edg/81.0.416.68',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001327s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000815s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000346s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:13:15+08:00 ] 127.0.0.1 GET www.warehouse.com/captcha.shtml
+[运行时间：0.090614s] [吞吐率：11.04req/s] [内存消耗：452.02kb] [文件加载：42]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=ddjn84v183t7fadu6sdbm45j3i',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36 Edg/81.0.416.68',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ D:\phpstudy_pro\WWW\warehouse\vendor\topthink\think-captcha\src\CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001286s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000952s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000422s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:14:55+08:00 ] 127.0.0.1 POST www.warehouse.com/admin_login.shtml
+[运行时间：0.222158s] [吞吐率：4.50req/s] [内存消耗：448.41kb] [文件加载：56]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=ddjn84v183t7fadu6sdbm45j3i',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'origin' => 'http://www.warehouse.com',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36 Edg/81.0.416.68',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => '*/*',
+  'content-length' => '89',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+  'name' => 'admin',
+  'password' => 'admin',
+  'captcha' => 'rcbm',
+  '__token__' => '058cc00ae046036bf57cb9bf77f962d412ab00c8',
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001573s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001202s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000443s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.001499s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin` WHERE  `name` = 'admin' LIMIT 1 [ RunTime:0.000411s ]
+[ sql ] [ SQL ] UPDATE `tplay_admin`  SET `login_ip`='127.0.0.1',`login_time`=1588727695  WHERE  `id` = 1 [ RunTime:0.101646s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001580s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000466s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.028063s ]
+[ sql ] [ SQL ] SELECT `id` FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Common'  AND `function` = 'login'  AND `parameter` = 'admin_login=' LIMIT 1 [ RunTime:0.010048s ]
+[ sql ] [ SQL ] SELECT `id` FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Common'  AND `function` = 'login' LIMIT 1 [ RunTime:0.000519s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_log` [ RunTime:0.020739s ]
+[ sql ] [ SQL ] INSERT INTO `tplay_admin_log` (`operation_id` , `admin_id` , `ip` , `create_time` , `admin_menu_id`) VALUES ('' , 1 , '127.0.0.1' , 1588727695 , 50) [ RunTime:0.006851s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:14:57+08:00 ] 127.0.0.1 GET www.warehouse.com/admin/index/index.shtml
+[运行时间：0.366222s] [吞吐率：2.73req/s] [内存消耗：521.33kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=ddjn84v183t7fadu6sdbm45j3i',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin_login.shtml',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36 Edg/81.0.416.68',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\index\index.html [ array (
+  0 => 'menus',
+  1 => 'cookie',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.055494s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001145s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000733s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.002143s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000609s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_cate` [ RunTime:0.028524s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000528s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.001511s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Index'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.000634s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `is_display` = 1 ORDER BY `orders` ASC [ RunTime:0.053691s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000575s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.001364s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000428s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_attachment` [ RunTime:0.180969s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_attachment` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000999s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:15:03+08:00 ] 127.0.0.1 GET www.warehouse.com/admin/main/index
+[运行时间：0.388943s] [吞吐率：2.57req/s] [内存消耗：518.65kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'main',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=ddjn84v183t7fadu6sdbm45j3i',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/admin/index/index.shtml',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36 Edg/81.0.416.68',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Main->index[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Main.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\main\index.html [ array (
+  0 => 'info',
+  1 => 'web',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001817s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001096s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000674s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001002s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000408s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_cate` [ RunTime:0.001225s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000418s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.001265s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Main'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'main=' LIMIT 1 [ RunTime:0.000532s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Main'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.000429s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.001483s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin` LIMIT 1 [ RunTime:0.036763s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` LIMIT 1 [ RunTime:0.000420s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_attachment` [ RunTime:0.003855s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` LIMIT 1 [ RunTime:0.019160s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.020785s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` WHERE  `status` = -1 LIMIT 1 [ RunTime:0.000397s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_messages` [ RunTime:0.046385s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_messages` LIMIT 1 [ RunTime:0.000435s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_messages` WHERE  `is_look` = 0 LIMIT 1 [ RunTime:0.000386s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_log` [ RunTime:0.001447s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1587916800 AND `create_time` <= 1588003200 ) LIMIT 1 [ RunTime:0.000588s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588003200 AND `create_time` <= 1588089600 ) LIMIT 1 [ RunTime:0.000481s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588089600 AND `create_time` <= 1588176000 ) LIMIT 1 [ RunTime:0.000400s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588176000 AND `create_time` <= 1588262400 ) LIMIT 1 [ RunTime:0.000412s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588262400 AND `create_time` <= 1588348800 ) LIMIT 1 [ RunTime:0.000381s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588348800 AND `create_time` <= 1588435200 ) LIMIT 1 [ RunTime:0.000379s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588435200 AND `create_time` <= 1588521600 ) LIMIT 1 [ RunTime:0.000376s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588521600 AND `create_time` <= 1588608000 ) LIMIT 1 [ RunTime:0.000399s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588608000 AND `create_time` <= 1588694400 ) LIMIT 1 [ RunTime:0.000352s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588694400 AND `create_time` <= 1588780800 ) LIMIT 1 [ RunTime:0.000384s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:16:07+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.154957s] [吞吐率：6.45req/s] [内存消耗：447.92kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011988s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.001085s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000406s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.129181s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000516s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:16:07+08:00 ] 127.0.0.1 GET www.cdw.com/admin_login.shtml
+[运行时间：0.075218s] [吞吐率：13.29req/s] [内存消耗：467.66kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012493s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.040865s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000442s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:16:07+08:00 ] 127.0.0.1 GET www.cdw.com/
+[运行时间：0.012271s] [吞吐率：81.49req/s] [内存消耗：447.92kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001391s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000897s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000401s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001553s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000399s ]
+---------------------------------------------------------------
+[ 2020-05-06T09:16:07+08:00 ] 127.0.0.1 GET www.cdw.com/admin_login.shtml
+[运行时间：0.021343s] [吞吐率：46.85req/s] [内存消耗：467.66kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'common',
+    2 => 'login',
+  ),
+  'convert' => false,
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=1g6kp54c2mhloce6pvvi5q719e',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'connection' => 'close',
+  'host' => 'www.cdw.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\admin\controller\Common->login[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Common.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\common\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011610s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000968s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000693s ]
