@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"E:\company\e-book\public/../app/admin\view\attachment\index.html";i:1546481687;s:49:"E:\company\e-book\app\admin\view\public\foot.html";i:1546481687;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:76:"D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\attachment\index.html";i:1546481687;s:61:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\foot.html";i:1546481687;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
