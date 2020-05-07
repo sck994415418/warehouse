@@ -1,4 +1,7 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:68:"D:\xampp\htdocs\tplay\public/../app/admin\view\admin\admin_cate.html";i:1546481687;s:53:"D:\xampp\htdocs\tplay\app\admin\view\public\foot.html";i:1546481687;}*/ ?>
+<?php use think\Collection;
+use think\Paginator;
+
+if (!defined('THINK_PATH')) exit(); /*a:2:{s:76:"D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\tomessages\index.html";i:1546481687;s:61:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\foot.html";i:1546481687;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,73 +13,88 @@
   <link rel="stylesheet" href="/static/public/layui/css/layui.css"  media="all">
   <link rel="stylesheet" href="/static/public/font-awesome/css/font-awesome.min.css" media="all" />
   <link rel="stylesheet" href="/static/admin/css/admin.css"  media="all">
+  <style type="text/css">
+
+/* tooltip */
+#tooltip{
+  position:absolute;
+  border:1px solid #ccc;
+  background:#333;
+  padding:2px;
+  display:none;
+  color:#fff;
+}
+</style>
 </head>
 <body style="padding:10px;">
   <div class="tplay-body-div">
-    <div class="layui-tab">
-      <ul class="layui-tab-title">
-        <li class="layui-this">角色管理</li>
-        <li><a href="<?php echo url('admin/admin/adminCatePublish'); ?>" class="a_menu">新增角色</a></li>
-      </ul>
-    </div>
-    <form class="layui-form serch" action="<?php echo url('admin/admin/admincate'); ?>" method="post">
+    <fieldset class="layui-elem-field site-demo-button" style="margin-top: 30px;border:0">
+      <form class="layui-form serch" action="<?php echo url('admin/tomessages/index'); ?>" method="post">
         <div class="layui-form-item" style="float: left;">
           <div class="layui-input-inline">
             <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
           </div>
           <div class="layui-input-inline">
             <div class="layui-inline">
+                <select name="is_look" lay-search="">
+                  <option value="">状态</option>
+                  <option value="0">待处理</option>
+                  <option value="1">已处理</option>
+                </select>
+            </div>
+          </div>
+          <div class="layui-input-inline">
+            <div class="layui-inline">
               <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="create_time" placeholder="创建时间" name="create_time">
+                <input type="text" class="layui-input" id="create_time" placeholder="留言时间" name="create_time">
               </div>
             </div>
           </div>
           <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">立即提交</button>
         </div>
-      </form>
+      </form> 
+      
+    </fieldset>
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="50">
         <col width="100">
+        <col width="100">
+        <col width="600">
         <col width="150">
-        <col width="150">
-        <col width="150">
-        <col width="300">
         <col width="100">
       </colgroup>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>角色名称</th>
-          <th>权限预览</th>
-          <th>创建时间</th>
-          <th>最后修改时间</th>
-          <th>备注</th>
+          <th>编号</th>
+          <th>留言时间</th>
+          <th>留言IP</th>
+          <th>留言内容</th>
+          <th>状态</th>
           <th>操作</th>
         </tr> 
       </thead>
       <tbody>
-        <?php if(is_array($cate) || $cate instanceof \think\Collection || $cate instanceof \think\Paginator): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+        <?php if(is_array($message) || $message instanceof Collection || $message instanceof Paginator): $i = 0; $__LIST__ = $message;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
         <tr>
           <td><?php echo $vo['id']; ?></td>
-          <td><?php echo $vo['name']; ?></td>
-          <td><a href="<?php echo url('admin/admin/preview',['id'=>$vo['id']]); ?>" class="preview" style="margin-right: 0;font-size:12px;">点击查看</a></td>
           <td><?php echo $vo['create_time']; ?></td>
-          <td><?php echo $vo['update_time']; ?></td>
-          <td><?php echo $vo['desc']; ?></td>
+          <td><?php echo $vo['ip']; ?></td>
+          <td><?php echo $vo['message']; ?></td>
+          <td><?php if($vo['is_look'] == 1): ?><span class="layui-badge">管理员已阅</span><?php else: ?><span class="layui-badge layui-bg-orange">管理员待阅</span><?php endif; ?></td>
           <td class="operation-menu">
             <div class="layui-btn-group">
-              <a href="<?php echo url('admin/admin/adminCatePublish',['id'=>$vo['id']]); ?>" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-              <a class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+              <a href="javascript:" class="layui-btn layui-btn-xs look layui-btn-primary" data-id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="fa <?php if($vo['is_look'] == 1): ?>fa-toggle-on<?php else: ?>fa-toggle-off<?php endif; ?>"></i></a>
+              <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary delete" id="<?php echo $vo['id']; ?>" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
           </td>
         </tr>
         <?php endforeach; endif; else: echo "" ;endif; ?>
       </tbody>
     </table>
-    <div style="padding:0 20px;"><?php echo $cate->render(); ?></div>
+        <?php echo $message->render(); ?>
             
-       <script src="/static/public/layui/layui.js" charset="utf-8"></script>
+        <script src="/static/public/layui/layui.js" charset="utf-8"></script>
     <script src="/static/public/jquery/jquery.min.js"></script>
     <script>
             var message;
@@ -159,14 +177,14 @@
         elem: '#create_time'
       });
     });
-    </script>
+    </script> 
     <script type="text/javascript">
 
     $('.delete').click(function(){
       var id = $(this).attr('id');
       layer.confirm('确定要删除?', function(index) {
         $.ajax({
-          url:"<?php echo url('admin/admin/adminCateDelete'); ?>",
+          url:"<?php echo url('admin/tomessages/delete'); ?>",
           data:{id:id},
           success:function(res) {
             layer.msg(res.msg);
@@ -181,19 +199,46 @@
     })
     </script>
     <script type="text/javascript">
-    layui.use('layer', function(){
-      var layer = layui.layer;
-
-      $('.preview').click(function(){
-        var url = $(this).attr('href');
-        layer.open({
-          type:2,
-          content:url,
-          area: ['550px', '400px']
-        });
-        return false;
-      })
-    });
+      layui.use('layer', function(){
+        var layer = layui.layer;
+        $('.look').click(function(){
+          var id = $(this).attr('data-id');
+          layer.msg('留言标记',{
+            time:20000
+            ,btn: ['标记已读', '标记未读', '再想想']
+            ,yes: function(index, layero){
+              $.ajax({
+                url:"<?php echo url('admin/tomessages/mark'); ?>"
+                ,type:'post'
+                ,data:{id:id,is_look:'1'}
+                ,success:function(res){
+                  layer.msg(res.msg);
+                  if(res.code == 1){
+                    setTimeout(function(){
+                      location.href = res.url;
+                    },1500)
+                  }
+                }
+              })
+            }
+            ,btn2: function(index, layero){
+              $.ajax({
+                url:"<?php echo url('admin/tomessages/mark'); ?>"
+                ,type:'post'
+                ,data:{id:id,is_look:'0'}
+                ,success:function(res){
+                  layer.msg(res.msg);
+                  if(res.code == 1){
+                    setTimeout(function(){
+                      location.href = res.url;
+                    },1500)
+                  }
+                }
+              })
+            }
+          })
+        })
+      });              
     </script>
   </div>
 </body>
