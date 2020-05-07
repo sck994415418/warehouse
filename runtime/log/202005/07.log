@@ -1,0 +1,127 @@
+---------------------------------------------------------------
+[ 2020-05-07T16:08:10+08:00 ] 127.0.0.1 GET www.warehouse.com/
+[运行时间：0.352145s] [吞吐率：2.84req/s] [内存消耗：2,960.09kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=brfruaf8jnoe9t0vvop60fg3v3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->index[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Index.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\index\index.html [ array (
+  0 => 'menus',
+  1 => 'cookie',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011744s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.011583s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000483s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001074s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000419s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_cate` [ RunTime:0.014800s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000529s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.000838s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Index'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = '=' LIMIT 1 [ RunTime:0.000579s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Index'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.000488s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `is_display` = 1 ORDER BY `orders` ASC [ RunTime:0.000729s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000400s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.000870s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000451s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_attachment` [ RunTime:0.003572s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_attachment` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000627s ]
+---------------------------------------------------------------
+[ 2020-05-07T16:08:10+08:00 ] 127.0.0.1 GET www.warehouse.com/admin/main/index
+[运行时间：0.089031s] [吞吐率：11.23req/s] [内存消耗：2,915.59kb] [文件加载：54]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\warehouse\thinkphp\lang\zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'main',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=brfruaf8jnoe9t0vvop60fg3v3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://www.warehouse.com/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3756.400 QQBrowser/10.5.4039.400',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'www.warehouse.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Main->index[ D:\phpstudy_pro\WWW\warehouse\app\admin\controller\Main.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\main\index.html [ array (
+  0 => 'info',
+  1 => 'web',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001372s ] mysql:host=127.0.0.1;port=3306;dbname=warehouse;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_urlconfig` [ RunTime:0.000842s ]
+[ sql ] [ SQL ] SELECT `aliases`,`url` FROM `tplay_urlconfig` WHERE  `status` = 1 [ RunTime:0.000381s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_webconfig` [ RunTime:0.001164s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` WHERE  `web` = 'web' LIMIT 1 [ RunTime:0.000520s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_cate` [ RunTime:0.000754s ]
+[ sql ] [ SQL ] SELECT `permissions` FROM `tplay_admin_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000349s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_menu` [ RunTime:0.000662s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Main'  AND `function` = 'index'  AND `type` = 1  AND `parameter` = 'main=' LIMIT 1 [ RunTime:0.000440s ]
+[ sql ] [ SQL ] SELECT * FROM `tplay_admin_menu` WHERE  `module` = 'admin'  AND `controller` = 'Main'  AND `function` = 'index'  AND `type` = 1 LIMIT 1 [ RunTime:0.000398s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin` [ RunTime:0.001170s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin` LIMIT 1 [ RunTime:0.000286s ]
+[ sql ] [ SQL ] SELECT `black_ip` FROM `tplay_webconfig` LIMIT 1 [ RunTime:0.000286s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_attachment` [ RunTime:0.001770s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` LIMIT 1 [ RunTime:0.000342s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000337s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_attachment` WHERE  `status` = -1 LIMIT 1 [ RunTime:0.000316s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_messages` [ RunTime:0.012061s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_messages` LIMIT 1 [ RunTime:0.000548s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_messages` WHERE  `is_look` = 0 LIMIT 1 [ RunTime:0.000300s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `tplay_admin_log` [ RunTime:0.001165s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588003200 AND `create_time` <= 1588089600 ) LIMIT 1 [ RunTime:0.000483s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588089600 AND `create_time` <= 1588176000 ) LIMIT 1 [ RunTime:0.000363s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588176000 AND `create_time` <= 1588262400 ) LIMIT 1 [ RunTime:0.000340s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588262400 AND `create_time` <= 1588348800 ) LIMIT 1 [ RunTime:0.000363s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588348800 AND `create_time` <= 1588435200 ) LIMIT 1 [ RunTime:0.000293s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588435200 AND `create_time` <= 1588521600 ) LIMIT 1 [ RunTime:0.000291s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588521600 AND `create_time` <= 1588608000 ) LIMIT 1 [ RunTime:0.000287s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588608000 AND `create_time` <= 1588694400 ) LIMIT 1 [ RunTime:0.000302s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588694400 AND `create_time` <= 1588780800 ) LIMIT 1 [ RunTime:0.000372s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `tplay_admin_log` WHERE  `admin_menu_id` = 50  AND ( `create_time` >= 1588780800 AND `create_time` <= 1588867200 ) LIMIT 1 [ RunTime:0.000478s ]
