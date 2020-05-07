@@ -12,12 +12,16 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\AdminCate;
+use app\admin\model\AdminLog;
 use \think\Db;
 use \think\Cookie;
 use \think\Session;
 use app\admin\model\Admin as adminModel;//管理员模型
 use app\admin\model\AdminMenu;
 use app\admin\controller\Permissions;
+use think\Validate;
+
 class Admin extends Permissions
 {
     /**
@@ -104,7 +108,7 @@ class Admin extends Permissions
     			//是提交操作
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new \think\Validate([
+	            $validate = new Validate([
 	                ['name', 'require|alphaDash', '管理员名称不能为空|用户名格式只能是字母、数组、——或_'],
 	                ['admin_cate_id', 'require', '请选择管理员分组'],
 	            ]);
@@ -141,7 +145,7 @@ class Admin extends Permissions
     			//是提交操作
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new \think\Validate([
+	            $validate = new Validate([
 	                ['name', 'require|alphaDash', '用户名不能为空|用户名格式只能是字母、数组、——或_'],
 	                ['password', 'require|confirm', '密码不能为空|两次密码不一致'],
 	                ['password_confirm', 'require', '重复密码不能为空'],
@@ -189,7 +193,7 @@ class Admin extends Permissions
     		if($id == Session::get('admin')) {
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new \think\Validate([
+	            $validate = new Validate([
 	                ['password', 'require|confirm', '密码不能为空|两次密码不一致'],
 	                ['password_confirm', 'require', '重复密码不能为空'],
 	            ]);
@@ -249,7 +253,7 @@ class Admin extends Permissions
      */
     public function adminCate()
     {
-    	$model = new \app\admin\model\AdminCate;
+    	$model = new AdminCate;
 
         $post = $this->request->param();
         if (isset($post['keywords']) and !empty($post['keywords'])) {
@@ -278,7 +282,7 @@ class Admin extends Permissions
     {
         //获取角色id
         $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
-        $model = new \app\admin\model\AdminCate();
+        $model = new AdminCate();
         $menuModel = new AdminMenu();
         if($id > 0) {
             //是修改操作
@@ -286,7 +290,7 @@ class Admin extends Permissions
                 //是提交操作
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
-                $validate = new \think\Validate([
+                $validate = new Validate([
                     ['name', 'require', '角色名称不能为空'],
                 ]);
                 //验证部分数据合法性
@@ -328,7 +332,7 @@ class Admin extends Permissions
                 //是提交操作
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
-                $validate = new \think\Validate([
+                $validate = new Validate([
                     ['name', 'require', '角色名称不能为空'],
                 ]);
                 //验证部分数据合法性
@@ -365,7 +369,7 @@ class Admin extends Permissions
     public function preview()
     {
         $id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
-        $model = new \app\admin\model\AdminCate();
+        $model = new AdminCate();
         $info['cate'] = $model->where('id',$id)->find();
         if(!empty($info['cate']['permissions'])) {
             //将菜单id字符串拆分成数组
@@ -440,14 +444,16 @@ class Admin extends Permissions
 
     public function log()
     {
-        $model = new \app\admin\model\AdminLog();
+        $model = new AdminLog();
 
         $post = $this->request->param();
         if (isset($post['admin_menu_id']) and $post['admin_menu_id'] > 0) {
+            $this->assign('admin_menu_id',$post['admin_menu_id']);
             $where['admin_menu_id'] = $post['admin_menu_id'];
         }
         
         if (isset($post['admin_id']) and $post['admin_id'] > 0) {
+            $this->assign('admin_id',$post['admin_id']);
             $where['admin_id'] = $post['admin_id'];
         }
  
@@ -455,6 +461,7 @@ class Admin extends Permissions
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
+            $this->assign('create_time',$post['create_time']);
         }
         
         $log = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
@@ -463,7 +470,7 @@ class Admin extends Permissions
         //身份列表
         $admin_cate = Db::name('admin_cate')->select();
         $this->assign('admin_cate',$admin_cate);
-        $info['menu'] = Db::name('admin_menu')->select();
+        $info['menu'] = Db::name('admin_menu')->where('type',1)->select();
         $info['admin'] = Db::name('admin')->select();
         $this->assign('info',$info);
         return $this->fetch();

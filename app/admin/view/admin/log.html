@@ -32,7 +32,7 @@
                 <select name="admin_menu_id" lay-search="">
                   <option value="">操作</option>
                   {volist name="$info.menu" id="vo"}
-                  <option value="{$vo.id}">{$vo.name}</option>
+                  <option value="{$vo.id}" {eq name="@$admin_menu_id" value="$vo.id"/}selected{/eq}>{$vo.name}</option>
                   {/volist}
                 </select>
             </div>
@@ -42,7 +42,7 @@
                 <select name="admin_id" lay-search="">
                   <option value="">操作人</option>
                   {volist name="$info.admin" id="vo"}
-                  <option value="{$vo.id}">{$vo.nickname}</option>
+                  <option value="{$vo.id}" {eq name="@$admin_id" value="$vo.id"/}selected{/eq}>{$vo.nickname}</option>
                   {/volist}
                 </select>
             </div>
@@ -50,7 +50,7 @@
           <div class="layui-input-inline">
             <div class="layui-inline">
               <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="create_time" placeholder="操作时间" name="create_time">
+                <input type="text" class="layui-input" value="{$create_time|default=''}" id="create_time" placeholder="操作时间" name="create_time">
               </div>
             </div>
           </div>
