@@ -31,18 +31,30 @@
       <li><a href="{:url('admin/client/publish')}" class="a_menu">添加新客户</a></li>
     </ul>
   </div>
-  <form class="layui-form serch" action="{:url('admin/admin/index')}" method="post">
+  <form class="layui-form serch" action="{:url('admin/client/index')}" method="post">
     <div class="layui-form-item" style="float: left;">
       <div class="layui-input-inline">
         <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="请输入关键词" class="layui-input layui-btn-sm">
       </div>
-      <div class="layui-input-inline">
-        <div class="layui-inline">
-          <select name="admin_cate_id" lay-search="">
-            <option value="">角色</option>
-            <option value="">---</option>
-          </select>
-        </div>
+      <div class="layui-input-inline province_div" style="width: 100px">
+        <select name="client_position_id" lay-verify="" class="province" lay-filter="province">
+          <option value="">请选择省</option>
+          {if !empty($View_address)}
+          {foreach name="View_address" item="v"}
+          <option value="{$v.address_id}" >{$v.address_name}</option>
+          {/foreach}
+          {/if}
+        </select>
+      </div>
+      <input type="hidden" name="num" value="">
+      <div class="layui-input-inline city_div" style="width: 100px">
+
+      </div>
+      <div class="layui-input-inline qu_div" style="width: 100px">
+
+      </div>
+      <div class="layui-input-inline street_div" style="width: 100px">
+
       </div>
       <div class="layui-input-inline">
         <div class="layui-inline">
@@ -58,15 +70,16 @@
 
     <table class="layui-table" lay-size="sm">
       <colgroup>
+        <col width="25">
+        <col width="100">
         <col width="50">
-        <col width="100">
-        <col width="100">
+        <col width="80">
         <col width="150">
-        <col width="150">
-        <col width="150">
-        <col width="150">
-        <col width="150">
-        <col width="150">
+        <col width="">
+        <col width="">
+        <col width="140">
+        <col width="140">
+        <col width="120">
       </colgroup>
       <thead>
         <tr>
@@ -76,6 +89,7 @@
           <th>电话</th>
           <th>微信</th>
           <th>所在地</th>
+          <th>详细地址</th>
           <th>创建时间</th>
           <th>最后修改时间</th>
           <th>操作</th>
@@ -85,7 +99,7 @@
         {volist name="data" id="vo"}
           <tr>
             <td>{$vo.client_id}</td>
-            <td><span style="font-weight:500;">{$vo.client_name}</span>{$vo.client_name}</td>
+            <td>{$vo.client_name}</td>
             <td>
               {eq name="$vo.client_sex" value="0"}未知{/eq}
               {eq name="$vo.client_sex" value="1"/}男{/eq}
@@ -93,13 +107,14 @@
             </td>
             <td>{$vo.client_phone}</td>
             <td>{$vo.client_wechat}</td>
-            <td>{$vo.client_position_id}</td>
+            <td>{$vo.address.name2|default=''}{$vo.address.name3|default=''}{$vo.address.name4|default=''}{$vo.address.name5|default=''}</td>
+            <td>{$vo.client_position_details|default='暂无'}</td>
             <td>{$vo.create_time}</td>
             <td>{$vo.update_time}</td>
             <td class="operation-menu">
               <div class="layui-btn-group">
                 <a href="{:url('admin/client/publish',['client_id'=>$vo.client_id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-                <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary delete" client_id="{$vo.client_id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary delete" client_id="{$vo.client_id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               </div>
             </td>
           </tr>
@@ -110,7 +125,10 @@
   </form>
     <div style="padding:0 20px;">{$data->render()}</div>
   {include file="public/foot"}
-  <script type="text/javascript">
+</div>
+</body>
+</html>
+<script type="text/javascript">
 
   $('.delete').click(function(){
     var client_id = $(this).attr('client_id');
@@ -129,7 +147,115 @@
       })
     })
   })
-  </script>
-</div>
-</body>
-</html>
+</script>
+<script>
+  layui.use(['form', 'layer'], function () {
+    $ = layui.jquery;
+    var form = layui.form;
+    //选择省时触发事件获取其下市数据
+    form.on('select(province)', function(data){
+      var item = $(this).parents('.layui-form-item')
+      // console.log(item)
+      $('.city_div').html('')
+      $('.qu_div').html('')
+      $('.street_div').html('')
+      address(data,item)
+    });
+    form.on('select(city)', function(data){
+      var item = $(this).parents('.layui-form-item')
+      // console.log(item)
+      $('.qu_div').html('')
+      $('.street_div').html('')
+      address_qu(data,item)
+    });
+    form.on('select(qu)', function(data){
+      var item = $(this).parents('.layui-form-item')
+      // console.log(item)
+      $('.street_div').html('')
+      address_street(data,item)
+    });
+    form.on('select(street)', function(data){
+      $('input[name=num]').val(9)
+    });
+    // $(window).on('load', function() {
+    //   var item = $(this)
+    //   var data=[];
+    //   data.value="{$data.user_sheng|default=''}";
+    //   address(data,item)
+    // });
+
+    function address(data,item){
+      layer.load()
+       address_id = data.value
+      $.getJSON("{:url('admin/Address/address')}?address_id="+address_id, function(data){
+        if(data.code == '1'){
+          var str= '          <select lay-verify="" name="client_position_id" class="city" lay-filter="city">\n' +
+                  '            <option value="'+address_id+'" selected>请选择市</option>\n' +
+                  '          </select>\n';
+          $('.city_div').html(str)
+          var optionstring = "";
+          $.each(data.data, function(i,item ){
+            optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
+          });
+          $(".city").html('<option value="'+address_id+'"></option>' + optionstring);
+          $('input[name=num]').val(3)
+          form.render('select');
+          layer.closeAll()
+        }else{
+          layer.closeAll()
+          // layer.msg(data.msg);
+        }
+
+      });
+    }
+    function address_qu(data,item){
+      layer.load()
+       address_id = data.value
+      $.getJSON("{:url('admin/Address/address_qu')}?address_id="+address_id, function(data){
+        if(data.code == '1'){
+          var str='          <select lay-verify="" name="client_position_id" class="qu" lay-filter="qu">\n' +
+                  '            <option value="'+address_id+'" selected>请选择区/县</option>\n' +
+                  '          </select>\n';
+          $('.qu_div').html(str)
+          var optionstring = "";
+          $.each(data.data, function(i,item ){
+            optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
+          });
+          $(".qu").html('<option value="'+address_id+'"></option>' + optionstring);
+          $('input[name=num]').val(4)
+          form.render('select');
+          layer.closeAll()
+        }else{
+          layer.closeAll()
+          // layer.msg(data.msg);
+        }
+
+      });
+    }
+
+    function address_street(data,item){
+      layer.load()
+       address_id = data.value
+      $.getJSON("{:url('admin/Address/address_street')}?address_id="+address_id, function(data){
+        if(data.code == '1'){
+          var str='          <select lay-verify="" name="client_position_id" class="street" lay-filter="street">\n' +
+                  '            <option value="'+address_id+'" selected>请选择乡镇/街道</option>\n' +
+                  '          </select>\n';
+          $('.street_div').html(str)
+          var optionstring = "";
+          $.each(data.data, function(i,item ){
+            optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
+          });
+          $(".street").html('<option value="'+address_id+'"></option>' + optionstring);
+          $('input[name=num]').val(6)
+          form.render('select')
+          layer.closeAll()
+        }else{
+          layer.closeAll()
+          // layer.msg(data.msg);
+        }
+
+      });
+    }
+  });
+</script>

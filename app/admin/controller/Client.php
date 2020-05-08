@@ -14,6 +14,9 @@ namespace app\admin\controller;
 
 use think\Db;
 use app\admin\model\SckClient as ClientModel;
+use think\Exception;
+use think\exception\PDOException;
+use think\Validate;
 
 class Client extends Permissions
 {
@@ -21,22 +24,24 @@ class Client extends Permissions
     {
         $model = new ClientModel();
         $post = $this->request->param();
+//        dump($post);
         if (isset($post['keywords']) and !empty($post['keywords'])) {
-            $where['nickname'] = ['like', '%' . $post['keywords'] . '%'];
+            $where['client_name|client_phone|client_wechat'] = ['like', '%' . $post['keywords'] . '%'];
         }
-        if (isset($post['admin_cate_id']) and $post['admin_cate_id'] > 0) {
-            $where['admin_cate_id'] = $post['admin_cate_id'];
+        if (isset($post['client_position_id']) and $post['client_position_id'] > 0) {
+            $new_client_position_id = substr($post['client_position_id'],0,$post['num']);
+            $where['client_position_id'] = ['like',$new_client_position_id.'%'];
         }
         if(isset($post['create_time']) and !empty($post['create_time'])) {
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         }
+//        dump(@$where);
         $data = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
 
-//        $admin_cate = Db::name('admin_cate')->select();
-//        $this->assign('admin_cate',$admin_cate);
-
+        $address = db('address')->field('id1,id2 as address_id, name2 as address_name')->where('id1',1)->group('address_id')->select();
+        $this->assign('View_address',$address);
         $this->assign('data',$data);
         return $this->fetch();
     }
@@ -46,10 +51,16 @@ class Client extends Permissions
     {
         $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
         $model = new ClientModel();
+
+//        $address = db('address_old')->where('parent_id',1)->select();
+        $address = db('address')->field('id1,id2 as address_id, name2 as address_name')->where('id1',1)->group('address_id')->select();
+//        dump($address);die;
+        $this->assign('View_address',$address);
+
         if($client_id > 0) {
             if($this->request->isPost()) {
                 $post = $this->request->post();
-                $validate = new \think\Validate([
+                $validate = new Validate([
                     ['client_name', 'require', '客户姓名不能为空'],
                     ['client_phone', 'require', '客户电话不能为空'],
                 ]);
@@ -64,7 +75,7 @@ class Client extends Permissions
                     return $this->error('修改失败');
                 } else {
                     addlog($model->client_id);
-                    return $this->success('修改管理员信息成功','admin/client/index');
+                    return $this->success('修改信息成功','admin/client/index');
                 }
             } else {
                 $data = $model->where('client_id',$client_id)->find();
@@ -74,7 +85,7 @@ class Client extends Permissions
         } else {
             if($this->request->isPost()) {
                 $post = $this->request->post();
-                $validate = new \think\Validate([
+                $validate = new Validate([
                     ['client_name', 'require', '客户姓名不能为空'],
                     ['client_phone', 'require', '客户电话不能为空'],
                 ]);
@@ -87,10 +98,10 @@ class Client extends Permissions
                 }
                 $post['create_time'] = time();
                 if(false == $model->allowField(true)->save($post)) {
-                    return $this->error('添加管理员失败');
+                    return $this->error('添加失败');
                 } else {
                     addlog($model->client_id);
-                    return $this->success('添加管理员成功','admin/client/index');
+                    return $this->success('添加成功','admin/client/index');
                 }
             } else {
                 return $this->fetch();
@@ -100,8 +111,8 @@ class Client extends Permissions
 
     /**
      * 客户删除
-     * @throws \think\Exception
-     * @throws \think\exception\PDOException
+     * @throws Exception
+     * @throws PDOException
      */
     public function delete()
     {
@@ -117,24 +128,4 @@ class Client extends Permissions
         }
     }
 
-
-    public function orders()
-    {
-        if($this->request->isPost()) {
-            $post = $this->request->post();
-            $i = 0;
-            foreach ($post['id'] as $k => $val) {
-                $order = Db::name('admin_menu')->where('id',$val)->value('orders');
-                if($order != $post['orders'][$k]) {
-                    if(false == Db::name('admin_menu')->where('id',$val)->update(['orders'=>$post['orders'][$k]])) {
-                        return $this->error('更新失败');
-                    } else {
-                        $i++;
-                    }
-                }
-            }
-            addlog();//写入日志
-            return $this->success('成功更新'.$i.'个数据','admin/menu/index');
-        }
-    }
 }
