@@ -16,6 +16,7 @@ use think\Db;
 use app\admin\model\SckClient as ClientModel;
 use think\Exception;
 use think\exception\PDOException;
+use think\Session;
 use think\Validate;
 
 class Client extends Permissions
@@ -38,9 +39,35 @@ class Client extends Permissions
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         }
 //        dump(@$where);
+
+        $id = Session::get('admin');
+        if(!empty($id)){
+            $user_info = \app\admin\model\Admin::get($id);
+            if(!empty($user_info->address_ids)){
+                $address_ids = json_decode($user_info->address_ids,true);
+            }else{
+                $address_ids =[];
+            }
+        }else{
+            $address_ids =[];
+        }
+        if(!empty($address_ids)){
+            $street_ids = db('address')
+                ->where(['id1'=>1,'status'=>1,'id4'=>['in',$address_ids]])
+                ->column('id5');
+        }else{
+            $street_ids =[];
+        }
+        $where['client_position_id'] = ['in',$street_ids];
         $data = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
 
-        $address = db('address')->field('id1,id2 as address_id, name2 as address_name')->where('id1',1)->group('address_id')->select();
+        $address = db('address')
+            ->field('id1,id2 as address_id, name2 as address_name')
+            ->where(['id1'=>1,'status'=>1,'id4'=>['in',$address_ids]])
+            ->group('address_id')
+            ->select();
+
+
         $this->assign('View_address',$address);
         $this->assign('data',$data);
         return $this->fetch();
@@ -53,8 +80,24 @@ class Client extends Permissions
         $model = new ClientModel();
 
 //        $address = db('address_old')->where('parent_id',1)->select();
-        $address = db('address')->field('id1,id2 as address_id, name2 as address_name')->where('id1',1)->group('address_id')->select();
-//        dump($address);die;
+
+        $id = Session::get('admin');
+        if(!empty($id)){
+            $user_info = \app\admin\model\Admin::get($id);
+            if(!empty($user_info->address_ids)){
+                $address_ids = json_decode($user_info->address_ids,true);
+            }else{
+                $address_ids =[];
+            }
+        }else{
+            $address_ids =[];
+        }
+
+        $address = db('address')
+            ->field('id1,id2 as address_id, name2 as address_name')
+            ->where(['id1'=>1,'status'=>1,'id4'=>['in',$address_ids]])
+            ->group('address_id')
+            ->select();
         $this->assign('View_address',$address);
 
         if($client_id > 0) {
