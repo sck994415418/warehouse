@@ -148,9 +148,9 @@ class Admin extends Permissions
                     $user_info = adminModel::get($id);
                     if(!empty($user_info->address_ids)){
                         $address_ids = json_decode($user_info->address_ids,true);
+                        $address = address_fun($address_ids);
                     }
                 }
-                $address = address_fun($address_ids);
 //                dump($address);die;
                 $this->assign('address',json_encode($address));
     			$this->assign('info',$info);
