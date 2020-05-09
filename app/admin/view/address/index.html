@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <style type="text/css">
+
+    /* tooltip */
+    #tooltip{
+      position:absolute;
+      border:1px solid #ccc;
+      background:#333;
+      padding:2px;
+      display:none;
+      color:#fff;
+    }
+  </style>
+</head>
+<body style="padding:10px;">
+<div class="tplay-body-div">
+  <table class="layui-table" lay-size="sm">
+    <colgroup>
+      <!--<col width="50">-->
+      <!--<col width="150">-->
+      <!--<col width="500">-->
+      <!--<col width="200">-->
+      <!--<col width="100">-->
+    </colgroup>
+    <thead>
+    <tr>
+<!--      <th>排序</th>-->
+      <!--<th>ID</th>-->
+      <!--<th>认证名称</th>-->
+      <th>地区名称</th>
+      <!--<th>认证价格</th>-->
+      <!--<th>创建时间</th>-->
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <form action="" id="admin">
+      {if !empty($View_address)}
+      {foreach name="$View_address" item="v"}
+      <tr>
+        <td>{$v.address_name|default=''}</td>
+        <td>{if $v.status !=1}
+          <button type="button" title="开启" class="layui-btn layui-btn-primary layui-btn-sm always status_on" data-id="{$v.address_id}"><i class="fa fa-toggle-off" ></i></button>
+          {else/}
+          <button type="button" title="禁用" class="layui-btn layui-btn-primary layui-btn-sm always status_off" data-id="{$v.address_id}"><i class="fa fa-toggle-on" ></i></button>
+          {/if}
+        </td>
+      </tr>
+      {/foreach}
+      {/if}
+    </form>
+    </tbody>
+  </table>
+  <button class="layui-btn" lay-submit lay-filter="admin">更新排序</button>
+
+
+</div>
+</body>
+</html>
+{include file="public/foot"}
+<script type="text/javascript">
+
+  $(document).on('click','.status_on',function () {
+    var ids = $(this).data('id');
+    // console.log(ids)
+    layer.confirm('确定要将此开启吗?', function (index) {
+      $.ajax({
+        url: "{:url('admin/Address/status_on')}",
+        data: {id: ids},
+        success: function (res) {
+          layer.msg(res.msg);
+          if (res.code == 1) {
+            setTimeout(function () {
+              location.href = res.url;
+            }, 1500)
+          }
+        }
+      })
+    })
+  })
+  $(document).on('click','.status_off',function () {
+    var ids = $(this).data('id');
+    // console.log(ids)
+    layer.confirm('确定要将禁用吗?', function (index) {
+      $.ajax({
+        url: "{:url('admin/Address/status_off')}",
+        data: {id: ids},
+        success: function (res) {
+          layer.msg(res.msg);
+          if (res.code == 1) {
+            setTimeout(function () {
+              location.href = res.url;
+            }, 1500)
+          }
+        }
+      })
+    })
+  })
+</script>

@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+use think\Db;
 
 /**
  * 根据附件表的id返回url地址
@@ -19,7 +20,7 @@
 function geturl($id)
 {
 	if ($id) {
-		$geturl = \think\Db::name("attachment")->where(['id' => $id])->find();
+		$geturl = Db::name("attachment")->where(['id' => $id])->find();
 		if($geturl['status'] == 1) {
 			//审核通过
 			return $geturl['filepath'];
@@ -50,7 +51,7 @@ function SendMail($address)
 {
     vendor('phpmailer.PHPMailerAutoload');
     //vendor('PHPMailer.class#PHPMailer');
-    $mail = new \PHPMailer();          
+    $mail = new PHPMailer();
      // 设置PHPMailer使用SMTP服务器发送Email
     $mail->IsSMTP();                
     // 设置邮件的字符编码，若不指定，则为'UTF-8'
@@ -58,7 +59,7 @@ function SendMail($address)
     // 添加收件人地址，可以多次使用来添加多个收件人
     $mail->AddAddress($address); 
 
-    $data = \think\Db::name('emailconfig')->where('email','email')->find();
+    $data = Db::name('emailconfig')->where('email','email')->find();
             $title = $data['title'];
             $message = $data['content'];
             $from = $data['from_email'];
@@ -109,18 +110,18 @@ function SendSms($param,$phone)
     import('dayu.top.RequestCheckUtil');
 
     //获取短信配置
-    $data = \think\Db::name('smsconfig')->where('sms','sms')->find();
+    $data = Db::name('smsconfig')->where('sms','sms')->find();
             $appkey = $data['appkey'];
             $secretkey = $data['secretkey'];
             $type = $data['type'];
             $name = $data['name'];
             $code = $data['code'];
     
-    $c = new \TopClient();
+    $c = new TopClient();
     $c ->appkey = $appkey;
     $c ->secretKey = $secretkey;
     
-    $req = new \AlibabaAliqinFcSmsNumSendRequest();
+    $req = new AlibabaAliqinFcSmsNumSendRequest();
     //公共回传参数，在“消息返回”中会透传回该参数。非必须
     $req ->setExtend("");
     //短信类型，传入值请填写normal
@@ -148,4 +149,36 @@ function SendSms($param,$phone)
 function hide_phone($str){
     $resstr = substr_replace($str,'****',3,4);  
     return $resstr;  
+}
+
+function address_fun($data=array())
+{
+//    $address = db('address')->field('id2 as id, name2 as title')->where(['id1'=>1,'id2'=>['in',[110000,120000,130000]]])->group('id')->select();
+    $address = db('address')->field('id2 as id, name2 as title')->where(['id1'=>1,'status'=>1])->group('id')->select();
+    if(!empty($address)){
+        foreach ($address as $k=>$v){
+            $address[$k]['field'] = 'address[]';
+            $address[$k]['children'] = db('address')->where('id2',$address[$k]['id'])->field('id3 as id, name3 as title')->group('id')->select();
+            if(!empty($address[$k]['children'])){
+                foreach ($address[$k]['children'] as $ks=>$vs){
+                    $address[$k]['children'][$ks]['field'] = 'address[]';
+                    $address[$k]['children'][$ks]['children'] = db('address')->where('id3',$address[$k]['children'][$ks]['id'])->field('id4 as id, name4 as title')->group('id')->select();
+                    if(!empty($address[$k]['children'][$ks]['children'])){
+                        foreach($address[$k]['children'][$ks]['children'] as $kss=>$vss){
+                            $address[$k]['children'][$ks]['children'][$kss]['field'] = 'address_ids[]';
+                            if(!empty($address)){
+                                if(in_array($address[$k]['children'][$ks]['children'][$kss]['id'],$data)){
+                                    $address[$k]['children'][$ks]['children'][$kss]['checked'] = true;
+                                }
+                            }
+                            if(empty($address[$k]['children'][$ks]['children'][$kss]['id'])){
+                                unset($address[$k]['children'][$ks]['children'][$kss]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return $address;
 }

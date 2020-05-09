@@ -14,6 +14,7 @@ namespace app\admin\controller;
 
 use app\admin\model\AdminCate;
 use app\admin\model\AdminLog;
+use app\index\model\UserModel;
 use \think\Db;
 use \think\Cookie;
 use \think\Session;
@@ -30,9 +31,9 @@ class Admin extends Permissions
      */
     public function index()
     {
+
         //实例化管理员模型
         $model = new adminModel();
-
         $post = $this->request->param();
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['nickname'] = ['like', '%' . $post['keywords'] . '%'];
@@ -102,6 +103,9 @@ class Admin extends Permissions
     	//获取管理员id
     	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
     	$model = new adminModel();
+    	$address = address_fun();
+//    	dump($address);die;
+    	$this->assign('address',json_encode($address));
     	if($id > 0) {
     		//是修改操作
     		if($this->request->isPost()) {
@@ -121,6 +125,9 @@ class Admin extends Permissions
 	            if(!empty($name)) {
 	            	return $this->error('提交失败：该用户名已被注册');
 	            }
+                if(!empty($post['address_ids'])) {
+                    $post['address_ids'] = json_encode($post['address_ids']);
+                }
 	            //验证昵称是否存在
 	            $nickname = $model->where(['nickname'=>$post['nickname'],'id'=>['neq',$post['id']]])->select();
 	            if(!empty($nickname)) {
@@ -136,6 +143,16 @@ class Admin extends Permissions
     			//非提交操作
     			$info['admin'] = $model->where('id',$id)->find();
     			$info['admin_cate'] = Db::name('admin_cate')->select();
+                $id = Session::get('admin');
+                if(!empty($id)){
+                    $user_info = adminModel::get($id);
+                    if(!empty($user_info->address_ids)){
+                        $address_ids = json_decode($user_info->address_ids,true);
+                    }
+                }
+                $address = address_fun($address_ids);
+//                dump($address);die;
+                $this->assign('address',json_encode($address));
     			$this->assign('info',$info);
     			return $this->fetch();
     		}
@@ -159,6 +176,9 @@ class Admin extends Permissions
 	            $name = $model->where('name',$post['name'])->select();
 	            if(!empty($name)) {
 	            	return $this->error('提交失败：该用户名已被注册');
+	            }
+	            if(!empty($post['address_ids'])) {
+	                $post['address_ids'] = json_encode($post['address_ids']);
 	            }
 	            //验证昵称是否存在
 	            $nickname = $model->where('nickname',$post['nickname'])->select();

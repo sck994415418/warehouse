@@ -14,27 +14,48 @@ namespace app\admin\controller;
 
 use think\Db;
 use app\admin\model\SckClient as ClientModel;
-
+use app\admin\model\Address as AddressModel;
 class Address extends Permissions
 {
-    public function position()
+    public function index(){
+        $address = db('address')->field('status,id1,id2 as address_id, name2 as address_name')->where('id1',1)->group('address_id')->select();
+        $this->assign('View_address',$address);
+        return $this->fetch();
+    }
+    public function status_on()
     {
-        $id = $this->request->has('region_id') ? $this->request->param('region_id', 0) : 0;
-        if($id!==null){
-            $new_id= db('address_old')->where('region_name',$id)->value('region_id');
-            if(!empty($new_id)){
-                $data['data']= db('address_old')->where('parent_id',$new_id)->select();
-                if(!empty($data['data'])){
-                    $data['code'] = 1;
-                    return $data;
-                }else{
-                    return $this->error();
+        if($this->request->isAjax()) {
+            $model = new AddressModel();
+            $id = $this->request->has('id') ? $this->request->param('id', 0) : 0;
+//            dump($id);die;
+            if($id>0) {
+                if(false == $model->allowField(true)->save(['status'=>1],['id2'=>$id])) {
+                    return $this->error('开启失败');
+                } else {
+                    addlog($id);
+                    return $this->success('开启成功');
                 }
-            }else{
-                return $this->error();
+            } else {
+                return $this->error('页面错误，请刷新后重试！');
             }
-        }else{
-            return $this->error();
+        }
+    }
+    public function status_off()
+    {
+        if($this->request->isAjax()) {
+            $model = new AddressModel();
+            $id = $this->request->has('id') ? $this->request->param('id', 0) : 0;
+//            dump($id);die;
+            if($id>0) {
+                if(false == $model->allowField(true)->save(['status'=>0],['id2'=>$id])) {
+                    return $this->error('禁用失败');
+                } else {
+                    addlog($id);
+                    return $this->success('禁用成功');
+                }
+            } else {
+                return $this->error('页面错误，请刷新后重试！');
+            }
         }
     }
     public function address()
