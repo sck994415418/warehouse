@@ -63,7 +63,7 @@
           </div>
         </div>
       </div>
-      <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" lay-filter="serch">立即提交</button>
+      <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" onclick="layer.load()" lay-filter="serch">立即提交</button>
     </div>
   </form>
   <form class="layui-form" id="admin">
@@ -73,9 +73,10 @@
         <col width="25">
         <col width="100">
         <col width="50">
+        <col width="">
         <col width="80">
         <col width="150">
-        <col width="">
+        <col width="120">
         <col width="">
         <col width="140">
         <col width="140">
@@ -86,6 +87,7 @@
           <th>ID</th>
           <th>姓名</th>
           <th>性别</th>
+          <th>备注</th>
           <th>电话</th>
           <th>微信</th>
           <th>所在地</th>
@@ -105,12 +107,13 @@
               {eq name="$vo.client_sex" value="1"/}男{/eq}
               {eq name="$vo.client_sex" value="2"/}女{/eq}
             </td>
+            <td>{$vo.client_desc|default=''}</td>
             <td>{$vo.client_phone}</td>
-            <td>{$vo.client_wechat}</td>
+            <td>{$vo.client_wechat|default=''}</td>
             <td>{$vo.address.name2|default=''}{$vo.address.name3|default=''}{$vo.address.name4|default=''}{$vo.address.name5|default=''}</td>
             <td>{$vo.client_position_details|default='暂无'}</td>
-            <td>{$vo.create_time}</td>
-            <td>{$vo.update_time}</td>
+            <td>{$vo.create_time|default=''}</td>
+            <td>{$vo.update_time|default=''}</td>
             <td class="operation-menu">
               <div class="layui-btn-group">
                 <a href="{:url('admin/client/publish',['client_id'=>$vo.client_id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>

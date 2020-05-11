@@ -21,6 +21,16 @@
     <form class="layui-form" id="admin">
 
 
+
+      {notempty name="$data"}
+      <input type="hidden" name="client_id" value="{$data.client_id}">
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">客户备注</label>
+        <div class="layui-input-block">
+          <textarea placeholder="请输入内容" name="client_desc" class="layui-textarea">{$data.client_desc|default=''}</textarea>
+        </div>
+      </div>
+      {else/}
       <div class="layui-form-item">
         <label class="layui-form-label">客户姓名</label>
         <div class="layui-input-inline">
@@ -54,7 +64,7 @@
         <label class="layui-form-label">客户地区</label>
         <div class="layui-input-inline province_div">
           <select name="client_position_id" lay-verify="required" class="province" lay-filter="province">
-            <option value="">请选择省</option>
+            <option value="{$data.client_position_id|default=''}">请选择省</option>
             {if !empty($View_address)}
             {foreach name="View_address" item="v"}
             <option value="{$v.address_id}" >{$v.address_name}</option>
@@ -78,12 +88,14 @@
           <input name="client_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_position_details"}value="{$data.client_position_details}"{/notempty}>
         </div>
       </div>
-
-
-
-      {notempty name="$data"}
-      <input type="hidden" name="client_id" value="{$data.client_id}">
       {/notempty}
+
+
+
+
+
+
+
       <div class="layui-form-item">
         <div class="layui-input-block">
           <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
