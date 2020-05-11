@@ -50,28 +50,6 @@ class Supplier extends Permissions
     {
         $supplier_id = $this->request->has('supplier_id') ? $this->request->param('supplier_id', 0, 'intval') : 0;
         $model = new SupplierModel();
-
-//        $address = db('address_old')->where('parent_id',1)->select();
-
-        $id = Session::get('admin');
-        if(!empty($id)){
-            $user_info = \app\admin\model\Admin::get($id);
-            if(!empty($user_info->address_ids)){
-                $address_ids = json_decode($user_info->address_ids,true);
-            }else{
-                $address_ids =[];
-            }
-        }else{
-            $address_ids =[];
-        }
-
-        $address = db('address')
-            ->field('id1,id2 as address_id, name2 as address_name')
-            ->where(['id1'=>1,'status'=>1,'id4'=>['in',$address_ids]])
-            ->group('address_id')
-            ->select();
-        $this->assign('View_address',$address);
-
         if($supplier_id > 0) {
             if($this->request->isPost()) {
                 $post = $this->request->post();
@@ -117,7 +95,7 @@ class Supplier extends Permissions
     }
 
     /**
-     * 客户删除
+     * 供应商删除
      * @throws Exception
      * @throws PDOException
      */
