@@ -38,7 +38,6 @@ class Client extends Permissions
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         }
-//        dump(@$where);
 
         $id = Session::get('admin');
         if(!empty($id)){
@@ -55,11 +54,17 @@ class Client extends Permissions
             $street_ids = db('address')
                 ->where(['id1'=>1,'status'=>1,'id4'=>['in',$address_ids]])
                 ->column('id5');
+            $street_ids = array_filter($street_ids);
         }else{
             $street_ids =[];
         }
-        $where['client_position_id'] = ['in',$street_ids];
-        $data = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
+        $data = empty($where) ? $model
+            ->order('create_time desc')
+            ->paginate(20)
+            : $model->where($where)
+                ->where(['client_position_id' => ['in',$street_ids]])
+                ->order('create_time desc')
+                ->paginate(20,false,['query'=>$this->request->param()]);
 
         $address = db('address')
             ->field('id1,id2 as address_id, name2 as address_name')
