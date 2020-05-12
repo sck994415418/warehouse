@@ -23,6 +23,7 @@ class Client extends Permissions
 {
     public function index()
     {
+        dump(123);die;
         $model = new ClientModel();
         $post = $this->request->param();
 //        dump($post);
