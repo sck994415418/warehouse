@@ -1,14 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | Tplay [ WE ONLY DO WHAT IS NECESSARY ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2017 http://tplay.pengyichen.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
-// +----------------------------------------------------------------------
-
 
 namespace app\admin\controller;
 
@@ -16,6 +6,8 @@ use \think\Controller;
 use think\Db;
 use app\admin\controller\Permissions;
 use app\admin\model\Messages;
+use think\Validate;
+
 class Tomessages extends Permissions
 {
     public function index()
@@ -52,7 +44,7 @@ class Tomessages extends Permissions
 			//是提交操作
 			$post = $this->request->post();
 			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-            $validate = new \think\Validate([
+            $validate = new Validate([
                 ['message', 'require|length:20,200', '留言不能为空|请输入10-100个字的建议'],
             ]);
             //验证部分数据合法性

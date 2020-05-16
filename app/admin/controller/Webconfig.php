@@ -1,19 +1,10 @@
 <?php
-// +----------------------------------------------------------------------
-// | Tplay [ WE ONLY DO WHAT IS NECESSARY ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2017 http://tplay.pengyichen.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
-// +----------------------------------------------------------------------
-
-
 namespace app\admin\controller;
 
 use app\admin\controller\Permissions;
 use \think\Db;
+use think\Validate;
+
 class Webconfig extends Permissions
 {
     public function index()
@@ -28,7 +19,7 @@ class Webconfig extends Permissions
     	if($this->request->isPost()) {
             $post = $this->request->post();
             //验证  唯一规则： 表名，字段名，排除主键值，主键名
-            $validate = new \think\Validate([
+            $validate = new Validate([
                 ['name', 'require', '网站名称不能为空'],
                 ['file_type', 'require', '上传类型不能为空'],
                 ['file_size','require','上传大小不能为空'],

@@ -1,15 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | Tplay [ WE ONLY DO WHAT IS NECESSARY ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2017 http://tplay.pengyichen.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
-// +----------------------------------------------------------------------
-
-
 namespace app\admin\controller;
 
 use \think\Cache;
@@ -19,6 +8,8 @@ use think\Db;
 use \think\Cookie;
 use app\admin\controller\Permissions;
 use app\admin\model\AdminMenu as menuModel;
+use think\Validate;
+
 class Menu extends Permissions
 {
     public function index()
@@ -43,7 +34,7 @@ class Menu extends Permissions
     			//是提交操作
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new \think\Validate([
+	            $validate = new Validate([
 	                ['name', 'require', '菜单名称不能为空'],
 	                ['pid', 'require', '请选择上级菜单'],
 	                // ['module', 'require', '请填写模块名称'],
@@ -89,7 +80,7 @@ class Menu extends Permissions
     			//是提交操作
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new \think\Validate([
+	            $validate = new Validate([
 	                ['name', 'require', '菜单名称不能为空'],
 	                ['pid', 'require', '请选择上级菜单'],
 	                // ['module', 'require', '请填写模块名称'],

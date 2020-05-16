@@ -1,15 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | Tplay [ WE ONLY DO WHAT IS NECESSARY ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2017 http://tplay.pengyichen.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
-// +----------------------------------------------------------------------
-
-
 namespace app\admin\controller;
 
 use \think\Cache;
@@ -18,6 +7,8 @@ use think\Loader;
 use think\Db;
 use \think\Cookie;
 use \think\Session;
+use think\Validate;
+
 class Common extends Controller
 {
     /**
@@ -90,7 +81,7 @@ class Common extends Controller
                 //是登录操作
                 $post = $this->request->post();
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
-                $validate = new \think\Validate([
+                $validate = new Validate([
                     ['name', 'require|alphaDash', '用户名不能为空|用户名格式只能是字母、数字、——或_'],
                     ['password', 'require', '密码不能为空'],
 //                    ['captcha','require|captcha','验证码不能为空|验证码不正确'],

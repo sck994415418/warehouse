@@ -1,19 +1,9 @@
 <?php
-// +----------------------------------------------------------------------
-// | Tplay [ WE ONLY DO WHAT IS NECESSARY ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2017 http://tplay.pengyichen.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
-// +----------------------------------------------------------------------
-
-
 namespace app\admin\controller;
 
 use \think\Db;
 use \app\admin\controller\Permissions;
+use think\Validate;
 
 class Smsconfig extends Permissions
 {
@@ -30,7 +20,7 @@ class Smsconfig extends Permissions
     	if($this->request->isPost()) {
     		$post = $this->request->post();
     		//验证  唯一规则： 表名，字段名，排除主键值，主键名
-            $validate = new \think\Validate([
+            $validate = new Validate([
                 ['appkey', 'require', 'AppKey不能为空'],
                 ['secretkey', 'require', 'SecretKey不能为空'],
                 ['name', 'require', '短信签名不能为空'],
@@ -60,7 +50,7 @@ class Smsconfig extends Permissions
         if($this->request->isPost()) {
             $post = $this->request->post();
             //验证  唯一规则： 表名，字段名，排除主键值，主键名
-            $validate = new \think\Validate([
+            $validate = new Validate([
                 ['phone', 'require|length:11,11|number', '手机号码不能为空|手机号码格式不正确|手机号码格式不正确'],
             ]);
             //验证部分数据合法性

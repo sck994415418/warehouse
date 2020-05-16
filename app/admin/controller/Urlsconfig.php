@@ -1,14 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | Tplay [ WE ONLY DO WHAT IS NECESSARY ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2017 http://tplay.pengyichen.com All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: 听雨 < 389625819@qq.com >
-// +----------------------------------------------------------------------
-
 
 namespace app\admin\controller;
 
@@ -16,6 +6,8 @@ use \think\Controller;
 use think\Db;
 use app\admin\controller\Permissions;
 use app\admin\model\Urlconfig;
+use think\Validate;
+
 class Urlsconfig extends Permissions
 {
     public function index()
@@ -39,7 +31,7 @@ class Urlsconfig extends Permissions
     			//是提交操作
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new \think\Validate([
+	            $validate = new Validate([
 	                ['url', 'require', '需要美化的url不能为空'],
 	                ['aliases', 'require', '美化后的url不能为空'],
 	            ]);
@@ -74,7 +66,7 @@ class Urlsconfig extends Permissions
     			//是提交操作
     			$post = $this->request->post();
     			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new \think\Validate([
+	            $validate = new Validate([
 	                ['url', 'require', '需要美化的url不能为空'],
                     ['aliases', 'require', '美化后的url不能为空'],
 	            ]);
