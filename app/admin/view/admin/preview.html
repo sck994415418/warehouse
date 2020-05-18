@@ -33,11 +33,11 @@
             <tr>
               {eq name="vo.is_display" value="1"} 
               <td>
-                {$vo.str}<input type="checkbox" lay-ignore lay-skin="primary" name="admin_menu_id[]" value="{$vo.id}" {notempty name="$info.cate.permissions"}{volist name="$info.cate.permissions" id="datas"}{eq name="$datas" value="$vo.id"}checked {else /}{eq name="$vo.type" value="2"}checked disabled{/eq}{/eq}{/volist}{else /}{eq name="$vo.type" value="2"}checked disabled{/eq}{/notempty}>{$vo.name}
+                {$vo.str}<input type="checkbox" disabled lay-ignore lay-skin="primary" name="admin_menu_id[]" value="{$vo.id}" {notempty name="$info.cate.permissions"}{volist name="$info.cate.permissions" id="datas"}{eq name="$datas" value="$vo.id"}checked {else /}{eq name="$vo.type" value="2"}checked disabled{/eq}{/eq}{/volist}{else /}{eq name="$vo.type" value="2"}checked disabled{/eq}{/notempty}>{$vo.name}
               </td>
               {else /}{eq name="vo.type" value="1"} 
               <td>
-                {$vo.str}<input type="checkbox" lay-ignore lay-skin="primary" name="admin_menu_id[]" value="{$vo.id}" {notempty name="$info.cate.permissions"}{volist name="$info.cate.permissions" id="datas"}{eq name="$datas" value="$vo.id"}checked {else /}{eq name="$vo.type" value="2"}checked disabled{/eq}{/eq}{/volist}{else /}{eq name="$vo.type" value="2"}checked disabled{/eq}{/notempty}>{$vo.name}
+                {$vo.str}<input type="checkbox" disabled lay-ignore lay-skin="primary" name="admin_menu_id[]" value="{$vo.id}" {notempty name="$info.cate.permissions"}{volist name="$info.cate.permissions" id="datas"}{eq name="$datas" value="$vo.id"}checked {else /}{eq name="$vo.type" value="2"}checked disabled{/eq}{/eq}{/volist}{else /}{eq name="$vo.type" value="2"}checked disabled{/eq}{/notempty}>{$vo.name}
               </td>
               {/eq}{/eq}
             </tr>
