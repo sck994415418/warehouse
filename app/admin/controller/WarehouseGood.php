@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\SckWarehouseGoodLog;
 use think\Db;
 use app\admin\model\SckWarehouseGood as WarehouseGoodModel;
 use think\Exception;
@@ -52,12 +53,31 @@ class WarehouseGood extends Permissions
                 $this->error('提交失败：' . $validate->getError());
             }
             $post['create_time'] = time();
-            if (false == $model->allowField(true)->save($post)) {
-                return $this->error('添加失败');
-            } else {
-                addlog($model->good_id);
-                return $this->success('添加成功', 'admin/WarehouseGood/index');
+            Db::startTrans();
+            try {
+                $ok = $model->allowField(true)->save($post);
+                $good_id = Db::name('sck_warehouse_good')->getLastInsID();
+                if($ok){
+                    $LogModel = new SckWarehouseGoodLog();
+                    $post['good_id'] = $good_id;
+                    $insert = $LogModel->allowField(true)->save($post);
+                    if($insert){
+                        addlog($good_id);
+                        $json = ['code'=>1,'msg'=>'添加成功','url'=>'index'];
+                    }else{
+                        throw new \Exception('添加失败，请重试!');
+                    }
+                }else{
+                    throw new \Exception('添加失败，请重试!');
+                }
+                // 提交事务
+                Db::commit();
+            } catch (\Exception $e) {
+                // 回滚事务
+                Db::rollback();
+                $json = ['code'=>0,'msg'=>$e->getMessage()];
             }
+            return $json;
         } else {
             return $this->fetch();
         }
@@ -76,12 +96,31 @@ class WarehouseGood extends Permissions
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
                 }
-                if (false == $model->allowField(true)->save($post, ['good_id' => $good_id])) {
-                    return $this->error('修改失败');
-                } else {
-                    addlog($model->good_id);
-                    return $this->success('修改信息成功', 'admin/WarehouseGood/index');
+
+                Db::startTrans();
+                try {
+                    $ok = $model->allowField(true)->save($post, ['good_id' => $good_id]);
+                    if($ok){
+                        $LogModel = new SckWarehouseGoodLog();
+                        $insert = $LogModel->allowField(true)->save($post, ['good_id' => $good_id]);
+                        if($insert){
+                            addlog($good_id);
+                            $json = ['code'=>1,'msg'=>'修改成功','url'=>'index'];
+                        }else{
+                            throw new \Exception('修改失败，请重试!');
+                        }
+                    }else{
+                        throw new \Exception('修改失败，请重试!');
+                    }
+                    // 提交事务
+                    Db::commit();
+                } catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                    $json = ['code'=>0,'msg'=>$e->getMessage()];
                 }
+                return $json;
+
             } else {
                 $data = $model->where('good_id', $good_id)->find();
                 $this->assign('data', $data);

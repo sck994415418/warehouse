@@ -56,7 +56,7 @@
         <col width="140">
         <col width="140">
         <col width="140">
-        <col width="120">
+        <col width="150">
       </colgroup>
       <thead>
         <tr>
@@ -80,8 +80,10 @@
             <td>{$vo.create_time|default=''}</td>
             <td class="operation-menu">
               <div class="layui-btn-group">
-                <a href="{:url('admin/WarehouseGood/edit',['good_id'=>$vo.good_id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
-                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary delete" good_id="{$vo.good_id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+                <a href="{:url('admin/WarehouseGood/edit',['good_id'=>$vo.good_id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary"><i class="layui-icon"></i></a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary delete" good_id="{$vo.good_id}"><i class="layui-icon"></i></a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodEnter" data-url="{:url('admin/WarehouseGood/GoodEnter')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-level-down">&nbsp;</i></a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodOut" data-url="{:url('admin/WarehouseGood/GoodOut')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-level-up">&nbsp;</i></a>
               </div>
             </td>
           </tr>
@@ -112,6 +114,33 @@
           }
         }
       })
+    })
+  })
+
+  $(document).on('click','.GoodEnter',function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2
+      ,title: '入库'
+      ,content:url
+      ,area: ['90%', '90%']
+      ,btn: ['关闭']
+      ,yes: function(index, layero){
+        layer.close(index)
+      }
+    })
+  })
+  $(document).on('click','.GoodOut',function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2
+      ,title: '出库'
+      ,content:url
+      ,area: ['90%', '90%']
+      ,btn: ['关闭']
+      ,yes: function(index, layero){
+        layer.close(index)
+      }
     })
   })
 </script>
