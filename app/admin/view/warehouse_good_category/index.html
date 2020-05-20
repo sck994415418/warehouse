@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
+    <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+    <style type="text/css">
+
+        /* tooltip */
+        #tooltip{
+            position:absolute;
+            border:1px solid #ccc;
+            background:#333;
+            padding:2px;
+            display:none;
+            color:#fff;
+        }
+    </style>
+</head>
+<body style="padding:10px;">
+<div class="tplay-body-div">
+
+    <div id="test9" class="demo-tree demo-tree-box" style="width: 100%; height: 100%; overflow: scroll;"></div>
+    {include file="public/foot"}
+</div>
+</body>
+</html>
+<script type="text/javascript">
+
+    $('.delete').click(function(){
+        var category_id = $(this).attr('category_id');
+        layer.confirm('确定要删除?', function(index) {
+            $.ajax({
+                url:"{:url('admin/WarehouseGoodCategory/delete')}",
+                data:{category_id:category_id},
+                success:function(res) {
+                    layer.msg(res.msg);
+                    if(res.code == 1) {
+                        setTimeout(function(){
+                            location.href = res.url;
+                        },1500)
+                    }
+                }
+            })
+        })
+    })
+</script>
+<script>
+    layui.use(['tree', 'util'], function(){
+        var tree = layui.tree
+            ,layer = layui.layer
+            ,util = layui.util
+
+
+        //开启节点操作图标
+        tree.render({
+            elem: '#test9'
+            ,data: {$data|default=""}
+            ,edit: ['add', 'update', 'del'] //操作节点的图标
+            ,operate: function(obj){
+            var type = obj.type; //得到操作类型：add、edit、del
+            var category_id = obj.data.id; //得到当前节点的数据
+            var elem = obj.elem; //得到当前节点元素
+            //Ajax 操作
+            layer.load()
+            if(type === 'add'){ //增加节点
+                var category_name = elem.find('.layui-tree-txt').html();
+                $.ajax({
+                    url:"{:url('admin/WarehouseGoodCategory/publish')}",
+                    data:{parent_id:category_id},
+                    success:function(res) {
+                        layer.msg(res.msg,{icon:-1},function(){
+                            location.href = res.url
+                            layer.closeAll()
+                        });
+
+                    }
+                })
+            } else if(type === 'update'){ //修改节点
+                var category_name = elem.find('.layui-tree-txt').html();
+                $.ajax({
+                    url:"{:url('admin/WarehouseGoodCategory/publish')}",
+                    data:{category_id:category_id,category_name:category_name},
+                    success:function(res) {
+                        layer.msg(res.msg,{icon:-1},function(){
+                            location.href = res.url
+                            layer.closeAll()
+                        });
+
+                    }
+                })
+            } else if(type === 'del'){ //删除节点
+                $.ajax({
+                    url:"{:url('admin/WarehouseGoodCategory/delete')}",
+                    data:{category_id:category_id},
+                    success:function(res) {
+                        layer.msg(res.msg,{icon:-1},function(){
+                            location.href = res.url
+                            layer.closeAll()
+                        });
+
+                    }
+                })
+            }
+        }
+        })
+    });
+</script>

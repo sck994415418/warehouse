@@ -14,10 +14,17 @@ class WarehouseGood extends Permissions
 {
     public function index()
     {
+        $category = db('sck_warehouse_good_category')
+            ->where(['parent_id'=>0])
+            ->select();
+        $this->assign('category',$category);
         $model = new WarehouseGoodModel();
         $post = $this->request->param();
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['good_name'] = ['like', '%' . $post['keywords'] . '%'];
+        }
+        if (isset($post['category_id']) and !empty($post['category_id'])) {
+            $where['category_id'] =  $post['category_id'];
         }
         if (isset($post['create_time']) and !empty($post['create_time'])) {
             $min_time = strtotime($post['create_time']);
@@ -85,6 +92,10 @@ class WarehouseGood extends Permissions
             }
             return $json;
         } else {
+            $data = db('sck_warehouse_good_category')
+                ->where(['parent_id'=>0])
+                ->select();
+            $this->assign('category',$data);
             return $this->fetch();
         }
     }

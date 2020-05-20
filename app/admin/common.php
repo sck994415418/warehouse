@@ -10,6 +10,9 @@
 // +----------------------------------------------------------------------
 
 //admin模块公共函数
+use think\Db;
+use think\Request;
+use think\Session;
 
 /**
  * 管理员密码加密方式
@@ -30,11 +33,11 @@ function password($password, $password_code='lshi4AsSUrUOwWV')
 function addlog($operation_id='')
 {
     //获取网站配置
-    $web_config = \think\Db::name('webconfig')->where('web','web')->find();
+    $web_config = Db::name('webconfig')->where('web','web')->find();
     if($web_config['is_log'] == 1) {
         $data['operation_id'] = $operation_id;
-        $data['admin_id'] = \think\Session::get('admin');//管理员id
-        $request = \think\Request::instance();
+        $data['admin_id'] = Session::get('admin');//管理员id
+        $request = Request::instance();
         $data['ip'] = $request->ip();//操作ip
         $data['create_time'] = time();//操作时间
         $url['module'] = $request->module();
@@ -80,10 +83,10 @@ function addlog($operation_id='')
             $string = implode('&',$string);
         }
 
-        $data['admin_menu_id'] = empty(\think\Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id')) ? \think\Db::name('admin_menu')->where($url)->value('id') : \think\Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id');
+        $data['admin_menu_id'] = empty(Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id')) ? Db::name('admin_menu')->where($url)->value('id') : Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id');
 
         //return $data;
-        \think\Db::name('admin_log')->insert($data);
+        Db::name('admin_log')->insert($data);
     } else {
         //关闭了日志
         return true;
@@ -102,4 +105,21 @@ function format_bytes($size, $delimiter = '') {
     $units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
     for ($i = 0; $size >= 1024 && $i < 5; $i++) $size /= 1024;
     return round($size, 2) . $delimiter . $units[$i];
+}
+
+
+function getrole($data,$pid=0)
+{
+    $arr = [];
+    foreach ($data as $k=>$v){
+        if($v['parent_id'] == $pid){
+            $res = getrole($data,$v['id']);
+            if(empty($res)){
+                $v['children'] = "";
+            }
+            $v['children'] = $res;
+            $arr[] = $v;
+        }
+    }
+    return $arr;
 }
