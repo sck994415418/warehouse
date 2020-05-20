@@ -33,6 +33,12 @@
           <textarea placeholder="请输入内容" name="good_desc" class="layui-textarea">{$data.good_desc|default=''}</textarea>
         </div>
       </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">库存预警值</label>
+        <div class="layui-input-inline">
+          <input name="good_warn" lay-verify="required" min="0" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" value="{$data.good_warn|default=''}" type="number">
+        </div>
+      </div>
       <input type="hidden" name="good_id" value="{$data.good_id}">
       <div class="layui-form-item">
         <div class="layui-input-block">
@@ -82,7 +88,7 @@
           success:function(res) {
             if(res.code == 1) {
               layer.alert(res.msg, function(index){
-                location.href = res.url;
+                history.back()
               })
             } else {
               layer.msg(res.msg);

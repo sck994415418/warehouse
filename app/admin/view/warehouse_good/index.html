@@ -50,13 +50,14 @@
 
     <table class="layui-table" lay-size="sm">
       <colgroup>
-        <col width="50">
+        <col width="40">
         <col width="">
         <col width="">
-        <col width="140">
-        <col width="140">
-        <col width="140">
+        <col width="80">
+        <col width="80">
+        <col width="80">
         <col width="150">
+        <col width="290">
       </colgroup>
       <thead>
         <tr>
@@ -65,25 +66,29 @@
           <th>商品备注</th>
           <th>库存余量</th>
           <th>入库总量</th>
+          <th>预警值</th>
           <th>创建时间</th>
           <th>操作</th>
         </tr>
       </thead>
       <tbody>
         {volist name="data" id="vo"}
-          <tr>
+          <tr {if $vo.good_number <= 0}style="background:rgba(255,0,0,0.4);"{elseif $vo.good_number<=$vo.good_warn/}style="background:rgba(255,0,0,0.2);"{/if}>
             <td>{$vo.good_id}</td>
             <td>{$vo.good_name}</td>
             <td>{$vo.good_desc}</td>
             <td>{$vo.good_number}</td>
             <td>{$vo.good_amount}</td>
+            <td>{$vo.good_warn}</td>
             <td>{$vo.create_time|default=''}</td>
             <td class="operation-menu">
               <div class="layui-btn-group">
-                <a href="{:url('admin/WarehouseGood/edit',['good_id'=>$vo.good_id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary"><i class="layui-icon"></i></a>
-                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary delete" good_id="{$vo.good_id}"><i class="layui-icon"></i></a>
-                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodEnter" data-url="{:url('admin/WarehouseGoodLog/GoodEnter')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-level-down">&nbsp;</i></a>
-                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodOut" data-url="{:url('admin/WarehouseGoodLog/GoodOut')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-level-up">&nbsp;</i></a>
+                <a href="{:url('admin/WarehouseGood/edit',['good_id'=>$vo.good_id])}" title="修改" class="layui-btn layui-btn-sm a_menu layui-btn-primary"><i class="layui-icon"></i></a>
+                <a href="javascript:" title="删除" class="layui-btn layui-btn-sm layui-btn-primary delete" good_id="{$vo.good_id}"><i class="layui-icon"></i></a>
+                <a href="javascript:" title="日志" class="layui-btn layui-btn-sm layui-btn-primary GoodLog" data-url="{:url('admin/WarehouseGoodLog/GoodLog')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-file-text">&nbsp;</i></a>
+                <a href="javascript:" title="入库" class="layui-btn layui-btn-sm layui-btn-primary GoodEnter" data-url="{:url('admin/WarehouseGoodLog/GoodEnter')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-level-down">&nbsp;</i></a>
+                <a href="javascript:" title="出库" class="layui-btn layui-btn-sm layui-btn-primary {if $vo.good_number>0}GoodOut{else}NoGoodOut{/if}" data-url="{:url('admin/WarehouseGoodLog/GoodOut')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-level-up">&nbsp;</i></a>
+                <a href="javascript:" title="退货" class="layui-btn layui-btn-sm layui-btn-primary GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-exclamation">&nbsp;</i></a>
               </div>
             </td>
           </tr>
@@ -98,7 +103,14 @@
 </body>
 </html>
 <script type="text/javascript">
-
+  $('.layui-btn').hover(function () {
+    var msg = $(this).attr('title')
+    if(msg != undefined){
+      layer.tips(msg,$(this),{
+        tips: 3
+      });
+    }
+  })
   $('.delete').click(function(){
     var good_id = $(this).attr('good_id');
     layer.confirm('确定要删除?', function(index) {
@@ -135,6 +147,35 @@
     layer.open({
       type: 2
       ,title: '出库'
+      ,content:url
+      ,area: ['90%', '90%']
+      ,btn: ['关闭']
+      ,yes: function(index, layero){
+        layer.close(index)
+      }
+    })
+  })
+  $(document).on('click','.NoGoodOut',function () {
+    layer.msg('该商品库存不足，不可出库，请联系管理员进行整理库存！')
+  })
+  $(document).on('click','.GoodLog',function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2
+      ,title: '日志'
+      ,content:url
+      ,area: ['90%', '90%']
+      ,btn: ['关闭']
+      ,yes: function(index, layero){
+        layer.close(index)
+      }
+    })
+  })
+  $(document).on('click','.GoodReturn',function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2
+      ,title: '退货'
       ,content:url
       ,area: ['90%', '90%']
       ,btn: ['关闭']

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
+    <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+</head>
+<body style="padding:10px;">
+<div class="tplay-body-div">
+
+    <table class="layui-table">
+        <colgroup>
+            <col width="50">
+            <col width="50">
+        </colgroup>
+        <tbody>
+        <tr>
+            <td>ID</td>
+            <td>{$client.client_id|default=''}</td>
+        </tr>
+        <tr>
+            <td>姓名</td>
+            <td>{$client.client_name|default=''}</td>
+        </tr>
+
+        <tr>
+            <td>备注</td>
+            <td>{$client.client_desc|default=''}</td>
+        </tr>
+        <tr>
+            <td>性别</td>
+            <td>
+                {eq name="$client.client_sex" value="0"}未知{/eq}
+                {eq name="$client.client_sex" value="1"/}男{/eq}
+                {eq name="$client.client_sex" value="2"/}女{/eq}
+            </td>
+        </tr>
+        <tr>
+            <td>电话</td>
+            <td>{$client.client_phone|default=''}</td>
+        </tr>
+        <tr>
+            <td>微信</td>
+            <td>{$client.client_wechat|default=''}</td>
+        </tr>
+        <tr>
+            <td>所在地</td>
+            <td>{$client.address.name2|default=''}{$client.address.name3|default=''}{$client.address.name4|default=''}{$client.address.name5|default=''}</td>
+        </tr>
+        <tr>
+            <td>详细地址</td>
+            <td>{$client.client_position_details|default=''}</td>
+        </tr>
+        <tr>
+            <td>创建时间</td>
+            <td>{$client.create_time}</td>
+        </tr>
+        <tr>
+            <td>最后修改时间</td>
+            <td>{$client.update_time}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
+<script>
+    var message;
+    layui.config({
+        base: '__JS__/',
+        version: '1.0.1'
+    }).use(['app', 'message'], function() {
+        var app = layui.app,
+            $ = layui.jquery,
+            layer = layui.layer;
+        //将message设置为全局以便子页面调用
+        message = layui.message;
+        //主入口
+        app.set({
+            type: 'iframe'
+        }).init();
+    });
+</script>

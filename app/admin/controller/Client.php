@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 
+use app\admin\model\SckClient;
 use think\Db;
 use app\admin\model\SckClient as ClientModel;
 use think\Exception;
@@ -167,4 +168,20 @@ class Client extends Permissions
         }
     }
 
+    public function client_details()
+    {
+        $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
+        if(!empty($client_id)){
+           $model = new SckClient();
+           $client = $model->get(['client_id'=>$client_id]);
+           if(!empty($client)){
+               $this->assign('client',$client);
+               return $this->fetch();
+           }else{
+               return $this->error('为找到该用户！');
+           }
+        }else{
+            return $this->error('页面错误，请重试！');
+        }
+    }
 }

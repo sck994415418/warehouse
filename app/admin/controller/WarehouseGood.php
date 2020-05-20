@@ -24,7 +24,7 @@ class WarehouseGood extends Permissions
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=', $min_time], ['<=', $max_time]];
         }
-
+        $where['good_delete'] = ['neq',1];
         $data = empty($where) ? $model
             ->order('create_time desc')
             ->paginate(20)
@@ -52,6 +52,12 @@ class WarehouseGood extends Permissions
             if (!$validate->check($post)) {
                 $this->error('提交失败：' . $validate->getError());
             }
+            $admin_id = Session::get('admin');
+            if(!$admin_id){
+                $json = ['code'=>0,'msg'=>'页面错误，刷新后重试！','url'=>''];
+                return $json;
+            }
+            $post['admin_id'] = $admin_id;
             $post['create_time'] = time();
             Db::startTrans();
             try {
@@ -105,7 +111,7 @@ class WarehouseGood extends Permissions
                         $insert = $LogModel->allowField(true)->save($post, ['good_id' => $good_id]);
                         if($insert){
                             addlog($good_id);
-                            $json = ['code'=>1,'msg'=>'修改成功','url'=>'index'];
+                            $json = ['code'=>1,'msg'=>'修改成功'];
                         }else{
                             throw new \Exception('修改失败，请重试!');
                         }
@@ -141,7 +147,7 @@ class WarehouseGood extends Permissions
         if ($this->request->isAjax()) {
             $good_id = $this->request->has('good_id') ? $this->request->param('good_id', 0, 'intval') : 0;
             $model = new WarehouseGoodModel();
-            if (false == $model->where('good_id', $good_id)->delete()) {
+            if (false == db('sck_warehouse_good')->where('good_id', $good_id)->update(['good_delete'=>1])) {
                 return $this->error('删除失败');
             } else {
                 addlog($good_id);//写入日志

@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\SckSupplier;
 use think\Db;
 use app\admin\model\SckSupplier as SupplierModel;
 use think\Exception;
@@ -102,5 +103,20 @@ class Supplier extends Permissions
             }
         }
     }
-
+    public function supplier_details()
+    {
+        $supplier_id = $this->request->has('supplier_id') ? $this->request->param('supplier_id', 0, 'intval') : 0;
+        if(!empty($supplier_id)){
+            $model = new SckSupplier();
+            $supplier = $model->get(['supplier_id'=>$supplier_id]);
+            if(!empty($supplier)){
+                $this->assign('supplier',$supplier);
+                return $this->fetch();
+            }else{
+                return $this->error('为找到该用户！');
+            }
+        }else{
+            return $this->error('页面错误，请重试！');
+        }
+    }
 }
