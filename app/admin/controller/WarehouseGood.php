@@ -44,10 +44,48 @@ class WarehouseGood extends Permissions
         $data = empty($where) ? $model
             ->order('create_time desc')
             ->paginate(20)
+            ->each(function ($k,$v){
+                if($k['good_warn_day']>0){
+                    $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$k['good_warn_day']));
+                    $end_time = strtotime(date('Y-m-d H:i:s',time()));
+                    if($start_time>strtotime($k['create_time'])){
+                        $have = db('sck_warehouse_good_log')
+                            ->where(['good_id'=>$k['good_id'],'good_status'=>2])
+                            ->whereTime('create_time','between',[$start_time,$end_time])
+                            ->find();
+                        if(empty($have)){
+                            $k['good_warn_day_warn']=1;
+                        }else{
+                            $k['good_warn_day_warn']=0;
+                        }
+                    }else{
+                        $k['good_warn_day_warn']=0;
+                    }
+
+                }
+            })
             : $model->where($where)
                 ->order('create_time desc')
-                ->paginate(20, false, ['query' => $this->request->param()]);
-
+                ->paginate(20, false, ['query' => $this->request->param()])
+                ->each(function ($k,$v){
+                    if($k['good_warn_day']>0){
+                        $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$k['good_warn_day']));
+                        $end_time = strtotime(date('Y-m-d H:i:s',time()));
+                        if($start_time>=strtotime($k['create_time'])){
+                            $have = db('sck_warehouse_good_log')
+                                ->where(['good_id'=>$k['good_id'],'good_status'=>2])
+                                ->whereTime('create_time','between',[$start_time,$end_time])
+                                ->find();
+                            if(empty($have)){
+                                $k['good_warn_day_warn']=1;
+                            }else{
+                                $k['good_warn_day_warn']=0;
+                            }
+                        }else{
+                            $k['good_warn_day_warn']=0;
+                        }
+                    }
+                });
         $this->assign('data', $data);
         return $this->fetch();
     }

@@ -39,6 +39,13 @@
           <input name="good_warn" lay-verify="required" min="0" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" value="{$data.good_warn|default=''}" type="number">
         </div>
       </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">积压提醒</label>
+        <div class="layui-input-inline">
+          <input name="good_warn_day" lay-verify="required" min="0" value="{$data.good_warn_day|default=''}" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="单位/天" autocomplete="off" class="layui-input" type="number">
+        </div>
+        <div class="layui-form-mid layui-word-aux">单位/天,0为不提醒</div>
+      </div>
       <input type="hidden" name="good_id" value="{$data.good_id}">
       <div class="layui-form-item">
         <div class="layui-input-block">

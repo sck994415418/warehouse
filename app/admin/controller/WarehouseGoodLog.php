@@ -147,7 +147,7 @@ class WarehouseGoodLog extends Permissions
                 }else{
                     $total_price = array_sum(array_column($good_log,'good_total'));
                     $total_amount = array_sum(array_column($good_log,'good_amount'));
-                    $lowest_price = $total_price/$total_amount;
+                    $lowest_price = round($total_price/$total_amount,2);
                 }
                 $ClientModel = new SckClient();
                 $id = Session::get('admin');

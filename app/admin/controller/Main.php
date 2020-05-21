@@ -74,7 +74,7 @@ class Main extends Permissions
         $this->assign('web',$web);
 
         //库存不足
-        $good_warn = db('sck_warehouse_good')->where(['good_delete'=>0])->field('good_warn_day,good_id,good_number,good_warn')->select();
+        $good_warn = db('sck_warehouse_good')->where(['good_delete'=>0])->field('create_time,good_warn_day,good_id,good_number,good_warn')->select();
         if(!empty($good_warn)){
             $warn_arr =[];
             $warn_day_arr =[];
@@ -85,13 +85,16 @@ class Main extends Permissions
                 if($good_warn[$k]['good_warn_day']>0){
                     $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$good_warn[$k]['good_warn_day']));
                     $end_time = strtotime(date('Y-m-d H:i:s',time()));
-                    $have = db('sck_warehouse_good_log')
-                        ->where(['good_id'=>$good_warn[$k]['good_id'],'good_status'=>2])
-                        ->whereTime('create_time','between',[$start_time,$end_time])
-                        ->find();
-                    if(empty($have)){
-                        $warn_day_arr[] = $good_warn[$k]['good_id'];
+                    if($start_time>$good_warn[$k]['create_time']){
+                        $have = db('sck_warehouse_good_log')
+                            ->where(['good_id'=>$good_warn[$k]['good_id'],'good_status'=>2])
+                            ->whereTime('create_time','between',[$start_time,$end_time])
+                            ->find();
+                        if(empty($have)){
+                            $warn_day_arr[] = $good_warn[$k]['good_id'];
+                        }
                     }
+
                 }
             }
         }else{
