@@ -73,6 +73,40 @@ class Main extends Permissions
 
         $this->assign('web',$web);
 
+        //库存不足
+        $good_warn = db('sck_warehouse_good')->where(['good_delete'=>0])->field('good_warn_day,good_id,good_number,good_warn')->select();
+        if(!empty($good_warn)){
+            $warn_arr =[];
+            $warn_day_arr =[];
+            foreach ($good_warn as $k=>$v){
+                if($good_warn[$k]['good_number']<=0 || $good_warn[$k]['good_number']<=$good_warn[$k]['good_warn']){
+                    $warn_arr[] = $good_warn[$k]['good_id'];
+                }
+                if($good_warn[$k]['good_warn_day']>0){
+                    $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$good_warn[$k]['good_warn_day']));
+                    $end_time = strtotime(date('Y-m-d H:i:s',time()));
+                    $have = db('sck_warehouse_good_log')
+                        ->where(['good_id'=>$good_warn[$k]['good_id'],'good_status'=>2])
+                        ->whereTime('create_time','between',[$start_time,$end_time])
+                        ->find();
+                    if(empty($have)){
+                        $warn_day_arr[] = $good_warn[$k]['good_id'];
+                    }
+                }
+            }
+        }else{
+            $warn_arr = [];
+            $warn_day_arr = [];
+        }
+        $good_warn_count = count($warn_arr);
+        $good_warn_day_count = count($warn_day_arr);
+        $this->assign('good_warn_count',$good_warn_count);
+        $this->assign('good_warn_day_count',$good_warn_day_count);
+        $this->assign('good_warn',json_encode($warn_arr));
+        $this->assign('good_warn_day',json_encode($warn_day_arr));
+        //客户数
+        $client_count = db('sck_client')->count();
+        $this->assign('client_count',$client_count);
         return $this->fetch();
     }
 }

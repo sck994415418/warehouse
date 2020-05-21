@@ -51,6 +51,19 @@
                 <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择供应商</label>
+            <div class="layui-input-inline">
+                <select name="supplier_id" lay-verify="required" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
+                    {if !empty($supplier)}
+                    {foreach name="supplier" item="v"}
+                    <option value="{$v.supplier_id}" >{$v.supplier_name}</option>
+                    {/foreach}
+                    {/if}
+                </select>
+            </div>
+        </div>
         <input type="hidden" name="good_id" value="{$good_id|default=''}">
 
         <div class="layui-form-item">

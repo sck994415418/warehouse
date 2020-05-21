@@ -59,6 +59,13 @@
         </div>
       </div>
       <div class="layui-form-item">
+        <label class="layui-form-label">积压提醒</label>
+        <div class="layui-input-inline">
+          <input name="good_warn_day" lay-verify="required" min="0" value="90" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="单位/天" autocomplete="off" class="layui-input" type="number">
+        </div>
+        <div class="layui-form-mid layui-word-aux">单位/天,0为不提醒</div>
+      </div>
+      <div class="layui-form-item">
         <label class="layui-form-label">商品单价</label>
         <div class="layui-input-inline">
           <input name="good_price" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">

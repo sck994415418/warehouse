@@ -15,7 +15,7 @@
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md8">
       <div class="layui-row layui-col-space15">
-        <div class="layui-col-md6">
+        <div class="layui-col-md12">
           <div class="layui-card">
             <div class="layui-card-header">网站数据</div>
             <div class="layui-card-body">
@@ -23,54 +23,28 @@
               <div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
                 <div carousel-item="">
                   <ul class="layui-row layui-col-space10 layui-this">
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>会员</h3>
+                    <li class="layui-col-xs6" style="cursor:pointer;">
+                      <a data-url="{:url('admin/admin/index')}" class="layadmin-backlog-body admin_user">
+                        <h3>管理员</h3>
                         <p><cite>{$web.user_num}</cite></p>
                       </a>
                     </li>
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>文件</h3>
-                        <p><cite>{$web.file_num}</cite></p>
+                    <li class="layui-col-xs6" style="cursor: pointer">
+                      <a data-url="{:url('admin/WarehouseGood/index')}?good_arr={$good_warn|default=''}" title="库存警告" class="layadmin-backlog-body good_warn">
+                        <h3>库存不足</h3>
+                        <p><cite>{$good_warn_count}</cite></p>
                       </a>
                     </li>
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>留言</h3>
-                        <p><cite>{$web.message_num}</cite></p>
+                    <li class="layui-col-xs6" style="cursor: pointer">
+                      <a data-url="{:url('admin/WarehouseGood/index')}?good_arr={$good_warn_day|default=''}" class="layadmin-backlog-body good_warn_day">
+                        <h3>库存积压</h3>
+                        <p><cite>{$good_warn_day_count}</cite></p>
                       </a>
                     </li>
-                  </ul>
-                </div>
-              <button class="layui-icon layui-carousel-arrow" lay-type="sub"></button><button class="layui-icon layui-carousel-arrow" lay-type="add"></button></div>
-            </div>
-          </div>
-        </div>
-        <div class="layui-col-md6">
-          <div class="layui-card">
-            <div class="layui-card-header">待办事项</div>
-            <div class="layui-card-body">
-
-              <div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
-                <div carousel-item="">
-                  <ul class="layui-row layui-col-space10 layui-this">
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>黑名单</h3>
-                        <p><cite>{$web.ip_ban}</cite></p>
-                      </a>
-                    </li>
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>待审文件</h3>
-                        <p><cite>{$web.status_file}</cite></p>
-                      </a>
-                    </li>
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>待处理留言</h3>
-                        <p><cite>{$web.look_message}</cite></p>
+                    <li class="layui-col-xs6" style="cursor: pointer">
+                      <a data-url="{:url('admin/Client/index')}" class="layadmin-backlog-body client">
+                        <h3>客户</h3>
+                        <p><cite>{$client_count}</cite></p>
                       </a>
                     </li>
                   </ul>
@@ -90,112 +64,13 @@
       </div>
     </div>
     
-    <div class="layui-col-md4">
-      <div class="layui-card">
-        <div class="layui-card-header">版本信息</div>
-        <div class="layui-card-body layui-text">
-          <table class="layui-table">
-            <colgroup>
-              <col width="100">
-              <col>
-            </colgroup>
-            <tbody>
-              <tr>
-                <td>当前版本</td>
-                <td>
-                    Tplay {$info.tplay}
-                    <a href="http://tplay.pengyichen.cn/tplay/public/index/index/log.shtml" target="_blank" style="padding-left: 15px;">更新日志</a> 
-                </td>
-              </tr>
-              <tr>
-                <td>基于框架</td>
-                <td>
-                 layui-v2.2.5 / thinkphp-v{$info.tp} 
-               </td>
-              </tr>
-              <tr>
-                <td>主要特色</td>
-                <td>适配强 / 高颜值 / 清爽 / 简洁</td>
-              </tr>
-              <tr>
-                <td>下载交流</td>
-                <td style="padding-bottom: 0;">
-                  <div class="layui-btn-container">
-                    <a href="https://jq.qq.com/?_wv=1027&k=5wZeNTd" target="_blank" class="layui-btn layui-btn-danger layui-btn-sm">官方交流群</a>
-                    <a href="http://tplay.pengyichen.cn" target="_blank" class="layui-btn layui-btn-sm">下载最新版</a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
 
-      <div class="layui-card">
-        <div class="layui-card-header">
-          官方公告
-        </div>
-        <div class="layui-card-body layui-text layadmin-text">
-          <p>Tplay后台管理框架搭载的是国内最受欢迎的两大框架Layui和ThinkPHP，ThinkPHP的大道至简和Layui的简而全在理念上可谓是不谋而合，两大框架结合所产生的结果就是将WEB开发精简到了极致。</p>
-        </div>
-      </div>
-
-      <div class="layui-card">
-        <div class="layui-card-header">系统信息</div>
-        <div class="layui-card-body layui-text">
-          <table class="layui-table">
-            <colgroup>
-              <col width="200">
-              <col>
-            </colgroup>
-            <tbody>
-              <tr>
-                <td>操作系统</td>
-                <td>
-                    {$info.win} 
-                </td>
-              </tr>
-              <tr>
-                <td>PHP版本</td>
-                <td>
-                 {$info.php} 
-               </td>
-              </tr>
-              <tr>
-                <td>运行环境</td>
-                <td>{$info.environment}</td>
-              </tr>
-              <tr>
-                <td>上传最大限制</td>
-                <td>
-                  {$info.upload_size}
-                </td>
-              </tr>
-              <tr>
-                <td>执行时间限制</td>
-                <td>
-                  {$info.execution_time}
-                </td>
-              </tr>
-              <tr>
-                <td>剩余空间大小</td>
-                <td>
-                  {notempty name="$info.disk"}{$info.disk}{else/}未知{/notempty}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-    
   </div>
   </div>
   </div>
 
 
-
+    {include file="public/foot"}
 <script type="text/javascript">
 var a = "{$web.date_string}";
 var date = a.split(",");
@@ -282,6 +157,22 @@ option = {
     ]
 };
 myChart.setOption(option);
+
+
+$(document).on('click','.good_warn,.admin_user,.good_warn_day,.client',function () {
+  var url = $(this).data('url')
+  var title = $(this).attr('title')
+  layer.open({
+    type: 2
+    ,title: title
+    ,content:url
+    ,area: ['90%', '90%']
+    ,btn: ['关闭']
+    ,yes: function(index, layero){
+      layer.close(index)
+    }
+  })
+})
 </script>
 </body>
 </html>

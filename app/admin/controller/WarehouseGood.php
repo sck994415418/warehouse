@@ -23,6 +23,15 @@ class WarehouseGood extends Permissions
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['good_name'] = ['like', '%' . $post['keywords'] . '%'];
         }
+        if (isset($post['good_arr']) and !empty($post['good_arr'])) {
+            $post['good_arr'] = json_decode($post['good_arr'],true);
+            $where['good_id'] = ['in',$post['good_arr']];
+        }
+        if (isset($post['time']) and !empty($post['time'])) {
+            $start_time = strtotime(substr($post['time'],0,strripos($post['time'],' - ')));
+            $end_time = strtotime(substr($post['time'],strripos($post['time'],' - ')+3));
+            $where['create_time']=['between',[$start_time,$end_time]];
+        }
         if (isset($post['category_id']) and !empty($post['category_id'])) {
             $where['category_id'] =  $post['category_id'];
         }

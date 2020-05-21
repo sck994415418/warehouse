@@ -68,6 +68,8 @@ class WarehouseGoodLog extends Permissions
                 return $json;
 
             } else {
+                $supplier = db('sck_supplier')->select();
+                $this->assign('supplier',$supplier);
                 $this->assign('good_id', $good_id);
                 return $this->fetch();
             }
@@ -277,6 +279,11 @@ class WarehouseGoodLog extends Permissions
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=', $min_time], ['<=', $max_time]];
+        }
+        if (isset($post['time']) and !empty($post['time'])) {
+            $start_time = strtotime(substr($post['time'],0,strripos($post['time'],' - ')));
+            $end_time = strtotime(substr($post['time'],strripos($post['time'],' - ')+3));
+            $where['create_time']=['between',[$start_time,$end_time]];
         }
         $admin_id = Session::get('admin');
         if (isset($admin_id) and $admin_id !== 1) {

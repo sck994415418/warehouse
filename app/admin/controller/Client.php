@@ -28,7 +28,11 @@ class Client extends Permissions
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         }
-
+        if (isset($post['time']) and !empty($post['time'])) {
+            $start_time = strtotime(substr($post['time'],0,strripos($post['time'],' - ')));
+            $end_time = strtotime(substr($post['time'],strripos($post['time'],' - ')+3));
+            $where['create_time']=['between',[$start_time,$end_time]];
+        }
         $id = Session::get('admin');
         if(!empty($id)){
             $user_info = \app\admin\model\Admin::get($id);

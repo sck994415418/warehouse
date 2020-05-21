@@ -56,11 +56,17 @@
       <div class="layui-input-inline street_div" style="width: 100px">
 
       </div>
-      <div class="layui-input-inline">
-        <div class="layui-inline">
-          <div class="layui-input-inline">
-            <input type="text" class="layui-input" id="create_time" placeholder="创建时间" name="create_time">
-          </div>
+<!--      <div class="layui-input-inline">-->
+<!--        <div class="layui-inline">-->
+<!--          <div class="layui-input-inline">-->
+<!--            <input type="text" class="layui-input" id="create_time" placeholder="创建时间" name="create_time">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="layui-inline">
+        <label class="layui-form-label">日期范围</label>
+        <div class="layui-input-inline">
+          <input type="text" name="time" class="layui-input" id="test6" placeholder=" - ">
         </div>
       </div>
       <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" onclick="layer.load()" lay-filter="serch">立即提交</button>
@@ -260,5 +266,16 @@
 
       });
     }
+  });
+</script>
+<script>
+  layui.use('laydate', function(){
+    var laydate = layui.laydate;
+    //日期范围
+    laydate.render({
+      elem: '#test6'
+      ,range: true
+    });
+
   });
 </script>
