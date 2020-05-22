@@ -85,16 +85,17 @@ class Main extends Permissions
                 if($good_warn[$k]['good_warn_day']>0){
                     $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$good_warn[$k]['good_warn_day']));
                     $end_time = strtotime(date('Y-m-d H:i:s',time()));
-                    if($start_time>$good_warn[$k]['create_time']){
-                        $have = db('sck_warehouse_good_log')
-                            ->where(['good_id'=>$good_warn[$k]['good_id'],'good_status'=>2])
-                            ->whereTime('create_time','between',[$start_time,$end_time])
-                            ->find();
-                        if(empty($have)){
-                            $warn_day_arr[] = $good_warn[$k]['good_id'];
+                    if($start_time>=strtotime($good_warn[$k]['create_time']) and $good_warn[$k]['good_number']>0){
+                        if($start_time>$good_warn[$k]['create_time']){
+                            $have = db('sck_warehouse_good_log')
+                                ->where(['good_id'=>$good_warn[$k]['good_id'],'good_status'=>2])
+                                ->whereTime('create_time','between',[$start_time,$end_time])
+                                ->find();
+                            if(empty($have)){
+                                $warn_day_arr[] = $good_warn[$k]['good_id'];
+                            }
                         }
                     }
-
                 }
             }
         }else{

@@ -34,11 +34,11 @@
   <form class="layui-form serch" action="{:url('admin/WarehouseGood/index')}" method="post">
     <div class="layui-form-item" style="float: left;">
       <div class="layui-input-inline">
-        <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="商品名称/联系电话" class="layui-input layui-btn-sm">
+        <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="商品名称" class="layui-input layui-btn-sm">
       </div>
         <div class="layui-input-inline province_div">
           <select name="category_id" lay-verify="" class="one" lay-filter="one">
-            <option value="">请选择</option>
+            <option value="">请选择分类</option>
             {if !empty($category)}
             {foreach name="category" item="v"}
             <option value="{$v.category_id}" >{$v.category_name}</option>
@@ -81,7 +81,7 @@
         <col width="80">
         <col width="80">
         <col width="80">
-        <col width="80">
+        <col width="65">
         <col width="150">
         <col width="200">
       </colgroup>
@@ -254,6 +254,9 @@
     // });
 
     function address(data,item){
+      if(data.value == undefined || data.value == null || data.value == ''){
+        return false;
+      }
       layer.load()
       $.getJSON("{:url('admin/WarehouseGoodCategory/two')}?category_id="+data.value, function(data){
         if(data.code == '1'){

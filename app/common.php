@@ -150,8 +150,178 @@ function hide_phone($str){
     $resstr = substr_replace($str,'****',3,4);  
     return $resstr;  
 }
+function address_fun($data = array()){
+    $address1 = db('address')->where('status',1)->column("id2 as id,name2 as title,id1 as p_id,field");
+    $address2 = db('address')->where('status',1)->column("id3 as id,name3 as title,id2 as p_id,field");
+    $address3 = db('address')->where('status',1)->column("id4 as id,name4 as title,id3 as p_id,field");
+    if(!empty($address3)){
+        foreach ($address3 as $k=>$v){
+            if(in_array($address3[$k]['id'],$data))
+            {
+                $address3[$k]['checked'] = true;
+            }
+        }
+    }
+//    $address4 = db('address')->column("id5,name5,id4 as p_id");
 
-function address_fun($data=array())
+    $arr = array_merge($address1,$address2);
+    $arr2 = array_merge($arr,$address3);
+
+    $res = getTree($arr2,1);
+    return $res;
+
+}
+function getTree($data, $pId)
+
+{
+
+    $tree = array();
+
+    foreach($data as $k => $v)
+
+    {
+
+        if($v['p_id'] == $pId)
+
+        {        //父亲找到儿子
+
+            $v['children'] = getTree($data, $v['id']);
+
+            $tree[] = $v;
+
+            //unset($data[$k]);
+
+        }
+
+    }
+
+    return $tree;
+
+}
+function address_funsss($data=array()){
+
+    $address = db('address')
+        ->where(['id1'=>1,'status'=>1])
+        ->column('id2,name2,id3');
+    $address = array_merge($address);
+    if(!empty($address)){
+        $address = array_map(function($address) {
+            return array(
+                'id' => $address['id2'],
+                'title' => $address['name2'],
+                'field' => 'address[]'
+            );
+        }, $address);
+        foreach ($address as $k=>$v){
+            $address[$k]['children'] = db('address')
+                ->where('id2',$address[$k]['id'])
+                ->column('id3,name3,id4');
+            $address[$k]['children'] = array_merge($address[$k]['children']);
+            if(!empty($address[$k]['children'])){
+                foreach ($address[$k]['children'] as $ks=>$vs){
+                    $address[$k]['children'][$ks]['id'] = $address[$k]['children'][$ks]['id3'];
+                    $address[$k]['children'][$ks]['title'] = $address[$k]['children'][$ks]['name3'];
+                    $address[$k]['children'][$ks]['field'] = 'address[]';
+                    unset($address[$k]['children'][$ks]['id3']);
+                    unset($address[$k]['children'][$ks]['name3']);
+                    unset($address[$k]['children'][$ks]['id4']);
+                    $address[$k]['children'][$ks]['children'] = db('address')
+                        ->where('id3',$address[$k]['children'][$ks]['id'])
+                        ->column('id4,name4,id5');
+                    $address[$k]['children'][$ks]['children'] = array_merge($address[$k]['children'][$ks]['children']);
+                    if(!empty($address[$k]['children'][$ks]['children'])){
+                        foreach ($address[$k]['children'][$ks]['children'] as $kss=>$vss){
+                            $address[$k]['children'][$ks]['children'][$kss]['id'] = $address[$k]['children'][$ks]['children'][$kss]['id4'];
+                            $address[$k]['children'][$ks]['children'][$kss]['title'] = $address[$k]['children'][$ks]['children'][$kss]['name4'];
+                            $address[$k]['children'][$ks]['children'][$kss]['field'] = 'address[]';
+                            unset($address[$k]['children'][$ks]['children'][$kss]['id4']);
+                            unset($address[$k]['children'][$ks]['children'][$kss]['name4']);
+                            unset($address[$k]['children'][$ks]['children'][$kss]['id5']);
+                            if(in_array($address[$k]['children'][$ks]['children'][$kss]['id'],$data)){
+                                $address[$k]['children'][$ks]['children'][$kss]['checked'] = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    return $address;
+}
+
+function address_funss($data=array())
+{
+    $address = db('address')
+//        ->field('id2 as id, name2 as title')
+        ->where(['id1'=>1,'status'=>1])->select();
+    if(!empty($address)) {
+        $address_new = [];
+        $address_two_new = [];
+        $address_three_new = [];
+        foreach ($address as $k=>$v){
+            $address_new[$address[$k]['id2']]['id'] = $address[$k]['id2'];
+            $address_new[$address[$k]['id2']]['title'] = $address[$k]['name2'];
+            $address_new[$address[$k]['id2']]['field'] = 'address[]';
+        }
+        if(!empty($address_new)){
+            foreach ($address_new as $k=>$v){
+                for ($i=0;$i<count($address);$i++){
+                    if(substr($address_new[$k]['id'],0,3)==substr($address[$i]['id3'],0,3)){
+                        $address_now['id'] = $address[$i]['id3'];
+                        $address_now['title'] = $address[$i]['name3'];
+                        $address_now['field'] = 'address[]';
+                        $address_new[$k]['children'][] = $address_now;
+                    }
+                }
+                foreach ($address_new[$k]['children'] as $ksa=>$vs){
+                    $address_two_new[$k][$address_new[$k]['children'][$ksa]['id']]['id'] = $address_new[$k]['children'][$ksa]['id'];
+                    $address_two_new[$k][$address_new[$k]['children'][$ksa]['id']]['title'] = $address_new[$k]['children'][$ksa]['title'];
+                    $address_two_new[$k][$address_new[$k]['children'][$ksa]['id']]['field'] = 'address[]';
+                }
+                if(!empty($address_two_new)){
+                    foreach ($address_two_new as $kss=>$vss){
+                        if($kss == $address_new[$k]['id']){
+                            $address_new[$k]['children'] = $address_two_new[$kss];
+                        }
+                    }
+                }
+                foreach ($address_new[$k]['children'] as $ks=>$vs){
+                    for ($i=0;$i<count($address);$i++){
+                        if(substr($address_new[$k]['children'][$ks]['id'],0,4)==substr($address[$i]['id4'],0,4)){
+                            if(in_array($address[$i]['id4'],$data)){
+                                $address_now['checked'] = true;
+                            }
+                            $address_now['id'] = $address[$i]['id4'];
+                            $address_now['title'] = $address[$i]['name4'];
+                            $address_now['field'] = 'address[]';
+                            $address_new[$k]['children'][$ks]['children'][] = $address_now;
+                        }
+                    }
+                    foreach ($address_new[$k]['children'][$ks]['children'] as $kss=>$vss){
+                        $address_three_new[$ks][$address_new[$k]['children'][$ks]['children'][$kss]['id']]['id'] = $address_new[$k]['children'][$ks]['children'][$kss]['id'];
+                        $address_three_new[$ks][$address_new[$k]['children'][$ks]['children'][$kss]['id']]['title'] = $address_new[$k]['children'][$ks]['children'][$kss]['title'];
+                        $address_three_new[$ks][$address_new[$k]['children'][$ks]['children'][$kss]['id']]['field'] = 'address[]';
+
+                    }
+                    if(!empty($address_three_new)){
+                        foreach ($address_three_new as $kss=>$vss){
+                            if($kss == $address_new[$k]['children'][$ks]['id']){
+                                $address_new[$k]['children'][$ks]['children'] = array_merge($address_three_new[$kss]);
+                            }
+                        }
+                    }
+//                    $address_three_new[$ks][$address_new[$k]['children'][$ks]['id']]['id'] = $address_new[$k]['children'][$ks]['id'];
+//                    $address_three_new[$ks][$address_new[$k]['children'][$ks]['id']]['name'] = $address_new[$k]['children'][$ks]['title'];
+//                    $address_three_new[$ks][$address_new[$k]['children'][$ks]['id']]['field'] = 'address[]';
+                }
+            }
+        }
+    }
+    dump($address_new);die;
+    return $address_new;
+}
+function address_funs($data=array())
 {
 //    $address = db('address')->field('id2 as id, name2 as title')->where(['id1'=>1,'id2'=>['in',[110000,120000,130000]]])->group('id')->select();
     $address = db('address')->field('id2 as id, name2 as title')->where(['id1'=>1,'status'=>1])->group('id')->select();

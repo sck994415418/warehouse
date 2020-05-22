@@ -103,9 +103,7 @@ class Admin extends Permissions
     	//获取管理员id
     	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
     	$model = new adminModel();
-    	$address = address_fun();
-//    	dump($address);die;
-    	$this->assign('address',json_encode($address));
+
     	if($id > 0) {
     		//是修改操作
     		if($this->request->isPost()) {
@@ -158,6 +156,9 @@ class Admin extends Permissions
     		}
     	} else {
     		//是新增操作
+            $address = address_fun();
+//    	dump($address);die;
+            $this->assign('address',json_encode($address));
     		if($this->request->isPost()) {
     			//是提交操作
     			$post = $this->request->post();

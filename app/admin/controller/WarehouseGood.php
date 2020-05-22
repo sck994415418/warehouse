@@ -48,7 +48,7 @@ class WarehouseGood extends Permissions
                 if($k['good_warn_day']>0){
                     $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$k['good_warn_day']));
                     $end_time = strtotime(date('Y-m-d H:i:s',time()));
-                    if($start_time>strtotime($k['create_time'])){
+                    if($start_time>strtotime($k['create_time']) and $k['good_number']>0){
                         $have = db('sck_warehouse_good_log')
                             ->where(['good_id'=>$k['good_id'],'good_status'=>2])
                             ->whereTime('create_time','between',[$start_time,$end_time])
@@ -71,7 +71,7 @@ class WarehouseGood extends Permissions
                     if($k['good_warn_day']>0){
                         $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$k['good_warn_day']));
                         $end_time = strtotime(date('Y-m-d H:i:s',time()));
-                        if($start_time>=strtotime($k['create_time'])){
+                        if($start_time>=strtotime($k['create_time']) and $k['good_number']>0){
                             $have = db('sck_warehouse_good_log')
                                 ->where(['good_id'=>$k['good_id'],'good_status'=>2])
                                 ->whereTime('create_time','between',[$start_time,$end_time])
@@ -143,6 +143,8 @@ class WarehouseGood extends Permissions
                 ->where(['parent_id'=>0])
                 ->select();
             $this->assign('category',$data);
+            $supplier = db('sck_supplier')->select();
+            $this->assign('supplier',$supplier);
             return $this->fetch();
         }
     }
