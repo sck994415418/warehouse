@@ -147,6 +147,8 @@ class Admin extends Permissions
                     if(!empty($user_info->address_ids)){
                         $address_ids = json_decode($user_info->address_ids,true);
                         $address = address_fun($address_ids);
+                    }else{
+                        $address = address_fun();
                     }
                 }
 //                dump($address);die;
