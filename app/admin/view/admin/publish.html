@@ -80,52 +80,10 @@
           </div>
         {/if}
 
-        <div class="layui-input-inline">
+        <div class="layui-input-block">
           <div id="test12" class="demo-tree-more"></div>
         </div>
       </div>
-
-
-
-<!--      <div class="layui-form-item">-->
-<!--        <label class="layui-form-label">负责地区</label>-->
-<!--        <div class="layui-input-inline">-->
-<!--          <ul>-->
-<!--            {if !empty($address)}-->
-<!--              {foreach name="address" item="v"}-->
-<!--                <hr>-->
-<!--                <li>-->
-<!--                  <input type="checkbox" name="{$v.field}" value="{$v.id}">-->
-<!--                  <span class="sck_sheng" style="cursor:pointer;">{$v.title}</span>-->
-<!--                </li>-->
-<!--                  {if !empty($v.children)}-->
-<!--                    <ul>-->
-<!--                      {foreach name="$v.children" item="vv"}-->
-<!--                        <li>-->
-<!--                          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L</span>-->
-<!--                          <input type="checkbox" name="{$vv.field}" value="{$vv.id}">-->
-<!--                          <span class="sck_shi" style="cursor:pointer;">{$vv.title}</span>-->
-<!--                        </li>-->
-<!--                        {if !empty($vv.children)}-->
-<!--                          <ul>-->
-<!--                            {foreach name="$vv.children" item ="vvv"}-->
-<!--                              <li>-->
-<!--                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L__</span>-->
-<!--                                <input type="checkbox" name="{$vvv.field}" value="{$vvv.id}">-->
-<!--                                <span class="sck_qu" style="cursor:pointer;">{$vvv.title}</span>-->
-<!--                              </li>-->
-<!--                            {/foreach}-->
-<!--                          </ul>-->
-<!--                        {/if}-->
-<!--                      {/foreach}-->
-<!--                    </ul>-->
-<!--                  {/if}-->
-<!--              {/foreach}-->
-<!--            {/if}-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--      </div>-->
-
 
       {notempty name="$info.admin"}
       <input type="hidden" name="id" value="{$info.admin.id}">
@@ -241,11 +199,3 @@
 
   });
 </script>
-<!--<script>-->
-<!--  $('.sck_shi,.sck_qu').parents('li').hide()-->
-<!--  $(document).on('click','.sck_sheng',function () {-->
-<!--    // alert($(this))-->
-<!--    $(this).parents('li').siblings('ul').fadeToggle(200)-->
-
-<!--  })-->
-<!--</script>-->
