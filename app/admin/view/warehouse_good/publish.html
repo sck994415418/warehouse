@@ -179,6 +179,11 @@
     form.on('select(one)', function(data){
       var item = $(this).parents('.layui-form-item')
       // console.log(item)
+      if(data.value=='' || data.value==undefined || data.value==null){
+        $('.two_div').html('')
+        $('.three_div').html('')
+        return false;
+      }
       $('.two_div').html('')
       $('.three_div').html('')
       address(data,item)
@@ -186,6 +191,10 @@
     form.on('select(city)', function(data){
       var item = $(this).parents('.layui-form-item')
       // console.log(item)
+      if(data.value=='' || data.value==undefined || data.value==null){
+        $('.three_div').html('')
+        return false;
+      }
       $('.three_div').html('')
       address_qu(data,item)
     });
