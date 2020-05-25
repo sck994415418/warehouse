@@ -151,20 +151,22 @@ function hide_phone($str){
     return $resstr;  
 }
 function address_fun($data = array()){
-    $address1 = db('address')->where('status',1)->column("id2 as id,name2 as title,id1 as p_id,field");
-    $address2 = db('address')->where('status',1)->column("id3 as id,name3 as title,id2 as p_id,field");
+    $address1 = db('address')->where('status',1)->column("id2 as id,name2 as title,id1 as p_id");
+    $address2 = db('address')
+        ->where('status',1)
+        ->column("id3 as id,name3 as title,id2 as p_id");
 //    dump($data);die;
 //    $data = array_splice($data,0,3);
     $address3 = db('address')
         ->where(['status'=>1])
-        ->where('id4','IN',$data)
-        ->column("id4 as id,name4 as title,id3 as p_id,field,true as checked");
-    $address4 = db('address')
-        ->where('status',1)
         ->where('id4','NOTIN',$data)
         ->column("id4 as id,name4 as title,id3 as p_id,field");
-//    dump($address4);
-    $address3 = array_merge($address3,$address4);
+//    $address4 = db('address')
+//        ->where('status',1)
+//        ->where('id4','NOTIN',$data)
+//        ->column("id4 as id,name4 as title,id3 as p_id,field");
+////    dump($address4);
+//    $address3 = array_merge($address3,$address4);
 //    if(!empty($address3) and !empty($data)){
 //        foreach ($address3 as $k=>$v){
 //            if(in_array($k,$data))

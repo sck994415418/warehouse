@@ -100,7 +100,6 @@ class Admin extends Permissions
      */
     public function publish()
     {
-    	//获取管理员id
     	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
     	$model = new adminModel();
 
@@ -109,28 +108,30 @@ class Admin extends Permissions
     		if($this->request->isPost()) {
     			//是提交操作
     			$post = $this->request->post();
-    			//验证  唯一规则： 表名，字段名，排除主键值，主键名
-	            $validate = new Validate([
+                //验证  唯一规则： 表名，字段名，排除主键值，主键名
+                $validate = new Validate([
 	                ['name', 'require|alphaDash', '管理员名称不能为空|用户名格式只能是字母、数组、——或_'],
 	                ['admin_cate_id', 'require', '请选择管理员分组'],
 	            ]);
-	            //验证部分数据合法性
-	            if (!$validate->check($post)) {
-	                $this->error('提交失败：' . $validate->getError());
-	            }
-	            //验证用户名是否存在
-	            $name = $model->where(['name'=>$post['name'],'id'=>['neq',$post['id']]])->select();
-	            if(!empty($name)) {
-	            	return $this->error('提交失败：该用户名已被注册');
-	            }
+                //验证部分数据合法性
+                if (!$validate->check($post)) {
+                    $this->error('提交失败：' . $validate->getError());
+                }
+                //验证用户名是否存在
+                $name = $model->where(['name'=>$post['name'],'id'=>['neq',$post['id']]])->select();
+                if(!empty($name)) {
+                    return $this->error('提交失败：该用户名已被注册');
+                }
                 if(!empty($post['address_ids'])) {
                     $post['address_ids'] = json_encode($post['address_ids']);
                 }
-	            //验证昵称是否存在
+//                dump($post);die;
+                //验证昵称是否存在
 	            $nickname = $model->where(['nickname'=>$post['nickname'],'id'=>['neq',$post['id']]])->select();
 	            if(!empty($nickname)) {
 	            	return $this->error('提交失败：该昵称已被占用');
 	            }
+//	            dump($post);die;
 	            if(false == $model->allowField(true)->save($post,['id'=>$id])) {
 	            	return $this->error('修改失败');
 	            } else {
@@ -141,18 +142,23 @@ class Admin extends Permissions
     			//非提交操作
     			$info['admin'] = $model->where('id',$id)->find();
     			$info['admin_cate'] = Db::name('admin_cate')->select();
-                $id = Session::get('admin');
                 if(!empty($id)){
                     $user_info = adminModel::get($id);
                     if(!empty($user_info->address_ids)){
                         $address_ids = json_decode($user_info->address_ids,true);
                         $address = address_fun($address_ids);
+                        $my_address = db('address')
+                            ->where('id4','IN',$address_ids)
+                            ->column('id4 as id,name4 as title,field,true as checked,name2,name3');
+//                        dump($my_address);die;
+                        $this->assign('my_address',$my_address);
                     }else{
                         $address = address_fun();
                     }
                 }
 //                dump($address);die;
                 $this->assign('address',json_encode($address));
+//                $this->assign('address',$address);
     			$this->assign('info',$info);
     			return $this->fetch();
     		}
@@ -161,6 +167,7 @@ class Admin extends Permissions
             $address = address_fun();
 //    	dump($address);die;
             $this->assign('address',json_encode($address));
+//            $this->assign('address',$address);
     		if($this->request->isPost()) {
     			//是提交操作
     			$post = $this->request->post();
