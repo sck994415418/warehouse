@@ -440,13 +440,13 @@
     <?php } ?>
 
     <div class="copyright">
-        <a title="官方网站" href="http://www.thinkphp.cn">ThinkPHP</a> 
-        <span>V<?php echo THINK_VERSION; ?></span> 
-        <span>{ 十年磨一剑-为API开发设计的高性能框架 }</span>
+        <a title="点击了解他" href="https://blog.csdn.net/weixin_43708754">
+        <span><?php THINK_VERSION; ?></span>
+        <span>积跬步以至千里，积小流而成江河  ——  苏程宽</span></a>
     </div>
     <?php if(\think\App::$debug) { ?>
     <script>
-        var LINE = <?php echo $line; ?>;
+        var LINE = <?php echo $line; ?>
 
         function $(selector, node){
             var elements;

@@ -13,6 +13,17 @@
         .system-message .jump a{ color: #333; }
         .system-message .success,.system-message .error{ line-height: 1.8em; font-size: 36px; }
         .system-message .detail{ font-size: 12px; line-height: 20px; margin-top: 12px; display: none; }
+        /* Copyright Info */
+        .copyright{
+            margin-top: 24px;
+            padding: 12px 0;
+            border-top: 1px solid #eee;
+        }
+        .copyright a {
+            margin-left: 20px;
+            color: #868686;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -32,6 +43,11 @@
             页面自动 <a id="href" href="<?php echo($url);?>">跳转</a> 等待时间： <b id="wait"><?php echo($wait);?></b>
         </p>
     </div>
+    <div class="copyright">
+        <a title="点击了解他" href="https://blog.csdn.net/weixin_43708754">
+            <span><?php THINK_VERSION; ?></span>
+            <span>积跬步以至千里，积小流而成江河  ——  苏程宽</span></a>
+    </div>
     <script type="text/javascript">
         (function(){
             var wait = document.getElementById('wait'),
@@ -41,7 +57,7 @@
                 if(time <= 0) {
                     location.href = href;
                     clearInterval(interval);
-                };
+                }
             }, 1000);
         })();
     </script>

@@ -82,10 +82,12 @@ function addlog($operation_id='')
             }
             $string = implode('&',$string);
         }
+        $res = Db::name('admin_menu')->where($url)->where('parameter', $string)->value('id');
+        if (empty($res)) {
+            $res = Db::name('admin_menu')->where($url)->value('id');
+        }
+        $data['admin_menu_id'] = $res;
 
-        $data['admin_menu_id'] = empty(Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id')) ? Db::name('admin_menu')->where($url)->value('id') : Db::name('admin_menu')->where($url)->where('parameter',$string)->value('id');
-
-        //return $data;
         Db::name('admin_log')->insert($data);
     } else {
         //关闭了日志
@@ -122,4 +124,13 @@ function getrole($data,$pid=0)
         }
     }
     return $arr;
+}
+if (!function_exists('array_column')) {
+    function array_column($arr2, $column_key) {
+        $data = [];
+        foreach ($arr2 as $key => $value) {
+            $data[] = $value[$column_key];
+        }
+        return $data;
+    }
 }
