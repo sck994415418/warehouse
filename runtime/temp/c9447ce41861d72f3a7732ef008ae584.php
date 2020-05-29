@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:70:"D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\main\index.html";i:1573613444;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:70:"D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\main\index.html";i:1589968684;s:61:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\foot.html";i:1546481687;}*/ ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,7 +16,7 @@
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md8">
       <div class="layui-row layui-col-space15">
-        <div class="layui-col-md6">
+        <div class="layui-col-md12">
           <div class="layui-card">
             <div class="layui-card-header">网站数据</div>
             <div class="layui-card-body">
@@ -24,54 +24,28 @@
               <div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
                 <div carousel-item="">
                   <ul class="layui-row layui-col-space10 layui-this">
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>会员</h3>
+                    <li class="layui-col-xs6" style="cursor:pointer;">
+                      <a data-url="<?php echo url('admin/admin/index'); ?>" class="layadmin-backlog-body admin_user">
+                        <h3>管理员</h3>
                         <p><cite><?php echo $web['user_num']; ?></cite></p>
                       </a>
                     </li>
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>文件</h3>
-                        <p><cite><?php echo $web['file_num']; ?></cite></p>
+                    <li class="layui-col-xs6" style="cursor: pointer">
+                      <a data-url="<?php echo url('admin/WarehouseGood/index'); ?>?good_arr=<?php echo (isset($good_warn) && ($good_warn !== '')?$good_warn:''); ?>" title="库存警告" class="layadmin-backlog-body good_warn">
+                        <h3>库存不足</h3>
+                        <p><cite><?php echo $good_warn_count; ?></cite></p>
                       </a>
                     </li>
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>留言</h3>
-                        <p><cite><?php echo $web['message_num']; ?></cite></p>
+                    <li class="layui-col-xs6" style="cursor: pointer">
+                      <a data-url="<?php echo url('admin/WarehouseGood/index'); ?>?good_arr=<?php echo (isset($good_warn_day) && ($good_warn_day !== '')?$good_warn_day:''); ?>" class="layadmin-backlog-body good_warn_day">
+                        <h3>库存积压</h3>
+                        <p><cite><?php echo $good_warn_day_count; ?></cite></p>
                       </a>
                     </li>
-                  </ul>
-                </div>
-              <button class="layui-icon layui-carousel-arrow" lay-type="sub"></button><button class="layui-icon layui-carousel-arrow" lay-type="add"></button></div>
-            </div>
-          </div>
-        </div>
-        <div class="layui-col-md6">
-          <div class="layui-card">
-            <div class="layui-card-header">待办事项</div>
-            <div class="layui-card-body">
-
-              <div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
-                <div carousel-item="">
-                  <ul class="layui-row layui-col-space10 layui-this">
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>黑名单</h3>
-                        <p><cite><?php echo $web['ip_ban']; ?></cite></p>
-                      </a>
-                    </li>
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>待审文件</h3>
-                        <p><cite><?php echo $web['status_file']; ?></cite></p>
-                      </a>
-                    </li>
-                    <li class="layui-col-xs6">
-                      <a lay-href="" class="layadmin-backlog-body">
-                        <h3>待处理留言</h3>
-                        <p><cite><?php echo $web['look_message']; ?></cite></p>
+                    <li class="layui-col-xs6" style="cursor: pointer">
+                      <a data-url="<?php echo url('admin/Client/index'); ?>" class="layadmin-backlog-body client">
+                        <h3>客户</h3>
+                        <p><cite><?php echo $client_count; ?></cite></p>
                       </a>
                     </li>
                   </ul>
@@ -91,112 +65,96 @@
       </div>
     </div>
     
-    <div class="layui-col-md4">
-      <div class="layui-card">
-        <div class="layui-card-header">版本信息</div>
-        <div class="layui-card-body layui-text">
-          <table class="layui-table">
-            <colgroup>
-              <col width="100">
-              <col>
-            </colgroup>
-            <tbody>
-              <tr>
-                <td>当前版本</td>
-                <td>
-                    Tplay <?php echo $info['tplay']; ?>
-                    <a href="http://tplay.pengyichen.cn/tplay/public/index/index/log.shtml" target="_blank" style="padding-left: 15px;">更新日志</a> 
-                </td>
-              </tr>
-              <tr>
-                <td>基于框架</td>
-                <td>
-                 layui-v2.2.5 / thinkphp-v<?php echo $info['tp']; ?> 
-               </td>
-              </tr>
-              <tr>
-                <td>主要特色</td>
-                <td>适配强 / 高颜值 / 清爽 / 简洁</td>
-              </tr>
-              <tr>
-                <td>下载交流</td>
-                <td style="padding-bottom: 0;">
-                  <div class="layui-btn-container">
-                    <a href="https://jq.qq.com/?_wv=1027&k=5wZeNTd" target="_blank" class="layui-btn layui-btn-danger layui-btn-sm">官方交流群</a>
-                    <a href="http://tplay.pengyichen.cn" target="_blank" class="layui-btn layui-btn-sm">下载最新版</a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
 
-      <div class="layui-card">
-        <div class="layui-card-header">
-          官方公告
-        </div>
-        <div class="layui-card-body layui-text layadmin-text">
-          <p>Tplay后台管理框架搭载的是国内最受欢迎的两大框架Layui和ThinkPHP，ThinkPHP的大道至简和Layui的简而全在理念上可谓是不谋而合，两大框架结合所产生的结果就是将WEB开发精简到了极致。</p>
-        </div>
-      </div>
-
-      <div class="layui-card">
-        <div class="layui-card-header">系统信息</div>
-        <div class="layui-card-body layui-text">
-          <table class="layui-table">
-            <colgroup>
-              <col width="200">
-              <col>
-            </colgroup>
-            <tbody>
-              <tr>
-                <td>操作系统</td>
-                <td>
-                    <?php echo $info['win']; ?> 
-                </td>
-              </tr>
-              <tr>
-                <td>PHP版本</td>
-                <td>
-                 <?php echo $info['php']; ?> 
-               </td>
-              </tr>
-              <tr>
-                <td>运行环境</td>
-                <td><?php echo $info['environment']; ?></td>
-              </tr>
-              <tr>
-                <td>上传最大限制</td>
-                <td>
-                  <?php echo $info['upload_size']; ?>
-                </td>
-              </tr>
-              <tr>
-                <td>执行时间限制</td>
-                <td>
-                  <?php echo $info['execution_time']; ?>
-                </td>
-              </tr>
-              <tr>
-                <td>剩余空间大小</td>
-                <td>
-                  <?php if(!(empty($info['disk']) || (($info['disk'] instanceof \think\Collection || $info['disk'] instanceof \think\Paginator ) && $info['disk']->isEmpty()))): ?><?php echo $info['disk']; else: ?>未知<?php endif; ?>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-    
   </div>
   </div>
   </div>
 
 
-
+        <script src="/static/public/layui/layui.js" charset="utf-8"></script>
+    <script src="/static/public/jquery/jquery.min.js"></script>
+    <script>
+            var message;
+            layui.config({
+                base: '/static/admin/js/',
+                version: '1.0.1'
+            }).use(['app', 'message'], function() {
+                var app = layui.app,
+                    $ = layui.jquery,
+                    layer = layui.layer;
+                //将message设置为全局以便子页面调用
+                message = layui.message;
+                //主入口
+                app.set({
+                    type: 'iframe'
+                }).init();
+            });
+        </script> 
+    <script type="text/javascript">
+    $(function(){
+      var x = 10;
+      var y = 20;
+      $(".tooltip").mouseover(function(e){ 
+        var tooltip = "<div id='tooltip'><img src='"+ this.href +"' alt='产品预览图' height='200'/>"+"<\/div>"; //创建 div 元素
+        $("body").append(tooltip);  //把它追加到文档中             
+        $("#tooltip")
+          .css({
+            "top": (e.pageY+y) + "px",
+            "left":  (e.pageX+x)  + "px"
+          }).show("fast");    //设置x坐标和y坐标，并且显示
+        }).mouseout(function(){  
+        $("#tooltip").remove();  //移除 
+        }).mousemove(function(e){
+        $("#tooltip")
+          .css({
+            "top": (e.pageY+y) + "px",
+            "left":  (e.pageX+x)  + "px"
+          });
+      });
+    })
+    </script>
+    <script type="text/javascript">
+    $('.a_menu').click(function(){
+      var url = $(this).attr('href');
+      var id = $(this).attr('id');
+      var a = true;
+      if(id) {
+        $.ajax({
+          url:url
+          ,async:false
+          ,data:{id:id}
+          ,success:function(res){
+            if(res.code == 0) {
+              layer.msg(res.msg);
+              a = false;
+            }
+          }
+        })
+      } else {
+        $.ajax({
+          url:url
+          ,async:false
+          ,success:function(res){
+            if(res.code == 0) {
+              layer.msg(res.msg);
+              a = false;
+            }
+          }
+        })
+      }
+      return a;
+    })
+    </script>
+    <script>
+    layui.use('laydate', function(){
+      var laydate = layui.laydate;
+      
+      //常规用法
+      laydate.render({
+        elem: '#create_time'
+      });
+    });
+    </script>
 <script type="text/javascript">
 var a = "<?php echo $web['date_string']; ?>";
 var date = a.split(",");
@@ -283,6 +241,22 @@ option = {
     ]
 };
 myChart.setOption(option);
+
+
+$(document).on('click','.good_warn,.admin_user,.good_warn_day,.client',function () {
+  var url = $(this).data('url')
+  var title = $(this).attr('title')
+  layer.open({
+    type: 2
+    ,title: title
+    ,content:url
+    ,area: ['90%', '90%']
+    ,btn: ['关闭']
+    ,yes: function(index, layero){
+      layer.close(index)
+    }
+  })
+})
 </script>
 </body>
 </html>

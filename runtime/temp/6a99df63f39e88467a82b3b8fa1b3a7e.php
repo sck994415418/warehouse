@@ -1,11 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:71:"D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\index\index.html";i:1546481687;s:63:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\header.html";i:1564224529;s:61:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\left.html";i:1546481687;s:63:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\footer.html";i:1546481687;}*/ ?>
+<?php use think\Collection;
+use think\Paginator;
+
+if (!defined('THINK_PATH')) exit(); /*a:4:{s:71:"D:\phpstudy_pro\WWW\warehouse\public/../app/admin\view\index\index.html";i:1546481687;s:63:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\header.html";i:1590375602;s:61:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\left.html";i:1546481687;s:63:"D:\phpstudy_pro\WWW\warehouse\app\admin\view\public\footer.html";i:1589360018;}*/ ?>
 <!-- 头部公共文件 -->
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>后台管理</title>
+    <title>仓库管理</title>
     <link rel="stylesheet" href="/static/public/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="/static/public/font-awesome/css/font-awesome.min.css" media="all" />
     <link rel="stylesheet" href="/static/admin/css/app.css" media="all" />
@@ -16,47 +19,47 @@
 <body class="kit-theme">
     <div class="layui-layout layui-layout-admin kit-layout-admin">
         <div class="layui-header">
-            <div class="layui-logo" id="logo"><span>后台管理</span></div>
+            <div class="layui-logo" id="logo"><span>仓库管理</span></div>
             <ul class="layui-nav layui-layout-left kit-nav kit-tab-tool-body">
                 <li class="layui-nav-item"><a id="kit-side-fold" title="左侧菜单" style="color:#333;"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
-                <li class="layui-nav-item"><a href="/" target="_block" title="主页" style="color:#333;"><i class="fa fa-life-ring" aria-hidden="true"></i></a></li>
-                <li class="layui-nav-item"><a id="clear" title="清空缓存" style="color:#333;"><i class="fa fa-university" aria-hidden="true"></i></a></li>
+<!--                <li class="layui-nav-item"><a href="/" target="_block" title="主页" style="color:#333;"><i class="fa fa-life-ring" aria-hidden="true"></i></a></li>-->
+                <li class="layui-nav-item"><a id="clear" title="清空缓存" style="color:#333;"><i class="fa fa-recycle" aria-hidden="true"></i></a></li>
                 <li class="layui-nav-item"><a class="kit-item" data-target="refresh" title="刷新当前页" style="color:#333;" id="refresh"><i class="fa fa-refresh" aria-hidden="true"></i></a></li>
             </ul>
             <ul class="layui-nav layui-layout-right kit-nav">
-                <li class="layui-nav-item"><a href="javascript:;" id="tag" style="color:#333;"><i class="fa fa-tag" aria-hidden="true"></i></a></li>
+                <li class="layui-nav-item"><a href="javascript:" id="tag" style="color:#333;"><i class="fa fa-tag" aria-hidden="true"></i></a></li>
                 <li class="layui-nav-item" style="background-color: transparent !important;">
-                    <a href="javascript:;" id="color" style="color:#333;" class="refresh">皮肤<span class="layui-badge-dot"></span></a>
+                    <a href="javascript:" id="color" style="color:#333;" class="refresh">皮肤<span class="layui-badge-dot"></span></a>
                     </a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;" style="color:#333;">
-                        <img src="<?php echo geturl($cookie['thumb']); ?>" class="layui-nav-img">欢迎, <?php if(empty($cookie['nickname']) || (($cookie['nickname'] instanceof \think\Collection || $cookie['nickname'] instanceof \think\Paginator ) && $cookie['nickname']->isEmpty())): ?><?php echo $cookie['name']; else: ?><?php echo $cookie['nickname']; endif; ?>
+                    <a href="javascript:" style="color:#333;">
+                        <img src="<?php echo geturl($cookie['thumb']); ?>" class="layui-nav-img">欢迎, <?php if(empty($cookie['nickname']) || (($cookie['nickname'] instanceof Collection || $cookie['nickname'] instanceof Paginator ) && $cookie['nickname']->isEmpty())): ?><?php echo $cookie['name']; else: ?><?php echo $cookie['nickname']; endif; ?>
                     </a>
                 </li>
-                <li class="layui-nav-item"><a href="javascript:;"  id="logout" style="color:#333;"><span><i class="fa fa-sign-out" aria-hidden="true"></i> 退了</span></a></li>
+                <li class="layui-nav-item"><a href="javascript:" id="logout" style="color:#333;"><span><i class="fa fa-sign-out" aria-hidden="true"></i> 退了</span></a></li>
             </ul>
         </div>
 <!-- 左侧公共菜单文件 -->
         <div class="layui-side layui-bg-black kit-side">
             <div class="layui-side-scroll">
                 <ul class="layui-nav layui-nav-tree" lay-filter="kitNavbar" kit-navbar>
-                <?php if(is_array($menus) || $menus instanceof \think\Collection || $menus instanceof \think\Paginator): $i = 0; $__LIST__ = $menus;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i;?>
+                <?php if(is_array($menus) || $menus instanceof Collection || $menus instanceof Paginator): $i = 0; $__LIST__ = $menus;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$data): $mod = ($i % 2 );++$i;?>
                     <li class="layui-nav-item <?php if($data['is_open'] == 1): ?>layui-nav-itemed<?php endif; ?>">
-                        <a href="javascript:;"><i class="fa <?php echo $data['icon']; ?>" aria-hidden="true"></i><span> <?php echo $data['name']; ?></span></a>
+                        <a href="javascript:"><i class="fa <?php echo $data['icon']; ?>" aria-hidden="true"></i><span> <?php echo $data['name']; ?></span></a>
                         <ul class="menu_ul layui-nav-child">
-                        <?php if(!(empty($data['list']) || (($data['list'] instanceof \think\Collection || $data['list'] instanceof \think\Paginator ) && $data['list']->isEmpty()))): if(is_array($data['list']) || $data['list'] instanceof \think\Collection || $data['list'] instanceof \think\Paginator): $i = 0; $__LIST__ = $data['list'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;if(!(empty($vo['list']) || (($vo['list'] instanceof \think\Collection || $vo['list'] instanceof \think\Paginator ) && $vo['list']->isEmpty()))): ?>
+                        <?php if(!(empty($data['list']) || (($data['list'] instanceof Collection || $data['list'] instanceof Paginator ) && $data['list']->isEmpty()))): if(is_array($data['list']) || $data['list'] instanceof Collection || $data['list'] instanceof Paginator): $i = 0; $__LIST__ = $data['list'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;if(!(empty($vo['list']) || (($vo['list'] instanceof Collection || $vo['list'] instanceof Paginator ) && $vo['list']->isEmpty()))): ?>
                             <li>
-                                <a class="table" href="javascript:;"><i class="fa <?php echo $vo['icon']; ?>"></i><span> <?php echo $vo['name']; ?></span> <span class="angle"><i class="fa fa-angle-down"></i><span></span></a>
+                                <a class="table" href="javascript:"><i class="fa <?php echo $vo['icon']; ?>"></i><span> <?php echo $vo['name']; ?></span> <span class="angle"><i class="fa fa-angle-down"></i><span></span></a>
                                 <ul <?php if($vo['is_open'] == 1): ?>style="display:block;"<?php endif; ?>>
-                                    <?php if(is_array($vo['list']) || $vo['list'] instanceof \think\Collection || $vo['list'] instanceof \think\Paginator): $i = 0; $__LIST__ = $vo['list'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$co): $mod = ($i % 2 );++$i;?>
-                                    <li><a href="javascript:;" data-url="<?php echo $co['url']; ?>" data-icon="<?php echo $co['icon']; ?>" data-title="<?php echo $co['name']; ?>" kit-target data-id='<?php echo $co['id']; ?>'><i class="fa <?php echo $co['icon']; ?>" aria-hidden="true"></i><span> <?php echo $co['name']; ?></span></a></li>
+                                    <?php if(is_array($vo['list']) || $vo['list'] instanceof Collection || $vo['list'] instanceof Paginator): $i = 0; $__LIST__ = $vo['list'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$co): $mod = ($i % 2 );++$i;?>
+                                    <li><a href="javascript:" data-url="<?php echo $co['url']; ?>" data-icon="<?php echo $co['icon']; ?>" data-title="<?php echo $co['name']; ?>" kit-target data-id='<?php echo $co['id']; ?>'><i class="fa <?php echo $co['icon']; ?>" aria-hidden="true"></i><span> <?php echo $co['name']; ?></span></a></li>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
                                 </ul>
                             </li>
                             <?php else: ?>
                             <li>
-                                <a href="javascript:;" data-url="<?php echo $vo['url']; ?>" data-icon="<?php echo $vo['icon']; ?>" data-title="<?php echo $vo['name']; ?>" kit-target data-id='<?php echo $vo['id']; ?>'><i class="fa <?php echo $vo['icon']; ?>" aria-hidden="true"></i><span> <?php echo $vo['name']; ?></span></a>
+                                <a href="javascript:" data-url="<?php echo $vo['url']; ?>" data-icon="<?php echo $vo['icon']; ?>" data-title="<?php echo $vo['name']; ?>" kit-target data-id='<?php echo $vo['id']; ?>'><i class="fa <?php echo $vo['icon']; ?>" aria-hidden="true"></i><span> <?php echo $vo['name']; ?></span></a>
                             </li>
                             <?php endif; endforeach; endif; else: echo "" ;endif; endif; ?>
                         </ul>
@@ -174,7 +177,7 @@
                                 skin: 'cyan',
                                 msg:res.msg
                             });
-                            $('#clear i').attr("class","fa fa-institution");
+                            $('#clear i').attr("class","fa fa-recycle");
                         },1000)
                     }
                   }
