@@ -69,6 +69,7 @@ class Supplier extends Permissions
         } else {
             if($this->request->isPost()) {
                 $post = $this->request->post();
+
                 $validate = new Validate([
                     ['supplier_name', 'require', '客户姓名不能为空'],
                     ['supplier_phone', 'require', '客户电话不能为空'],
@@ -77,12 +78,16 @@ class Supplier extends Permissions
                     $this->error('提交失败：' . $validate->getError());
                 }
                 $post['create_time'] = time();
+                if(!empty($post['supplier_category'])){
+                    $post['supplier_category'] = json_encode($post['supplier_category']);
+                }
                 if(false == $model->allowField(true)->save($post)) {
                     return $this->error('添加失败');
                 } else {
                     addlog($model->supplier_id);
                     return $this->success('添加成功','admin/supplier/index');
                 }
+
             } else {
                 $address = db('address')
                     ->field('id1,id2 as address_id, name2 as address_name')
@@ -90,6 +95,24 @@ class Supplier extends Permissions
                     ->group('address_id')
                     ->select();
                 $this->assign('View_address', $address);
+                $category = db('sck_warehouse_good_category')->field('category_id as id,category_name as title,parent_id')->select();
+                if(!empty($category)){
+                    $category = getrole($category);
+                    if(!empty($category)){
+                        foreach ($category as $k=>$v){
+                            if(!empty($category[$k]['children'])){
+                                foreach ($category[$k]['children'] as $ks=>$vs){
+                                    if(!empty($category[$k]['children'][$ks]['children'])){
+                                        foreach ($category[$k]['children'][$ks]['children'] as $kss=>$vss){
+                                            $category[$k]['children'][$ks]['children'][$kss]['field'] = 'supplier_category[]';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    $this->assign('View_category', json_encode($category));
+                }
                 return $this->fetch();
             }
         }
@@ -120,6 +143,10 @@ class Supplier extends Permissions
             $model = new SckSupplier();
             $supplier = $model->get(['supplier_id'=>$supplier_id]);
             if(!empty($supplier)){
+                if(!empty($supplier['supplier_category'])){
+                    $supplier_category = json_decode($supplier['supplier_category'],true);
+                    $supplier['supplier_category'] = db('sck_warehouse_good_category')->where('category_id','in',$supplier_category)->column('category_name');
+                }
                 $this->assign('supplier',$supplier);
                 return $this->fetch();
             }else{

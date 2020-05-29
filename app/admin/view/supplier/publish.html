@@ -70,7 +70,14 @@
           <input name="supplier_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.supplier_position_details"}value="{$data.supplier_position_details}"{/notempty}>
         </div>
       </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">销售品类</label>
+        <div class="layui-input-block">
+          <div id="test12" class="demo-tree-more"></div>
+        </div>
+      </div>
       {/empty}
+
       <div class="layui-form-item">
         <div class="layui-input-block">
           <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
@@ -231,5 +238,28 @@
 
       });
     }
+  });
+</script>
+<script>
+  layui.use(['tree', 'util'], function(){
+    var tree = layui.tree
+            ,layer = layui.layer
+            ,util = layui.util
+
+            //模拟数据
+            ,data = {$View_category|default=''}
+
+    //基本演示
+    tree.render({
+      elem: '#test12'
+      ,data: data
+      ,showCheckbox: true  //是否显示复选框
+      ,id: 'demoId1'
+      ,isJump: true //是否允许点击节点时弹出新窗口跳转
+      ,click: function(obj){
+
+      }
+    });
+
   });
 </script>

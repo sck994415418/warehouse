@@ -37,8 +37,22 @@
             <td>{$supplier.supplier_phone|default=''}</td>
         </tr>
         <tr>
+            <td>销售品类</td>
+            <td>
+                {if !empty($supplier.supplier_category)}
+                    {foreach name="$supplier.supplier_category" item="v"}
+                         {$v}
+                    {/foreach}
+                {/if}
+             </td>
+        </tr>
+        <tr>
             <td>所在地</td>
-            <td>{$supplier.address.name2|default=''}{$supplier.address.name3|default=''}{$supplier.address.name4|default=''}{$supplier.address.name5|default=''}</td>
+            <td>
+                {if !empty($supplier.supplier_position_id) and $supplier.supplier_position_id > 0}
+                    {$supplier.address.name2|default=''}{$supplier.address.name3|default=''}{$supplier.address.name4|default=''}{$supplier.address.name5|default=''}
+                {/if}
+            </td>
         </tr>
         <tr>
             <td>详细地址</td>
