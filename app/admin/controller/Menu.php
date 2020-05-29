@@ -21,7 +21,6 @@ class Menu extends Permissions
         return $this->fetch();
     }
 
-
     public function publish()
     {
     	//获取菜单id

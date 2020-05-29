@@ -84,6 +84,12 @@ class Supplier extends Permissions
                     return $this->success('添加成功','admin/supplier/index');
                 }
             } else {
+                $address = db('address')
+                    ->field('id1,id2 as address_id, name2 as address_name')
+                    ->where(['id1' => 1, 'status' => 1])
+                    ->group('address_id')
+                    ->select();
+                $this->assign('View_address', $address);
                 return $this->fetch();
             }
         }

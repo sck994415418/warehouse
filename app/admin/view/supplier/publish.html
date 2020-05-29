@@ -26,9 +26,14 @@
           <input name="supplier_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.supplier_name"}value="{$data.supplier_name}"{/notempty}>
         </div>
       </div>
-
       <div class="layui-form-item">
-        <label class="layui-form-label">供应商电话</label>
+        <label class="layui-form-label">负责人姓名</label>
+        <div class="layui-input-inline">
+          <input name="supplier_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.supplier_name"}value="{$data.supplier_name}"{/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">联系电话</label>
         <div class="layui-input-inline">
           <input name="supplier_phone" lay-verify="required|phone" placeholder="请输入" autocomplete="off" class="layui-input" type="tel" {notempty name="$data.supplier_phone"}value="{$data.supplier_phone}"{/notempty}>
         </div>
@@ -36,8 +41,36 @@
       {notempty name="$data"}
       <input type="hidden" name="supplier_id" value="{$data.supplier_id}">
       {/notempty}
+      {empty name="$data"}
+      <div class="layui-form-item address_box">
+        <label class="layui-form-label">所在地区</label>
+        <div class="layui-input-inline province_div">
+          <select name="supplier_position_id" lay-verify="required" class="province" lay-filter="province">
+            <option value="{$data.supplier_position_id|default=''}">请选择省</option>
+            {if !empty($View_address)}
+            {foreach name="View_address" item="v"}
+            <option value="{$v.address_id}" >{$v.address_name}</option>
+            {/foreach}
+            {/if}
+          </select>
+        </div>
+        <div class="layui-input-inline city_div">
 
+        </div>
+        <div class="layui-input-inline qu_div">
 
+        </div>
+        <div class="layui-input-inline street_div">
+
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">详细地址</label>
+        <div class="layui-input-block">
+          <input name="supplier_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.supplier_position_details"}value="{$data.supplier_position_details}"{/notempty}>
+        </div>
+      </div>
+      {/empty}
       <div class="layui-form-item">
         <div class="layui-input-block">
           <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
@@ -96,5 +129,107 @@
         return false;
       });
     });
+  });
+</script>
+<script>
+  layui.use(['form', 'layer'], function () {
+    $ = layui.jquery;
+    var form = layui.form;
+    //选择省时触发事件获取其下市数据
+    form.on('select(province)', function(data){
+      var item = $(this).parents('.layui-form-item')
+      // console.log(item)
+      $('.city_div').html('')
+      $('.qu_div').html('')
+      $('.street_div').html('')
+      address(data,item)
+    });
+    form.on('select(city)', function(data){
+      var item = $(this).parents('.layui-form-item')
+      // console.log(item)
+      $('.qu_div').html('')
+      $('.street_div').html('')
+      address_qu(data,item)
+    });
+    form.on('select(qu)', function(data){
+      var item = $(this).parents('.layui-form-item')
+      // console.log(item)
+      $('.street_div').html('')
+      address_street(data,item)
+    });
+    // $(window).on('load', function() {
+    //   var item = $(this)
+    //   var data=[];
+    //   data.value="{$data.user_sheng|default=''}";
+    //   address(data,item)
+    // });
+
+    function address(data,item){
+      layer.load()
+      $.getJSON("{:url('admin/Address/address')}?address_id="+data.value, function(data){
+        if(data.code == '1'){
+          var str= '          <select lay-verify="required" name="supplier_position_id" class="city" lay-filter="city">\n' +
+                  '            <option value="">请选择市</option>\n' +
+                  '          </select>\n';
+          $('.city_div').html(str)
+          var optionstring = "";
+          $.each(data.data, function(i,item ){
+            optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
+          });
+          $(".city").html('<option value=""></option>' + optionstring);
+          form.render('select');
+          layer.closeAll()
+        }else{
+          layer.closeAll()
+          // layer.msg(data.msg);
+        }
+
+      });
+    }
+    function address_qu(data,item){
+      layer.load()
+      $.getJSON("{:url('admin/Address/address_qu')}?address_id="+data.value, function(data){
+        if(data.code == '1'){
+          var str='          <select lay-verify="required" name="supplier_position_id" class="qu" lay-filter="qu">\n' +
+                  '            <option value="">请选择区/县</option>\n' +
+                  '          </select>\n';
+          $('.qu_div').html(str)
+          var optionstring = "";
+          $.each(data.data, function(i,item ){
+            optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
+          });
+          $(".qu").html('<option value=""></option>' + optionstring);
+          form.render('select');
+          layer.closeAll()
+        }else{
+          layer.closeAll()
+          // layer.msg(data.msg);
+        }
+
+      });
+    }
+
+    function address_street(data,item){
+      layer.load()
+      $.getJSON("{:url('admin/Address/address_street')}?address_id="+data.value, function(data){
+        if(data.code == '1'){
+          var str='          <select lay-verify="required" name="supplier_position_id" class="street" lay-filter="street">\n' +
+                  '            <option value="">请选择乡镇/街道</option>\n' +
+                  '          </select>\n';
+          $('.street_div').html(str)
+          var optionstring = "";
+          $.each(data.data, function(i,item ){
+            optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
+          });
+          $(".street").html('<option value=""></option>' + optionstring);
+          form.render('select');
+          layer.closeAll()
+        }else{
+          layer.closeAll()
+          // layer.msg(data.msg);
+        }
+
+      });
+    }
   });
 </script>

@@ -76,28 +76,30 @@
 
     <table class="layui-table" lay-size="sm">
       <colgroup>
-        <col width="25">
-        <col width="70">
         <col width="45">
-        <col width="150">
-        <col width="70">
         <col width="90">
         <col width="120">
+        <col width="45">
+        <col width="">
+
+        <col width="120">
         <col width="130">
+
         <col width="90">
-        <col width="90">
+        <col width="100">
         <col width="120">
       </colgroup>
       <thead>
         <tr>
           <th>ID</th>
-          <th>姓名</th>
+          <th>负责人姓名</th>
+          <th>单位名称</th>
           <th>性别</th>
           <th>备注</th>
-          <th>电话</th>
-          <th>微信</th>
+
           <th>所在地</th>
           <th>详细地址</th>
+
           <th>创建时间</th>
           <th>最后修改时间</th>
           <th>操作</th>
@@ -108,20 +110,22 @@
           <tr>
             <td>{$vo.client_id}</td>
             <td>{$vo.client_name}</td>
+            <td>{$vo.client_company|default=''}</td>
             <td>
               {eq name="$vo.client_sex" value="0"}未知{/eq}
               {eq name="$vo.client_sex" value="1"/}男{/eq}
               {eq name="$vo.client_sex" value="2"/}女{/eq}
             </td>
             <td>{$vo.client_desc|default=''}</td>
-            <td>{$vo.client_phone}</td>
-            <td>{$vo.client_wechat|default=''}</td>
             <td>{$vo.address.name2|default=''}{$vo.address.name3|default=''}{$vo.address.name4|default=''}{$vo.address.name5|default=''}</td>
             <td>{$vo.client_position_details|default='暂无'}</td>
             <td>{$vo.create_time|default=''}</td>
             <td>{$vo.update_time|default=''}</td>
             <td class="operation-menu">
               <div class="layui-btn-group">
+                <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details" data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
+                  &nbsp;<i class="fa fa-user">&nbsp;</i>
+                </a>
                 <a href="{:url('admin/client/publish',['client_id'=>$vo.client_id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
                 <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary delete" client_id="{$vo.client_id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               </div>
@@ -278,4 +282,17 @@
     });
 
   });
+  $(document).on('click','.client_details',function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2
+      ,title: '客户详情'
+      ,content:url
+      ,area: ['50%', '90%']
+      ,btn: ['关闭']
+      ,yes: function(index, layero){
+        layer.close(index)
+      }
+    })
+  })
 </script>

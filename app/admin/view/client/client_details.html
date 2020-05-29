@@ -24,13 +24,8 @@
             <td>{$client.client_id|default=''}</td>
         </tr>
         <tr>
-            <td>姓名</td>
+            <td>负责人姓名</td>
             <td>{$client.client_name|default=''}</td>
-        </tr>
-
-        <tr>
-            <td>备注</td>
-            <td>{$client.client_desc|default=''}</td>
         </tr>
         <tr>
             <td>性别</td>
@@ -40,6 +35,24 @@
                 {eq name="$client.client_sex" value="2"/}女{/eq}
             </td>
         </tr>
+        <tr>
+            <td>家庭成员</td>
+            <td>{$client.client_family|default=''}</td>
+        </tr>
+        <tr>
+            <td>个人爱好</td>
+            <td>{$client.client_hobby|default=''}</td>
+        </tr>
+
+        <tr>
+            <td>备注</td>
+            <td>{$client.client_desc|default=''}</td>
+        </tr>
+        <tr>
+            <td>单位名称</td>
+            <td>{$client.client_company|default=''}</td>
+        </tr>
+
         <tr>
             <td>电话</td>
             <td>{$client.client_phone|default=''}</td>
