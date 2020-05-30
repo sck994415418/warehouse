@@ -39,7 +39,7 @@
         <button type="button" class="layui-btn" id="thumb">上传头像</button>
         <div class="layui-upload-list">
           <label class="layui-form-label"></label>
-          <img class="layui-upload-img" id="demo1" width="150" height="150" {notempty name="$info.admin.thumb"}src="{$info.admin.thumb|geturl}"{/notempty}>
+          <img class="layui-upload-img" id="demo1" width="150" height="150" {notempty name="$info.admin.thumb"} src="{$info.admin.thumb|geturl}"{/notempty}>
           <p id="demoText"></p>
         </div>
       </div>
@@ -55,7 +55,14 @@
           <input name="nickname" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$info.admin.nickname"}value="{$info.admin.nickname}"{/notempty}>
         </div>
       </div>
-      
+      <div class="layui-form-item">
+        <label class="layui-form-label">出入库信息</label>
+        <div class="layui-input-block">
+          <input type="radio" name="admin_power" value="0" title="个人" {eq name="@$info.admin.admin_power" value="0"}checked{/eq} checked="">
+          <input type="radio" name="admin_power" value="1" title="全部" {eq name="@$info.admin.admin_power" value="1"}checked{/eq}>
+          <input type="radio" name="admin_power" value="2" title="本月10号至上月初" {eq name="@$info.admin.admin_power" value="2"}checked{/eq}>
+        </div>
+      </div>
       {empty name="$info.admin"}
       <div class="layui-form-item">
         <label class="layui-form-label">密码</label>

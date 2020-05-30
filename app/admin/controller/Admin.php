@@ -177,6 +177,7 @@ class Admin extends Permissions
 	                ['password', 'require|confirm', '密码不能为空|两次密码不一致'],
 	                ['password_confirm', 'require', '重复密码不能为空'],
 	                ['admin_cate_id', 'require', '请选择管理员分组'],
+	                ['thumb', 'require', '请上传头像'],
 	            ]);
 	            //验证部分数据合法性
 	            if (!$validate->check($post)) {
@@ -190,6 +191,7 @@ class Admin extends Permissions
 	            if(!empty($post['address_ids'])) {
 	                $post['address_ids'] = json_encode($post['address_ids']);
 	            }
+
 	            //验证昵称是否存在
 	            $nickname = $model->where('nickname',$post['nickname'])->select();
 	            if(!empty($nickname)) {
@@ -207,7 +209,8 @@ class Admin extends Permissions
     			//非提交操作
     			$info['admin_cate'] = Db::name('admin_cate')->select();
     			$this->assign('info',$info);
-    			return $this->fetch();
+
+                return $this->fetch();
     		}
     	}
     }
