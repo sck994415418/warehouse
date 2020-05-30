@@ -102,7 +102,7 @@ class Admin extends Permissions
     {
     	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
     	$model = new adminModel();
-
+        $category =  db('sck_warehouse_good_category')->where('parent_id',0)->column('category_id as id,category_name as title,"admin_supplier_ids[]" as field');
     	if($id > 0) {
     		//是修改操作
     		if($this->request->isPost()) {
@@ -124,6 +124,9 @@ class Admin extends Permissions
                 }
                 if(!empty($post['address_ids'])) {
                     $post['address_ids'] = json_encode($post['address_ids']);
+                }
+                if(!empty($post['admin_supplier_ids'])) {
+                    $post['admin_supplier_ids'] = json_encode($post['admin_supplier_ids']);
                 }
 //                dump($post);die;
                 //验证昵称是否存在
@@ -159,6 +162,17 @@ class Admin extends Permissions
 //                dump($address);die;
                 $this->assign('address',json_encode($address));
 //                $this->assign('address',$address);
+                if(!empty($info['admin']['admin_supplier_ids'])){
+                    $info['admin']['admin_supplier_ids'] = json_decode($info['admin']['admin_supplier_ids'],true);
+                    if(!empty($category)){
+                        foreach ($category as $ks=>$vs){
+                            if(in_array($category[$ks]['id'],$info['admin']['admin_supplier_ids'])){
+                                $category[$ks]['checked'] = true;
+                            }
+                        }
+                    }
+                }
+                $this->assign('category',json_encode($category));
     			$this->assign('info',$info);
     			return $this->fetch();
     		}
@@ -209,6 +223,7 @@ class Admin extends Permissions
     			//非提交操作
     			$info['admin_cate'] = Db::name('admin_cate')->select();
     			$this->assign('info',$info);
+    			$this->assign('category',json_encode($category));
 
                 return $this->fetch();
     		}
