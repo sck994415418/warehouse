@@ -150,7 +150,7 @@ class Supplier extends Permissions
                 $this->assign('supplier',$supplier);
                 return $this->fetch();
             }else{
-                return $this->error('为找到该用户！');
+                return $this->error('未找到该供应商！');
             }
         }else{
             return $this->error('页面错误，请重试！');

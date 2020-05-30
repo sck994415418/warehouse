@@ -185,7 +185,7 @@ class Client extends Permissions
                 $this->assign('client', $client);
                 return $this->fetch();
             } else {
-                return $this->error('为找到该用户！');
+                return $this->error('未找到该客户！');
             }
         } else {
             return $this->error('页面错误，请重试！');
