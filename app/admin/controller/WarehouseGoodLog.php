@@ -11,6 +11,7 @@ use think\Exception;
 use think\exception\PDOException;
 use think\Session;
 use think\Validate;
+use app\admin\model\Admin as adminModel;//管理员模型
 
 class WarehouseGoodLog extends Permissions
 {
@@ -152,7 +153,7 @@ class WarehouseGoodLog extends Permissions
                 $ClientModel = new SckClient();
                 $id = Session::get('admin');
                 if(!empty($id)){
-                    $user_info = \app\admin\model\Admin::get($id);
+                    $user_info = adminModel::get($id);
                     if(!empty($user_info->address_ids)){
                         $address_ids = json_decode($user_info->address_ids,true);
                     }else{
@@ -237,7 +238,7 @@ class WarehouseGoodLog extends Permissions
                 $ClientModel = new SckClient();
                 $id = Session::get('admin');
                 if(!empty($id)){
-                    $user_info = \app\admin\model\Admin::get($id);
+                    $user_info = adminModel::get($id);
                     if(!empty($user_info->address_ids)){
                         $address_ids = json_decode($user_info->address_ids,true);
                     }else{
@@ -283,11 +284,51 @@ class WarehouseGoodLog extends Permissions
         if (isset($post['time']) and !empty($post['time'])) {
             $start_time = strtotime(substr($post['time'],0,strripos($post['time'],' - ')));
             $end_time = strtotime(substr($post['time'],strripos($post['time'],' - ')+3));
-            $where['create_time']=['between',[$start_time,$end_time]];
         }
+
         $admin_id = Session::get('admin');
-        if (isset($admin_id) and $admin_id !== 1) {
-            $where['admin_id'] = $admin_id;
+        if (isset($admin_id)) {
+            $user_info = adminModel::get($admin_id);
+            if($user_info['admin_power']==0){
+                $where['admin_id'] = $admin_id;
+            }elseif($user_info['admin_power']==1){
+//                $start_time_is =
+//                $where['create_time'] = ;
+                $where['create_time']=['between',[@$start_time,@$end_time]];
+            }elseif($user_info['admin_power']==2){
+                $this_month_10 = strtotime(date('Y-m-'.'11'));
+                $this_day = strtotime(date('Y-m-d'));
+                if($this_day<=$this_month_10){
+                    if(empty($start_time)){
+                        $start_time = mktime(0, 0 , 0,date("m")-1,1,date("Y"));
+                    }else{
+                        if($start_time<mktime(0, 0 , 0,date("m")-1,1,date("Y"))){
+                            $start_time = mktime(0, 0 , 0,date("m")-1,1,date("Y"));
+                        }else{
+                            $start_time;
+                        }
+                    }
+                }elseif($this_day>$this_month_10){
+                    if(empty($start_time)){
+                        $start_time = mktime(0,0,0,date('m'),1,date('Y'));
+                    }else{
+                        if($start_time<mktime(0, 0 , 0,date("m"),1,date("Y"))){
+                            $start_time = mktime(0, 0 , 0,date("m"),1,date("Y"));
+                        }else{
+                            $start_time;
+                        }
+                    }
+
+                }
+                if(!empty($end_time)){
+                    $end_time;
+                }else{
+                    $end_time = time();
+                }
+                $where['create_time']=['between',[$start_time,$end_time]];
+            }
+        }else{
+            return $this->error('未检测到登录状态，请重新登陆!');
         }
         if (isset($good_id) and $good_id !== 0) {
             $where['good_id'] = $good_id;
