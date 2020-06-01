@@ -100,7 +100,7 @@ class Common extends Controller
                     if($name['password'] != $post['password']) {
                         return $this->error('密码错误');
                     } else {
-                        if($name['admin_status'] !== 1) {
+                        if($name['admin_status'] != 1) {
                             return $this->error('你已被禁用！');
                         }
                         //是否记住账号
