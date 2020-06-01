@@ -15,4 +15,8 @@ class SckWarehouseGoodLog extends Model
     {
         return $this->belongsTo('SckClient');
     }
+    public function goodlogpay()
+    {
+        return $this->belongsTo('SckWarehouseGoodLogPay','log_id','log_id');
+    }
 }

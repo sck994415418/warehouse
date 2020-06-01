@@ -56,6 +56,9 @@
                 <col width="100">
                 <col width="100">
                 <col width="100">
+                {if !empty($good_status) and $good_status == 2 /}
+                <col width="100">
+                {/if}
                 <col width="100">
                 <col width="140">
                 <col width="120">
@@ -69,9 +72,13 @@
                 <th>状态</th>
                 <th>入库/出库数量</th>
                 {if !empty($good_status) and $good_status == 3 /}
+
                 {else}
                 <th>入库/出库单价</th>
                 <th>入库/出库总价</th>
+                {/if}
+                {if !empty($good_status) and $good_status == 2 /}
+                <th>付款状态</th>
                 {/if}
                 <th>操作人</th>
                 <th>操作时间</th>
@@ -156,6 +163,13 @@
                             <td>{$vo.good_amount}</td>
                             <td>{$vo.good_price}</td>
                             <td>{$vo.good_total}</td>
+                            <td>
+                                {if !empty($vo.goodlogpay.pay_price)}
+                                <?php $num = number_format($vo->goodlogpay->pay_price/$vo->goodlogpay->pay_total*100);echo $num.'%';?>
+                                {else}
+                                0%
+                                {/if}
+                            </td>
                             <td>{$vo.admin.nickname}</td>
                             <td>{$vo.create_time|default=''}</td>
                             <td>
