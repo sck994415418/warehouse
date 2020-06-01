@@ -30,39 +30,41 @@ class Supplier extends Permissions
             $end_time = strtotime(substr($post['time'],strripos($post['time'],' - ')+3));
             $where['create_time']=['between',[$start_time,$end_time]];
         }
-        //*************************************************
-        $admin_id = Session::get('admin');
-        if (isset($admin_id)) {
-            $user_info = adminModel::get($admin_id);
-            if(!empty($user_info['admin_supplier_ids'])){
-                $user_info['admin_supplier_ids'] = json_decode($user_info['admin_supplier_ids'],true);
-                $new_cagegory_ids = array();
-                $new_cagegory_ids_1 = array();
-                foreach ($user_info['admin_supplier_ids'] as $k=>$v){
-                    $new_cagegory_ids[$k] = db('sck_warehouse_good_category')->where('parent_id',$user_info['admin_supplier_ids'][$k])->column('category_id');
-                    if(!empty($new_cagegory_ids[$k])){
-                        foreach ($new_cagegory_ids[$k] as $ks=>$vs){
-                            $new_cagegory_ids_1[$ks] = db('sck_warehouse_good_category')->where('parent_id',$new_cagegory_ids[$k][$ks])->column('category_id');
-                        }
-                    }
-                    if(!empty($new_cagegory_ids_1)){
-                        $new_cagegory_ids = array_reduce($new_cagegory_ids_1, 'array_merge', array());
-                    }else{
-                        $new_cagegory_ids = [];
-                    }
-                }
-            }
-        }else{
-            return $this->error('未检测到登录状态，请重新登陆!');
-        }
-        //*******************************************************
         $data = empty($where) ? $model
             ->order('create_time desc')
             ->paginate(20)
+            ->each(function ($k,$v){
+
+
+            })
             : $model->where($where)
                 ->order('create_time desc')
-                ->paginate(20,false,['query'=>$this->request->param()]);
-
+                ->paginate(20,false,['query'=>$this->request->param()])
+        ->each(function ($k,$v){
+            if(!empty($k['supplier_category'])){
+                $k['supplier_category'] = json_decode($k['supplier_category'],true);
+                $admin_id = Session::get('admin');
+                if (!isset($admin_id)) {
+                    return $this->error('未检测到登录状态，请重新登陆!');
+                }
+                $user_info = adminModel::get($admin_id);
+                if(!empty($user_info['admin_supplier_ids'])){
+                    $user_info['admin_supplier_ids'] = json_decode($user_info['admin_supplier_ids'],true);
+                }else{
+                    $user_info['admin_supplier_ids'] = [];
+                }
+                foreach ($k['supplier_category'] as $ks=>$vs){
+                    if(!array_intersect($k['supplier_category'],$user_info['admin_supplier_ids'])){
+                        $k['aa'] = 0;
+                    }else{
+                        $k['aa'] = 1;
+                    }
+                }
+            }else{
+                $k['yes'] = 0;
+            }
+        });
+        dump($data);die;
         $this->assign('data',$data);
         return $this->fetch();
     }
@@ -78,6 +80,7 @@ class Supplier extends Permissions
                 $validate = new Validate([
                     ['supplier_name', 'require', '客户姓名不能为空'],
                     ['supplier_phone', 'require', '客户电话不能为空'],
+                    ['supplier_category', 'require', '请选择销售类目'],
                 ]);
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
@@ -100,6 +103,7 @@ class Supplier extends Permissions
                 $validate = new Validate([
                     ['supplier_name', 'require', '客户姓名不能为空'],
                     ['supplier_phone', 'require', '客户电话不能为空'],
+                    ['supplier_category', 'require', '请选择销售类目'],
                 ]);
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());

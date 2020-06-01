@@ -294,7 +294,9 @@ class WarehouseGoodLog extends Permissions
             }elseif($user_info['admin_power']==1){
 //                $start_time_is =
 //                $where['create_time'] = ;
-                $where['create_time']=['between',[@$start_time,@$end_time]];
+                if(!empty($start_time) and !empty($end_time)){
+                    $where['create_time']=['between',[$start_time,$end_time]];
+                }
             }elseif($user_info['admin_power']==2){
                 $this_month_10 = strtotime(date('Y-m-'.'11'));
                 $this_day = strtotime(date('Y-m-d'));
