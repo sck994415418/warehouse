@@ -9,6 +9,7 @@ use think\Exception;
 use think\exception\PDOException;
 use think\Session;
 use think\Validate;
+use app\admin\model\Admin as adminModel;//管理员模型
 
 class Supplier extends Permissions
 {
@@ -29,6 +30,32 @@ class Supplier extends Permissions
             $end_time = strtotime(substr($post['time'],strripos($post['time'],' - ')+3));
             $where['create_time']=['between',[$start_time,$end_time]];
         }
+        //*************************************************
+        $admin_id = Session::get('admin');
+        if (isset($admin_id)) {
+            $user_info = adminModel::get($admin_id);
+            if(!empty($user_info['admin_supplier_ids'])){
+                $user_info['admin_supplier_ids'] = json_decode($user_info['admin_supplier_ids'],true);
+                $new_cagegory_ids = array();
+                $new_cagegory_ids_1 = array();
+                foreach ($user_info['admin_supplier_ids'] as $k=>$v){
+                    $new_cagegory_ids[$k] = db('sck_warehouse_good_category')->where('parent_id',$user_info['admin_supplier_ids'][$k])->column('category_id');
+                    if(!empty($new_cagegory_ids[$k])){
+                        foreach ($new_cagegory_ids[$k] as $ks=>$vs){
+                            $new_cagegory_ids_1[$ks] = db('sck_warehouse_good_category')->where('parent_id',$new_cagegory_ids[$k][$ks])->column('category_id');
+                        }
+                    }
+                    if(!empty($new_cagegory_ids_1)){
+                        $new_cagegory_ids = array_reduce($new_cagegory_ids_1, 'array_merge', array());
+                    }else{
+                        $new_cagegory_ids = [];
+                    }
+                }
+            }
+        }else{
+            return $this->error('未检测到登录状态，请重新登陆!');
+        }
+        //*******************************************************
         $data = empty($where) ? $model
             ->order('create_time desc')
             ->paginate(20)

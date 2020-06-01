@@ -102,7 +102,7 @@ class Admin extends Permissions
     {
     	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
     	$model = new adminModel();
-        $category =  db('sck_warehouse_good_category')->where('parent_id',0)->column('category_id as id,category_name as title,"admin_supplier_ids[]" as field');
+        $category =  db('sck_warehouse_good_category')->field('category_id as id,category_name as title,parent_id')->select();
     	if($id > 0) {
     		//是修改操作
     		if($this->request->isPost()) {
@@ -162,13 +162,25 @@ class Admin extends Permissions
 //                dump($address);die;
                 $this->assign('address',json_encode($address));
 //                $this->assign('address',$address);
+                $category = getrole($category);
                 if(!empty($info['admin']['admin_supplier_ids'])){
                     $info['admin']['admin_supplier_ids'] = json_decode($info['admin']['admin_supplier_ids'],true);
                     if(!empty($category)){
                         foreach ($category as $ks=>$vs){
-                            if(in_array($category[$ks]['id'],$info['admin']['admin_supplier_ids'])){
-                                $category[$ks]['checked'] = true;
+                            if(!empty($category[$ks]['children'])){
+                                foreach ($category[$ks]['children'] as $kss=>$vss){
+                                    if(!empty($category[$ks]['children'][$kss]['children'])){
+                                        foreach ($category[$ks]['children'][$kss]['children'] as $ksss=>$vsss){
+                                            $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'admin_supplier_ids[]';
+                                            if(in_array($category[$ks]['children'][$kss]['children'][$ksss]['id'],$info['admin']['admin_supplier_ids'])){
+                                                $category[$ks]['children'][$kss]['children'][$ksss]['checked'] = true;
+                                            }
+                                        }
+                                    }
+
+                                }
                             }
+
                         }
                     }
                 }
@@ -222,6 +234,7 @@ class Admin extends Permissions
     		} else {
     			//非提交操作
     			$info['admin_cate'] = Db::name('admin_cate')->select();
+                $category = getrole($category);
     			$this->assign('info',$info);
     			$this->assign('category',json_encode($category));
 
