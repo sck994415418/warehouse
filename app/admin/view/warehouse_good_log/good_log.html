@@ -58,7 +58,7 @@
                 <col width="100">
                 <col width="100">
                 <col width="140">
-                <col width="60">
+                <col width="120">
             </colgroup>
             <thead>
             <tr>
@@ -97,15 +97,20 @@
                         <td>{$vo.admin.nickname}</td>
                         <td>{$vo.create_time|default=''}</td>
                         <td>
-                            {if $vo.good_status==2 || $vo.good_status==3}
-                                <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details" data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
-                                    &nbsp;<i class="fa fa-user">&nbsp;</i>
-                                </a>
-                            {elseif $vo.good_status==1/}
-                                <a href="javascript:" title="查看供应商" class="layui-btn layui-btn-xs layui-btn-primary supplier_details" data-url="{:url('admin/supplier/supplier_details')}?supplier_id={$vo.supplier_id}">
-                                    &nbsp;<i class="fa fa-home">&nbsp;</i>
-                                </a>
-                            {/if}
+                            <div class="layui-btn-group">
+                                {if $vo.good_status==2 || $vo.good_status==3}
+                                    <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details" data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
+                                        &nbsp;<i class="fa fa-user">&nbsp;</i>
+                                    </a>
+                                    <a href="javascript:" title="付款" class="layui-btn layui-btn-xs layui-btn-primary pay_money" data-url="{:url('admin/WarehouseGoodLogPay/pay_money')}?pay_status={$vo.good_status&log_id={$vo.log_id}}">
+                                        &nbsp;<i class="fa fa-cny">&nbsp;</i>
+                                    </a>
+                                {elseif $vo.good_status==1/}
+                                    <a href="javascript:" title="查看供应商" class="layui-btn layui-btn-xs layui-btn-primary supplier_details" data-url="{:url('admin/supplier/supplier_details')}?supplier_id={$vo.supplier_id}">
+                                        &nbsp;<i class="fa fa-home">&nbsp;</i>
+                                    </a>
+                                {/if}
+                            </div>
                         </td>
                     </tr>
                 {/volist}
@@ -154,9 +159,14 @@
                             <td>{$vo.admin.nickname}</td>
                             <td>{$vo.create_time|default=''}</td>
                             <td>
-                                <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details" data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
-                                    &nbsp;<i class="fa fa-user">&nbsp;</i>
-                                </a>
+                                <div class="layui-btn-group">
+                                    <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details" data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
+                                        &nbsp;<i class="fa fa-user">&nbsp;</i>
+                                    </a>
+                                    <a href="javascript:" title="付款" class="layui-btn layui-btn-xs layui-btn-primary pay_money" data-url="{:url('admin/WarehouseGoodLogPay/pay_money')}?pay_status={$vo.good_status&log_id={$vo.log_id}}">
+                                        &nbsp;<i class="fa fa-cny">&nbsp;</i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     {/if}
@@ -181,6 +191,7 @@
                                 <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details" data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
                                     &nbsp;<i class="fa fa-user">&nbsp;</i>
                                 </a>
+
                             </td>
                         </tr>
                     {/if}
@@ -265,6 +276,19 @@
         layer.open({
             type: 2
             ,title: '供应商详情'
+            ,content:url
+            ,area: ['50%', '90%']
+            ,btn: ['关闭']
+            ,yes: function(index, layero){
+                layer.close(index)
+            }
+        })
+    })
+    $(document).on('click','.pay_money',function () {
+        var url = $(this).data('url')
+        layer.open({
+            type: 2
+            ,title: '付款'
             ,content:url
             ,area: ['50%', '90%']
             ,btn: ['关闭']
