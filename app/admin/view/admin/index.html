@@ -65,7 +65,7 @@
         <col width="200">
         <col width="200">
         <col width="200">
-        <col width="100">
+        <col width="130">
       </colgroup>
       <thead>
         <tr>
@@ -93,6 +93,11 @@
           <td>{$vo.login_ip}</td>
           <td class="operation-menu">
             <div class="layui-btn-group">
+              {if $vo.admin_status !=1}
+              <button type="button" title="开启" class="layui-btn layui-btn-primary layui-btn-xs status_on" data-id="{$vo.id}"><i class="fa fa-toggle-off" ></i></button>
+              {else/}
+              <button type="button" title="禁用" class="layui-btn layui-btn-primary layui-btn-xs status_off" data-id="{$vo.id}"><i class="fa fa-toggle-on" ></i></button>
+              {/if}
               <a href="{:url('admin/publish',['id'=>$vo.id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               <a class="layui-btn layui-btn-xs layui-btn-primary delete" id="{$vo.id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
             </div>
@@ -128,3 +133,41 @@
   </div>
 </body>
 </html>
+<script>
+  $(document).on('click','.status_on',function () {
+    var ids = $(this).data('id');
+    // console.log(ids)
+    layer.confirm('确定要将此开启吗?', function (index) {
+      $.ajax({
+        url: "{:url('admin/admin/status_on')}",
+        data: {id: ids},
+        success: function (res) {
+          layer.msg(res.msg);
+          if (res.code == 1) {
+            setTimeout(function () {
+              location.href = res.url;
+            }, 1500)
+          }
+        }
+      })
+    })
+  })
+  $(document).on('click','.status_off',function () {
+    var ids = $(this).data('id');
+    // console.log(ids)
+    layer.confirm('确定要将禁用吗?', function (index) {
+      $.ajax({
+        url: "{:url('admin/admin/status_off')}",
+        data: {id: ids},
+        success: function (res) {
+          layer.msg(res.msg);
+          if (res.code == 1) {
+            setTimeout(function () {
+              location.href = res.url;
+            }, 1500)
+          }
+        }
+      })
+    })
+  })
+</script>

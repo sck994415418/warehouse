@@ -536,4 +536,41 @@ class Admin extends Permissions
         $this->assign('info',$info);
         return $this->fetch();
     }
+
+    public function status_on()
+    {
+        if($this->request->isAjax()) {
+            $id = $this->request->has('id') ? $this->request->param('id', 0) : 0;
+//            dump($id);die;
+            if($id>0) {
+                $model = new adminModel();
+                if(false == $model->save(['admin_status'=>1],['id'=>$id])) {
+                    return $this->error('开启失败');
+                } else {
+                    addlog($id);
+                    return $this->success('开启成功');
+                }
+            } else {
+                return $this->error('页面错误，请刷新后重试！');
+            }
+        }
+    }
+    public function status_off()
+    {
+        if($this->request->isAjax()) {
+            $id = $this->request->has('id') ? $this->request->param('id', 0) : 0;
+//            dump($id);die;
+            if($id>0) {
+                $model = new adminModel();
+                if(false == $model->save(['admin_status'=>0],['id'=>$id])) {
+                    return $this->error('禁用失败');
+                } else {
+                    addlog($id);
+                    return $this->success('禁用成功');
+                }
+            } else {
+                return $this->error('页面错误，请刷新后重试！');
+            }
+        }
+    }
 }
