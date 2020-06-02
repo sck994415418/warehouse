@@ -34,8 +34,28 @@ class Supplier extends Permissions
             ->order('create_time desc')
             ->paginate(20)
             ->each(function ($k,$v){
-
-
+                if(!empty($k['supplier_category'])){
+                    $k['supplier_category'] = json_decode($k['supplier_category'],true);
+                    $admin_id = Session::get('admin');
+                    if (!isset($admin_id)) {
+                        return $this->error('未检测到登录状态，请重新登陆!');
+                    }
+                    $user_info = adminModel::get($admin_id);
+                    if(!empty($user_info['admin_supplier_ids'])){
+                        $user_info['admin_supplier_ids'] = json_decode($user_info['admin_supplier_ids'],true);
+                    }else{
+                        $user_info['admin_supplier_ids'] = [];
+                    }
+                    foreach ($k['supplier_category'] as $ks=>$vs){
+                        if(!array_intersect($k['supplier_category'],$user_info['admin_supplier_ids'])){
+                            $k['yes'] = 0;
+                        }else{
+                            $k['yes'] = 1;
+                        }
+                    }
+                }else{
+                    $k['yes'] = 0;
+                }
             })
             : $model->where($where)
                 ->order('create_time desc')
@@ -55,16 +75,15 @@ class Supplier extends Permissions
                 }
                 foreach ($k['supplier_category'] as $ks=>$vs){
                     if(!array_intersect($k['supplier_category'],$user_info['admin_supplier_ids'])){
-                        $k['aa'] = 0;
+                        $k['yes'] = 0;
                     }else{
-                        $k['aa'] = 1;
+                        $k['yes'] = 1;
                     }
                 }
             }else{
                 $k['yes'] = 0;
             }
         });
-        dump($data);die;
         $this->assign('data',$data);
         return $this->fetch();
     }

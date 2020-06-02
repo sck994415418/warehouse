@@ -21,7 +21,9 @@
     <div style="margin-top: 20px;">
     </div>
     <form class="layui-form" id="admin">
-
+      {notempty name="$info.admin"}
+      <input type="hidden" name="id" value="{$info.admin.id}">
+      {/notempty}
       <div class="layui-form-item">
         <label class="layui-form-label">分组</label>
         <div class="layui-input-inline">
@@ -98,9 +100,7 @@
         </div>
       </div>
 
-      {notempty name="$info.admin"}
-      <input type="hidden" name="id" value="{$info.admin.id}">
-      {/notempty}
+
       <div class="layui-form-item">
         <div class="layui-input-block">
           <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>

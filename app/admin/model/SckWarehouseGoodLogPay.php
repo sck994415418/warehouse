@@ -4,7 +4,7 @@
 namespace app\admin\model;
 
 use \think\Model;
-class SckWarehouseGoodLog extends Model
+class SckWarehouseGoodLogPay extends Model
 {
     public function admin()
     {
@@ -15,8 +15,8 @@ class SckWarehouseGoodLog extends Model
     {
         return $this->belongsTo('SckClient');
     }
-    public function goodlogpay()
+    public function goodlog()
     {
-        return $this->belongsTo('SckWarehouseGoodLogPay','log_id','log_id');
+        return $this->belongsTo('SckWarehouseGoodLog');
     }
 }
