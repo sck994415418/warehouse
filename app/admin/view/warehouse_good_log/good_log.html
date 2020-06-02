@@ -44,9 +44,7 @@
             <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" onclick="layer.load()" lay-filter="serch">立即提交</button>
         </div>
     </form>
-    <a href="javascript:" title="打印" class="layui-btn print" style="float: left; margin-left: 10px;" data-url="">
-        <i class="fa fa-table" aria-hidden="true"></i>
-    </a>
+
     <form class="layui-form" id="admin">
         <table class="layui-table" lay-size="sm">
             <colgroup>
@@ -58,14 +56,15 @@
                 <col width="100">
                 <col width="100">
                 <col width="100">
+                {if !empty($good_status) and $good_status == 2 /}
+                <col width="100">
+                {/if}
                 <col width="100">
                 <col width="140">
                 <col width="120">
             </colgroup>
             <thead>
             <tr>
-                <th><div class="checkallbox">
-                    <input lay-skin="primary" type="checkbox" id="checkall" name="type" lay-filter="allChoose" value="checkall"/></div></th>
                 <th>ID</th>
                 <th>商品ID</th>
                 <th>商品名称</th>
@@ -78,6 +77,9 @@
                 <th>入库/出库单价</th>
                 <th>入库/出库总价</th>
                 {/if}
+                {if !empty($good_status) and $good_status == 2 /}
+                <th>付款状态</th>
+                {/if}
                 <th>操作人</th>
                 <th>操作时间</th>
                 <th>操作</th>
@@ -87,7 +89,6 @@
             {if empty($good_status) or $good_status==0}
                 {volist name="data" id="vo"}
                     <tr>
-                <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
                         <td>{$vo.log_id}</td>
                         <td>{$vo.good_id}</td>
                         <td>{$vo.good_name}</td>
@@ -124,7 +125,6 @@
                 {volist name="data" id="vo"}
                     {if $vo.good_status==1}
                         <tr>
-                <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
                             <td>{$vo.log_id}</td>
                             <td>{$vo.good_id}</td>
                             <td>{$vo.good_name}</td>
@@ -151,7 +151,6 @@
                 {volist name="data" id="vo"}
                     {if $vo.good_status==2}
                         <tr>
-                <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
                             <td>{$vo.log_id}</td>
                             <td>{$vo.good_id}</td>
                             <td>{$vo.good_name}</td>
@@ -190,7 +189,6 @@
                 {volist name="data" id="vo"}
                     {if $vo.good_status==3}
                         <tr>
-                <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
                             <td>{$vo.log_id}</td>
                             <td>{$vo.good_id}</td>
                             <td>{$vo.good_name}</td>
@@ -274,27 +272,6 @@
             });
         });
     });
-    layui.use(['form','jquery'], function () {
-        var form = layui.form;
-        var $ = layui.jquery;
-        //点击全选, 勾选
-        form.on('checkbox(allChoose)', function (data) {
-            var child = $("tr input[type='checkbox']");
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
-        });
-    });
-    $('.print').click(function(){
-        var arr = [];
-        $("input:checkbox[name='log_id[]']:checked").each(function(i){
-            arr[i] = $(this).val();
-
-        });
-        window.location.href = '/admin/Delivery/log_print?data='+arr;
-
-    })
     $(document).on('click','.client_details',function () {
         var url = $(this).data('url')
         layer.open({
