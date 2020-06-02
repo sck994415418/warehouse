@@ -348,6 +348,5 @@ class WarehouseGoodLog extends Permissions
         $this->assign('good_status', $good_status);
         return $this->fetch();
     }
-    
 
 }
