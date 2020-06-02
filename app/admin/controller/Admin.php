@@ -113,6 +113,7 @@ class Admin extends Permissions
 	                ['name', 'require|alphaDash', '管理员名称不能为空|用户名格式只能是字母、数组、——或_'],
 	                ['admin_cate_id', 'require', '请选择管理员分组'],
 	            ]);
+//                dump($post);die;
                 //验证部分数据合法性
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
@@ -124,11 +125,14 @@ class Admin extends Permissions
                 }
                 if(!empty($post['address_ids'])) {
                     $post['address_ids'] = json_encode($post['address_ids']);
+                }else{
+                    $post['address_ids'] = '';
                 }
                 if(!empty($post['admin_supplier_ids'])) {
                     $post['admin_supplier_ids'] = json_encode($post['admin_supplier_ids']);
+                }else{
+                    $post['admin_supplier_ids'] = '';
                 }
-//                dump($post);die;
                 //验证昵称是否存在
 	            $nickname = $model->where(['nickname'=>$post['nickname'],'id'=>['neq',$post['id']]])->select();
 	            if(!empty($nickname)) {
@@ -175,6 +179,22 @@ class Admin extends Permissions
                                             if(in_array($category[$ks]['children'][$kss]['children'][$ksss]['id'],$info['admin']['admin_supplier_ids'])){
                                                 $category[$ks]['children'][$kss]['children'][$ksss]['checked'] = true;
                                             }
+                                        }
+                                    }
+
+                                }
+                            }
+
+                        }
+                    }
+                }else{
+                    if(!empty($category)){
+                        foreach ($category as $ks=>$vs){
+                            if(!empty($category[$ks]['children'])){
+                                foreach ($category[$ks]['children'] as $kss=>$vss){
+                                    if(!empty($category[$ks]['children'][$kss]['children'])){
+                                        foreach ($category[$ks]['children'][$kss]['children'] as $ksss=>$vsss){
+                                            $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'admin_supplier_ids[]';
                                         }
                                     }
 
