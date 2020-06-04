@@ -3,8 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style id="style1">
+        *{
+            text-align: center;
+        }
+        td {
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        table {
+            width: 750px;
+            border-collapse: collapse;
+            border: 1px solid black;
+            margin:0 auto;
+            margin-bottom: 50px;
+            font-size: 13px;
+        }
+
+        .firstRow {
+            width: 996px;
+        }
+
+        .phone td:nth-child(1) {
+            width: 77px;
+        }
+
+        .phone td:nth-child(2) {
+            width: 246px;
+        }
+        .phone td:nth-child(3) {
+            width: 148px;
+        }
+        .phone td:nth-child(4) {
+            width: 157px;
+        }
+    </style>
 </head>
+
+
 <body>
-123456
+<div class="print">
+    <input type="button" value="打印销售单" id="down" class="print_btn">
+</div>
+<!--startprint-->
+<div id="table">
+
+    {foreach name="data" key="k" item="v"}
+    <h1 class="title">河北诺融网络科技有限公司商品销售单</h1>
+    <h3><span class="phone_1">电话：15373968857</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="addr">地址：河北省石家庄市桥西区天元名品</span></h3>
+    <table>
+        <tbody>
+        <tr>
+            <td rowspan="2">购货单位</td>
+            <td>客户名称</td>
+            <td colspan="2">{$v.client_company}</td>
+            <td>联系电话</td>
+            <td colspan="2">{$v.client_phone}</td>
+        </tr>
+        <tr>
+            <td>联系地址</td>
+            <td colspan="2">{$v.name2}{$v.name3}{$v.name4}{$v.name5}{$v.client_position_details}</td>
+            <td>联系人</td>
+            <td colspan="2">{$v.client_name}</td>
+        </tr>
+        <tr>
+            <td width="77">序号</td>
+            <td width="246">商品名称</td>
+            <td width="148">规格型号</td>
+            <td width="157">商品编码</td>
+            <td width="124">单价</td>
+            <td width="124">数量</td>
+            <td width="119">合计</td>
+        </tr>
+        {foreach name="$v.goods" key="key" item="val"}
+        <tr>
+            <td width="77">{$key+1}</td>
+            <td width="246">{$val.good_name}</td>
+            <td width="148">{$val.good_sku}</td>
+            <td width="157">{$val.good_coding}</td>
+            <td width="124">{$val.good_total}</td>
+            <td width="124">{$val.good_amount}</td>
+            <td valign="bottom">{$val.good_total}</td>
+        </tr>
+        {/foreach}
+        <tr>
+            <td width="323" colspan="2">合计</td>
+            <td width="430" colspan="3">—————————————————— </td>
+            <td width="124">{:array_sum(array_column($v.goods,'good_amount'))}</td>
+            <td width="119" class="good_total">{:array_sum(array_column($v.goods,'good_total'))}</td>
+        </tr>
+        <tr>
+            <td width="323" colspan="2">合计金额大写</td>
+            <td width="673" colspan="5" class="money" money="{:array_sum(array_column($v.goods,'good_total'))}"></td>
+        </tr>
+        <tr>
+            <td width="323" colspan="2">已付金额</td>
+            <td width="305" colspan="2">{$v.pay_price}</td>
+            <td width="249" colspan="2">欠款金额</td>
+            <td width="119">{$v.pay_total - $v.pay_price}</td>
+        </tr>
+        <tr>
+            <td width="77">备注</td>
+            <td width="919" colspan="6">谢谢惠顾，凭本销售单享受商品质保服务</td>
+        </tr>
+        <tr>
+            <td width="77">开单人:</td>
+            <td>{$v.admin_id}</td>
+            <td>出库人</td>
+            <td>{$v.admin_id_name}</td>
+            <td width="124">开单日期:</td>
+            <td width="300" colspan="2">{:date('Y-m-d H:i:s',time())}</td>
+        </tr>
+        </tbody>
+    </table>
+    {/foreach}
+</div>
+<!--endprint-->
+<!--<script src="__PUBLIC__/jquery/jquery.min.js"></script>-->
+
 </body>
+<script src='__STATIC__/admin/js/jquery-2.2.0.js'></script>
+<script src='__STATIC__/admin/js/LodopFuncs.js'></script>
+
+<script language="javascript" type="text/javascript">
+    var LODOP; //声明为全局变量
+    $("#down").click(function () {
+        CreateOneFormPage();
+        LODOP.PREVIEW();
+    });
+    function CreateOneFormPage(){
+        LODOP=getLodop();
+        LODOP.PRINT_INIT("打印控件功能表单一");
+        var strBodyStyle="<style>"+document.getElementById("style1").innerHTML+"</style>";
+        var strFormHtml=strBodyStyle+"<body>"+document.getElementById("table").innerHTML+"</body>";
+        LODOP.ADD_PRINT_HTM(0,20,'100%','100%',strFormHtml);
+    };
+    $(function(){
+        var arr= $(".money");
+        arr.each(function() {
+            var str = moneyToCapital($(this).attr('money'))
+            $(this).html(str)
+        })
+    })
+    //数字转大写
+    function moneyToCapital(n)
+    {
+        if(n==0){
+            return "零";
+        }
+        if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))
+            return "";
+        var unit = "千百拾亿千百拾万千百拾元角分", str = "";
+        n += "00";
+        var p = n.indexOf('.');
+        if (p >= 0)
+            n = n.substring(0, p) + n.substr(p+1, 2);
+        unit = unit.substr(unit.length - n.length);
+        for (var i=0; i < n.length; i++)
+            str += '零壹贰叁肆伍陆柒捌玖'.charAt(n.charAt(i)) + unit.charAt(i);
+        return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
+    }
+
+    $(".title").dblclick(function () {
+        var span = $(this);
+        var html = span.html();
+
+        var input = $("<input type='text' name='price' value='" + html + "' placeholder='公司标头'/>");
+
+        span.html(input);
+        input.focus()
+        input.blur(function () {
+            prices()
+        })
+        function prices() {
+            var newprice = input.val();
+            if(newprice == "" || newprice == null){
+                input.focus()
+            }else{
+                span.html(newprice);
+            }
+
+        }
+    })
+    $(".phone_1").dblclick(function () {
+        var span = $(this);
+        var html = span.html().replace("电话：", "");
+
+        var input = $("<input type='text' name='price' value='" + html + "' placeholder='公司电话'/>");
+
+        span.html(input);
+        input.focus()
+        input.blur(function () {
+            prices()
+        })
+        function prices() {
+            var newprice = input.val();
+            if(newprice == "" || newprice == null){
+                input.focus()
+            }else{
+                span.html("电话："+newprice);
+            }
+
+        }
+    })
+    $(".addr").dblclick(function () {
+        var span = $(this);
+        var html = span.html().replace("地址：", "");
+
+        var input = $("<input type='text' name='price' value='" + html + "' placeholder='公司地址'/>");
+
+        span.html(input);
+        input.focus()
+        input.blur(function () {
+            prices()
+        })
+        function prices() {
+            var newprice = input.val();
+            if(newprice == "" || newprice == null){
+                input.focus()
+            }else{
+                span.html("地址："+newprice);
+            }
+
+        }
+    })
+</script>
 </html>
