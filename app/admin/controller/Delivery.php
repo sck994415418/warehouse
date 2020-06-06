@@ -64,6 +64,8 @@ class Delivery extends Permissions
             }
         }
         if ($data) {
+            addlog();
+            db("sck_warehouse_good_log")->where(['log_id'=>['in',$id['data']]])->setInc('is_print',1);
             return view("", ['data' => $data]);
         } else {
             $this->error("未知错误,请重新选择");

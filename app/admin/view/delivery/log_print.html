@@ -47,13 +47,19 @@
     <input type="button" value="打印销售单" id="down" class="print_btn">
 </div>
 <!--startprint-->
-<div id="table">
+<div id="table" style="page-break-after:always">
 
     {foreach name="data" key="k" item="v"}
-    <h1 class="title">河北诺融网络科技有限公司商品销售单</h1>
-    <h3><span class="phone_1">电话：15373968857</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="addr">地址：河北省石家庄市桥西区天元名品</span></h3>
+    <h2 class="title">河北诺融网络科技有限公司商品销售单</h2>
+
     <table>
         <tbody>
+        <tr>
+            <td style="width: 102px;">公司电话：</td>
+            <td colspan="2" class="phone_1">15373968857</td>
+            <td>公司地址：</td>
+            <td colspan="3" class="addr">河北省石家庄市桥西区天元名品</td>
+        </tr>
         <tr>
             <td rowspan="2">购货单位</td>
             <td>客户名称</td>
@@ -138,7 +144,7 @@
         var strBodyStyle="<style>"+document.getElementById("style1").innerHTML+"</style>";
         var strFormHtml=strBodyStyle+"<body>"+document.getElementById("table").innerHTML+"</body>";
         LODOP.ADD_PRINT_HTM(0,20,'100%','100%',strFormHtml);
-    };
+    }
     $(function(){
         var arr= $(".money");
         arr.each(function() {
@@ -188,8 +194,7 @@
     })
     $(".phone_1").dblclick(function () {
         var span = $(this);
-        var html = span.html().replace("电话：", "");
-
+        var html = span.html();
         var input = $("<input type='text' name='price' value='" + html + "' placeholder='公司电话'/>");
 
         span.html(input);
@@ -202,14 +207,14 @@
             if(newprice == "" || newprice == null){
                 input.focus()
             }else{
-                span.html("电话："+newprice);
+                span.html(newprice);
             }
 
         }
     })
     $(".addr").dblclick(function () {
         var span = $(this);
-        var html = span.html().replace("地址：", "");
+        var html = span.html();
 
         var input = $("<input type='text' name='price' value='" + html + "' placeholder='公司地址'/>");
 
@@ -223,7 +228,7 @@
             if(newprice == "" || newprice == null){
                 input.focus()
             }else{
-                span.html("地址："+newprice);
+                span.html(newprice);
             }
 
         }

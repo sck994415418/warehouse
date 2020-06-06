@@ -54,15 +54,18 @@ class Client extends Permissions
                 ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
                 ->column('id5');
             $street_ids = array_filter($street_ids);
+
         } else {
             $street_ids = [];
         }
+        $position = $model->column('client_position_id');
+        $result = array_intersect($position,$street_ids);
         $data = empty($where) ? $model
-            ->where(['client_position_id' => ['in', $street_ids]])
+            ->where(['client_position_id' => ['in', $result]])
             ->order('create_time desc')
             ->paginate(20)
             : $model->where($where)
-                ->where(['client_position_id' => ['in', $street_ids]])
+                ->where(['client_position_id' => ['in', $result]])
                 ->order('create_time desc')
                 ->paginate(20, false, ['query' => $this->request->param()]);
 
@@ -71,8 +74,6 @@ class Client extends Permissions
             ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
             ->group('address_id')
             ->select();
-
-
         $this->assign('View_address', $address);
         $this->assign('data', $data);
         return $this->fetch();

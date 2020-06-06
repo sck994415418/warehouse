@@ -110,22 +110,45 @@ function format_bytes($size, $delimiter = '') {
 }
 
 
-function getrole($data,$pid=0)
-{
-    $arr = [];
-    foreach ($data as $k=>$v){
-        if($v['parent_id'] == $pid){
-            $res = getrole($data,$v['id']);
-            if(empty($res)){
-                $v['children'] = "";
+//function getrole($data,$pid=0)
+//{
+//    $arr = [];
+//    foreach ($data as $k=>$v){
+//        if($v['parent_id'] == $pid){
+//            $res = getrole($data,$v['id']);
+//            if(empty($res)){
+//                $v['children'] = "";
+//            }
+//            $v['children'] = $res;
+//            $arr[] = $v;
+//        }
+//    }
+//    return $arr;
+//}
+function getrole($list, $pk='id', $pid = 'parent_id', $child = 'children', $root = 0) {
+    // 创建Tree
+    $tree = array();
+    if(is_array($list)) {
+        // 创建基于主键的数组引用
+        $refer = array();
+        foreach ($list as $key => $data) {
+            $refer[$data[$pk]] =& $list[$key];
+        }
+        foreach ($list as $key => $data) {
+            // 判断是否存在parent
+            $parentId =  $data[$pid];
+            if ($root == $parentId) {
+                $tree[] =& $list[$key];
+            }else{
+                if (isset($refer[$parentId])) {
+                    $parent =& $refer[$parentId];
+                    $parent[$child][] =& $list[$key];
+                }
             }
-            $v['children'] = $res;
-            $arr[] = $v;
         }
     }
-    return $arr;
+    return $tree;
 }
-
 
 if (!function_exists('array_column')) {
     function array_column($arr2, $column_key) {

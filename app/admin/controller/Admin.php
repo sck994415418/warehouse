@@ -102,12 +102,14 @@ class Admin extends Permissions
     {
     	$id = $this->request->has('id') ? $this->request->param('id', 0, 'intval') : 0;
     	$model = new adminModel();
-        $category =  db('sck_warehouse_good_category')->field('category_id as id,category_name as title,parent_id')->select();
+        $category =  db('sck_warehouse_good_category')->field('category_id as id,category_name as name,parent_id')->select();
+
     	if($id > 0) {
     		//是修改操作
     		if($this->request->isPost()) {
     			//是提交操作
     			$post = $this->request->post();
+    			dump($post);die;
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $validate = new Validate([
 	                ['name', 'require|alphaDash', '管理员名称不能为空|用户名格式只能是字母、数组、——或_'],
@@ -163,7 +165,6 @@ class Admin extends Permissions
                         $address = address_fun();
                     }
                 }
-//                dump($address);die;
                 $this->assign('address',json_encode($address));
 //                $this->assign('address',$address);
                 $category = getrole($category);
@@ -178,13 +179,16 @@ class Admin extends Permissions
                                             $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'admin_supplier_ids[]';
                                             if(in_array($category[$ks]['children'][$kss]['children'][$ksss]['id'],$info['admin']['admin_supplier_ids'])){
                                                 $category[$ks]['children'][$kss]['children'][$ksss]['checked'] = true;
+                                                $category[$ks]['children'][$kss]['children'][$ksss]['open'] = 'false';
                                             }
+
                                         }
+                                        $category[$ks]['children'][$kss]['open'] = 'false';
                                     }
 
                                 }
+                                $category[$ks]['open'] = 'false';
                             }
-
                         }
                     }
                 }else{
@@ -195,15 +199,20 @@ class Admin extends Permissions
                                     if(!empty($category[$ks]['children'][$kss]['children'])){
                                         foreach ($category[$ks]['children'][$kss]['children'] as $ksss=>$vsss){
                                             $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'admin_supplier_ids[]';
+                                            $category[$ks]['children'][$kss]['children'][$ksss]['open'] = 'false';
+
                                         }
+                                        $category[$ks]['children'][$kss]['open'] = 'false';
                                     }
 
                                 }
+                                $category[$ks]['open'] = 'false';
                             }
 
                         }
                     }
                 }
+//                dump($category);die;
                 $this->assign('category',json_encode($category));
     			$this->assign('info',$info);
     			return $this->fetch();

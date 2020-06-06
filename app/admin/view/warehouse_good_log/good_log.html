@@ -55,13 +55,17 @@
             </button>
         </div>
     </form>
+    {if !empty($good_status) and $good_status == 2 /}
     <a href="javascript:" title="打印" class="layui-btn print" style="float: left; margin-left: 10px;" data-url="">
         <i class="fa fa-table" aria-hidden="true"></i>
     </a>
+    {/if}
     <form class="layui-form" id="admin">
         <table class="layui-table" lay-size="sm">
             <colgroup>
+                {if !empty($good_status) and $good_status == 2 /}
                 <col width="30">
+                {/if}
                 <col width="60">
                 <col width="">
                 <col width="">
@@ -78,12 +82,14 @@
             </colgroup>
             <thead>
             <tr>
+                {if !empty($good_status) and $good_status == 2 /}
                 <th>
                     <div class="checkallbox">
                         <input lay-skin="primary" type="checkbox" id="checkall" name="type" lay-filter="allChoose"
                                value="checkall"/>
                     </div>
                 </th>
+                {/if}
                 <th>ID</th>
                 <th>商品ID</th>
                 <th>商品名称</th>
@@ -99,6 +105,9 @@
                 {if !empty($good_status) and $good_status == 2 /}
                 <th>付款状态</th>
                 {/if}
+                {if !empty($good_status) and $good_status == 2 /}
+                <th>打印销售单次数</th>
+                {/if}
                 <th>操作人</th>
                 <th>操作时间</th>
                 <th>操作</th>
@@ -108,7 +117,9 @@
             {if empty($good_status) or $good_status==0}
             {volist name="data" id="vo"}
             <tr>
+                {if !empty($good_status) and $good_status == 2 /}
                 <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
+                {/if}
                 <td>{$vo.log_id}</td>
                 <td>{$vo.good_id}</td>
                 <td>{$vo.good_name}</td>
@@ -150,7 +161,9 @@
             {volist name="data" id="vo"}
             {if $vo.good_status==1}
             <tr>
+                {if !empty($good_status) and $good_status == 2 /}
                 <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
+                {/if}
                 <td>{$vo.log_id}</td>
                 <td>{$vo.good_id}</td>
                 <td>{$vo.good_name}</td>
@@ -179,7 +192,9 @@
             {volist name="data" id="vo"}
             {if $vo.good_status==2}
             <tr>
+                {if !empty($good_status) and $good_status == 2 /}
                 <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
+                {/if}
                 <td>{$vo.log_id}</td>
                 <td>{$vo.good_id}</td>
                 <td>{$vo.good_name}</td>
@@ -200,6 +215,7 @@
                     0%
                     {/if}
                 </td>
+                <td>{$vo.is_print}</td>
                 <td>{$vo.admin.nickname}</td>
                 <td>{$vo.create_time|default=''}</td>
                 <td>
@@ -222,7 +238,9 @@
                     {volist name="data" id="vo"}
                     {if $vo.good_status==3}
             <tr>
+                {if !empty($good_status) and $good_status == 2 /}
                 <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
+                {/if}
                 <td>{$vo.log_id}</td>
                 <td>{$vo.good_id}</td>
                 <td>{$vo.good_name}</td>

@@ -40,6 +40,9 @@ class WarehouseGood extends Permissions
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=', $min_time], ['<=', $max_time]];
         }
+        if(isset($post['good_coding']) && !empty($post['good_coding'])){
+            $where['good_coding'] =  $post['good_coding'];
+        }
         $where['good_delete'] = ['neq',1];
         $data = empty($where) ? $model
             ->order('create_time desc')
