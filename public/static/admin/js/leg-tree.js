@@ -292,12 +292,12 @@
 						'<li><i class="isShow iconfont iconxiangxia"></i>'
 					if (data[i].checked) {
 						str += '<input id="' + uuid+ids + '" type="checkbox" checked ' +
-							'data-show="' + data[i].open + '" value="' + data[i].id + '"/>'+
+							'data-show="' + data[i].open + '" value="' + data[i].id + '" name="admin_supplier_ids[]"/>'+
 							'<label class="label" for="' +
 						uuid+ids + '"><i class="iconfont iconicon-checkbox"/>'
 					} else {
 						str += '<input id="' + uuid+ids + '" type="checkbox" ' +
-							'data-show="' + data[i].open + '" value="' + data[i].id + '"/>'+
+							'data-show="' + data[i].open + '" value="' + data[i].id + '" name="admin_supplier_ids[]"/>'+
 							'<label class="label" for="' +
 						uuid+ids + '"><i class="iconfont"/>'
 					}
@@ -336,11 +336,6 @@
 	
 				} else {
 					$(this).parent().find("ul").show();
-					if ($(this).parent().find("ul").length > 0) {
-						$(this).prev()[0].setAttribute("style", 'transform:rotate(0deg)');
-					} else {
-						$(this).prev()[0].setAttribute("style", 'opacity: 0;');
-					}
 				}
 			});
 		}

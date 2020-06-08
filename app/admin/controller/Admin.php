@@ -41,22 +41,22 @@ class Admin extends Permissions
         if (isset($post['admin_cate_id']) and $post['admin_cate_id'] > 0) {
             $where['admin_cate_id'] = $post['admin_cate_id'];
         }
- 
+
         if(isset($post['create_time']) and !empty($post['create_time'])) {
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         }
-        
+
         $admin = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
-        
+
         $this->assign('admin',$admin);
         $info['cate'] = Db::name('admin_cate')->select();
         $this->assign('info',$info);
         return $this->fetch();
     }
 
-    
+
     /**
      * 管理员个人资料修改，属于无权限操作，仅能修改昵称和头像，后续可增加其他字段
      * @return [type] [description]
@@ -109,7 +109,6 @@ class Admin extends Permissions
     		if($this->request->isPost()) {
     			//是提交操作
     			$post = $this->request->post();
-    			dump($post);die;
                 //验证  唯一规则： 表名，字段名，排除主键值，主键名
                 $validate = new Validate([
 	                ['name', 'require|alphaDash', '管理员名称不能为空|用户名格式只能是字母、数组、——或_'],
@@ -172,41 +171,47 @@ class Admin extends Permissions
                     $info['admin']['admin_supplier_ids'] = json_decode($info['admin']['admin_supplier_ids'],true);
                     if(!empty($category)){
                         foreach ($category as $ks=>$vs){
+                            $category[$ks]['open'] = 'false';
                             if(!empty($category[$ks]['children'])){
                                 foreach ($category[$ks]['children'] as $kss=>$vss){
+                                    $category[$ks]['children'][$kss]['open'] = 'false';
                                     if(!empty($category[$ks]['children'][$kss]['children'])){
                                         foreach ($category[$ks]['children'][$kss]['children'] as $ksss=>$vsss){
                                             $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'admin_supplier_ids[]';
+                                            $category[$ks]['children'][$kss]['children'][$ksss]['open'] = false;
                                             if(in_array($category[$ks]['children'][$kss]['children'][$ksss]['id'],$info['admin']['admin_supplier_ids'])){
                                                 $category[$ks]['children'][$kss]['children'][$ksss]['checked'] = true;
-                                                $category[$ks]['children'][$kss]['children'][$ksss]['open'] = 'false';
                                             }
 
                                         }
-                                        $category[$ks]['children'][$kss]['open'] = 'false';
+
                                     }
 
                                 }
-                                $category[$ks]['open'] = 'false';
+
                             }
                         }
                     }
                 }else{
                     if(!empty($category)){
                         foreach ($category as $ks=>$vs){
+                            $category[$ks]['open'] = 'false';
+                            $category[$ks]['ico'] = '';
                             if(!empty($category[$ks]['children'])){
+
                                 foreach ($category[$ks]['children'] as $kss=>$vss){
+                                    $category[$ks]['children'][$kss]['ico'] = '';
+                                    $category[$ks]['children'][$kss]['open'] = 'false';
                                     if(!empty($category[$ks]['children'][$kss]['children'])){
                                         foreach ($category[$ks]['children'][$kss]['children'] as $ksss=>$vsss){
-                                            $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'admin_supplier_ids[]';
                                             $category[$ks]['children'][$kss]['children'][$ksss]['open'] = 'false';
+                                            $category[$ks]['children'][$kss]['children'][$ksss]['ico'] = '';
+                                            $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'admin_supplier_ids[]';
 
                                         }
-                                        $category[$ks]['children'][$kss]['open'] = 'false';
                                     }
 
                                 }
-                                $category[$ks]['open'] = 'false';
                             }
 
                         }
@@ -336,7 +341,7 @@ class Admin extends Permissions
     	}
     }
 
-    
+
     /**
      * 管理员权限分组列表
      * @return [type] [description]
@@ -349,15 +354,15 @@ class Admin extends Permissions
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['name'] = ['like', '%' . $post['keywords'] . '%'];
         }
- 
+
         if(isset($post['create_time']) and !empty($post['create_time'])) {
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
         }
-        
+
         $cate = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
-        
+
     	$this->assign('cate',$cate);
     	return $this->fetch();
 
@@ -473,7 +478,7 @@ class Admin extends Permissions
 
 
     protected function menulist($menu,$id=0,$level=0){
-        
+
         static $menus = array();
         $size = count($menus)-1;
         foreach ($menu as $value) {
@@ -499,7 +504,7 @@ class Admin extends Permissions
                     $value['str'] = '&emsp;&emsp;'.'└ ';
                     $menus[$size]['list'][] = $value;
                 }
-                
+
                 $this->menulist($menu,$value['id'],$value['level']);
             }
         }
@@ -541,21 +546,21 @@ class Admin extends Permissions
             $this->assign('admin_menu_id',$post['admin_menu_id']);
             $where['admin_menu_id'] = $post['admin_menu_id'];
         }
-        
+
         if (isset($post['admin_id']) and $post['admin_id'] > 0) {
             $this->assign('admin_id',$post['admin_id']);
             $where['admin_id'] = $post['admin_id'];
         }
- 
+
         if(isset($post['create_time']) and !empty($post['create_time'])) {
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=',$min_time],['<=',$max_time]];
             $this->assign('create_time',$post['create_time']);
         }
-        
+
         $log = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
-        
+
         $this->assign('log',$log);
         //身份列表
         $admin_cate = Db::name('admin_cate')->select();
