@@ -22,7 +22,17 @@
       position: relative;
       padding-left: 20px;
     }
-
+    .trees {
+      border: 1px solid black;
+      width: 600px;
+      height: 100vh;
+      display: block;
+      margin: auto;
+      overflow-y: scroll;
+      overflow-x: scroll;
+      position: relative;
+      padding-left: 20px;
+    }
     a {
       text-decoration: none;
       color: #434b5a;
@@ -64,24 +74,47 @@
       left: 25px;
     }
     .tree input{cursor: pointer;}
-    .tree span {
-      font-size: 13px;
-      cursor: pointer;
-      display: inline-block;
-      border: 1px solid #e2e2e2;
-      width: 10px;
-      line-height: 8px;
-      text-align: center;
-      height: 10px;
-      background-color: whitesmoke;
-      position: absolute;
-      left: 8px;
-      top: 4px;
-    }
+    /*.tree span {*/
+    /*  font-size: 13px;*/
+    /*  cursor: pointer;*/
+    /*  display: inline-block;*/
+    /*  border: 1px solid #e2e2e2;*/
+    /*  width: 10px;*/
+    /*  line-height: 8px;*/
+    /*  text-align: center;*/
+    /*  height: 10px;*/
+    /*  background-color: whitesmoke;*/
+    /*  position: absolute;*/
+    /*  left: 8px;*/
+    /*  top: 4px;*/
+    /*}*/
     .tree ul span{
       left: -16px;
     }
     .tree ul {
+      list-style-type: none;
+      margin-top: 0px;
+      position: relative;
+    }
+    .trees input{cursor: pointer;}
+    /*.trees span {*/
+    /*  font-size: 13px;*/
+    /*  cursor: pointer;*/
+    /*  display: inline-block;*/
+    /*  border: 1px solid #e2e2e2;*/
+    /*  width: 10px;*/
+    /*  line-height: 8px;*/
+    /*  text-align: center;*/
+    /*  height: 10px;*/
+    /*  background-color: whitesmoke;*/
+    /*  position: absolute;*/
+    /*  left: 8px;*/
+    /*  top: 4px;*/
+    /*}*/
+    .trees ul span{
+      left: -16px;
+    }
+    .trees ul {
       list-style-type: none;
       margin-top: 0px;
       position: relative;
@@ -122,10 +155,10 @@
 
 
 
-    .tree1{
-      position: fixed;
-      top: 20px;
-    }
+    /*.tree1{*/
+    /*  position: fixed;*/
+    /*  top: 20px;*/
+    /*}*/
   </style>
 </head>
 <body style="padding:10px;">
@@ -205,18 +238,12 @@
 
       <div class="layui-form-item">
         <label class="layui-form-label">负责地区</label>
-        {if !empty($my_address)}
-          <div class="layui-input-block">
-            {foreach name="$my_address" item="v"}
-              <input type="checkbox" value="{$v.id}" name="{$v.field}" title="({$v.name2}{$v.name3}){$v.title}" checked="{$v.checked}">
-            {/foreach}
-          </div>
-        {/if}
-
         <div class="layui-input-block">
-          <div id="test12" class="demo-tree-more"></div>
+          <div id="test15" class="trees"></div>
         </div>
       </div>
+
+
 
 
       <div class="layui-form-item">
@@ -323,17 +350,25 @@
             ,data1 = {$category|default=''}
 
     //基本演示
-    tree.render({
-      elem: '#test12'
-      ,data: data
-      ,showCheckbox: true  //是否显示复选框
-      ,id: 'demoId1'
-      ,isJump: true //是否允许点击节点时弹出新窗口跳转
-      ,click: function(obj){
-
-      }
-    });
+    // tree.render({
+    //   elem: '#test12'
+    //   ,data: data
+    //   ,showCheckbox: true  //是否显示复选框
+    //   ,id: 'demoId1'
+    //   ,isJump: true //是否允许点击节点时弹出新窗口跳转
+    //   ,click: function(obj){
+    //
+    //   }
+    // });
     var arrs = []
+    var arrss = [];
+    leg.tree({
+      ele:".trees",//选者
+      data:data,//数据
+      arrs:arrss,//选中的id
+      cascade:true,//级联
+//			onAsync:true//暂无此
+    });
     leg.tree({
       ele:".tree",//选者
       data:data1,//数据
@@ -341,5 +376,6 @@
       cascade:true,//级联
 //			onAsync:true//暂无此
     });
+
   });
 </script>

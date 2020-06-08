@@ -155,15 +155,16 @@ class Admin extends Permissions
                     if(!empty($user_info->address_ids)){
                         $address_ids = json_decode($user_info->address_ids,true);
                         $address = address_fun($address_ids);
-                        $my_address = db('address')
-                            ->where('id4','IN',$address_ids)
-                            ->column('id4 as id,name4 as title,field,true as checked,name2,name3');
-//                        dump($my_address);die;
-                        $this->assign('my_address',$my_address);
+//                        $my_address = db('address')
+//                            ->where('id4','IN',$address_ids)
+//                            ->column('id4 as id,name4 as title,field,true as checked,name2,name3');
+////                        dump($my_address);die;
+//                        $this->assign('my_address',$my_address);
                     }else{
                         $address = address_fun();
                     }
                 }
+//                dump($address);die;
                 $this->assign('address',json_encode($address));
 //                $this->assign('address',$address);
                 $category = getrole($category);
@@ -217,7 +218,6 @@ class Admin extends Permissions
                         }
                     }
                 }
-//                dump($category);die;
                 $this->assign('category',json_encode($category));
     			$this->assign('info',$info);
     			return $this->fetch();

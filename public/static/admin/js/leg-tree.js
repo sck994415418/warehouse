@@ -292,16 +292,16 @@
 						'<li><i class="isShow iconfont iconxiangxia"></i>'
 					if (data[i].checked) {
 						str += '<input id="' + uuid+ids + '" type="checkbox" checked ' +
-							'data-show="' + data[i].open + '" value="' + data[i].id + '" name="admin_supplier_ids[]"/>'+
+							'data-show="' + data[i].open + '" value="' + data[i].id + '" name="'+data[i].field+'"/>'+
 							'<label class="label" for="' +
 						uuid+ids + '"><i class="iconfont iconicon-checkbox"/>'
 					} else {
 						str += '<input id="' + uuid+ids + '" type="checkbox" ' +
-							'data-show="' + data[i].open + '" value="' + data[i].id + '" name="admin_supplier_ids[]"/>'+
+							'data-show="' + data[i].open + '" value="' + data[i].id + '" name="'+data[i].field+'"/>'+
 							'<label class="label" for="' +
 						uuid+ids + '"><i class="iconfont"/>'
 					}
-					str += '</label><i class="iconfont ' + data[i].ico + '"/><a href="#">' + data[i].name + '</a>';
+					str += '</label><i class="iconfont ' + data[i].ico + '"/><a href="javascript:;">' + data[i].name + '</a>';
 					if (data[i].children && data[i].children != '') {
 						str += createTree(data[i].children);
 					}
@@ -326,7 +326,7 @@
 	
 			//是否展开
 			$.each($("input"), function() {
-				if (this.getAttribute('data-show') == 'false') {
+				if (this.getAttribute('data-show') == 'false' ||this.getAttribute('data-show') == 0) {
 					$(this).parent().find("ul").hide();
 					if ($(this).parent().find("ul").length > 0) {
 						$(this).prev()[0].setAttribute("style", 'transform:rotate(-90deg)');
