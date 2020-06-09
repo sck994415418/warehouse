@@ -339,10 +339,15 @@
     });
     $('.print').click(function () {
         var arr = [];
+
         $("input:checkbox[name='log_id[]']:checked").each(function (i) {
             arr[i] = $(this).val();
 
         });
+        if(arr == '' || arr == undefined || arr == null){
+            layer.msg('请选择！',{icon:-1});
+            return false;
+        }
         window.location.href = '/admin/Delivery/log_print?data=' + arr;
 
     })
