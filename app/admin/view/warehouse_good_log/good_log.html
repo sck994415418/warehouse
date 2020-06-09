@@ -237,30 +237,30 @@
             {elseif !empty($good_status) and $good_status==3 /}
                     {volist name="data" id="vo"}
                     {if $vo.good_status==3}
-            <tr>
-                {if !empty($good_status) and $good_status == 2 /}
-                <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
-                {/if}
-                <td>{$vo.log_id}</td>
-                <td>{$vo.good_id}</td>
-                <td>{$vo.good_name}</td>
-                <td>{$vo.good_desc}</td>
-                <td>
-                    {eq name="$vo.good_status" value="1"}入库{/eq}
-                    {eq name="$vo.good_status" value="2"/}出库{/eq}
-                    {eq name="$vo.good_status" value="3"/}退货{/eq}
-                </td>
-                <td>{$vo.good_amount}</td>
-                <td>{$vo.admin.nickname}</td>
-                <td>{$vo.create_time|default=''}</td>
-                <td>
-                    <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details"
-                       data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
-                        &nbsp;<i class="fa fa-user">&nbsp;</i>
-                    </a>
+                    <tr>
+                        {if !empty($good_status) and $good_status == 2 /}
+                        <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
+                        {/if}
+                        <td>{$vo.log_id}</td>
+                        <td>{$vo.good_id}</td>
+                        <td>{$vo.good_name}</td>
+                        <td>{$vo.good_desc}</td>
+                        <td>
+                            {eq name="$vo.good_status" value="1"}入库{/eq}
+                            {eq name="$vo.good_status" value="2"/}出库{/eq}
+                            {eq name="$vo.good_status" value="3"/}退货{/eq}
+                        </td>
+                        <td>{$vo.good_amount}</td>
+                        <td>{$vo.admin.nickname}</td>
+                        <td>{$vo.create_time|default=''}</td>
+                        <td>
+                            <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details"
+                               data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
+                                &nbsp;<i class="fa fa-user">&nbsp;</i>
+                            </a>
 
-                </td>
-            </tr>
+                        </td>
+                    </tr>
             {/if}
             {/volist}
             {/if}
