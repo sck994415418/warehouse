@@ -11,121 +11,121 @@
   <link href="__CSS__/admin.css" media="all"  rel="stylesheet">
 </head>
 <body style="padding:10px;">
-  <div class="tplay-body-div"> 
-      <div class="layui-tab">
-        <ul class="layui-tab-title">
-          <li><a class="a_menu" href="{:url('admin/client/channl')}">客户列表</a></li>
-          <li class="layui-this">添加新客户</li>
-        </ul>
+<div class="tplay-body-div">
+  <div class="layui-tab">
+    <ul class="layui-tab-title">
+      <li><a class="a_menu" href="{:url('admin/client/channl')}">客户列表</a></li>
+      <li class="layui-this">添加新客户</li>
+    </ul>
+  </div>
+  <form class="layui-form" id="admin">
+
+
+    <input name="client_type" type="hidden" value="2">
+    {notempty name="$data"}
+    <input name="client_id" type="hidden" value="{$data.client_id}">
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">客户备注</label>
+      <div class="layui-input-block">
+        <textarea class="layui-textarea" name="client_desc" placeholder="请输入内容">{$data.client_desc|default=''}</textarea>
       </div>
-    <form class="layui-form" id="admin">
-
-
-      <input name="client_type" type="hidden" value="2">
-      {notempty name="$data"}
-      <input name="client_id" type="hidden" value="{$data.client_id}">
-      <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">客户备注</label>
-        <div class="layui-input-block">
-          <textarea class="layui-textarea" name="client_desc" placeholder="请输入内容">{$data.client_desc|default=''}</textarea>
-        </div>
-      </div>
-      {else/}
-      <div class="layui-form-item">
-        <label class="layui-form-label">负责人姓名</label>
-        <div class="layui-input-inline">
-          <input autocomplete="off" class="layui-input" lay-verify="required" name="client_name" name="$data.client_name" placeholder="请输入" type="text" {{notempty}value="{$data.client_name}"/notempty}>
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">负责人性别</label>
-        <div class="layui-input-block">
-          <input name="client_sex" name="@$data.client_sex" title="未知" type="radio" value="0" value="0" {eq}checked{/eq} checked="">
-          <input name="client_sex" name="@$data.client_sex" title="男" type="radio" value="1" value="1" {eq}checked{/eq}>
-          <input name="client_sex" name="@$data.client_sex" title="女" type="radio" value="2" value="2" {eq}checked{/eq}>
-        </div>
-      </div>
-      <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">家庭成员</label>
-        <div class="layui-input-block">
-          <textarea class="layui-textarea" name="client_family" placeholder="请输入"></textarea>
-        </div>
-      </div>
-      <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">个人爱好</label>
-        <div class="layui-input-block">
-          <textarea class="layui-textarea" name="client_hobby" placeholder="请输入"></textarea>
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">单位名称</label>
-        <div class="layui-input-inline">
-          <input autocomplete="off" class="layui-input" lay-verify="required" name="client_company" name="$data.client_company" placeholder="请输入" type="text" {{notempty}value="{$data.client_company}"/notempty}>
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">负责人电话</label>
-        <div class="layui-input-inline">
-          <input autocomplete="off" class="layui-input" lay-verify="required|phone" name="client_phone" name="$data.client_phone" placeholder="请输入" type="tel" {{notempty}value="{$data.client_phone}"/notempty}>
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">客户微信</label>
-        <div class="layui-input-inline">
-          <input autocomplete="off" class="layui-input" lay-verify="" name="client_wechat" name="$data.client_wechat" placeholder="请输入" type="text" {{notempty}value="{$data.client_wechat}"/notempty}>
-        </div>
-      </div>
-
-
-
-      <div class="layui-form-item address_box">
-        <label class="layui-form-label">所在地区</label>
-        <div class="layui-input-inline province_div">
-          <select class="province" lay-filter="province" lay-verify="required" name="client_position_id">
-            <option value="{$data.client_position_id|default=''}">请选择省</option>
-            {if !empty($View_address)}
-            {foreach name="View_address" item="v"}
-            <option value="{$v.address_id}" >{$v.address_name}</option>
-            {/foreach}
-            {/if}
-          </select>
-        </div>
-        <div class="layui-input-inline city_div">
-
-        </div>
-        <div class="layui-input-inline qu_div">
-
-        </div>
-        <div class="layui-input-inline street_div">
-
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">详细地址</label>
-        <div class="layui-input-block">
-          <input autocomplete="off" class="layui-input" lay-verify="" name="client_position_details" name="$data.client_position_details" placeholder="请输入" type="text" {{notempty}value="{$data.client_position_details}"/notempty}>
-        </div>
-      </div>
-      {/notempty}
-
-
-
-
-
-
-
-      <div class="layui-form-item">
-        <div class="layui-input-block">
-          <button class="layui-btn" lay-filter="admin" lay-submit>立即提交</button>
-          <button class="layui-btn layui-btn-primary" type="reset">重置</button>
-        </div>
-      </div>
-      
-    </form>
-
-
-
     </div>
+    {else/}
+    <div class="layui-form-item">
+      <label class="layui-form-label">负责人姓名</label>
+      <div class="layui-input-inline">
+        <input autocomplete="off" class="layui-input" lay-verify="required" name="client_name" name="$data.client_name" placeholder="请输入" type="text" {{notempty}value="{$data.client_name}"/notempty}>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">负责人性别</label>
+      <div class="layui-input-block">
+        <input name="client_sex" name="@$data.client_sex" title="未知" type="radio" value="0" value="0" {eq}checked{/eq} checked="">
+        <input name="client_sex" name="@$data.client_sex" title="男" type="radio" value="1" value="1" {eq}checked{/eq}>
+        <input name="client_sex" name="@$data.client_sex" title="女" type="radio" value="2" value="2" {eq}checked{/eq}>
+      </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">家庭成员</label>
+      <div class="layui-input-block">
+        <textarea class="layui-textarea" name="client_family" placeholder="请输入"></textarea>
+      </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">个人爱好</label>
+      <div class="layui-input-block">
+        <textarea class="layui-textarea" name="client_hobby" placeholder="请输入"></textarea>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">单位名称</label>
+      <div class="layui-input-inline">
+        <input autocomplete="off" class="layui-input" lay-verify="required" name="client_company" name="$data.client_company" placeholder="请输入" type="text" {{notempty}value="{$data.client_company}"/notempty}>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">负责人电话</label>
+      <div class="layui-input-inline">
+        <input autocomplete="off" class="layui-input" lay-verify="required|phone" name="client_phone" name="$data.client_phone" placeholder="请输入" type="tel" {{notempty}value="{$data.client_phone}"/notempty}>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">客户微信</label>
+      <div class="layui-input-inline">
+        <input autocomplete="off" class="layui-input" lay-verify="" name="client_wechat" name="$data.client_wechat" placeholder="请输入" type="text" {{notempty}value="{$data.client_wechat}"/notempty}>
+      </div>
+    </div>
+
+
+
+    <div class="layui-form-item address_box">
+      <label class="layui-form-label">所在地区</label>
+      <div class="layui-input-inline province_div">
+        <select class="province" lay-filter="province" lay-verify="required" name="client_position_id">
+          <option value="{$data.client_position_id|default=''}">请选择省</option>
+          {if !empty($View_address)}
+          {foreach name="View_address" item="v"}
+          <option value="{$v.address_id}" >{$v.address_name}</option>
+          {/foreach}
+          {/if}
+        </select>
+      </div>
+      <div class="layui-input-inline city_div">
+
+      </div>
+      <div class="layui-input-inline qu_div">
+
+      </div>
+      <div class="layui-input-inline street_div">
+
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">详细地址</label>
+      <div class="layui-input-block">
+        <input autocomplete="off" class="layui-input" lay-verify="" name="client_position_details" name="$data.client_position_details" placeholder="请输入" type="text" {{notempty}value="{$data.client_position_details}"/notempty}>
+      </div>
+    </div>
+    {/notempty}
+
+
+
+
+
+
+
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-filter="admin" lay-submit>立即提交</button>
+        <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+      </div>
+    </div>
+
+  </form>
+
+
+
+</div>
 </body>
 </html>
 <script src="__PUBLIC__/layui/layui.js"></script>
