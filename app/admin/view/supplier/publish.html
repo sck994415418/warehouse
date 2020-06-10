@@ -60,9 +60,6 @@
         <div class="layui-input-inline qu_div">
 
         </div>
-        <div class="layui-input-inline street_div">
-
-        </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">详细地址</label>
@@ -148,21 +145,13 @@
       // console.log(item)
       $('.city_div').html('')
       $('.qu_div').html('')
-      $('.street_div').html('')
       address(data,item)
     });
     form.on('select(city)', function(data){
       var item = $(this).parents('.layui-form-item')
       // console.log(item)
       $('.qu_div').html('')
-      $('.street_div').html('')
       address_qu(data,item)
-    });
-    form.on('select(qu)', function(data){
-      var item = $(this).parents('.layui-form-item')
-      // console.log(item)
-      $('.street_div').html('')
-      address_street(data,item)
     });
     // $(window).on('load', function() {
     //   var item = $(this)
@@ -206,29 +195,6 @@
             optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
           });
           $(".qu").html('<option value=""></option>' + optionstring);
-          form.render('select');
-          layer.closeAll()
-        }else{
-          layer.closeAll()
-          // layer.msg(data.msg);
-        }
-
-      });
-    }
-
-    function address_street(data,item){
-      layer.load()
-      $.getJSON("{:url('admin/Address/address_street')}?address_id="+data.value, function(data){
-        if(data.code == '1'){
-          var str='          <select lay-verify="required" name="supplier_position_id" class="street" lay-filter="street">\n' +
-                  '            <option value="">请选择乡镇/街道</option>\n' +
-                  '          </select>\n';
-          $('.street_div').html(str)
-          var optionstring = "";
-          $.each(data.data, function(i,item ){
-            optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
-          });
-          $(".street").html('<option value=""></option>' + optionstring);
           form.render('select');
           layer.closeAll()
         }else{
