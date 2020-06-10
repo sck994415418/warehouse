@@ -25,7 +25,7 @@
             {eq name="data.type" value="1"}
             <tr>
               <td>
-                {$data.str}<input type="checkbox" lay-ignore lay-skin="primary" name="admin_menu_id[]" value="{$data.id}" {notempty name="$info.cate.permissions"}{volist name="$info.cate.permissions" id="datas"}{eq name="$datas" value="$data.id"}checked{/eq}{/volist}{/notempty}>{$data.name}
+                {$data.str}<input type="checkbox" disabled lay-ignore lay-skin="primary" name="admin_menu_id[]" value="{$data.id}" {notempty name="$info.cate.permissions"}{volist name="$info.cate.permissions" id="datas"}{eq name="$datas" value="$data.id"}checked{/eq}{/volist}{/notempty}>{$data.name}
               </td>
             </tr>
             {/eq}
