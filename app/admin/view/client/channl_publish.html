@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <title>layui</title>
-  <meta content="webkit" name="renderer">
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-  <link href="__PUBLIC__/layui/css/layui.css" media="all"  rel="stylesheet">
-  <link href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" rel="stylesheet" />
-  <link href="__CSS__/admin.css" media="all"  rel="stylesheet">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
+  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
 </head>
 <body style="padding:10px;">
 <div class="tplay-body-div">
   <div class="layui-tab">
     <ul class="layui-tab-title">
-      <li><a class="a_menu" href="{:url('admin/client/channl')}">客户列表</a></li>
+      <li><a href="{:url('admin/client/channl')}" class="a_menu">客户列表</a></li>
       <li class="layui-this">添加新客户</li>
     </ul>
   </div>
@@ -23,68 +23,68 @@
 
     <input name="client_type" type="hidden" value="2">
     {notempty name="$data"}
-    <input name="client_id" type="hidden" value="{$data.client_id}">
+    <input type="hidden" name="client_id" value="{$data.client_id}">
     <div class="layui-form-item layui-form-text">
       <label class="layui-form-label">客户备注</label>
       <div class="layui-input-block">
-        <textarea class="layui-textarea" name="client_desc" placeholder="请输入内容">{$data.client_desc|default=''}</textarea>
+        <textarea placeholder="请输入内容" name="client_desc" class="layui-textarea">{$data.client_desc|default=''}</textarea>
       </div>
     </div>
     {else/}
     <div class="layui-form-item">
       <label class="layui-form-label">负责人姓名</label>
       <div class="layui-input-inline">
-        <input autocomplete="off" class="layui-input" lay-verify="required" name="client_name" name="$data.client_name" placeholder="请输入" type="text" {{notempty}value="{$data.client_name}"/notempty}>
+        <input name="client_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_name"}value="{$data.client_name}"{/notempty}>
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">负责人性别</label>
       <div class="layui-input-block">
-        <input name="client_sex" name="@$data.client_sex" title="未知" type="radio" value="0" value="0" {eq}checked{/eq} checked="">
-        <input name="client_sex" name="@$data.client_sex" title="男" type="radio" value="1" value="1" {eq}checked{/eq}>
-        <input name="client_sex" name="@$data.client_sex" title="女" type="radio" value="2" value="2" {eq}checked{/eq}>
+        <input type="radio" name="client_sex" value="0" title="未知" {eq name="@$data.client_sex" value="0"}checked{/eq} checked="">
+        <input type="radio" name="client_sex" value="1" title="男" {eq name="@$data.client_sex" value="1"}checked{/eq}>
+        <input type="radio" name="client_sex" value="2" title="女" {eq name="@$data.client_sex" value="2"}checked{/eq}>
       </div>
     </div>
     <div class="layui-form-item layui-form-text">
       <label class="layui-form-label">家庭成员</label>
       <div class="layui-input-block">
-        <textarea class="layui-textarea" name="client_family" placeholder="请输入"></textarea>
+        <textarea placeholder="请输入" name="client_family" class="layui-textarea"></textarea>
       </div>
     </div>
     <div class="layui-form-item layui-form-text">
       <label class="layui-form-label">个人爱好</label>
       <div class="layui-input-block">
-        <textarea class="layui-textarea" name="client_hobby" placeholder="请输入"></textarea>
+        <textarea placeholder="请输入" name="client_hobby" class="layui-textarea"></textarea>
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">单位名称</label>
       <div class="layui-input-inline">
-        <input autocomplete="off" class="layui-input" lay-verify="required" name="client_company" name="$data.client_company" placeholder="请输入" type="text" {{notempty}value="{$data.client_company}"/notempty}>
+        <input name="client_company" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_company"}value="{$data.client_company}"{/notempty}>
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">负责人电话</label>
       <div class="layui-input-inline">
-        <input autocomplete="off" class="layui-input" lay-verify="required|phone" name="client_phone" name="$data.client_phone" placeholder="请输入" type="tel" {{notempty}value="{$data.client_phone}"/notempty}>
+        <input name="client_phone" lay-verify="required|phone" placeholder="请输入" autocomplete="off" class="layui-input" type="tel" {notempty name="$data.client_phone"}value="{$data.client_phone}"{/notempty}>
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">客户微信</label>
       <div class="layui-input-inline">
-        <input autocomplete="off" class="layui-input" lay-verify="" name="client_wechat" name="$data.client_wechat" placeholder="请输入" type="text" {{notempty}value="{$data.client_wechat}"/notempty}>
+        <input name="client_wechat" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_wechat"}value="{$data.client_wechat}"{/notempty}>
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">客户QQ</label>
       <div class="layui-input-inline">
-        <input autocomplete="off" class="layui-input" lay-verify="" name="client_qq" name="$data.client_qq" placeholder="请输入" type="text" {{notempty}value="{$data.client_qq}"/notempty}>
+        <input name="client_qq" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_qq"}value="{$data.client_qq}"{/notempty}>
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">客户邮箱</label>
       <div class="layui-input-inline">
-        <input autocomplete="off" class="layui-input" lay-verify="" name="client_email" name="$data.client_email" placeholder="请输入" type="text" {{notempty}value="{$data.client_email}"/notempty}>
+        <input name="client_email" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_email"}value="{$data.client_email}"{/notempty}>
       </div>
     </div>
 
@@ -93,7 +93,7 @@
     <div class="layui-form-item address_box">
       <label class="layui-form-label">所在地区</label>
       <div class="layui-input-inline province_div">
-        <select class="province" lay-filter="province" lay-verify="required" name="client_position_id">
+        <select name="client_position_id" lay-verify="required" class="province" lay-filter="province">
           <option value="{$data.client_position_id|default=''}">请选择省</option>
           {if !empty($View_address)}
           {foreach name="View_address" item="v"}
@@ -115,7 +115,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">详细地址</label>
       <div class="layui-input-block">
-        <input autocomplete="off" class="layui-input" lay-verify="" name="client_position_details" name="$data.client_position_details" placeholder="请输入" type="text" {{notempty}value="{$data.client_position_details}"/notempty}>
+        <input name="client_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_position_details"}value="{$data.client_position_details}"{/notempty}>
       </div>
     </div>
     {/notempty}
@@ -128,8 +128,8 @@
 
     <div class="layui-form-item">
       <div class="layui-input-block">
-        <button class="layui-btn" lay-filter="admin" lay-submit>立即提交</button>
-        <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+        <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
       </div>
     </div>
 
