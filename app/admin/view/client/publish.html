@@ -72,7 +72,19 @@
       <div class="layui-form-item">
         <label class="layui-form-label">客户微信</label>
         <div class="layui-input-inline">
-          <input name="client_wechat" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_wechat"}value="{$data.client_wechat}"{/notempty}>
+          <input autocomplete="off" class="layui-input" lay-verify="" name="client_wechat" name="$data.client_wechat" placeholder="请输入" type="text" {{notempty}value="{$data.client_wechat}"/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">客户QQ</label>
+        <div class="layui-input-inline">
+          <input autocomplete="off" class="layui-input" lay-verify="" name="client_qq" name="$data.client_qq" placeholder="请输入" type="text" {{notempty}value="{$data.client_qq}"/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">客户邮箱</label>
+        <div class="layui-input-inline">
+          <input autocomplete="off" class="layui-input" lay-verify="" name="client_email" name="$data.client_email" placeholder="请输入" type="text" {{notempty}value="{$data.client_email}"/notempty}>
         </div>
       </div>
 
