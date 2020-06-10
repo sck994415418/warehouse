@@ -53,9 +53,7 @@
       <div class="layui-input-inline qu_div" style="width: 100px">
 
       </div>
-      <div class="layui-input-inline street_div" style="width: 100px">
 
-      </div>
 <!--      <div class="layui-input-inline">-->
 <!--        <div class="layui-inline">-->
 <!--          <div class="layui-input-inline">-->
@@ -117,7 +115,7 @@
               {eq name="$vo.client_sex" value="2"/}女{/eq}
             </td>
             <td>{$vo.client_desc|default=''}</td>
-            <td>{$vo.address.name2|default=''}{$vo.address.name3|default=''}{$vo.address.name4|default=''}{$vo.address.name5|default=''}</td>
+            <td>{$vo.address.name2|default=''}{$vo.address.name3|default=''}{$vo.address.name4|default=''}</td>
             <td>{$vo.client_position_details|default='暂无'}</td>
             <td>{$vo.create_time|default=''}</td>
             <td>{$vo.update_time|default=''}</td>
@@ -171,23 +169,15 @@
       // console.log(item)
       $('.city_div').html('')
       $('.qu_div').html('')
-      $('.street_div').html('')
       address(data,item)
     });
     form.on('select(city)', function(data){
       var item = $(this).parents('.layui-form-item')
       // console.log(item)
       $('.qu_div').html('')
-      $('.street_div').html('')
       address_qu(data,item)
     });
     form.on('select(qu)', function(data){
-      var item = $(this).parents('.layui-form-item')
-      // console.log(item)
-      $('.street_div').html('')
-      address_street(data,item)
-    });
-    form.on('select(street)', function(data){
       $('input[name=num]').val(9)
     });
     // $(window).on('load', function() {
@@ -246,30 +236,6 @@
       });
     }
 
-    function address_street(data,item){
-      layer.load()
-       address_id = data.value
-      $.getJSON("{:url('admin/Address/address_street')}?address_id="+address_id, function(data){
-        if(data.code == '1'){
-          var str='          <select lay-verify="" name="client_position_id" class="street" lay-filter="street">\n' +
-                  '            <option value="'+address_id+'" selected>请选择乡镇/街道</option>\n' +
-                  '          </select>\n';
-          $('.street_div').html(str)
-          var optionstring = "";
-          $.each(data.data, function(i,item ){
-            optionstring += "<option value=\"" + item.address_id + "\">" + item.address_name + "</option>";
-          });
-          $(".street").html('<option value="'+address_id+'"></option>' + optionstring);
-          $('input[name=num]').val(6)
-          form.render('select')
-          layer.closeAll()
-        }else{
-          layer.closeAll()
-          // layer.msg(data.msg);
-        }
-
-      });
-    }
   });
 </script>
 <script>

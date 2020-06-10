@@ -52,7 +52,7 @@ class Client extends Permissions
         if (!empty($address_ids)) {
             $street_ids = db('address')
                 ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
-                ->column('id5');
+                ->column('id4');
             $street_ids = array_filter($street_ids);
 
         } else {
@@ -238,7 +238,7 @@ class Client extends Permissions
         if (!empty($address_ids)) {
             $street_ids = db('address')
                 ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
-                ->column('id5');
+                ->column('id4');
             $street_ids = array_filter($street_ids);
 
         } else {
