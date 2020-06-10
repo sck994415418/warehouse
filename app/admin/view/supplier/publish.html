@@ -29,7 +29,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">负责人姓名</label>
         <div class="layui-input-inline">
-          <input autocomplete="off" class="layui-input" lay-verify="required" name="supplier_user" name="$data.supplier_user" placeholder="请输入" type="text" {{notempty}value="{$data.supplier_user}"/notempty}>
+          <input autocomplete="off" class="layui-input" lay-verify="required" name="supplier_user" placeholder="请输入" type="text" {notempty name="$data.supplier_user"}value="{$data.supplier_user}"{/notempty}>
         </div>
       </div>
       <div class="layui-form-item">
