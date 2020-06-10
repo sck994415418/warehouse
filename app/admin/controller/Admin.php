@@ -244,7 +244,11 @@ class Admin extends Permissions
 	            if(!empty($post['address_ids'])) {
 	                $post['address_ids'] = json_encode($post['address_ids']);
 	            }
-
+                if(!empty($post['admin_supplier_ids'])) {
+                    $post['admin_supplier_ids'] = json_encode($post['admin_supplier_ids']);
+                }else{
+                    $post['admin_supplier_ids'] = '';
+                }
 	            //验证昵称是否存在
 	            $nickname = $model->where('nickname',$post['nickname'])->select();
 	            if(!empty($nickname)) {
