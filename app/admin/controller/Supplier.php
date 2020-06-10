@@ -99,7 +99,7 @@ class Supplier extends Permissions
                 $validate = new Validate([
                     ['supplier_name', 'require', '客户姓名不能为空'],
                     ['supplier_phone', 'require', '客户电话不能为空'],
-                    ['supplier_category', 'require', '请选择销售类目'],
+//                    ['supplier_category', 'require', '请选择销售类目'],
                 ]);
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
