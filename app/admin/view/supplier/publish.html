@@ -35,7 +35,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">联系电话</label>
         <div class="layui-input-inline">
-          <input name="supplier_phone" lay-verify="required|phone" placeholder="请输入" autocomplete="off" class="layui-input" type="tel" {notempty name="$data.supplier_phone"}value="{$data.supplier_phone}"{/notempty}>
+          <input name="supplier_phone" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.supplier_phone"}value="{$data.supplier_phone}"{/notempty}>
         </div>
       </div>
       {notempty name="$data"}
