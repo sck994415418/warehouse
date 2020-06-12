@@ -59,6 +59,9 @@
     <a href="javascript:" title="打印" class="layui-btn print" style="float: left; margin-left: 10px;" data-url="">
         <i class="fa fa-table" aria-hidden="true"></i>
     </a>
+    <a href="javascript:" title="导出" class="layui-btn excel" style="float: left; margin-left: 10px;" data-url="">
+        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+    </a>
     {/if}
     <form class="layui-form" id="admin">
         <table class="layui-table" lay-size="sm">
@@ -350,6 +353,20 @@
             return false;
         }
         window.location.href = '/admin/Delivery/log_print?data=' + arr;
+
+    })
+    $('.excel').click(function () {
+        var arr = [];
+
+        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+            arr[i] = $(this).val();
+
+        });
+        if(arr == '' || arr == undefined || arr == null){
+            layer.msg('请选择！',{icon:-1});
+            return false;
+        }
+        window.location.href = '/admin/Delivery/excel?data=' + arr;
 
     })
         $(document).on('click', '.client_details', function () {

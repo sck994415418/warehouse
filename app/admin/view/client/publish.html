@@ -30,6 +30,58 @@
           <textarea placeholder="请输入内容" name="client_desc" class="layui-textarea">{$data.client_desc|default=''}</textarea>
         </div>
       </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">负责人姓名</label>
+        <div class="layui-input-inline">
+          <input name="client_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_name"}value="{$data.client_name}"{/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item address_box">
+        <label class="layui-form-label">所在地区</label>
+        <div class="layui-input-inline province_div">
+          <select name="client_position_id" lay-verify="required" class="province" lay-filter="province">
+            <option value="{$data.client_position_id|default=''}">请选择省</option>
+            {if !empty($View_address)}
+            {foreach name="View_address" item="v"}
+            <option value="{$v.address_id}" >{$v.address_name}</option>
+            {/foreach}
+            {/if}
+          </select>
+        </div>
+        <div class="layui-input-inline city_div">
+
+        </div>
+        <div class="layui-input-inline qu_div">
+
+        </div>
+
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">负责人性别</label>
+        <div class="layui-input-block">
+          <input type="radio" name="client_sex" value="0" title="未知" {eq name="@$data.client_sex" value="0"}checked{/eq} checked="">
+          <input type="radio" name="client_sex" value="1" title="男" {eq name="@$data.client_sex" value="1"}checked{/eq}>
+          <input type="radio" name="client_sex" value="2" title="女" {eq name="@$data.client_sex" value="2"}checked{/eq}>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">详细地址</label>
+        <div class="layui-input-block">
+          <input name="client_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_position_details"}value="{$data.client_position_details}"{/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">客户QQ</label>
+        <div class="layui-input-inline">
+          <input name="client_qq" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_qq"}value="{$data.client_qq}"{/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">客户邮箱</label>
+        <div class="layui-input-inline">
+          <input name="client_email" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_email"}value="{$data.client_email}"{/notempty}>
+        </div>
+      </div>
       {else/}
       <div class="layui-form-item">
         <label class="layui-form-label">负责人姓名</label>
@@ -93,7 +145,7 @@
       <div class="layui-form-item address_box">
         <label class="layui-form-label">所在地区</label>
         <div class="layui-input-inline province_div">
-          <select name="client_position_id" lay-verify="required" class="province" lay-filter="province">
+          <select name="client_position_id" class="province" lay-filter="province">
             <option value="{$data.client_position_id|default=''}">请选择省</option>
             {if !empty($View_address)}
             {foreach name="View_address" item="v"}
