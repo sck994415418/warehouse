@@ -9,9 +9,8 @@
 namespace app\admin\controller;
 
 
+use PHPExcel;
 use PHPExcel_IOFactory;
-use think\Controller;
-
 use think\Loader;
 
 //使用Spreadsheet类
@@ -20,8 +19,8 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 //可以生成多种格式类
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PHPExcel;
-class Exel extends Controller
+
+class Exel extends Permissions
 {
     public function out()
     {
@@ -93,9 +92,7 @@ class Exel extends Controller
     function excelExport($fileName = '', $headArr = [], $data = []) {
 
         $fileName .= "-" . date("YmdHi",time()) . ".xls";
-
         $objPHPExcel = new PHPExcel();
-
         $objPHPExcel->getProperties();
 
         $key = ord("A"); // 设置表头

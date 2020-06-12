@@ -15,10 +15,10 @@ class Delivery extends Permissions
             ->alias('swgl')
             ->where(['swgl.log_id' => ['in', $id['data']]])
             ->join('sck_client sc', 'swgl.client_id = sc.client_id')
-            ->join('address ads','ads.id5 = sc.client_position_id or ads.id4 = sc.client_position_id','left')
+//            ->join('address ads','ads.id5 = sc.client_position_id or ads.id4 = sc.client_position_id','left')
             ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
             ->join('sck_warehouse_good_log_pay swglp','swglp.log_id = swgl.log_id','left')
-            ->field("swgl.*,sc.client_id,sc.client_name,sc.client_company,sc.client_desc,sc.client_phone,sc.client_wechat,ads.name2,ads.name3,ads.name4,ads.name5,sc.client_position_details,swg.good_sku,swg.good_coding,swglp.pay_price,swglp.pay_total")
+            ->field("swgl.*,sc.client_id,sc.client_name,sc.client_company,sc.client_desc,sc.client_phone,sc.client_wechat,sc.client_position_details,swg.good_sku,swg.good_coding,swglp.pay_price,swglp.pay_total")
             ->select();
         $arr = $data;
         foreach($data as $k=>$v){
@@ -111,6 +111,7 @@ class Delivery extends Permissions
             }
 //            dump($data);die;
             (new Exel())->excelExport('清单表',$head,$data);
+//            (new Exel())->outdata('清单表',$data,$head,$keys);
         } else {
             $this->error("未知错误,请重新选择");
         }
