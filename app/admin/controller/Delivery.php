@@ -18,7 +18,7 @@ class Delivery extends Permissions
 //            ->join('address ads','ads.id5 = sc.client_position_id or ads.id4 = sc.client_position_id','left')
             ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
             ->join('sck_warehouse_good_log_pay swglp','swglp.log_id = swgl.log_id','left')
-            ->field("swgl.*,sc.client_id,sc.client_name,sc.client_company,sc.client_desc,sc.client_phone,sc.client_wechat,sc.client_position_details,swg.good_sku,swg.good_coding,swglp.pay_price,swglp.pay_total")
+            ->field("swgl.*,sc.client_id,sc.client_name,sc.client_company,sc.client_desc,sc.client_phone,sc.client_wechat,sc.client_position_details,swg.good_sku,swg.good_coding,swg.good_position,swglp.pay_price,swglp.pay_total")
             ->select();
         $arr = $data;
         foreach($data as $k=>$v){
@@ -33,6 +33,7 @@ class Delivery extends Permissions
                     'good_total'=>$v['good_total'],
                     'good_sku'=>$v['good_sku'],
                     'good_coding'=>$v['good_coding'],
+                    'good_position'=>$v['good_position'],
                 ];
                 $data[$k]['pay_total'] = empty($v['pay_total'])?$v['good_total']:$v['pay_total'];
                 $data[$k]['pay_price'] =empty($v['pay_price'])?0:$v['pay_price'];
@@ -51,6 +52,7 @@ class Delivery extends Permissions
                             'good_total'=>$val['good_total'],
                             'good_sku'=>$val['good_sku'],
                             'good_coding'=>$val['good_coding'],
+                            'good_position'=>$val['good_position'],
 
                         ];
                         $data[$k]['pay_total'] += empty($val['pay_total'])?$val['good_total']:$val['pay_total'];
@@ -110,6 +112,7 @@ class Delivery extends Permissions
                 $data[$k]['identification']=0;
             }
 //            dump($data);die;
+            addlog();
             (new Exel())->excelExport('清单表',$head,$data);
 //            (new Exel())->outdata('清单表',$data,$head,$keys);
         } else {

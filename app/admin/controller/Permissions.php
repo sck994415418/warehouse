@@ -42,8 +42,11 @@ class Permissions extends Controller
             $this->redirect('admin/common/login');
         }
 
+        $admin = Db::name('admin')->where('id',Session::get('admin'))->find();
+        if($admin['admin_status']!=1) {
 
-        
+            $this->error('您已被禁用！');
+        }
         $where['module'] = $this->request->module();
         $where['controller'] = $this->request->controller();
         $where['function'] = $this->request->action();
@@ -90,7 +93,7 @@ class Permissions extends Controller
         //得到用户的权限菜单
         //
         
-        $menus = Db::name('admin_cate')->where('id',Session::get('admin_cate_id'))->value('permissions');
+        $menus = Db::name('admin_cate')->where('id',$admin['admin_cate_id'])->value('permissions');
         //将得到的菜单id集成的字符串拆分成数组
         $menus = explode(',',$menus);
 

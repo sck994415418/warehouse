@@ -84,6 +84,12 @@
         </div>
       </div>
       <div class="layui-form-item">
+        <label class="layui-form-label">仓库位置</label>
+        <div class="layui-input-inline">
+          <input autocomplete="off" class="layui-input" lay-verify=""  min="0" name="good_position" placeholder="请输入" type="text">
+        </div>
+      </div>
+      <div class="layui-form-item">
         <label class="layui-form-label">商品库存</label>
         <div class="layui-input-inline">
           <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">

@@ -151,27 +151,29 @@ class WarehouseGoodLog extends Permissions
                     $lowest_price = round($total_price/$total_amount,2);
                 }
                 $ClientModel = new SckClient();
-                $id = Session::get('admin');
-                if(!empty($id)){
-                    $user_info = adminModel::get($id);
-                    if(!empty($user_info->address_ids)){
-                        $address_ids = json_decode($user_info->address_ids,true);
-                    }else{
-                        $address_ids =[];
-                    }
-                }else{
-                    $address_ids =[];
-                }
-                if(!empty($address_ids)){
-                    $street_ids = db('address')
-                        ->where(['id1'=>1,'status'=>1,'id4'=>['in',$address_ids]])
-                        ->column('id5');
-                    $street_ids = array_filter($street_ids);
-                }else{
-                    $street_ids =[];
-                }
+                //=================================================================================
+//                $id = Session::get('admin');
+//                if(!empty($id)){
+//                    $user_info = adminModel::get($id);
+//                    if(!empty($user_info->address_ids)){
+//                        $address_ids = json_decode($user_info->address_ids,true);
+//                    }else{
+//                        $address_ids =[];
+//                    }
+//                }else{
+//                    $address_ids =[];
+//                }
+//                if(!empty($address_ids)){
+//                    $street_ids = db('address')
+//                        ->where(['id1'=>1,'status'=>1,'id4'=>['in',$address_ids]])
+//                        ->column('id5');
+//                    $street_ids = array_filter($street_ids);
+//                }else{
+//                    $street_ids =[];
+//                }
+                //=================================================================================
                 $Client = $ClientModel
-                    ->where(['client_position_id' => ['in',$street_ids]])
+//                    ->where(['client_position_id' => ['in',$street_ids]])
                     ->order('create_time desc')
                     ->select();
                 $this->assign('lowest_price', $lowest_price);
@@ -276,6 +278,9 @@ class WarehouseGoodLog extends Permissions
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['good_name'] = ['like', '%' . $post['keywords'] . '%'];
         }
+        if (isset($good_status) and !empty($good_status)) {
+            $where['good_status'] = $good_status;
+        }
         if (isset($post['create_time']) and !empty($post['create_time'])) {
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
@@ -289,15 +294,16 @@ class WarehouseGoodLog extends Permissions
         $admin_id = Session::get('admin');
         if (isset($admin_id)) {
             $user_info = adminModel::get($admin_id);
-            if($user_info['admin_power']==0){
+            if((int)$user_info['admin_power']==0){
                 $where['admin_id'] = $admin_id;
-            }elseif($user_info['admin_power']==1){
+            }elseif((int)$user_info['admin_power']==1){
+//                dump((int)$user_info['admin_power']);die;
 //                $start_time_is =
 //                $where['create_time'] = ;
                 if(!empty($start_time) and !empty($end_time)){
                     $where['create_time']=['between',[$start_time,$end_time]];
                 }
-            }elseif($user_info['admin_power']==2){
+            }elseif((int)$user_info['admin_power']==2){
                 $this_month_10 = strtotime(date('Y-m-'.'11'));
                 $this_day = strtotime(date('Y-m-d'));
                 if($this_day<=$this_month_10){
@@ -339,11 +345,11 @@ class WarehouseGoodLog extends Permissions
         $model = new WarehouseGoodLogModel();
         $data = empty($where) ? $model
             ->order('create_time desc')
-            ->paginate(20)
+            ->paginate(20, false, ['query' => $this->request->param()])
             : $model->where($where)
                 ->order('create_time desc')
                 ->paginate(20, false, ['query' => $this->request->param()]);
-
+//        dump($data);die;
         $this->assign('data', $data);
         $this->assign('good_status', $good_status);
         return $this->fetch();

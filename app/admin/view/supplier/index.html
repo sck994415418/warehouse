@@ -77,7 +77,9 @@
       </thead>
       <tbody>
         {volist name="data" id="vo"}
-          {if $vo.yes == 1}
+
+          {//if $vo.yes == 1}
+
             <tr>
               <td>{$vo.supplier_id}</td>
               <td>{$vo.supplier_name}</td>
@@ -95,7 +97,10 @@
                 </div>
               </td>
             </tr>
-          {/if}
+
+          {///if}
+
+
         {/volist}
       </tbody>
     </table>

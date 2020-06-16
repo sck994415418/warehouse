@@ -33,47 +33,74 @@ class Client extends Permissions
             $end_time = strtotime(substr($post['time'], strripos($post['time'], ' - ') + 3));
             $where['create_time'] = ['between', [$start_time, $end_time]];
         }
-        $id = Session::get('admin');
-        if (!empty($id)) {
-            $user_info = \app\admin\model\Admin::get($id);
-            if (!empty($user_info->address_ids)) {
-                $address_ids = json_decode($user_info->address_ids, true);
-                if (!empty($address_ids)) {
-                    $address_ids = db('address')->where(['status' => 1, 'id4' => ['in', $address_ids]])->column('id4');
-                } else {
-                    $address_ids = [];
-                }
-            } else {
-                $address_ids = [];
-            }
-        } else {
-            $address_ids = [];
-        }
-        if (!empty($address_ids)) {
-            $street_ids = db('address')
-                ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
-                ->column('id4');
-            $street_ids = array_filter($street_ids);
-
-        } else {
-            $street_ids = [];
-        }
-        $position = $model->column('client_position_id');
-        $result = array_intersect($position,$street_ids);
+         //================================================================================================
+//        $id = Session::get('admin');
+//        if (!empty($id)) {
+//            $user_info = \app\admin\model\Admin::get($id);
+//            if (!empty($user_info->address_ids)) {
+//                $address_ids = json_decode($user_info->address_ids, true);
+//                if (!empty($address_ids)) {
+//                    $address_ids = db('address')->where(['status' => 1, 'id4' => ['in', $address_ids]])->column('id4');
+//                } else {
+//                    $address_ids = [];
+//                }
+//            } else {
+//                $address_ids = [];
+//            }
+//        } else {
+//            $address_ids = [];
+//        }
+//        if (!empty($address_ids)) {
+//            $street_ids = db('address')
+//                ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+//                ->column('id4');
+//            $street_ids = array_filter($street_ids);
+//
+//        } else {
+//            $street_ids = [];
+//        }
+//        $position = $model->column('client_position_id');
+//        $result = array_intersect($position,$street_ids);
+        //================================================================================================
         $data = empty($where) ? $model
-            ->where(['client_position_id' => ['in', $result]])
+            //================================================================================================
+//            ->where(['client_position_id' => ['in', $result]])
+            //================================================================================================
             ->where(['client_type' => 1])
             ->order('create_time desc')
             ->paginate(20)
+            ->each(function ($k,$v){
+                $k['client_total'] = db('sck_warehouse_good_log')
+                    ->where(['client_id'=>$k['client_id'],'good_status'=>2])
+                    ->sum('good_total');
+                $k['client_price'] = db('sck_warehouse_good_log_pay')
+                    ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
+                    ->sum('pay_price');
+                $k['client_money'] = $k['client_total']-$k['client_price'];
+
+            })
             : $model->where($where)
-                ->where(['client_position_id' => ['in', $result]])
+                //================================================================================================
+//                ->where(['client_position_id' => ['in', $result]])
+                //================================================================================================
                 ->where(['client_type' => 1])
                 ->order('create_time desc')
-                ->paginate(20, false, ['query' => $this->request->param()]);
+                ->paginate(20, false, ['query' => $this->request->param()])
+                ->each(function ($k,$v){
+                    $k['client_total'] = db('sck_warehouse_good_log')
+                        ->where(['client_id'=>$k['client_id'],'good_status'=>2])
+                        ->sum('good_total');
+                    $k['client_price'] = db('sck_warehouse_good_log_pay')
+                        ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
+                        ->sum('pay_price');
+                    $k['client_money'] = $k['client_total']-$k['client_price'];
+                });
 
         $address = db('address')
             ->field('id1,id2 as address_id, name2 as address_name')
-            ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+            //================================================================================================
+//            ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+            //================================================================================================
             ->group('address_id')
             ->select();
         $this->assign('View_address', $address);
@@ -86,21 +113,24 @@ class Client extends Permissions
     {
         $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
         $model = new ClientModel();
-        $id = Session::get('admin');
-        if (!empty($id)) {
-            $user_info = \app\admin\model\Admin::get($id);
-            if (!empty($user_info->address_ids)) {
-                $address_ids = json_decode($user_info->address_ids, true);
-            } else {
-                $address_ids = [];
-            }
-        } else {
-            $address_ids = [];
-        }
-
+        //================================================================================================
+//        $id = Session::get('admin');
+//        if (!empty($id)) {
+//            $user_info = \app\admin\model\Admin::get($id);
+//            if (!empty($user_info->address_ids)) {
+//                $address_ids = json_decode($user_info->address_ids, true);
+//            } else {
+//                $address_ids = [];
+//            }
+//        } else {
+//            $address_ids = [];
+//        }
+        //================================================================================================
         $address = db('address')
             ->field('id1,id2 as address_id, name2 as address_name')
-            ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+            //================================================================================================
+//            ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+            //================================================================================================
             ->group('address_id')
             ->select();
         $this->assign('View_address', $address);
@@ -219,47 +249,73 @@ class Client extends Permissions
             $end_time = strtotime(substr($post['time'], strripos($post['time'], ' - ') + 3));
             $where['create_time'] = ['between', [$start_time, $end_time]];
         }
-        $id = Session::get('admin');
-        if (!empty($id)) {
-            $user_info = \app\admin\model\Admin::get($id);
-            if (!empty($user_info->address_ids)) {
-                $address_ids = json_decode($user_info->address_ids, true);
-                if (!empty($address_ids)) {
-                    $address_ids = db('address')->where(['status' => 1, 'id4' => ['in', $address_ids]])->column('id4');
-                } else {
-                    $address_ids = [];
-                }
-            } else {
-                $address_ids = [];
-            }
-        } else {
-            $address_ids = [];
-        }
-        if (!empty($address_ids)) {
-            $street_ids = db('address')
-                ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
-                ->column('id4');
-            $street_ids = array_filter($street_ids);
-
-        } else {
-            $street_ids = [];
-        }
-        $position = $model->column('client_position_id');
-        $result = array_intersect($position,$street_ids);
+        //================================================================================================
+//        $id = Session::get('admin');
+//        if (!empty($id)) {
+//            $user_info = \app\admin\model\Admin::get($id);
+//            if (!empty($user_info->address_ids)) {
+//                $address_ids = json_decode($user_info->address_ids, true);
+//                if (!empty($address_ids)) {
+//                    $address_ids = db('address')->where(['status' => 1, 'id4' => ['in', $address_ids]])->column('id4');
+//                } else {
+//                    $address_ids = [];
+//                }
+//            } else {
+//                $address_ids = [];
+//            }
+//        } else {
+//            $address_ids = [];
+//        }
+//        if (!empty($address_ids)) {
+//            $street_ids = db('address')
+//                ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+//                ->column('id4');
+//            $street_ids = array_filter($street_ids);
+//
+//        } else {
+//            $street_ids = [];
+//        }
+//        $position = $model->column('client_position_id');
+//        $result = array_intersect($position,$street_ids);
+        //================================================================================================
         $data = empty($where) ? $model
-            ->where(['client_position_id' => ['in', $result]])
+            //================================================================================================
+//            ->where(['client_position_id' => ['in', $result]])
+            //================================================================================================
             ->where(['client_type' => 2])
             ->order('create_time desc')
             ->paginate(20)
+            ->each(function ($k,$v){
+                $k['client_total'] = db('sck_warehouse_good_log')
+                    ->where(['client_id'=>$k['client_id'],'good_status'=>2])
+                    ->sum('good_total');
+                $k['client_price'] = db('sck_warehouse_good_log_pay')
+                    ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
+                    ->sum('pay_price');
+                $k['client_money'] = $k['client_total']-$k['client_price'];
+            })
             : $model->where($where)
-                ->where(['client_position_id' => ['in', $result]])
+                //================================================================================================
+//                ->where(['client_position_id' => ['in', $result]])
+                //================================================================================================
                 ->where(['client_type' => 2])
                 ->order('create_time desc')
-                ->paginate(20, false, ['query' => $this->request->param()]);
+                ->paginate(20, false, ['query' => $this->request->param()])
+                ->each(function ($k,$v){
+                    $k['client_total'] = db('sck_warehouse_good_log')
+                        ->where(['client_id'=>$k['client_id'],'good_status'=>2])
+                        ->sum('good_total');
+                    $k['client_price'] = db('sck_warehouse_good_log_pay')
+                        ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
+                        ->sum('pay_price');
+                    $k['client_money'] = $k['client_total']-$k['client_price'];
+                });
 
         $address = db('address')
             ->field('id1,id2 as address_id, name2 as address_name')
-            ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+            //================================================================================================
+//            ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+            //================================================================================================
             ->group('address_id')
             ->select();
         $this->assign('View_address', $address);
@@ -271,21 +327,24 @@ class Client extends Permissions
     {
         $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
         $model = new ClientModel();
-        $id = Session::get('admin');
-        if (!empty($id)) {
-            $user_info = \app\admin\model\Admin::get($id);
-            if (!empty($user_info->address_ids)) {
-                $address_ids = json_decode($user_info->address_ids, true);
-            } else {
-                $address_ids = [];
-            }
-        } else {
-            $address_ids = [];
-        }
-
+        //================================================================================================
+//        $id = Session::get('admin');
+//        if (!empty($id)) {
+//            $user_info = \app\admin\model\Admin::get($id);
+//            if (!empty($user_info->address_ids)) {
+//                $address_ids = json_decode($user_info->address_ids, true);
+//            } else {
+//                $address_ids = [];
+//            }
+//        } else {
+//            $address_ids = [];
+//        }
+        //================================================================================================
         $address = db('address')
             ->field('id1,id2 as address_id, name2 as address_name')
-            ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+            //================================================================================================
+//            ->where(['id1' => 1, 'status' => 1, 'id4' => ['in', $address_ids]])
+            //================================================================================================
             ->group('address_id')
             ->select();
         $this->assign('View_address', $address);

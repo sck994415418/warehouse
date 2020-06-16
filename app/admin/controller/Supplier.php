@@ -34,55 +34,55 @@ class Supplier extends Permissions
             ->order('create_time desc')
             ->paginate(20)
             ->each(function ($k,$v){
-                if(!empty($k['supplier_category'])){
-                    $k['supplier_category'] = json_decode($k['supplier_category'],true);
-                    $admin_id = Session::get('admin');
-                    if (!isset($admin_id)) {
-                        return $this->error('未检测到登录状态，请重新登陆!');
-                    }
-                    $user_info = adminModel::get($admin_id);
-                    if(!empty($user_info['admin_supplier_ids'])){
-                        $user_info['admin_supplier_ids'] = json_decode($user_info['admin_supplier_ids'],true);
-                    }else{
-                        $user_info['admin_supplier_ids'] = [];
-                    }
-                    foreach ($k['supplier_category'] as $ks=>$vs){
-                        if(!array_intersect($k['supplier_category'],$user_info['admin_supplier_ids'])){
-                            $k['yes'] = 0;
-                        }else{
-                            $k['yes'] = 1;
-                        }
-                    }
-                }else{
-                    $k['yes'] = 0;
-                }
+//                if(!empty($k['supplier_category'])){
+//                    $k['supplier_category'] = json_decode($k['supplier_category'],true);
+//                    $admin_id = Session::get('admin');
+//                    if (!isset($admin_id)) {
+//                        return $this->error('未检测到登录状态，请重新登陆!');
+//                    }
+//                    $user_info = adminModel::get($admin_id);
+//                    if(!empty($user_info['admin_supplier_ids'])){
+//                        $user_info['admin_supplier_ids'] = json_decode($user_info['admin_supplier_ids'],true);
+//                    }else{
+//                        $user_info['admin_supplier_ids'] = [];
+//                    }
+//                    foreach ($k['supplier_category'] as $ks=>$vs){
+//                        if(!array_intersect($k['supplier_category'],$user_info['admin_supplier_ids'])){
+//                            $k['yes'] = 0;
+//                        }else{
+//                            $k['yes'] = 1;
+//                        }
+//                    }
+//                }else{
+//                    $k['yes'] = 0;
+//                }
             })
             : $model->where($where)
                 ->order('create_time desc')
                 ->paginate(20,false,['query'=>$this->request->param()])
         ->each(function ($k,$v){
-            if(!empty($k['supplier_category'])){
-                $k['supplier_category'] = json_decode($k['supplier_category'],true);
-                $admin_id = Session::get('admin');
-                if (!isset($admin_id)) {
-                    return $this->error('未检测到登录状态，请重新登陆!');
-                }
-                $user_info = adminModel::get($admin_id);
-                if(!empty($user_info['admin_supplier_ids'])){
-                    $user_info['admin_supplier_ids'] = json_decode($user_info['admin_supplier_ids'],true);
-                }else{
-                    $user_info['admin_supplier_ids'] = [];
-                }
-                foreach ($k['supplier_category'] as $ks=>$vs){
-                    if(!array_intersect($k['supplier_category'],$user_info['admin_supplier_ids'])){
-                        $k['yes'] = 0;
-                    }else{
-                        $k['yes'] = 1;
-                    }
-                }
-            }else{
-                $k['yes'] = 0;
-            }
+//            if(!empty($k['supplier_category'])){
+//                $k['supplier_category'] = json_decode($k['supplier_category'],true);
+//                $admin_id = Session::get('admin');
+//                if (!isset($admin_id)) {
+//                    return $this->error('未检测到登录状态，请重新登陆!');
+//                }
+//                $user_info = adminModel::get($admin_id);
+//                if(!empty($user_info['admin_supplier_ids'])){
+//                    $user_info['admin_supplier_ids'] = json_decode($user_info['admin_supplier_ids'],true);
+//                }else{
+//                    $user_info['admin_supplier_ids'] = [];
+//                }
+//                foreach ($k['supplier_category'] as $ks=>$vs){
+//                    if(!array_intersect($k['supplier_category'],$user_info['admin_supplier_ids'])){
+//                        $k['yes'] = 0;
+//                    }else{
+//                        $k['yes'] = 1;
+//                    }
+//                }
+//            }else{
+//                $k['yes'] = 0;
+//            }
         });
         $this->assign('data',$data);
         return $this->fetch();
@@ -104,6 +104,9 @@ class Supplier extends Permissions
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
                 }
+                if(!empty($post['supplier_category'])){
+                    $post['supplier_category'] = json_encode($post['supplier_category']);
+                }
                 if(false == $model->allowField(true)->save($post,['supplier_id'=>$supplier_id])) {
                     return $this->error('修改失败');
                 } else {
@@ -112,6 +115,40 @@ class Supplier extends Permissions
                 }
             } else {
                 $data = $model->where('supplier_id',$supplier_id)->find();
+//                dump($data);die;
+                $category = db('sck_warehouse_good_category')->field('category_id as id,category_name as name,parent_id')->select();
+                if(!empty($data['supplier_category'])){
+                    $data['supplier_category'] = json_decode($data['supplier_category'],true);
+                }
+                $category = getrole($category);
+                if(!empty($category)){
+                    foreach ($category as $ks=>$vs){
+                        $category[$ks]['open'] = 'false';
+                        if(!empty($category[$ks]['children'])){
+                            foreach ($category[$ks]['children'] as $kss=>$vss){
+                                $category[$ks]['children'][$kss]['open'] = 'false';
+                                if(!empty($category[$ks]['children'][$kss]['children'])){
+                                    foreach ($category[$ks]['children'][$kss]['children'] as $ksss=>$vsss){
+                                        $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'supplier_category[]';
+                                        $category[$ks]['children'][$kss]['children'][$ksss]['open'] = false;
+                                        if(!empty($data['supplier_category'])) {
+                                            if (in_array($category[$ks]['children'][$kss]['children'][$ksss]['id'], $data['supplier_category'])) {
+                                                $category[$ks]['children'][$kss]['children'][$ksss]['checked'] = true;
+                                            }
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+                $this->assign('category',json_encode($category));
                 $this->assign('data',$data);
                 return $this->fetch();
             }
@@ -145,24 +182,33 @@ class Supplier extends Permissions
                     ->group('address_id')
                     ->select();
                 $this->assign('View_address', $address);
-                $category = db('sck_warehouse_good_category')->field('category_id as id,category_name as title,parent_id')->select();
-                if(!empty($category)){
-                    $category = getrole($category);
-                    if(!empty($category)){
-                        foreach ($category as $k=>$v){
-                            if(!empty($category[$k]['children'])){
-                                foreach ($category[$k]['children'] as $ks=>$vs){
-                                    if(!empty($category[$k]['children'][$ks]['children'])){
-                                        foreach ($category[$k]['children'][$ks]['children'] as $kss=>$vss){
-                                            $category[$k]['children'][$ks]['children'][$kss]['field'] = 'supplier_category[]';
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    $this->assign('View_category', json_encode($category));
+                $category = db('sck_warehouse_good_category')->field('category_id as id,category_name as name,parent_id')->select();
+                if(!empty($data['supplier_category'])){
+                    $data['supplier_category'] = json_decode($data['supplier_category'],true);
                 }
+                $category = getrole($category);
+                if(!empty($category)){
+                    foreach ($category as $ks=>$vs){
+                        $category[$ks]['open'] = 'false';
+                        if(!empty($category[$ks]['children'])){
+                            foreach ($category[$ks]['children'] as $kss=>$vss){
+                                $category[$ks]['children'][$kss]['open'] = 'false';
+                                if(!empty($category[$ks]['children'][$kss]['children'])){
+                                    foreach ($category[$ks]['children'][$kss]['children'] as $ksss=>$vsss){
+                                        $category[$ks]['children'][$kss]['children'][$ksss]['field'] = 'supplier_category[]';
+                                        $category[$ks]['children'][$kss]['children'][$ksss]['open'] = false;
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+                $this->assign('category', json_encode($category));
                 return $this->fetch();
             }
         }

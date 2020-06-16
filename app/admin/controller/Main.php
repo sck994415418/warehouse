@@ -106,8 +106,8 @@ class Main extends Permissions
         $good_warn_day_count = count($warn_day_arr);
         $this->assign('good_warn_count',$good_warn_count);
         $this->assign('good_warn_day_count',$good_warn_day_count);
-        $this->assign('good_warn',json_encode($warn_arr));
-        $this->assign('good_warn_day',json_encode($warn_day_arr));
+        $this->assign('good_warn',implode(',',$warn_arr));
+        $this->assign('good_warn_day',implode(',',$warn_day_arr));
         //客户数
         $client_count = db('sck_client')->count();
         $this->assign('client_count',$client_count);

@@ -75,7 +75,7 @@
         </tr>
         <tr>
             <td width="77">序号</td>
-            <td width="246">商品名称</td>
+            <td width="246">商品名称/仓库位置</td>
             <td width="148">规格型号</td>
             <td width="157">商品编码</td>
             <td width="124">单价</td>
@@ -85,7 +85,7 @@
         {foreach name="$v.goods" key="key" item="val"}
         <tr>
             <td width="77">{$key+1}</td>
-            <td width="246">{$val.good_name}</td>
+            <td width="246">{$val.good_name}/{$val.good_position|default=''}</td>
             <td width="148">{$val.good_sku}</td>
             <td width="157">{$val.good_coding}</td>
             <td width="124">{$val.good_price}</td>
@@ -113,10 +113,11 @@
             <td width="77">备注</td>
             <td width="919" colspan="6">谢谢惠顾，凭本销售单享受商品质保服务</td>
         </tr>
+
         <tr>
-            <td width="77">开单人:</td>
+            <td width="77">销售:</td>
             <td>{$v.admin_id}</td>
-            <td>出库人</td>
+            <td>出库人:</td>
             <td>{$v.admin_id_name}</td>
             <td width="124">开单日期:</td>
             <td width="300" colspan="2">{:date('Y-m-d H:i:s',time())}</td>

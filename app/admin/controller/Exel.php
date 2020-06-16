@@ -9,8 +9,6 @@
 namespace app\admin\controller;
 
 
-use PHPExcel;
-use PHPExcel_IOFactory;
 use think\Loader;
 
 //使用Spreadsheet类
@@ -92,7 +90,7 @@ class Exel extends Permissions
     function excelExport($fileName = '', $headArr = [], $data = []) {
 
         $fileName .= "-" . date("YmdHi",time()) . ".xls";
-        $objPHPExcel = new PHPExcel();
+        $objPHPExcel = new \PHPExcel();
         $objPHPExcel->getProperties();
 
         $key = ord("A"); // 设置表头
@@ -144,7 +142,7 @@ class Exel extends Permissions
 
         header('Cache-Control: max-age=0');
 
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
         $objWriter->save('php://output'); // 文件通过浏览器下载
 

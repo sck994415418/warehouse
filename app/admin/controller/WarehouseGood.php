@@ -24,7 +24,8 @@ class WarehouseGood extends Permissions
             $where['good_name'] = ['like', '%' . $post['keywords'] . '%'];
         }
         if (isset($post['good_arr']) and !empty($post['good_arr'])) {
-            $post['good_arr'] = json_decode($post['good_arr'],true);
+//            $post['good_arr'] = json_decode($post['good_arr'],true);
+            $post['good_arr'] = explode(',',$post['good_arr']);
             $where['good_id'] = ['in',$post['good_arr']];
         }
         if (isset($post['time']) and !empty($post['time'])) {
@@ -66,6 +67,20 @@ class WarehouseGood extends Permissions
                     }
 
                 }
+
+
+                $good_log = db('sck_warehouse_good_log')
+                    ->where(['good_id'=>$k['good_id'],'good_status'=>1])
+                    ->order('create_time','desc')
+                    ->limit(2)
+                    ->select();
+                if(empty($good_log)){
+                    $k['good_lowest_price']=0;
+                }else{
+                    $total_price = array_sum(array_column($good_log,'good_total'));
+                    $total_amount = array_sum(array_column($good_log,'good_amount'));
+                    $k['good_lowest_price'] = round($total_price/$total_amount,2);
+                }
             })
             : $model->where($where)
                 ->order('create_time desc')
@@ -87,6 +102,18 @@ class WarehouseGood extends Permissions
                         }else{
                             $k['good_warn_day_warn']=0;
                         }
+                    }
+                    $good_log = db('sck_warehouse_good_log')
+                        ->where(['good_id'=>$k['good_id'],'good_status'=>1])
+                        ->order('create_time','desc')
+                        ->limit(2)
+                        ->select();
+                    if(empty($good_log)){
+                        $k['good_lowest_price']=0;
+                    }else{
+                        $total_price = array_sum(array_column($good_log,'good_total'));
+                        $total_amount = array_sum(array_column($good_log,'good_amount'));
+                        $k['good_lowest_price'] = round($total_price/$total_amount,2);
                     }
                 });
         $this->assign('data', $data);

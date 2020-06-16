@@ -51,7 +51,7 @@
                     <option value="">直接选择或搜索选择</option>
                     {if !empty($client)}
                     {foreach name="client" item="v"}
-                    <option value="{$v.client_id}" >{$v.client_name}</option>
+                    <option value="{$v.client_id}" >{$v.client_name}({$v.client_company})</option>
                     {/foreach}
                     {/if}
                 </select>

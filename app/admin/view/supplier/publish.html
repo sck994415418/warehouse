@@ -9,7 +9,119 @@
   <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
   <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
   <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+  <link rel="stylesheet" type="text/css" href="__CSS__/font/iconfont.css" />
+  <style>
+  .tree {
+    border: 1px solid black;
+    width: 600px;
+    height: 100vh;
+    display: block;
+    margin: auto;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #434b5a;
+  }
+
+  .synTree .iconxiangyou{
+    cursor: pointer;
+  }
+  .synTree span{
+    position: relative;
+    top: -6px;
+    left: 10px;
+    color: #010102;
+    cursor: default;
+  }
+  .leg_tree li {
+    list-style-type: none;
+    margin-left: 30px;
+    position: relative;
+    line-height: 22px;
+  }
+
+  .leg_tree li a{
+    position: absolute;
+    top: -4px;
+    padding: 0px 10px;
+  }
+  .iconxiangyou{
+    position: absolute;
+    top: -5px;
+    left: -10px;
+  }
+  .leg_tree li i{
+    font-size: 14px;
+  }
+  .leg_tree li i~i:before{
+    position: relative;
+    top: -3px;
+    left: 25px;
+  }
+  .tree input{cursor: pointer;}
+  /*.tree span {*/
+  /*  font-size: 13px;*/
+  /*  cursor: pointer;*/
+  /*  display: inline-block;*/
+  /*  border: 1px solid #e2e2e2;*/
+  /*  width: 10px;*/
+  /*  line-height: 8px;*/
+  /*  text-align: center;*/
+  /*  height: 10px;*/
+  /*  background-color: whitesmoke;*/
+  /*  position: absolute;*/
+  /*  left: 8px;*/
+  /*  top: 4px;*/
+  /*}*/
+  .tree ul span{
+    left: -16px;
+  }
+  .tree ul {
+    list-style-type: none;
+    margin-top: 0px;
+    position: relative;
+  }
+  .label{
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    border: 1px solid #a5a5a5;
+    border-radius: 3px;
+  }
+  .label i {
+    color: #0095ff;
+    position: absolute;
+    top: -2px;
+    left: -1px;
+    font-size: 18px!important;
+  }
+  .label:hover {
+    box-shadow: 0 0 4px 0px #a0aefb;
+  }
+  /*.label i:hover {
+      box-shadow: 0 0 4px 0px #a0aefb;
+  }*/
+  .isShow{
+    position: absolute;
+    top: -3px;
+    left: -20px;
+  }
+  input{
+    display: none;
+  }
+  .isShow{
+    width: 14px;
+    margin-right: 5px;
+  }
+
+</style>
 </head>
+
 <body style="padding:10px;">
   <div class="tplay-body-div"> 
       <div class="layui-tab">
@@ -67,13 +179,13 @@
           <input name="supplier_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.supplier_position_details"}value="{$data.supplier_position_details}"{/notempty}>
         </div>
       </div>
+      {/empty}
       <div class="layui-form-item">
         <label class="layui-form-label">销售品类</label>
-        <div class="layui-input-block">
-          <div id="test12" class="demo-tree-more"></div>
+        <div class="layui-input-inline">
+          <div id="test14" class="tree"></div>
         </div>
       </div>
-      {/empty}
 
       <div class="layui-form-item">
         <div class="layui-input-block">
@@ -91,6 +203,7 @@
 </html>
 <script src="__PUBLIC__/layui/layui.js"></script>
 <script src="__PUBLIC__/jquery/jquery.min.js"></script>
+<script src="__STATIC__/admin/js/leg-tree.js"></script>
 <script>
   var message;
   layui.config({
@@ -213,19 +326,28 @@
             ,util = layui.util
 
             //模拟数据
-            ,data = {$View_category|default=''}
+            ,data = {$category|default=''}
 
     //基本演示
-    tree.render({
-      elem: '#test12'
-      ,data: data
-      ,showCheckbox: true  //是否显示复选框
-      ,id: 'demoId1'
-      ,isJump: true //是否允许点击节点时弹出新窗口跳转
-      ,click: function(obj){
-
-      }
+    // tree.render({
+    //   elem: '#test12'
+    //   ,data: data
+    //   ,showCheckbox: true  //是否显示复选框
+    //   ,id: 'demoId1'
+    //   ,isJump: true //是否允许点击节点时弹出新窗口跳转
+    //   ,click: function(obj){
+    //
+    //   }
+    // });
+    var arrs = []
+    leg.tree({
+      ele:".tree",//选者
+      data:data,//数据
+      arrs:arrs,//选中的id
+      cascade:true,//级联
+//			onAsync:true//暂无此
     });
+
 
   });
 </script>

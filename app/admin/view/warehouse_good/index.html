@@ -86,6 +86,7 @@
         <col width="80">
         <col width="80">
         <col width="80">
+        <col width="80">
         <col width="65">
         <col width="150">
         <col width="200">
@@ -98,6 +99,7 @@
           <th>商品备注</th>
           <th>库存余量</th>
           <th>入库总量</th>
+          <th>最低出库价</th>
           <th>预警值</th>
           <th>积压报警天数</th>
           <th>状态</th>
@@ -114,6 +116,7 @@
             <td>{$vo.good_desc}</td>
             <td>{$vo.good_number}</td>
             <td>{$vo.good_amount}</td>
+            <td style="color: green;">{$vo.good_lowest_price}元</td>
             <td>{$vo.good_warn}</td>
             <td>{$vo.good_warn_day}天</td>
             <td>
