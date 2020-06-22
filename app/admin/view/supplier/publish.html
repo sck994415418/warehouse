@@ -181,6 +181,12 @@
       </div>
       {/empty}
       <div class="layui-form-item">
+        <label class="layui-form-label">销售品牌</label>
+        <div class="layui-input-inline">
+          <input name="supplier_brand" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.supplier_brand"}value="{$data.supplier_brand}"{/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
         <label class="layui-form-label">销售品类</label>
         <div class="layui-input-inline">
           <div id="test14" class="tree"></div>

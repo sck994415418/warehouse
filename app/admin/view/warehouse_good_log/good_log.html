@@ -62,6 +62,9 @@
     <a href="javascript:" title="导出" class="layui-btn excel" style="float: left; margin-left: 10px;" data-url="">
         <i class="fa fa-file-excel-o" aria-hidden="true"></i>
     </a>
+    <a href="javascript:" title="确认出库" class="layui-btn out" style="float: left; margin-left: 10px;" data-url="">
+        <i class="fa fa-external-link" aria-hidden="true"></i>
+    </a>
     {/if}
     <form class="layui-form" id="admin">
         <table class="layui-table" lay-size="sm">
@@ -369,7 +372,36 @@
         window.location.href = '/admin/Delivery/excel?data=' + arr;
 
     })
-        $(document).on('click', '.client_details', function () {
+    $('.out').click(function () {
+        var arr = [];
+
+        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+            arr[i] = $(this).val();
+
+        });
+        if(arr == '' || arr == undefined || arr == null){
+            layer.msg('请选择！',{icon:-1});
+            return false;
+        }
+        // window.location.href = '/admin/Delivery/log_print?data=' + arr;
+        $.ajax({
+            url: "{:url('admin/Delivery/good_out')}",
+            data: {data:arr},
+            type: 'post',
+            async: false,
+            success: function (res) {
+                layer.msg(res.msg);
+                // if (res.code == 1) {
+                //     layer.alert(res.msg, function (index) {
+                //         location.href = res.url;
+                //     })
+                // } else {
+                //     layer.msg(res.msg);
+                // }
+            }
+        })
+    })
+    $(document).on('click', '.client_details', function () {
             var url = $(this).data('url')
             layer.open({
                 type: 2
@@ -382,7 +414,7 @@
                 }
             })
         })
-        $(document).on('click', '.supplier_details', function () {
+    $(document).on('click', '.supplier_details', function () {
             var url = $(this).data('url')
             layer.open({
                 type: 2
@@ -395,7 +427,7 @@
                 }
             })
         })
-        $(document).on('click', '.pay_money', function () {
+    $(document).on('click', '.pay_money', function () {
             var url = $(this).data('url')
             layer.open({
                 type: 2

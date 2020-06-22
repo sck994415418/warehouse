@@ -57,6 +57,12 @@
 
       </div>
       <div class="layui-form-item">
+        <label class="layui-form-label">详细地址</label>
+        <div class="layui-input-block">
+          <input name="client_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_position_details"}value="{$data.client_position_details}"{/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
         <label class="layui-form-label">负责人性别</label>
         <div class="layui-input-block">
           <input type="radio" name="client_sex" value="0" title="未知" {eq name="@$data.client_sex" value="0"}checked{/eq} checked="">
@@ -65,11 +71,24 @@
         </div>
       </div>
       <div class="layui-form-item">
-        <label class="layui-form-label">详细地址</label>
-        <div class="layui-input-block">
-          <input name="client_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_position_details"}value="{$data.client_position_details}"{/notempty}>
+        <label class="layui-form-label">单位名称</label>
+        <div class="layui-input-inline">
+          <input name="client_company" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_company"}value="{$data.client_company}"{/notempty}>
         </div>
       </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">负责人电话</label>
+        <div class="layui-input-inline">
+          <input name="client_phone" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_phone"}value="{$data.client_phone}"{/notempty}>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">客户微信</label>
+        <div class="layui-input-inline">
+          <input name="client_wechat" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_wechat"}value="{$data.client_wechat}"{/notempty}>
+        </div>
+      </div>
+
       <div class="layui-form-item">
         <label class="layui-form-label">客户QQ</label>
         <div class="layui-input-inline">
@@ -139,9 +158,6 @@
           <input name="client_email" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_email"}value="{$data.client_email}"{/notempty}>
         </div>
       </div>
-
-
-
       <div class="layui-form-item address_box">
         <label class="layui-form-label">所在地区</label>
         <div class="layui-input-inline province_div">

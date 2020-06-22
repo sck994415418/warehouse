@@ -20,6 +20,9 @@ class Supplier extends Permissions
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['supplier_name|supplier_phone'] = ['like', '%' . $post['keywords'] . '%'];
         }
+        if(isset($post['brand']) && !empty($post['brand'])){
+            $where['supplier_brand'] = ['like','%'.$post['brand'].'%'];
+        }
         if(isset($post['create_time']) and !empty($post['create_time'])) {
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;

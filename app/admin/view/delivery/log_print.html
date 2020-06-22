@@ -54,24 +54,19 @@
 
     <table>
         <tbody>
+
         <tr>
-            <td style="width: 102px;">公司电话：</td>
-            <td colspan="2" class="phone_1">15373968857</td>
-            <td>公司地址：</td>
-            <td colspan="3" class="addr">河北省石家庄市桥西区天元名品</td>
-        </tr>
-        <tr>
-            <td rowspan="2">购货单位</td>
-            <td>客户名称</td>
+            <td>客户</td>
             <td colspan="2">{$v.client_company}</td>
-            <td>联系电话</td>
-            <td colspan="2">{$v.client_phone}</td>
+            <td>联系人</td>
+            <td colspan="3">{$v.client_name}</td>
+
         </tr>
         <tr>
-            <td>联系地址</td>
+            <td>地址</td>
             <td colspan="2">{$v.client_position_details}</td>
-            <td>联系人</td>
-            <td colspan="2">{$v.client_name}</td>
+            <td>联系电话</td>
+            <td colspan="3">{$v.client_phone}</td>
         </tr>
         <tr>
             <td width="77">序号</td>
@@ -121,6 +116,14 @@
             <td>{$v.admin_id_name}</td>
             <td width="124">开单日期:</td>
             <td width="300" colspan="2">{:date('Y-m-d H:i:s',time())}</td>
+        </tr>
+        <tr>
+            <td style="width: 50px;">地址</td>
+            <td colspan="2" class="addr">河北省石家庄市桥西区天元名品一期5楼501室</td>
+            <td style="width: 102px;">公司电话：</td>
+            <td class="phone_1">15373968857</td>
+            <td>签名</td>
+            <td></td>
         </tr>
         </tbody>
     </table>

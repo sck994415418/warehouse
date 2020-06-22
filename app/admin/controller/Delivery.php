@@ -71,8 +71,26 @@ class Delivery extends Permissions
             db("sck_warehouse_good_log")->where(['log_id'=>['in',$id['data']]])->setInc('is_print',1);
             return view("", ['data' => $data]);
         } else {
-            $this->error("未知错误,请重新选择");
+            $this->error("请联系库管出库后再次操作");
         }
+    }
+    //商品出库
+    public function good_out(){
+        if(request()->isPost()){
+            $data = request()->post();
+
+            $data = db('sck_warehouse_good_log')
+                ->where(['log_id' => ['in', $data['data']]])
+                ->update(['is_delivery'=>1]);
+            if($data){
+                $this->success("出库成功");
+            }else{
+                $this->error("出库失败");
+            }
+        }else{
+            $this->error("请求错误");
+        }
+
     }
 //    导出excel信息
     public function excel(){

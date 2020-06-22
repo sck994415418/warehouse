@@ -17,7 +17,7 @@ class Client extends Permissions
         $model = new ClientModel();
         $post = $this->request->param();
         if (isset($post['keywords']) and !empty($post['keywords'])) {
-            $where['client_name|client_phone|client_wechat'] = ['like', '%' . $post['keywords'] . '%'];
+            $where['client_name|client_company|client_phone|client_wechat'] = ['like', '%' . $post['keywords'] . '%'];
         }
         if (isset($post['client_position_id']) and $post['client_position_id'] > 0) {
             $new_client_position_id = substr($post['client_position_id'], 0, $post['num']);
