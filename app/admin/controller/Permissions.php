@@ -47,6 +47,7 @@ class Permissions extends Controller
 
             $this->error('您已被禁用！');
         }
+        $this->assign('amind_id',Session::get('admin'));
         $where['module'] = $this->request->module();
         $where['controller'] = $this->request->controller();
         $where['function'] = $this->request->action();

@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\SckSupplier;
+use app\admin\model\SckWarehouseGoodLog;
 use think\Db;
 use app\admin\model\SckSupplier as SupplierModel;
 use think\Exception;
@@ -238,21 +239,27 @@ class Supplier extends Permissions
     public function supplier_details()
     {
         $supplier_id = $this->request->has('supplier_id') ? $this->request->param('supplier_id', 0, 'intval') : 0;
+        $goods = Request()->get('good_id');
         if(!empty($supplier_id)){
             $model = new SckSupplier();
             $supplier = $model->get(['supplier_id'=>$supplier_id]);
-            if(!empty($supplier)){
-                if(!empty($supplier['supplier_category'])){
-                    $supplier_category = json_decode($supplier['supplier_category'],true);
-                    $supplier['supplier_category'] = db('sck_warehouse_good_category')->where('category_id','in',$supplier_category)->column('category_name');
-                }
-                $this->assign('supplier',$supplier);
-                return $this->fetch();
-            }else{
-                return $this->error('未找到该供应商！');
-            }
+
+        }elseif(!empty($goods)){
+            $supplier_id = (new SckWarehouseGoodLog())->where(['good_id'=>$goods])->value('supplier_id');
+            $model = new SckSupplier();
+            $supplier = $model->get(['supplier_id'=>$supplier_id]);
         }else{
             return $this->error('页面错误，请重试！');
+        }
+        if(!empty($supplier)){
+            if(!empty($supplier['supplier_category'])){
+                $supplier_category = json_decode($supplier['supplier_category'],true);
+                $supplier['supplier_category'] = db('sck_warehouse_good_category')->where('category_id','in',$supplier_category)->column('category_name');
+            }
+            $this->assign('supplier',$supplier);
+            return $this->fetch();
+        }else{
+            return $this->error('未找到该供应商！');
         }
     }
 }

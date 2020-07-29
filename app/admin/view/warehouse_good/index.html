@@ -29,6 +29,7 @@
     <ul class="layui-tab-title">
       <li class="layui-this">商品列表</li>
       <li><a href="{:url('admin/WarehouseGood/publish')}" class="a_menu">添加商品</a></li>
+      <li><a href="{:url('admin/WarehouseGood/import')}" class="a_menu">表格导入商品</a></li>
     </ul>
   </div>
   <form class="layui-form serch" action="{:url('admin/WarehouseGood/index')}" method="post">
@@ -83,23 +84,25 @@
         <col width="">
         <col width="">
         <col width="">
-        <col width="80">
-<!--        <col width="80">-->
-        <col width="80">
+        <col width="">
+        <col width="">
+        <col width="">
 <!--        <col width="80">-->
         <col width="80">
         <col width="65">
-        <col width="150">
+        <col width="">
         <col width="200">
       </colgroup>
       <thead>
         <tr>
           <th>ID</th>
           <th>商品分类</th>
+          <th>商品品牌</th>
           <th>商品名称</th>
           <th>商品备注</th>
           <th>商品规格</th>
           <th>库存余量</th>
+          <th>商品编码</th>
 <!--          <th>入库总量</th>-->
           <th>最低出库价</th>
 <!--          <th>预警值</th>-->
@@ -114,11 +117,12 @@
           <tr>
             <td>{$vo.good_id}</td>
             <td>{$vo.category.category_name}</td>
+            <th>{$vo.good_brand|default='无'}</th>
             <td>{$vo.good_name}</td>
             <td>{$vo.good_desc}</td>
             <td>{$vo.good_sku}</td>
             <td>{$vo.good_number}</td>
-<!--            <td>{$vo.good_amount}</td>-->
+            <td>{$vo.good_coding}</td>
             <td style="color: green;">{$vo.good_lowest_price}元</td>
 <!--            <td>{$vo.good_warn}</td>-->
             <td>{$vo.good_warn_day}天</td>
@@ -136,12 +140,14 @@
             <td>{$vo.create_time|default=''}</td>
             <td class="operation-menu">
               <div class="layui-btn-group">
-                <a href="javascript:" title="入库" class="layui-btn layui-btn-xs layui-btn-primary GoodEnter" data-url="{:url('admin/WarehouseGoodLog/GoodEnter')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-level-down">&nbsp;</i></a>
-                <a href="javascript:" title="出库" class="layui-btn layui-btn-xs layui-btn-primary {if $vo.good_number>0}GoodOut{else}NoGoodOut{/if}" data-url="{:url('admin/WarehouseGoodLog/GoodOut')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-level-up">&nbsp;</i></a>
-                <a href="javascript:" title="退货" class="layui-btn layui-btn-xs layui-btn-primary GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-exclamation">&nbsp;</i></a>
-                <a href="javascript:" title="日志" class="layui-btn layui-btn-xs layui-btn-primary GoodLog" data-url="{:url('admin/WarehouseGoodLog/GoodLog')}?good_id={$vo.good_id}">&nbsp;<i class="fa fa-file-text">&nbsp;</i></a>
-                <a href="{:url('admin/WarehouseGood/edit',['good_id'=>$vo.good_id])}" title="修改" class="layui-btn layui-btn-xs a_menu layui-btn-primary"><i class="layui-icon"></i></a>
-                <a href="javascript:" title="删除" class="layui-btn layui-btn-xs layui-btn-primary delete" good_id="{$vo.good_id}"><i class="layui-icon"></i></a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodEnter" data-url="{:url('admin/WarehouseGoodLog/GoodEnter')}?good_id={$vo.good_id}">入库</a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary {if $vo.good_number>0}GoodOut{else}NoGoodOut{/if}" data-url="{:url('admin/WarehouseGoodLog/GoodOut')}?good_id={$vo.good_id}">出库</a>
+<!--                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}">退货</a>-->
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodLog" data-url="{:url('admin/WarehouseGoodLog/GoodLog')}?good_id={$vo.good_id}">日志</a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary supplier" data-url="{:url('admin/supplier/supplier_details')}?good_id={$vo.good_id}">供应商</a>
+                <a href="{:url('admin/WarehouseGood/edit',['good_id'=>$vo.good_id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary">修改</a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary" onclick="del(this,'{$vo.good_id}')">删除</a>
+
               </div>
             </td>
           </tr>
@@ -164,29 +170,40 @@
       });
     }
   })
-  $('.delete').click(function(){
-    var good_id = $(this).attr('good_id');
-    layer.confirm('确定要删除?', function(index) {
+  function del(obj,good_id){
+    layer.confirm('确认要删除吗？',function(index){
+      //发异步删除数据
       $.ajax({
         url:"{:url('admin/WarehouseGood/delete')}",
         data:{good_id:good_id},
         success:function(res) {
           layer.msg(res.msg);
           if(res.code == 1) {
-            setTimeout(function(){
-              location.href = res.url;
-            },1500)
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!',{icon:1,time:1000});
           }
         }
       })
-    })
-  })
-
+    });
+  }
   $(document).on('click','.GoodEnter',function () {
     var url = $(this).data('url')
     layer.open({
       type: 2
       ,title: '入库'
+      ,content:url
+      ,area: ['90%', '90%']
+      ,btn: ['关闭']
+      ,yes: function(index, layero){
+        layer.close(index)
+      }
+    })
+  })
+  $(document).on('click','.supplier',function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2
+      ,title: '供应商'
       ,content:url
       ,area: ['90%', '90%']
       ,btn: ['关闭']

@@ -27,11 +27,33 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">商品规格</label>
+            <div class="layui-input-inline">
+                <input readonly lay-verify="required" autocomplete="off"  class="layui-input"  value="{$good.good_sku|default=''}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">开票公司</label>
+            <div class="layui-input-block">
+                {foreach name="tax" item="v"}
+                <input name="company" placeholder="{$v.company}" autocomplete="off" class="layui-input" type="radio" title="{$v.company}" lay-filter="companys" value="{$v.company}" lay-verify="otherReq" ticket="{$v.ticket}" ordinary="{$v.ordinary}" dedicated="{$v.dedicated}" special_invoice="{$v.special_invoice}">
+                {/foreach}
+            </div>
+
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">最低出库价</label>
             <div class="layui-input-inline">
                 <input name="good_price" lay-verify="required" min="{$lowest_price}" value="{$lowest_price}" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
+        <div class="reason" style="display: none;">
+            <label class="layui-form-label">请填写低于成本价理由</label>
+            <div class="layui-input-block">
+                <input name="reason"  placeholder="请填写低于成本价原因" autocomplete="off" class="layui-input" type="text">
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">出库数量</label>
             <div class="layui-input-inline">
@@ -39,9 +61,21 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">出库成本总价</label>
+            <div class="layui-input-inline">
+                <input name="lowest_price" readonly lay-verify="required" min="lowest_price"  placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$lowest_price}">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">出库总价</label>
             <div class="layui-input-inline">
                 <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">付款金额</label>
+            <div class="layui-input-inline">
+                <input name="pay" type="text" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -67,9 +101,6 @@
         </div>
 
     </form>
-
-
-
 </div>
 </body>
 </html>
@@ -91,33 +122,97 @@
             type: 'iframe'
         }).init();
     });
+
 </script>
 <script>
+    var tax = 1;
+    var price = "{$lowest_price}";
+    var total_prices = Number(price)*Number(tax)
+    var total_pricee = total_prices.toFixed(2);
+    lowest_price = total_pricee
     layui.use(['layer', 'form'], function() {
         var layer = layui.layer,
             $ = layui.jquery,
             form = layui.form;
-        $(window).on('load', function() {
+
+        form.on('radio(companys)', function (data) {
+            if('{$good.tax_status}'==1) {
+                 tax = $(this).attr('special_invoice');
+            }else if ('{$good.tax_status}'==2) {
+                 tax = $(this).attr('dedicated');
+            }else if ('{$good.tax_status}'==3) {
+                tax = $(this).attr('ordinary');
+            }else if ('{$good.tax_status}'==4) {
+                tax = $(this).attr('ticket');
+            }else{
+                tax = 1;
+            }
+            var amount = $('input[name=good_amount]').val()
+            var total_prices = Number(price)*Number(tax)*Number(amount);
+            var total_pricee = total_prices.toFixed(2);
+            lowest_price = total_pricee
+            $('input[name=lowest_price]').val(lowest_price)
+            $('input[name=good_price]').attr('value',lowest_price)
+            $('input[name=good_price]').attr('min',lowest_price)
+        });
+            $(window).on('load', function() {
             form.on('submit(admin)', function(data) {
-                $.ajax({
-                    url:"{:url('admin/WarehouseGoodLog/GoodOut')}",
-                    data:$('#admin').serialize(),
-                    type:'post',
-                    async: false,
-                    success:function(res) {
-                        if(res.code == 1) {
-                            layer.alert(res.msg, function(index){
-                                location.href = res.url;
-                            })
-                        } else {
-                            layer.msg(res.msg);
+                // var price = "{$lowest_price}";
+                // var amount = $('input[name=good_amount]').val()
+                // var total_price = Number(price)*Number(amount)
+                // var total_prices = Number(price)*Number(tax)
+                // var total_pricee = total_prices.toFixed(2);
+                // var prices = $('input[name=good_price]').val()
+                // console.log(total_pricee)
+                // console.log(prices)
+                // if(Number(prices) < Number(total_pricee)){
+                //     layer.msg('不能低于出库最低价');
+                // }else{
+                    $.ajax({
+                        url:"{:url('admin/WarehouseGoodLog/GoodOut')}",
+                        data:$('#admin').serialize(),
+                        type:'post',
+                        async: false,
+                        success:function(res) {
+                            if(res.code == 1) {
+                                layer.alert(res.msg, function(){
+                                    // location.href = res.url;
+                                    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                                    parent.layer.close(index);
+                                })
+                            } else {
+                                layer.msg(res.msg);
+                            }
                         }
-                    }
-                })
-                return false;
+                    })
+                    return false;
+                // }
+
             });
         });
+        //自定义验证规则
+        form.verify({
+            otherReq: function(value,item){
+                var $ = layui.$;
+                var verifyName=$(item).attr('name')
+                    , verifyType=$(item).attr('type')
+                    ,formElem=$(item).parents('.layui-form')//获取当前所在的form元素，如果存在的话
+                    ,verifyElem=formElem.find('input[name='+verifyName+']')//获取需要校验的元素
+                    ,isTrue= verifyElem.is(':checked')//是否命中校验
+                    ,focusElem = verifyElem.next().find('i.layui-icon');//焦点元素
+                if(!isTrue || !value){
+                    //定位焦点
+                    focusElem.css(verifyType=='radio'?{"color":"#ff5722"}:{"border-color":"#FF5722"});
+                    //对非输入框设置焦点
+                    focusElem.first().attr("tabIndex","1").css("outline","0").blur(function() {
+                        focusElem.css(verifyType=='radio'?{"color":""}:{"border-color":""});
+                    }).focus();
+                    return '必填项不能为空';
+                }
+            }
+        });
     });
+
 </script>
 <script>
     total_price();
@@ -127,10 +222,22 @@
     $('input[name=good_price],input[name=good_amount]').click(function() {
         total_price();
     });
-    function total_price() {
+    function total_price(tax) {
         var price = $('input[name=good_price]').val()
         var amount = $('input[name=good_amount]').val()
         var total_price = Number(price)*Number(amount)
+        var total_price = total_price.toFixed(2);
         $('input[name=good_total]').val(total_price)
+        var prices = lowest_price;
+        var total_price = Number(prices)*Number(amount)
+        var total_price = total_price.toFixed(2);
+        $('input[name=lowest_price]').val(total_price)
+        if(Number(price)<Number(prices)){
+            $('.reason').css('display','block')
+            $('input[name=reason]').attr('lay-verify','required')
+        }else{
+            $('.reason').css('display','none');
+            $('input[name=reason]').attr('lay-verify','')
+        }
     }
 </script>

@@ -1,178 +1,329 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>tplay_main</title>
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <script src="__PUBLIC__/echarts/echarts.min.js"></script>
-  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all">
-  <link rel="stylesheet" href="__CSS__/admin-1.css" media="all">
-<body class="layui-layout-body" style="overflow-y:visible;">
-    <div class="layadmin-tabsbody-item layui-show"><div class="layui-fluid">
-  <div class="layui-row layui-col-space15">
-    <div class="layui-col-md8">
-      <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
-          <div class="layui-card">
-            <div class="layui-card-header">网站数据</div>
-            <div class="layui-card-body">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>tplay_main</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="__PUBLIC__/echarts/echarts.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="__CSS__/admin-1.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__CSS__/style.css">
+<body class="layui-layout-body" style="overflow-y:visible;"
+      onLoad="window.resizeTo(screen.availWidth,screen.availHeight);window.moveTo(0,0) ">
+<div id="mains" style="width: 70%;height:600px;"></div>
+<div class="layadmin-tabsbody-item layui-show">
+    <div cla ss="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md8">
+                <div class="layui-row layui-col-space15">
+                    <section class="jq22-flexView jq22-head-bj-one">
+                        <header class="jq22-navBar jq22-navBar-fixed jq22-navBar-chang">
+                            <div class="jq22-center">
+                                <span class="jq22-center-title">销售业绩排行榜</span>
+                            </div>
+                            <a href="javascript:void(0);" class="jq22-navBar-item">
+                                <i class="icon "></i>
+                            </a>
+                        </header>
+                        <section class="jq22-scrollView">
+                            <div class="jq22-flex">
+                                <div class="jq22-flex-box">
+                                    <h2>本月前三排名</h2>
+                                </div>
+                            </div>
+                            <div class="jq22-palace">
 
-              <div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
-                <div carousel-item="">
-                  <ul class="layui-row layui-col-space10 layui-this">
-                    <li class="layui-col-xs6" style="cursor:pointer;">
-                      <a data-url="{:url('admin/admin/index')}" class="layadmin-backlog-body admin_user">
-                        <h3>管理员</h3>
-                        <p><cite>{$web.user_num}</cite></p>
-                      </a>
-                    </li>
-                    <li class="layui-col-xs6" style="cursor: pointer">
-                      <a data-url="{:url('admin/WarehouseGood/index')}?good_arr={$good_warn|default=''}" title="库存警告" class="layadmin-backlog-body good_warn">
-                        <h3>库存不足</h3>
-                        <p><cite>{$good_warn_count}</cite></p>
-                      </a>
-                    </li>
-                    <li class="layui-col-xs6" style="cursor: pointer">
-                      <a data-url="{:url('admin/WarehouseGood/index')}?good_arr={$good_warn_day|default=''}" class="layadmin-backlog-body good_warn_day">
-                        <h3>库存积压</h3>
-                        <p><cite>{$good_warn_day_count}</cite></p>
-                      </a>
-                    </li>
-                    <li class="layui-col-xs6" style="cursor: pointer">
-                      <a data-url="{:url('admin/Client/index')}" class="layadmin-backlog-body client">
-                        <h3>客户</h3>
-                        <p><cite>{$client_count}</cite></p>
-                      </a>
-                    </li>
-                  </ul>
+                                {volist name="b" id="vo" offset="0" length='3'}
+                                <a href="javascript:" class="jq22-palace-grid">
+                                    <h2>{$vo.good_total|default=''}<span style="color: black;font-size: 12px;margin-left: 5px">{$vo.lowest_price|default=''}</span></h2>
+                                    <p>{$vo.nickname|default=''}</p>
+                                </a>
+                                {/volist}
+
+                            </div>
+
+                            <div class="divHeight"></div>
+                            <div class="jq22-flex">
+                                <div class="jq22-flex-box">
+                                    <h2>本季度排名</h2>
+                                </div>
+                            </div>
+                            <div class="jq22-palace">
+                                {volist name="c" id="v" offset="0" length='3'}
+                                <a href="javascript:" class="jq22-palace-grid">
+                                    <h2>{$v.good_total|default=''}<span style="color: black;font-size: 12px;margin-left: 5px">{$v.lowest_price|default=''}</span></h2>
+                                    <p>{$v.nickname|default=''}  </p>
+                                </a>
+                               {/volist}
+                            </div>
+                            <div class="jq22-data-box">
+                                <table>
+                                    <tbody>
+                                    <div class="jq22-data-box">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th>姓名</th>
+                                                <th>业绩</th>
+                                                <th>利润</th>
+                                                <th>同比上季度</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {foreach name="c" key="key" item="v"}
+                                            <tr>
+                                                <td>{$v.nickname}</td>
+                                                <td>{$v.good_total}</td>
+                                                <td>{$v.lowest_price}</td>
+                                                <td>{$v.increase|default='0%'}</td>
+                                            </tr>
+                                            {/foreach}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                        </section>
+                    </section>
+
+                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </section>
+
+
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header">网站数据</div>
+                            <div class="layui-card-body">
+
+                                <div class="layui-carousel layadmin-carousel layadmin-backlog" lay-anim=""
+                                     lay-indicator="inside" lay-arrow="none"
+                                     style="width: 100%; height: 300px !important;">
+                                    <div carousel-item="">
+                                        <ul class="layui-row layui-col-space10 layui-this">
+                                            <li class="layui-col-xs6" style="cursor:pointer;">
+                                                <a data-url="{:url('admin/admin/index')}"
+                                                   class="layadmin-backlog-body admin_user">
+                                                    <h3>管理员</h3>
+                                                    <p><cite>{$web.user_num}</cite></p>
+                                                </a>
+                                            </li>
+                                            <li class="layui-col-xs6" style="cursor: pointer">
+                                                <a data-url="{:url('admin/WarehouseGood/index')}?good_arr={$good_warn|default=''}"
+                                                   title="库存警告" class="layadmin-backlog-body good_warn">
+                                                    <h3>库存不足</h3>
+                                                    <p><cite>{$good_warn_count}</cite></p>
+                                                </a>
+                                            </li>
+                                            <li class="layui-col-xs6" style="cursor: pointer">
+                                                <a data-url="{:url('admin/WarehouseGood/index')}?good_arr={$good_warn_day|default=''}"
+                                                   class="layadmin-backlog-body good_warn_day">
+                                                    <h3>库存积压</h3>
+                                                    <p><cite>{$good_warn_day_count}</cite></p>
+                                                </a>
+                                            </li>
+                                            <li class="layui-col-xs6" style="cursor: pointer">
+                                                <a data-url="{:url('admin/Client/index')}"
+                                                   class="layadmin-backlog-body client">
+                                                    <h3>客户</h3>
+                                                    <p><cite>{$client_count}</cite></p>
+                                                </a>
+                                            </li>
+                                            <li class="layui-col-xs6" style="cursor: pointer">
+                                                <a href="javascript:" class="layadmin-backlog-body">
+                                                    <h3>今日销售额</h3>
+                                                    <p>￥<cite>{$day_money}</cite></p>
+                                                </a>
+                                            </li>
+                                            <li class="layui-col-xs6" style="cursor: pointer">
+                                                <a href="javascript:" class="layadmin-backlog-body">
+                                                    <h3>本月销售额</h3>
+                                                    <p>￥<cite>{$year_money}</cite></p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button class="layui-icon layui-carousel-arrow" lay-type="sub"></button>
+                                    <button class="layui-icon layui-carousel-arrow" lay-type="add"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header">管理员登录</div>
+                            <div class="layui-card-body" id="main" style="height: 450px;">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              <button class="layui-icon layui-carousel-arrow" lay-type="sub"></button><button class="layui-icon layui-carousel-arrow" lay-type="add"></button></div>
             </div>
-          </div>
-        </div>
-        <div class="layui-col-md12">
-          <div class="layui-card">
-            <div class="layui-card-header">管理员登录</div>
-            <div class="layui-card-body" id="main" style="height: 450px;">
 
-            </div>
-          </div>
+
         </div>
-      </div>
     </div>
-    
-
-  </div>
-  </div>
-  </div>
+</div>
 
 
-    {include file="public/foot"}
+{include file="public/foot"}
+<script src="__STATIC__/admin/js/echarts.min.js"></script>
+
 <script type="text/javascript">
-var a = "{$web.date_string}";
-var date = a.split(",");
+    var a = "{$web.date_string}";
+    var date = a.split(",");
 
-var b = "{$web.login_sum}";
-var login_sum = b.split(",");
+    var b = "{$web.login_sum}";
+    var login_sum = b.split(",");
 
 
-var myChart = echarts.init(document.getElementById('main'));
+    var myChart = echarts.init(document.getElementById('main'));
 
-option = {
-    tooltip: {
-        trigger: 'axis',
-        position: function (pt) {
-            return [pt[0], '10%'];
-        }
-    },
-    grid: {
-        top: 50,
-        bottom: 70,
-        left:40,
-        right:50
-    },
-    toolbox: {
-        feature: {
-            dataZoom: {
-                yAxisIndex: 'none'
-            },
-            restore: {},
-            saveAsImage: {}
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: date
-    },
-    yAxis: {
-        type: 'value',
-        boundaryGap: [0, '100%']
-    },
-    dataZoom: [{
-        type: 'inside',
-        start: 0,
-        end: 100
-    }, {
-        start: 0,
-        end: 100,
-        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
-        handleSize: '100%',
-        handleStyle: {
-            color: '#fff',
-            shadowBlur: 3,
-            shadowColor: '#009688',
-            shadowOffsetX: 2,
-            shadowOffsetY: 2
-        }
-    }],
-    series: [
-        {
-            name:'管理员登录',
-            type:'line',
-            smooth:true,
-            symbol: 'none',
-            sampling: 'average',
-            itemStyle: {
-                normal: {
-                    color: '#009688'
-                }
-            },
-            areaStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                        offset: 0,
+    option = {
+        tooltip: {
+            trigger: 'axis',
+            position: function (pt) {
+                return [pt[0], '10%'];
+            }
+        },
+        grid: {
+            top: 50,
+            bottom: 70,
+            left: 40,
+            right: 50
+        },
+        toolbox: {
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: date
+        },
+        yAxis: {
+            type: 'value',
+            boundaryGap: [0, '100%']
+        },
+        dataZoom: [{
+            type: 'inside',
+            start: 0,
+            end: 100
+        }, {
+            start: 0,
+            end: 100,
+            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+            handleSize: '100%',
+            handleStyle: {
+                color: '#fff',
+                shadowBlur: 3,
+                shadowColor: '#009688',
+                shadowOffsetX: 2,
+                shadowOffsetY: 2
+            }
+        }],
+        series: [
+            {
+                name: '管理员登录',
+                type: 'line',
+                smooth: true,
+                symbol: 'none',
+                sampling: 'average',
+                itemStyle: {
+                    normal: {
                         color: '#009688'
-                    }, {
-                        offset: 1,
-                        color: '#009688'
-                    }])
-                }
-            },
-            data: login_sum
-        }
-    ]
-};
-myChart.setOption(option);
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: '#009688'
+                        }, {
+                            offset: 1,
+                            color: '#009688'
+                        }])
+                    }
+                },
+                data: login_sum
+            }
+        ]
+    };
+    myChart.setOption(option);
 
 
-$(document).on('click','.good_warn,.admin_user,.good_warn_day,.client',function () {
-  var url = $(this).data('url')
-  var title = $(this).attr('title')
-  layer.open({
-    type: 2
-    ,title: title
-    ,content:url
-    ,area: ['90%', '90%']
-    ,btn: ['关闭']
-    ,yes: function(index, layero){
-      layer.close(index)
-    }
-  })
-})
+    $(document).on('click', '.good_warn,.admin_user,.good_warn_day,.client', function () {
+        var url = $(this).data('url')
+        var title = $(this).attr('title')
+        layer.open({
+            type: 2
+            , title: title
+            , content: url
+            , area: ['90%', '90%']
+            , btn: ['关闭']
+            , yes: function (index, layero) {
+                layer.close(index)
+            }
+        })
+    })
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('mains'));
+    var nickname = '{$month[0]}';
+    var money = '{$month[1]}';
+    var lowest_price = '{$month[2]}';
+    var nickname = nickname.split(",");
+    var money = money.split(",");
+    var lowest_price = lowest_price.split(",");
+    // 指定图表的配置项和数据
+    var option = {
+        color: ['#21b6f8', '#e5323e'],
+        title: {
+            text: '销售统计',
+        },
+        tooltip: {},
+        legend: {
+            data: ['销量', '利润']
+        },
+        // grid: {left:'2%', right: "2%", bottom: '1%', containLabel: true },
+
+        xAxis: {
+            data: nickname,
+            axisLabel: {
+                interval: 0,
+                rotate: -40,
+            }
+        },
+        yAxis: {
+            type: 'value',
+            scale: true,
+            splitNumber: 10,
+            boundaryGap: [0.2, 0.2]
+        },
+        series: [{
+            name: "销量",
+            type: 'bar',
+            data: money
+        }, {
+            name: "利润",
+            type: 'bar',
+            data: lowest_price
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+
 </script>
+
 </body>
 </html>

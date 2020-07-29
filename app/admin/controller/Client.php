@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\SckClient;
+use app\admin\model\SckWarehouseGoodLog as WarehouseGoodLogModel;
 use think\Db;
 use app\admin\model\SckClient as ClientModel;
 use think\Exception;
@@ -33,7 +34,7 @@ class Client extends Permissions
             $end_time = strtotime(substr($post['time'], strripos($post['time'], ' - ') + 3));
             $where['create_time'] = ['between', [$start_time, $end_time]];
         }
-         //================================================================================================
+        //================================================================================================
 //        $id = Session::get('admin');
 //        if (!empty($id)) {
 //            $user_info = \app\admin\model\Admin::get($id);
@@ -71,7 +72,7 @@ class Client extends Permissions
             ->paginate(20)
             ->each(function ($k,$v){
                 $k['client_total'] = db('sck_warehouse_good_log')
-                    ->where(['client_id'=>$k['client_id'],'good_status'=>2])
+                    ->where(['client_id'=>$k['client_id'],'good_status'=>2,'is_return'=>0])
                     ->sum('good_total');
                 $k['client_price'] = db('sck_warehouse_good_log_pay')
                     ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
@@ -88,7 +89,7 @@ class Client extends Permissions
                 ->paginate(20, false, ['query' => $this->request->param()])
                 ->each(function ($k,$v){
                     $k['client_total'] = db('sck_warehouse_good_log')
-                        ->where(['client_id'=>$k['client_id'],'good_status'=>2])
+                        ->where(['client_id'=>$k['client_id'],'good_status'=>2,'is_return'=>0])
                         ->sum('good_total');
                     $k['client_price'] = db('sck_warehouse_good_log_pay')
                         ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
@@ -105,6 +106,7 @@ class Client extends Permissions
             ->select();
         $this->assign('View_address', $address);
         $this->assign('data', $data);
+//        dump($data);die;
         return $this->fetch();
     }
 
@@ -292,7 +294,11 @@ class Client extends Permissions
                 $k['client_price'] = db('sck_warehouse_good_log_pay')
                     ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
                     ->sum('pay_price');
-                $k['client_money'] = $k['client_total']-$k['client_price'];
+                $k['good_total_t'] = db('sck_warehouse_good_log')
+                    ->where(['client_id'=>$k['client_id'],'good_status'=>3])
+                    ->sum('good_total');
+                $good_total_t = empty($k['good_total_t'])?0:$k['good_total_t'];
+                $k['client_money'] = $k['client_total']-$good_total_t-$k['client_price'];
             })
             : $model->where($where)
                 //================================================================================================
@@ -308,7 +314,11 @@ class Client extends Permissions
                     $k['client_price'] = db('sck_warehouse_good_log_pay')
                         ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
                         ->sum('pay_price');
-                    $k['client_money'] = $k['client_total']-$k['client_price'];
+                    $k['good_total_t'] = db('sck_warehouse_good_log')
+                        ->where(['client_id'=>$k['client_id'],'good_status'=>3])
+                        ->sum('good_total');
+                    $good_total_t = empty($k['good_total_t'])?0:$k['good_total_t'];
+                    $k['client_money'] = $k['client_total']-$good_total_t-$k['client_price'];
                 });
 
         $address = db('address')
@@ -403,5 +413,24 @@ class Client extends Permissions
                 return $this->fetch();
             }
         }
+    }
+//    查看客户订单
+    public function order(){
+        $input = request()->get();
+        $where['good_status'] = 2;
+        $where['is_return'] = 0;
+        if(isset($input['time']) && !empty($input['time'])){
+            $start_time = strtotime(substr($input['time'],0,strripos($input['time'],' - ')));
+            $end_time = strtotime(substr($input['time'],strripos($input['time'],' - ')+3));
+            $where['create_time']=['between',[$start_time,$end_time]];
+        }
+        if(isset($input['client_id']) && !empty($input['client_id'])){
+            $where['client_id'] = $input['client_id'];
+            $this->assign('client_id',$input['client_id']);
+        }
+        $model = new WarehouseGoodLogModel();
+        $data = $model->where($where)->paginate(20,false,['query' => ['client_id'=>$input['client_id']]]);
+
+        return view('/client/order',['data'=>$data]);
     }
 }

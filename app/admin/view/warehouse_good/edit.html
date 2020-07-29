@@ -39,6 +39,30 @@
           <input name="good_warn" lay-verify="required" min="0" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" value="{$data.good_warn|default=''}" type="number">
         </div>
       </div>
+<!--      <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">商品规格型号</label>-->
+<!--        <div class="layui-input-inline">-->
+<!--          <input name="good_sku" lay-verify="required"  placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$data.good_sku|default=''}">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">商品单价</label>-->
+<!--        <div class="layui-input-inline">-->
+<!--          <input name="good_price" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$data.good_price|default=''}">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">商品库存</label>-->
+<!--        <div class="layui-input-inline">-->
+<!--          <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$data.good_amount|default=''}">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">商品总价</label>-->
+<!--        <div class="layui-input-inline">-->
+<!--          <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$data.good_total|default=''}">-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="layui-form-item">
         <label class="layui-form-label">积压提醒</label>
         <div class="layui-input-inline">
@@ -106,4 +130,18 @@
       });
     });
   });
+</script>
+<script>
+  $('input[name=good_price],input[name=good_amount]').bind('input propertychange', function() {
+    total_price();
+  });
+  $('input[name=good_price],input[name=good_amount]').click(function() {
+    total_price();
+  });
+  function total_price() {
+    var price = $('input[name=good_price]').val()
+    var amount = $('input[name=good_amount]').val()
+    var total_price = Number(price)*Number(amount)
+    $('input[name=good_total]').val(total_price)
+  }
 </script>

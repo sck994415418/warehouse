@@ -23,7 +23,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input name="good_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
+                <input name="good_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$goods_name|default='0'}">
             </div>
         </div>
 
@@ -33,21 +33,30 @@
                 <textarea placeholder="请输入" name="good_desc" class="layui-textarea"></textarea>
             </div>
         </div>
-
+        <div class="layui-form-item">
+            <label class="layui-form-label">退货价格</label>
+            <div class="layui-input-inline">
+                <input name="good_price" lay-verify="required" min="{$good_price|default='0'}" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$good_price|default='0'}">
+            </div>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">退货数量</label>
             <div class="layui-input-inline">
                 <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
+        <input type="hidden" name="log_id" value="{$log_id}">
         <div class="layui-form-item">
             <label class="layui-form-label">选择客户</label>
             <div class="layui-input-inline">
-                <select name="clent_id" lay-verify="required" lay-search="">
-                    <option value="">直接选择或搜索选择</option>
+                <select name="client_id" lay-verify="required" lay-search="">
+
+                    {if !empty($clients)}
+                    <option value="{$clients.client_id}" >{$clients.client_name}({$clients.client_company})</option>
+                    {else/}<option value="">直接选择或搜索选择</option>{/if}
                     {if !empty($client)}
                     {foreach name="client" item="v"}
-                    <option value="{$v.client_id}" >{$v.client_name}</option>
+                    <option value="{$v.client_id}" >{$v.client_name}({$v.client_company})</option>
                     {/foreach}
                     {/if}
                 </select>
@@ -103,7 +112,8 @@
                     success:function(res) {
                         if(res.code == 1) {
                             layer.alert(res.msg, function(index){
-                                location.href = res.url;
+                                var index = parent.layer.getFrameIndex(window.name);
+                                parent.layer.close(index);//关闭当前页
                             })
                         } else {
                             layer.msg(res.msg);

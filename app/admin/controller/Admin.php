@@ -5,6 +5,7 @@ namespace app\admin\controller;
 
 use app\admin\model\AdminCate;
 use app\admin\model\AdminLog;
+use app\admin\model\SckWarehouseGoodLog;
 use app\index\model\UserModel;
 use \think\Db;
 use \think\Cookie;
@@ -40,7 +41,18 @@ class Admin extends Permissions
         }
 
         $admin = empty($where) ? $model->order('create_time desc')->paginate(20) : $model->where($where)->order('create_time desc')->paginate(20,false,['query'=>$this->request->param()]);
-
+        $today_start=mktime(0,0,0,date('m'),date('d'),date('Y'));
+        $today_end=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+        $thismonth_start=mktime(0,0,0,date('m'),1,date('Y'));
+        $thismonth_end=mktime(23,59,59,date('m'),date('t'),date('Y'));
+        foreach($admin as $k=>$v){
+            $admin[$k]['day_money'] = (new SckWarehouseGoodLog())
+                ->where(['admin_id'=>$v['id'],'good_status'=>2,'create_time'=>[['>=',$today_start],['<=',$today_end]]])
+                ->sum('good_total');
+            $admin[$k]['year_money'] = (new SckWarehouseGoodLog())
+                ->where(['admin_id'=>$v['id'],'good_status'=>2,'create_time'=>[['>=',$thismonth_start],['<=',$thismonth_end]]])
+                ->sum('good_total');
+        }
         $this->assign('admin',$admin);
         $info['cate'] = Db::name('admin_cate')->select();
         $this->assign('info',$info);

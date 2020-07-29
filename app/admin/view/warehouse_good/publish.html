@@ -16,6 +16,7 @@
         <ul class="layui-tab-title">
           <li><a href="{:url('admin/WarehouseGood/index')}" class="a_menu">商品列表</a></li>
           <li class="layui-this">添加商品</li>
+          <li><a href="{:url('admin/WarehouseGood/import')}" class="a_menu">表格导入商品</a></li>
         </ul>
       </div>
     <form class="layui-form" id="admin">
@@ -36,7 +37,7 @@
       <div class="layui-form-item address_box">
         <label class="layui-form-label">商品分类</label>
         <div class="layui-input-inline province_div">
-          <select name="category_id" lay-verify="required" class="one" lay-filter="one">
+          <select lay-search="" name="category_id" lay-verify="required" class="one" lay-filter="one">
             <option value="">请选择</option>
             {if !empty($category)}
             {foreach name="category" item="v"}
@@ -66,15 +67,15 @@
         <div class="layui-form-mid layui-word-aux">单位/天,0为不提醒</div>
       </div>
       <div class="layui-form-item">
-        <label class="layui-form-label">商品单价</label>
-        <div class="layui-input-inline">
-          <input name="good_price" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
-        </div>
-      </div>
-      <div class="layui-form-item">
         <label class="layui-form-label">商品规格型号</label>
         <div class="layui-input-inline">
           <input name="good_sku" lay-verify="required"  placeholder="请输入" autocomplete="off" class="layui-input" type="text">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">品牌</label>
+        <div class="layui-input-inline">
+          <input name="good_brand" lay-verify="required"  placeholder="请输入该商品品牌" autocomplete="off" class="layui-input" type="text">
         </div>
       </div>
       <div class="layui-form-item">
@@ -90,9 +91,24 @@
         </div>
       </div>
       <div class="layui-form-item">
-        <label class="layui-form-label">商品库存</label>
+        <label class="layui-form-label">商品单价</label>
+        <div class="layui-input-inline">
+          <input name="good_price" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">商品数量</label>
         <div class="layui-input-inline">
           <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">是否含票</label>
+        <div class="layui-input-block">
+          <input name="tax_status" lay-verify="otherReq"  placeholder="专票" autocomplete="off" class="layui-input" type="radio" title="专票13%" value="1">
+          <input name="tax_status" lay-verify="otherReq"  placeholder="专票" autocomplete="off" class="layui-input" type="radio" title="专票1%" value="2">
+          <input name="tax_status" lay-verify="otherReq"  placeholder="普票" autocomplete="off" class="layui-input" type="radio"  title="普票" value="3">
+          <input name="tax_status" lay-verify="otherReq" placeholder="无票" autocomplete="off" class="layui-input" type="radio" title="无票" value="4">
         </div>
       </div>
       <div class="layui-form-item">
@@ -100,6 +116,20 @@
         <div class="layui-input-inline">
           <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
         </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">项目</label>
+        <div class="layui-input-inline">
+          <select name="project_id" lay-search="">
+            <option value="">直接选择或搜索选择</option>
+            {if !empty($project)}
+            {foreach name="project" item="v"}
+            <option value="{$v.id}">{$v.project}</option>
+            {/foreach}
+            {/if}
+          </select>
+        </div>
+        <div class="layui-form-mid layui-word-aux">如该商品需要绑定项目请选择需要绑定得项目，如不需要绑定请忽略。</div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">选择供应商</label>
@@ -120,7 +150,7 @@
           <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
       </div>
-      
+
     </form>
 
 
@@ -172,7 +202,28 @@
         return false;
       });
     });
+    form.verify({
+      otherReq: function(value,item){
+        var $ = layui.$;
+        var verifyName=$(item).attr('name')
+                , verifyType=$(item).attr('type')
+                ,formElem=$(item).parents('.layui-form')//获取当前所在的form元素，如果存在的话
+                ,verifyElem=formElem.find('input[name='+verifyName+']')//获取需要校验的元素
+                ,isTrue= verifyElem.is(':checked')//是否命中校验
+                ,focusElem = verifyElem.next().find('i.layui-icon');//焦点元素
+        if(!isTrue || !value){
+          //定位焦点
+          focusElem.css(verifyType=='radio'?{"color":"#ff5722"}:{"border-color":"#FF5722"});
+          //对非输入框设置焦点
+          focusElem.first().attr("tabIndex","1").css("outline","0").blur(function() {
+            focusElem.css(verifyType=='radio'?{"color":""}:{"border-color":""});
+          }).focus();
+          return '必填项不能为空';
+        }
+      }
+    });
   });
+
 </script>
 <script>
   $('input[name=good_price],input[name=good_amount]').bind('input propertychange', function() {
@@ -185,6 +236,7 @@
     var price = $('input[name=good_price]').val()
     var amount = $('input[name=good_amount]').val()
     var total_price = Number(price)*Number(amount)
+    total_price = total_price.toFixed(2)
     $('input[name=good_total]').val(total_price)
   }
 </script>
@@ -227,7 +279,7 @@
       layer.load()
       $.getJSON("{:url('admin/WarehouseGoodCategory/two')}?category_id="+data.value, function(data){
         if(data.code == '1'){
-          var str= '          <select lay-verify="required" name="category_id" class="two" lay-filter="city">\n' +
+          var str= '          <select lay-verify="required" name="category_id" class="two" lay-search="" lay-filter="city">\n' +
                   '            <option value="">请选择市</option>\n' +
                   '          </select>\n';
           $('.two_div').html(str)
@@ -249,7 +301,7 @@
       layer.load()
       $.getJSON("{:url('admin/WarehouseGoodCategory/three')}?category_id="+data.value, function(data){
         if(data.code == '1'){
-          var str='          <select lay-verify="required" name="category_id" class="three" lay-filter="qu">\n' +
+          var str='          <select lay-verify="required" name="category_id" class="three" lay-search="" lay-filter="qu">\n' +
                   '            <option value="">请选择区/县</option>\n' +
                   '          </select>\n';
           $('.three_div').html(str)

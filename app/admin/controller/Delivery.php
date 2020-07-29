@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\SckWarehouseGood as WarehouseGoodModel;
 use think\Session;
 use app\admin\controller\Exel;
 use PHPExcel;
@@ -53,17 +54,16 @@ class Delivery extends Permissions
                             'good_sku'=>$val['good_sku'],
                             'good_coding'=>$val['good_coding'],
                             'good_position'=>$val['good_position'],
-
                         ];
                         $data[$k]['pay_total'] += empty($val['pay_total'])?$val['good_total']:$val['pay_total'];
                         $data[$k]['pay_price'] += empty($val['pay_price'])?0:$val['pay_price'];
                         unset($arr[$key]);
                         unset($data[$key]);
-
                     }
                 }
                 $data[$k]['admin_id'] = db('admin')->where('id',$v['admin_id'])->value('nickname');
                 $data[$k]['admin_id_name'] = db('admin')->where('id',Session::get('admin'))->value('nickname');
+                $data[$k]['company'] = db('sck_warehouse_good_log')->where('log_id',$v['log_id'])->value('company');
             }
         }
         if ($data) {
@@ -78,11 +78,13 @@ class Delivery extends Permissions
     public function good_out(){
         if(request()->isPost()){
             $data = request()->post();
-
             $data = db('sck_warehouse_good_log')
+                ->alias('swgl')
+                ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
                 ->where(['log_id' => ['in', $data['data']]])
-                ->update(['is_delivery'=>1]);
+                ->update(['swgl.is_delivery'=>1,'swg.good_number' => WarehouseGoodModel::raw('swg.good_number-swgl.good_amount')]);
             if($data){
+                addlog($data['data']);
                 $this->success("出库成功");
             }else{
                 $this->error("出库失败");

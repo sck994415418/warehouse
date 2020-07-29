@@ -1,84 +1,140 @@
-    <script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
-    <script src="__PUBLIC__/jquery/jquery.min.js"></script>
-    <script>
-            var message;
-            layui.config({
-                base: '__JS__/',
-                version: '1.0.1'
-            }).use(['app', 'message'], function() {
-                var app = layui.app,
-                    $ = layui.jquery,
-                    layer = layui.layer;
-                //将message设置为全局以便子页面调用
-                message = layui.message;
-                //主入口
-                app.set({
-                    type: 'iframe'
-                }).init();
-            });
-        </script> 
-    <script type="text/javascript">
-    $(function(){
-      var x = 10;
-      var y = 20;
-      $(".tooltip").mouseover(function(e){ 
-        var tooltip = "<div id='tooltip'><img src='"+ this.href +"' alt='产品预览图' height='200'/>"+"<\/div>"; //创建 div 元素
-        $("body").append(tooltip);  //把它追加到文档中             
-        $("#tooltip")
-          .css({
-            "top": (e.pageY+y) + "px",
-            "left":  (e.pageX+x)  + "px"
-          }).show("fast");    //设置x坐标和y坐标，并且显示
-        }).mouseout(function(){  
-        $("#tooltip").remove();  //移除 
-        }).mousemove(function(e){
-        $("#tooltip")
-          .css({
-            "top": (e.pageY+y) + "px",
-            "left":  (e.pageX+x)  + "px"
-          });
-      });
-    })
-    </script>
-    <script type="text/javascript">
-    $('.a_menu').click(function(){
-      var url = $(this).attr('href');
-      var id = $(this).attr('id');
-      var a = true;
-      if(id) {
-        $.ajax({
-          url:url
-          ,async:false
-          ,data:{id:id}
-          ,success:function(res){
-            if(res.code == 0) {
-              layer.msg(res.msg);
-              a = false;
-            }
-          }
-        })
-      } else {
-        $.ajax({
-          url:url
-          ,async:false
-          ,success:function(res){
-            if(res.code == 0) {
-              layer.msg(res.msg);
-              a = false;
-            }
-          }
-        })
-      }
-      return a;
-    })
-    </script>
-    <script>
-    layui.use('laydate', function(){
-      var laydate = layui.laydate;
-      
-      //常规用法
-      laydate.render({
-        elem: '#create_time'
-      });
+<script src="__PUBLIC__/layui/layui.js" charset="utf-8"></script>
+<script src="__PUBLIC__/jquery/jquery.min.js"></script>
+<script>
+    var message;
+    layui.config({
+        base: '__JS__/',
+        version: '1.0.1'
+    }).use(['app', 'message'], function () {
+        var app = layui.app,
+            $ = layui.jquery,
+            layer = layui.layer;
+        //将message设置为全局以便子页面调用
+        message = layui.message;
+        //主入口
+        app.set({
+            type: 'iframe'
+        }).init();
     });
-    </script>
+</script>
+<script type="text/javascript">
+    $(function () {
+        var x = 10;
+        var y = 20;
+        $(".tooltip").mouseover(function (e) {
+            var tooltip = "<div id='tooltip'><img src='" + this.href + "' alt='产品预览图' height='200'/>" + "<\/div>"; //创建 div 元素
+            $("body").append(tooltip);  //把它追加到文档中
+            $("#tooltip")
+                .css({
+                    "top": (e.pageY + y) + "px",
+                    "left": (e.pageX + x) + "px"
+                }).show("fast");    //设置x坐标和y坐标，并且显示
+        }).mouseout(function () {
+            $("#tooltip").remove();  //移除
+        }).mousemove(function (e) {
+            $("#tooltip")
+                .css({
+                    "top": (e.pageY + y) + "px",
+                    "left": (e.pageX + x) + "px"
+                });
+        });
+    })
+</script>
+<script type="text/javascript">
+    $('.a_menu').click(function () {
+        var url = $(this).attr('href');
+        var id = $(this).attr('id');
+        var a = true;
+        if (id) {
+            $.ajax({
+                url: url
+                , async: false
+                , data: {id: id}
+                , success: function (res) {
+                    if (res.code == 0) {
+                        layer.msg(res.msg);
+                        a = false;
+                    }
+                }
+            })
+        } else {
+            $.ajax({
+                url: url
+                , async: false
+                , success: function (res) {
+                    if (res.code == 0) {
+                        layer.msg(res.msg);
+                        a = false;
+                    }
+                }
+            })
+        }
+        return a;
+    })
+</script>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#create_time'
+        });
+    });
+</script>
+
+<audio id='play' src='__STATIC__/admin/images/tishi.wav' controls='controls' style="display: none;"></audio>
+
+<script src='http://cdn.bootcss.com/socket.io/1.3.7/socket.io.js'></script>
+<script src="https://g.csdnimg.cn/??lib/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    // 连接服务端，workerman.net:2120换成实际部署web-msg-sender服务的域名或者ip
+    var socket = io('http://warehouse.com:2120/'); //http://www.tp5_test.com换成自己的域名或者ip
+    // uid可以是自己网站的用户id，以便针对uid推送以及统计在线人数，这个ID可以随便写
+    uid = 1557062581000;
+    // socket连接后以uid登录
+    socket.on('connect', function () {
+        socket.emit('login', uid);
+    });
+    <!--后端推送来消息时-->
+    socket.on('new_msg', function (msg) {
+        //播放提示应 ：
+        if ('{$amind_id}' == 1) {
+            var audio = document.getElementById("play"); //浏览器支持 audio
+            layer.open({
+                content: msg,
+                yes: function(index, layero){
+                    //do something
+                    $.ajax({
+                        url: "{:url('/admin/Remind/index')}"
+                        , async: false
+                        , success: function (res) {
+                            if (res == true) {
+                                var audio = document.getElementById("play"); //浏览器支持 audio
+                                audio.pause();
+                                layer.close(index); //如果设定了yes回调，需进行手工关闭
+                            }
+                        }
+                    })
+                    // audio.load();
+
+                }
+            });
+            audio.play(); //播放提示音
+        }
+    });
+    // 后端推送来在线数据时
+    // socket.on('update_online_count', function(online_stat){
+    //     console.log(online_stat);
+    //     var audio = document.getElementById( "play" ); //浏览器支持 audio
+    //     $(audio).bind("ended", function() {
+    //         audio.play();
+    //     });
+    //     audio.play(); //播放提示音
+    // });
+    function on() {
+        var audio = document.getElementById("play"); //浏览器支持 audio
+        audio.pause();
+        // audio.load();
+    }
+</script>

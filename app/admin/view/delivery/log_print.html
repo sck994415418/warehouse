@@ -4,40 +4,45 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style id="style1">
-        *{
+        * {
             text-align: center;
+            list-style:none;
+
         }
+
+        /*table{table-layout:fixed;}*/
+        table tr td:first-child, table tr td:first-child {
+            width: 30px;
+        }
+
         td {
             text-align: center;
             border: 1px solid black;
+            word-wrap:break-word;
+
         }
 
         table {
             width: 750px;
             border-collapse: collapse;
             border: 1px solid black;
-            margin:0 auto;
+            margin: 0 auto;
             margin-bottom: 50px;
             font-size: 13px;
-        }
 
-        .firstRow {
-            width: 996px;
         }
-
-        .phone td:nth-child(1) {
-            width: 77px;
+        ul{
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
         }
-
-        .phone td:nth-child(2) {
-            width: 246px;
+        li{
+            width: 32%;
+            border-right: 1px solid black;
         }
-        .phone td:nth-child(3) {
-            width: 148px;
-        }
-        .phone td:nth-child(4) {
-            width: 157px;
-        }
+        li:last-child{border-right:none;}
     </style>
 </head>
 
@@ -50,76 +55,88 @@
 <div id="table" style="page-break-after:always">
 
     {foreach name="data" key="k" item="v"}
-    <h2 class="title">河北诺融网络科技有限公司商品销售单</h2>
+    <h2>{$v.company|default='河北诺融网络科技有限公司'}商品销售单</h2>
 
     <table>
         <tbody>
 
         <tr>
             <td>客户</td>
-            <td colspan="2">{$v.client_company}</td>
+            <td colspan="4">{$v.client_company}</td>
             <td>联系人</td>
-            <td colspan="3">{$v.client_name}</td>
+            <td colspan="2">{$v.client_name}</td>
 
         </tr>
         <tr>
             <td>地址</td>
-            <td colspan="2">{$v.client_position_details}</td>
+            <td colspan="4">{$v.client_position_details}</td>
             <td>联系电话</td>
-            <td colspan="3">{$v.client_phone}</td>
+            <td colspan="2">{$v.client_phone}</td>
         </tr>
-        <tr>
-            <td width="77">序号</td>
-            <td width="246">商品名称/仓库位置</td>
-            <td width="148">规格型号</td>
-            <td width="157">商品编码</td>
-            <td width="124">单价</td>
-            <td width="124">数量</td>
-            <td width="119">合计</td>
+        <tr style="height:35px ;">
+            <td>序号</td>
+            <td colspan="2" style="width: 120px;">商品名称</td>
+            <td colspan="2">仓库位置</td>
+            <td>规格型号</td>
+            <td>商品编码</td>
+            <td>
+                <ul>
+                    <li>单价</li>
+                    <li>数量</li>
+                    <li>合计</li>
+                </ul>
+
+            </td>
         </tr>
         {foreach name="$v.goods" key="key" item="val"}
         <tr>
-            <td width="77">{$key+1}</td>
-            <td width="246">{$val.good_name}/{$val.good_position|default=''}</td>
-            <td width="148">{$val.good_sku}</td>
-            <td width="157">{$val.good_coding}</td>
-            <td width="124">{$val.good_price}</td>
-            <td width="124">{$val.good_amount}</td>
-            <td valign="bottom">{$val.good_total}</td>
+            <td>{$key+1}</td>
+            <td colspan="2" style="width: 120px;">{$val.good_name}</td>
+            <td colspan="2">{$val.good_position}</td>
+            <td>{$val.good_sku}</td>
+            <td>{$val.good_coding}</td>
+            <td>
+                <ul>
+                    <li>{$val.good_price}</li>
+                    <li>{$val.good_amount}</li>
+                    <li>{$val.good_total}</li>
+                </ul>
+            </td>
         </tr>
         {/foreach}
         <tr>
             <td width="323" colspan="2">合计</td>
-            <td width="430" colspan="3">—————————————————— </td>
+            <td width="430" colspan="4">——————————————————</td>
             <td width="124">{:array_sum(array_column($v.goods,'good_amount'))}</td>
             <td width="119" class="good_total">{:array_sum(array_column($v.goods,'good_total'))}</td>
         </tr>
         <tr>
             <td width="323" colspan="2">合计金额大写</td>
-            <td width="673" colspan="5" class="money" money="{:array_sum(array_column($v.goods,'good_total'))}"></td>
+            <td width="673" colspan="6" class="money" money="{:array_sum(array_column($v.goods,'good_total'))}"></td>
         </tr>
         <tr>
             <td width="323" colspan="2">已付金额</td>
-            <td width="305" colspan="2">{$v.pay_price}</td>
+            <td width="305" colspan="3">{$v.pay_price}</td>
             <td width="249" colspan="2">欠款金额</td>
             <td width="119">{$v.pay_total - $v.pay_price}</td>
         </tr>
         <tr>
-            <td width="77">备注</td>
+            <td width="77" colspan="2">备注</td>
             <td width="919" colspan="6">谢谢惠顾，凭本销售单享受商品质保服务</td>
         </tr>
 
         <tr>
-            <td width="77">销售:</td>
+            <td>销售:</td>
             <td>{$v.admin_id}</td>
             <td>出库人:</td>
             <td>{$v.admin_id_name}</td>
-            <td width="124">开单日期:</td>
-            <td width="300" colspan="2">{:date('Y-m-d H:i:s',time())}</td>
+            <td>地址</td>
+            <td colspan="3" class="addr">河北省石家庄市桥西区天元名品一期5楼501室</td>
+
         </tr>
         <tr>
-            <td style="width: 50px;">地址</td>
-            <td colspan="2" class="addr">河北省石家庄市桥西区天元名品一期5楼501室</td>
+            <td>开单日期:</td>
+            <td width="300" colspan="3">{:date('Y-m-d H:i:s',time())}</td>
             <td style="width: 102px;">公司电话：</td>
             <td class="phone_1">15373968857</td>
             <td>签名</td>
@@ -142,37 +159,39 @@
         CreateOneFormPage();
         LODOP.PREVIEW();
     });
-    function CreateOneFormPage(){
-        LODOP=getLodop();
+
+    function CreateOneFormPage() {
+        LODOP = getLodop();
         LODOP.PRINT_INIT("打印控件功能表单一");
-        var strBodyStyle="<style>"+document.getElementById("style1").innerHTML+"</style>";
-        var strFormHtml=strBodyStyle+"<body>"+document.getElementById("table").innerHTML+"</body>";
-        LODOP.ADD_PRINT_HTM(0,20,'100%','100%',strFormHtml);
+        var strBodyStyle = "<style>" + document.getElementById("style1").innerHTML + "</style>";
+        var strFormHtml = strBodyStyle + "<body>" + document.getElementById("table").innerHTML + "</body>";
+        LODOP.ADD_PRINT_HTM(0, 20, '100%', '100%', strFormHtml);
     }
-    $(function(){
-        var arr= $(".money");
-        arr.each(function() {
+
+    $(function () {
+        var arr = $(".money");
+        arr.each(function () {
             var str = moneyToCapital($(this).attr('money'))
             $(this).html(str)
         })
     })
+
     //数字转大写
-    function moneyToCapital(n)
-    {
-        if(n==0){
+    function moneyToCapital(n) {
+        if (n == 0) {
             return "零";
         }
         if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n))
             return "";
-        var unit = "千百拾亿千百拾万千百拾元角分", str = "";
+        var unit = "仟佰拾亿仟佰拾万仟佰拾元角分", str = "";
         n += "00";
         var p = n.indexOf('.');
         if (p >= 0)
-            n = n.substring(0, p) + n.substr(p+1, 2);
+            n = n.substring(0, p) + n.substr(p + 1, 2);
         unit = unit.substr(unit.length - n.length);
-        for (var i=0; i < n.length; i++)
+        for (var i = 0; i < n.length; i++)
             str += '零壹贰叁肆伍陆柒捌玖'.charAt(n.charAt(i)) + unit.charAt(i);
-        return str.replace(/零(千|百|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
+        return str.replace(/零(仟|佰|拾|角)/g, "零").replace(/(零)+/g, "零").replace(/零(万|亿|元)/g, "$1").replace(/(亿)万|壹(拾)/g, "$1$2").replace(/^元零?|零分/g, "").replace(/元$/g, "元整");
     }
 
     $(".title").dblclick(function () {
@@ -186,11 +205,12 @@
         input.blur(function () {
             prices()
         })
+
         function prices() {
             var newprice = input.val();
-            if(newprice == "" || newprice == null){
+            if (newprice == "" || newprice == null) {
                 input.focus()
-            }else{
+            } else {
                 span.html(newprice);
             }
 
@@ -206,11 +226,12 @@
         input.blur(function () {
             prices()
         })
+
         function prices() {
             var newprice = input.val();
-            if(newprice == "" || newprice == null){
+            if (newprice == "" || newprice == null) {
                 input.focus()
-            }else{
+            } else {
                 span.html(newprice);
             }
 
@@ -227,11 +248,12 @@
         input.blur(function () {
             prices()
         })
+
         function prices() {
             var newprice = input.val();
-            if(newprice == "" || newprice == null){
+            if (newprice == "" || newprice == null) {
                 input.focus()
-            }else{
+            } else {
                 span.html(newprice);
             }
 

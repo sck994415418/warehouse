@@ -60,11 +60,13 @@
         <col width="50">
         <col width="80">
         <col width="100">
+        <col width="">
+        <col width="150">
+        <col width="100">
+        <col width="100">
         <col width="150">
         <col width="150">
-        <col width="200">
-        <col width="200">
-        <col width="200">
+        <col width="">
         <col width="130">
       </colgroup>
       <thead>
@@ -74,6 +76,8 @@
           <th>角色</th>
           <th>用户名</th>
           <th>昵称</th>
+          <th>今日销售额</th>
+          <th>本月业绩</th>
           <th>创建时间</th>
           <th>最后登录时间</th>
           <th>最后登录IP</th>
@@ -88,6 +92,8 @@
           <td>{$vo.admincate.name}</td>
           <td>{$vo.name}</td>
           <td>{$vo.nickname}</td>
+          <td>{$vo.day_money}</td>
+          <td>{$vo.year_money}</td>
           <td>{$vo.create_time}</td>
           <td>{$vo.login_time|date="Y-m-d H:i:s",###}</td>
           <td>{$vo.login_ip}</td>

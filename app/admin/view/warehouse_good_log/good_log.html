@@ -92,8 +92,7 @@
                 {if !empty($good_status) and $good_status == 2 /}
                 <th>
                     <div class="checkallbox">
-                        <input lay-skin="primary" type="checkbox" id="checkall" name="type" lay-filter="allChoose"
-                               value="checkall"/>
+                        <input lay-skin="primary" type="checkbox" id="checkall" name="type" lay-filter="allChoose" value="checkall"/>
                     </div>
                 </th>
                 {/if}
@@ -149,7 +148,7 @@
                            data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
                             &nbsp;<i class="fa fa-user">&nbsp;</i>
                         </a>
-                        <a href="javascript:" title="付款" class="layui-btn layui-btn-xs layui-btn-primary pay_money"
+                        <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary pay_money"
                            data-url="{:url('admin/WarehouseGoodLogPay/pay_money')}?pay_status={$vo.good_status&log_id={$vo.log_id}}">
                             &nbsp;<i class="fa fa-cny">&nbsp;</i>
                         </a>
@@ -208,16 +207,18 @@
                 <td>{$vo.good_desc}</td>
                 <td>
                     {eq name="$vo.good_status" value="1"/}入库{/eq}
-                    {eq name="$vo.good_status" value="2"/}出库{/eq}
+                    {eq name="$vo.good_status" value="2"/}
+                    {eq name="$vo.is_delivery" value="1"}<span style="color: green;">已确认出库</span>{/eq}
+                    {eq name="$vo.is_delivery" value="0"}<span style="color: red;">未确认出库</span>{/eq}
+                    {/eq}
                     {eq name="$vo.good_status" value="3"/}退货{/eq}
                 </td>
                 <td>{$vo.good_amount}</td>
                 <td>{$vo.good_price}</td>
                 <td>{$vo.good_total}</td>
                 <td>
-                    {if !empty($vo.goodlogpay.pay_price)}
-                    <?php $num = number_format($vo->goodlogpay->pay_price/$vo->goodlogpay->pay_total*100);echo
-                    $num.'%';?>
+                    {if !empty($vo.goodlogpay.pay_price) && $vo.goodlogpay.pay_price>0}
+                    <?php $num = number_format($vo->goodlogpay->pay_price/$vo->goodlogpay->pay_total*100);echo $num.'%';?>
                     {else}
                     0%
                     {/if}
@@ -232,10 +233,12 @@
                            data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
                             &nbsp;<i class="fa fa-user">&nbsp;</i>
                         </a>
-                        <a href="javascript:" title="付款" class="layui-btn layui-btn-xs layui-btn-primary pay_money"
+                        <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary pay_money"
                            data-url="{:url('admin/WarehouseGoodLogPay/pay_money')}?pay_status={$vo.good_status&log_id={$vo.log_id}}">
                             &nbsp;<i class="fa fa-cny">&nbsp;</i>
                         </a>
+                        <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}&good_name={$vo.good_name}&client_id={$vo.client_id}&good_price={$vo.good_price}&log_id={$vo.log_id}">退货</a>
+
                     </div>
                 </td>
             </tr>
@@ -349,7 +352,6 @@
 
         $("input:checkbox[name='log_id[]']:checked").each(function (i) {
             arr[i] = $(this).val();
-
         });
         if(arr == '' || arr == undefined || arr == null){
             layer.msg('请选择！',{icon:-1});
@@ -414,6 +416,19 @@
                 }
             })
         })
+    $(document).on('click','.GoodReturn',function () {
+        var url = $(this).data('url')
+        layer.open({
+            type: 2
+            ,title: '退货'
+            ,content:url
+            ,area: ['90%', '90%']
+            ,btn: ['关闭']
+            ,yes: function(index, layero){
+                layer.close(index)
+            }
+        })
+    })
     $(document).on('click', '.supplier_details', function () {
             var url = $(this).data('url')
             layer.open({

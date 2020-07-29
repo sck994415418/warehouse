@@ -23,7 +23,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input name="good_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
+                <input name="good_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$good_name.good_name}">
             </div>
         </div>
 
@@ -43,6 +43,15 @@
             <label class="layui-form-label">入库数量</label>
             <div class="layui-input-inline">
                 <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否含票</label>
+            <div class="layui-input-block">
+                <input name="tax_status"   placeholder="专票13%" autocomplete="off" class="layui-input" type="radio" title="专票13%" value="1">
+                <input name="tax_status"   placeholder="专票" autocomplete="off" class="layui-input" type="radio" title="专票1%" value="2">
+                <input name="tax_status"   placeholder="普票" autocomplete="off" class="layui-input" type="radio"  title="普票" value="3">
+                <input name="tax_status" placeholder="无票" autocomplete="off" class="layui-input" type="radio" title="无票" value="4">
             </div>
         </div>
         <div class="layui-form-item">
@@ -113,8 +122,9 @@
                     async: false,
                     success:function(res) {
                         if(res.code == 1) {
-                            layer.alert(res.msg, function(index){
-                                location.href = res.url;
+                            layer.alert(res.msg, function(){
+                                var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                                parent.layer.close(index);
                             })
                         } else {
                             layer.msg(res.msg);
@@ -137,6 +147,7 @@
         var price = $('input[name=good_price]').val()
         var amount = $('input[name=good_amount]').val()
         var total_price = Number(price)*Number(amount)
+        total_price = total_price.toFixed(2)
         $('input[name=good_total]').val(total_price)
     }
 </script>
