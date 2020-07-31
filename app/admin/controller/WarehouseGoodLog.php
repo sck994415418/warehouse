@@ -27,6 +27,11 @@ class WarehouseGoodLog extends Permissions
 //            if($good['good_number']>$good['good_warn']){
 //                return  $this->error('该商品库存未到预警值，不可入库！');
 //            }
+            $good_old = db('sck_warehouse_good_log')
+                ->where(['good_id' => $good_id,'good_status'=>1])->order('create_time','desc')->find();
+//            if($good['good_number']>$good['good_warn']){
+//                return  $this->error('该商品库存未到预警值，不可入库！');
+//            }
             $GoodLogModel = new WarehouseGoodLogModel();
             if ($this->request->isPost()) {
                 $post = $this->request->post();
@@ -75,6 +80,7 @@ class WarehouseGoodLog extends Permissions
                 $supplier = db('sck_supplier')->select();
                 $this->assign('supplier', $supplier);
                 $this->assign('good_id', $good_id);
+                $this->assign('good_old', @$good_old);
                 $this->assign('good_name', $good);
                 return $this->fetch();
             }
@@ -86,6 +92,7 @@ class WarehouseGoodLog extends Permissions
     public function GoodOut()
     {
         $good_id = $this->request->has('good_id') ? $this->request->param('good_id', 0, 'intval') : 0;
+        $log_id = $this->request->has('log_id') ? $this->request->param('log_id', 0, 'intval') : 0;
         if ($good_id > 0) {
             $good = db('sck_warehouse_good')
                 ->where(['good_id' => $good_id])->find();
@@ -100,6 +107,7 @@ class WarehouseGoodLog extends Permissions
                 $validate = new Validate([
                     ['good_price', 'require', '最低出库价不能为空'],
                     ['good_amount', 'require', '出库数量不能为空'],
+                    ['client_id', 'require', '请选择客户'],
                 ]);
 
                 $admin_id = Session::get('admin');
@@ -196,6 +204,14 @@ class WarehouseGoodLog extends Permissions
                 }
                 $tax = db('tax_invoice')->select();
                 $this->assign('tax', $tax);
+
+                if(!empty($log_id) and $log_id>0){
+                    $good_log = db('sck_warehouse_good_log')
+                        ->where(['good_id' => $good_id, 'good_status' => 2,'log_id'=>$log_id])
+                        ->find();
+                    $this->assign('good_log', $good_log);
+                }
+
                 $ClientModel = new SckClient();
                 //=================================================================================
 //                $id = Session::get('admin');
@@ -353,6 +369,15 @@ class WarehouseGoodLog extends Permissions
         $good_id = $this->request->has('good_id') ? $this->request->param('good_id', 0, 'intval') : 0;
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['good_name'] = ['like', '%' . $post['keywords'] . '%'];
+            $this->assign('search_good_name', $post['keywords']);
+        }
+        if (isset($post['supplier_id']) and !empty($post['supplier_id'])) {
+            $where['supplier_id'] = $post['supplier_id'];
+            $this->assign('search_supplier_id', $post['supplier_id']);
+        }
+        if (isset($post['client_id']) and !empty($post['client_id'])) {
+            $where['client_id'] = $post['client_id'];
+            $this->assign('search_client_id', $post['client_id']);
         }
         if (isset($good_status) and !empty($good_status)) {
             $where['good_status'] = $good_status;
@@ -361,10 +386,12 @@ class WarehouseGoodLog extends Permissions
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=', $min_time], ['<=', $max_time]];
+
         }
         if (isset($post['time']) and !empty($post['time'])) {
             $start_time = strtotime(substr($post['time'], 0, strripos($post['time'], ' - ')));
             $end_time = strtotime(substr($post['time'], strripos($post['time'], ' - ') + 3));
+            $this->assign('search_time', $post['time']);
         }
         if (isset($post['client_id']) && !empty($post['client_id'])) {
             $where['client_id'] = $post['client_id'];
@@ -428,6 +455,14 @@ class WarehouseGoodLog extends Permissions
                 ->order('create_time desc')
                 ->paginate(20, false, ['query' => $this->request->param()]);
 //        dump($data);die;
+        $supplier = db('sck_supplier')->select();
+        $this->assign('supplier', $supplier);
+        $ClientModel = new SckClient();
+        $Client = $ClientModel
+//                    ->where(['client_position_id' => ['in',$street_ids]])
+            ->order('create_time desc')
+            ->select();
+        $this->assign('client', $Client);
         $this->assign('data', $data);
         $this->assign('good_status', $good_status);
         return $this->fetch();

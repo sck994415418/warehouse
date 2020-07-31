@@ -23,41 +23,41 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input name="good_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$good_name.good_name}">
+                <input name="good_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$good_old.good_name|default=''}">
             </div>
         </div>
 
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">商品备注</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入" name="good_desc" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入" name="good_desc" class="layui-textarea">{$good_old.good_desc|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">商品单价</label>
             <div class="layui-input-inline">
-                <input name="good_price" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="good_price" value="{$good_old.good_price|default=''}" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">入库数量</label>
             <div class="layui-input-inline">
-                <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="good_amount" value="{$good_old.good_amount|default=''}" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">是否含票</label>
             <div class="layui-input-block">
-                <input name="tax_status"   placeholder="专票13%" autocomplete="off" class="layui-input" type="radio" title="专票13%" value="1">
-                <input name="tax_status"   placeholder="专票" autocomplete="off" class="layui-input" type="radio" title="专票1%" value="2">
-                <input name="tax_status"   placeholder="普票" autocomplete="off" class="layui-input" type="radio"  title="普票" value="3">
-                <input name="tax_status" placeholder="无票" autocomplete="off" class="layui-input" type="radio" title="无票" value="4">
+                <input name="tax_status" {if @$good_old.tax_status==1}checked{/if}  placeholder="专票13%" autocomplete="off" class="layui-input" type="radio" title="专票13%" value="1">
+                <input name="tax_status" {if @$good_old.tax_status==2}checked{/if}  placeholder="专票" autocomplete="off" class="layui-input" type="radio" title="专票1%" value="2">
+                <input name="tax_status" {if @$good_old.tax_status==3}checked{/if}  placeholder="普票" autocomplete="off" class="layui-input" type="radio"  title="普票" value="3">
+                <input name="tax_status" {if @$good_old.tax_status==4}checked{/if}  placeholder="无票" autocomplete="off" class="layui-input" type="radio" title="无票" value="4">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">商品总价</label>
             <div class="layui-input-inline">
-                <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="good_total" value="{$good_old.good_total|default=''}"  readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
         <div class="layui-form-item">
@@ -67,7 +67,7 @@
                     <option value="">直接选择或搜索选择</option>
                     {if !empty($supplier)}
                     {foreach name="supplier" item="v"}
-                    <option value="{$v.supplier_id}" >{$v.supplier_name}</option>
+                    <option value="{$v.supplier_id}" {if $good_old.supplier_id==$v.supplier_id}selected{/if}>{$v.supplier_name}</option>
                     {/foreach}
                     {/if}
                 </select>

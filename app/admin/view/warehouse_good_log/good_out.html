@@ -17,26 +17,26 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品名称</label>
             <div class="layui-input-inline">
-                <input name="good_name" readonly value="{$good.good_name|default=''}" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
+                <input name="good_name" readonly value="{$good_log.good_name|default=$good.good_name}" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">出库备注</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入" name="good_desc" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入" value="{$good_log.good_desc|default=''}" name="good_desc" class="layui-textarea"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">商品规格</label>
             <div class="layui-input-inline">
-                <input readonly lay-verify="required" autocomplete="off"  class="layui-input"  value="{$good.good_sku|default=''}">
+                <input readonly lay-verify="required"  autocomplete="off"  class="layui-input"  value="{$good.good_sku|default=''}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">开票公司</label>
             <div class="layui-input-block">
                 {foreach name="tax" item="v"}
-                <input name="company" placeholder="{$v.company}" autocomplete="off" class="layui-input" type="radio" title="{$v.company}" lay-filter="companys" value="{$v.company}" lay-verify="otherReq" ticket="{$v.ticket}" ordinary="{$v.ordinary}" dedicated="{$v.dedicated}" special_invoice="{$v.special_invoice}">
+                <input name="company" {if @$good_log.company==$v.company}checked{/if} placeholder="{$v.company}" autocomplete="off" class="layui-input" type="radio" title="{$v.company}" lay-filter="companys" value="{$v.company}" lay-verify="otherReq" ticket="{$v.ticket}" ordinary="{$v.ordinary}" dedicated="{$v.dedicated}" special_invoice="{$v.special_invoice}">
                 {/foreach}
             </div>
 
@@ -44,8 +44,9 @@
         <div class="layui-form-item">
             <label class="layui-form-label">最低出库价</label>
             <div class="layui-input-inline">
-                <input name="good_price" lay-verify="required" min="{$lowest_price}" value="{$lowest_price}" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="good_price" lay-verify="required" min="{$lowest_price}" value="{$good_log.good_price|default=$lowest_price}" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
+            <div class="layui-form-mid layui-word-aux">最低出库价{$lowest_price}</div>
         </div>
         <div class="reason" style="display: none;">
             <label class="layui-form-label">请填写低于成本价理由</label>
@@ -57,7 +58,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">出库数量</label>
             <div class="layui-input-inline">
-                <input name="good_amount" lay-verify="required" min="1" value="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="good_amount" lay-verify="required" min="1" value="{$good_log.good_amount|default='1'}" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
         <div class="layui-form-item">
@@ -75,17 +76,17 @@
         <div class="layui-form-item">
             <label class="layui-form-label">付款金额</label>
             <div class="layui-input-inline">
-                <input name="pay" type="text" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input">
+                <input name="pay" type="text" lay-verify="required" min="0" value="{$good_log.pay|default=''}" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">选择客户</label>
             <div class="layui-input-inline">
-                <select name="client_id" lay-verify="required" lay-search="">
+                <select lay-filter="companyname" name="client_id" lay-verify="required" lay-search="">
                     <option value="">直接选择或搜索选择</option>
                     {if !empty($client)}
                     {foreach name="client" item="v"}
-                    <option value="{$v.client_id}" >{$v.client_name}({$v.client_company})</option>
+                    <option value="{$v.client_id}" {if @$good_log.client_id==$v.client_id}selected{/if}>{$v.client_name}({$v.client_company})</option>
                     {/foreach}
                     {/if}
                 </select>
@@ -94,8 +95,10 @@
         <input type="hidden" name="good_id" value="{$good_id|default=''}">
 
         <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
+            <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+                <button data-method="notice" type="button" class="layui-btn">提交</button>
+<!--                <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>-->
+<!--                <button class="layui-btn"  data-method="notice">立即提交</button>-->
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -129,12 +132,26 @@
     var price = "{$lowest_price}";
     var total_prices = Number(price)*Number(tax)
     var total_pricee = total_prices.toFixed(2);
+    var client_id = '';
+    var client_name = '';
     lowest_price = total_pricee
     layui.use(['layer', 'form'], function() {
         var layer = layui.layer,
             $ = layui.jquery,
             form = layui.form;
-
+        form.on('select(companyname)', function(data){
+            client_id = data.value;
+            $.ajax({
+                url:"{:url('admin/Client/client_details_sck')}",
+                data: {client_id:client_id},
+                type:'get',
+                async: false,
+                success:function(res) {
+                        client_name = res.client_name+'('+res.client_company+')'
+                }
+            })
+            return false;
+        });
         form.on('radio(companys)', function (data) {
             if('{$good.tax_status}'==1) {
                  tax = $(this).attr('special_invoice');
@@ -240,4 +257,44 @@
             $('input[name=reason]').attr('lay-verify','')
         }
     }
+</script>
+<script>
+
+    layui.use('layer', function(){ //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        //触发事件
+        var active = {
+
+            notice: function(){
+                //示范一个公告层
+                layer.open({
+                    type: 1
+                    ,title: false //不显示标题栏
+                    ,closeBtn: false
+                    ,area: '300px;'
+                    ,shade: 0.8
+                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,btn: ['提交', '返回']
+                    ,btnAlign: 'c'
+                    ,moveType: 1 //拖拽模式，0或者1
+                    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">确认客户：'+client_name+'</div>'
+                    ,success: function(layero){
+                        var btn = layero.find('.layui-layer-btn');
+                        btn.find('.layui-layer-btn0').attr({
+
+                            'lay-submit':'lay-submit' ,
+                            'lay-filter':'admin'
+                        });
+                    }
+                });
+            }
+        };
+
+        $('#layerDemo .layui-btn').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+    });
 </script>

@@ -32,7 +32,7 @@
     <form class="layui-form serch" action="{:url('admin/WarehouseGoodLog/GoodLog')}" method="post">
         <div class="layui-form-item" style="float: left;">
             <div class="layui-input-inline">
-                <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="商品名称"
+                <input type="text" name="keywords" lay-verify="title" value="{$search_good_name|default=''}" autocomplete="off" placeholder="商品名称"
                        class="layui-input layui-btn-sm">
             </div>
             <input type="hidden" name="good_status" value="{$good_status|default=''}">
@@ -47,45 +47,102 @@
             <div class="layui-inline">
                 <label class="layui-form-label">日期范围</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="time" class="layui-input" id="test6" placeholder=" - ">
+                    <input type="text" name="time" value="{$search_time|default=''}" class="layui-input" id="test6" placeholder=" - ">
                 </div>
             </div>
+            {if !empty($good_status) and $good_status == 1 /}
+            <div class="layui-inline">
+                <label class="layui-form-label">选择供应商</label>
+                <div class="layui-input-inline">
+                    <select name="supplier_id" lay-verify="" lay-search="">
+                        <option value="">直接选择或搜索选择</option>
+                        {if !empty($supplier)}
+                        {foreach name="supplier" item="v"}
+                        <option value="{$v.supplier_id}" {if @$search_supplier_id==$v.supplier_id}selected{/if}>{$v.supplier_name}</option>
+                        {/foreach}
+                        {/if}
+                    </select>
+                </div>
+            </div>
+            {elseif !empty($good_status) and $good_status == 2||3 }
+            <div class="layui-inline">
+                <label class="layui-form-label">选择客户</label>
+                <div class="layui-input-inline">
+                    <select name="client_id" lay-verify="" lay-search="">
+                        <option value="">直接选择或搜索选择</option>
+                        {if !empty($client)}
+                        {foreach name="client" item="v"}
+                        <option value="{$v.client_id}" {if @$search_client_id==$v.client_id}selected{/if}>{$v.client_name}({$v.client_company})</option>
+                        {/foreach}
+                        {/if}
+                    </select>
+                </div>
+            </div>
+            {/if}
             <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" onclick="layer.load()"
                     lay-filter="serch">立即提交
             </button>
         </div>
+
+
+
     </form>
     {if !empty($good_status) and $good_status == 2 /}
-    <a href="javascript:" title="打印" class="layui-btn print" style="float: left; margin-left: 10px;" data-url="">
-        <i class="fa fa-table" aria-hidden="true"></i>
+    <a href="javascript:" class="layui-btn print" style="float: left; margin-left: 10px;" data-url="">
+        打印
     </a>
-    <a href="javascript:" title="导出" class="layui-btn excel" style="float: left; margin-left: 10px;" data-url="">
-        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+    <a href="javascript:" class="layui-btn excel" style="float: left; margin-left: 10px;" data-url="">
+        导出
     </a>
-    <a href="javascript:" title="确认出库" class="layui-btn out" style="float: left; margin-left: 10px;" data-url="">
-        <i class="fa fa-external-link" aria-hidden="true"></i>
+    <a href="javascript:" class="layui-btn out" style="float: left; margin-left: 10px;" data-url="">
+        确认出库
     </a>
     {/if}
     <form class="layui-form" id="admin">
         <table class="layui-table" lay-size="sm">
             <colgroup>
-                {if !empty($good_status) and $good_status == 2 /}
-                <col width="30">
-                {/if}
-                <col width="30">
+                {if empty($good_status) or $good_status == 0 }
+                <col width="60">
                 <col width="60">
                 <col width="">
                 <col width="">
                 <col width="50">
+                <col width="50">
                 <col width="100">
                 <col width="100">
                 <col width="100">
-                {if !empty($good_status) and $good_status == 2 /}
                 <col width="100">
-                {/if}
-                <col width="100">
-                <col width="140">
+                <col width="80">
+                {elseif !empty($good_status) and $good_status == 1 /}
+                <col width="60">
+                <col width="60">
                 <col width="">
+                <col width="">
+                <col width="50">
+                <col width="50">
+                <col width="100">
+                <col width="100">
+                <col width="100">
+                <col width="100">
+                <col width="80">
+                {elseif !empty($good_status) and $good_status == 2}
+                <col width="20">
+                <col width="30">
+                <col width="30">
+                <col width="250">
+                <col width="">
+                <col width="85">
+                <col width="40">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="60">
+                <col width="100">
+                <col width="185">
+                {else}
+                {/if}
+
             </colgroup>
             <thead>
             <tr>
@@ -101,18 +158,18 @@
                 <th>商品名称</th>
                 <th>商品备注</th>
                 <th>状态</th>
-                <th>入库/出库数量</th>
+                <th>数量</th>
                 {if !empty($good_status) and $good_status == 3 /}
 
                 {else}
-                <th>入库/出库单价</th>
-                <th>入库/出库总价</th>
+                <th>单价</th>
+                <th>总价</th>
                 {/if}
                 {if !empty($good_status) and $good_status == 2 /}
                 <th>付款状态</th>
                 {/if}
                 {if !empty($good_status) and $good_status == 2 /}
-                <th>打印销售单次数</th>
+                <th>打印次数</th>
                 {/if}
                 <th>操作人</th>
                 <th>操作时间</th>
@@ -238,6 +295,7 @@
                             &nbsp;<i class="fa fa-cny">&nbsp;</i>
                         </a>
                         <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}&good_name={$vo.good_name}&client_id={$vo.client_id}&good_price={$vo.good_price}&log_id={$vo.log_id}">退货</a>
+                        <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary GoodOut" data-url="{:url('admin/WarehouseGoodLog/GoodOut')}?good_id={$vo.good_id}&good_name={$vo.good_name}&log_id={$vo.log_id}">再次出库</a>
 
                     </div>
                 </td>
@@ -302,14 +360,6 @@
     });
 </script>
 <script>
-    $('.layui-btn').hover(function () {
-        var msg = $(this).attr('title')
-        if (msg != undefined) {
-            layer.tips(msg, $(this), {
-                tips: 3
-            });
-        }
-    })
     layui.use(['layer', 'form'], function () {
         var layer = layui.layer,
             $ = layui.jquery,
@@ -423,6 +473,19 @@
             ,title: '退货'
             ,content:url
             ,area: ['90%', '90%']
+            ,btn: ['关闭']
+            ,yes: function(index, layero){
+                layer.close(index)
+            }
+        })
+    })
+    $(document).on('click','.GoodOut',function () {
+        var url = $(this).data('url')
+        layer.open({
+            type: 2
+            ,title: '再次出库'
+            ,content:url
+            ,area: ['100%', '95%']
             ,btn: ['关闭']
             ,yes: function(index, layero){
                 layer.close(index)

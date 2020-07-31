@@ -27,6 +27,12 @@ class WarehouseGood extends Permissions
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['good_name | good_desc'] = ['like', '%' . $post['keywords'] . '%'];
         }
+        if (isset($post['tax_status']) and !empty($post['tax_status'])) {
+            $where['tax_status'] = $post['tax_status'];
+        }
+        if (isset($post['project_id']) and !empty($post['project_id'])) {
+            $where['project_id'] = $post['project_id'];
+        }
         if (isset($post['good_arr']) and !empty($post['good_arr'])) {
 //            $post['good_arr'] = json_decode($post['good_arr'],true);
             $post['good_arr'] = explode(',',$post['good_arr']);
@@ -51,7 +57,7 @@ class WarehouseGood extends Permissions
         $where['good_delete'] = ['neq',1];
         $data = empty($where) ? $model
             ->order('create_time desc')
-            ->paginate(20)
+            ->paginate(10)
             ->each(function ($k,$v){
                 if($k['good_warn_day']>0){
                     $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$k['good_warn_day']));
@@ -88,7 +94,7 @@ class WarehouseGood extends Permissions
             })
             : $model->where($where)
                 ->order('create_time desc')
-                ->paginate(20, false, ['query' => $this->request->param()])
+                ->paginate(10, false, ['query' => $this->request->param()])
                 ->each(function ($k,$v){
                     if($k['good_warn_day']>0){
                         $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$k['good_warn_day']));
@@ -120,8 +126,9 @@ class WarehouseGood extends Permissions
                         $k['good_lowest_price'] = round($total_price/$total_amount,2);
                     }
                 });
-//        dump($where);die;
+        $project = db('project')->order('id desc')->select();
         $this->assign('data', $data);
+        $this->assign('project', $project);
         return $this->fetch();
     }
 

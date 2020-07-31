@@ -228,6 +228,22 @@ class Client extends Permissions
             return $this->error('页面错误，请重试！');
         }
     }
+    public function client_details_sck()
+    {
+        $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
+        if (!empty($client_id)) {
+            $model = new SckClient();
+            $client = $model->get(['client_id' => $client_id]);
+            if (!empty($client)) {
+                $res = json($client);
+                return $res;
+            } else {
+                return $this->error('未找到该客户！');
+            }
+        } else {
+            return $this->error('页面错误，请重试！');
+        }
+    }
 
 //渠道客户
     public function channl()
