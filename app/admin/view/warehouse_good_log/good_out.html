@@ -36,7 +36,7 @@
             <label class="layui-form-label">开票公司</label>
             <div class="layui-input-block">
                 {foreach name="tax" item="v"}
-                <input name="company" {if @$good_log.company==$v.company}checked{/if} placeholder="{$v.company}" autocomplete="off" class="layui-input" type="radio" title="{$v.company}" lay-filter="companys" value="{$v.company}" lay-verify="otherReq" ticket="{$v.ticket}" ordinary="{$v.ordinary}" dedicated="{$v.dedicated}" special_invoice="{$v.special_invoice}">
+                <input name="company" {if @$good_log.company==$v.company}checked{/if} placeholder="{$v.company}" autocomplete="off" class="layui-input" type="radio" title="{$v.company}" lay-filter="companys" value="{$v.company}" lay-verify="otherReq" ticket="{$v.ticket}" ordinary="{$v.ordinary}" dedicated="{$v.dedicated}" special_invoice="{$v.special_invoice}" dedicated_three="{$v.dedicated_three}" dedicated_six="{$v.dedicated_six}">
                 {/foreach}
             </div>
 
@@ -46,7 +46,7 @@
             <div class="layui-input-inline">
                 <input name="good_price" lay-verify="required" min="{$lowest_price}" value="{$good_log.good_price|default=$lowest_price}" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
-            <div class="layui-form-mid layui-word-aux">最低出库价{$lowest_price}</div>
+            <div class="layui-form-mid layui-word-aux">最低出库价{$lowest_price}   ;  建议零售价{$advise_price|default=$lowest_price}</div>
         </div>
         <div class="reason" style="display: none;">
             <label class="layui-form-label">请填写低于成本价理由</label>
@@ -60,6 +60,7 @@
             <div class="layui-input-inline">
                 <input name="good_amount" lay-verify="required" min="1" value="{$good_log.good_amount|default='1'}" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
+            <div class="layui-form-mid layui-word-aux">库存余量{$good.good_number|default=''}</div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">出库成本总价</label>
@@ -96,8 +97,8 @@
 
         <div class="layui-form-item">
             <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
-                <button data-method="notice" type="button" class="layui-btn">提交</button>
-<!--                <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>-->
+<!--                <button data-method="notice" type="button" class="layui-btn">提交</button>-->
+                <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
 <!--                <button class="layui-btn"  data-method="notice">立即提交</button>-->
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
@@ -139,6 +140,29 @@
         var layer = layui.layer,
             $ = layui.jquery,
             form = layui.form;
+
+        //自定义验证规则
+        form.verify({
+            otherReq: function(value,item){
+                var $ = layui.$;
+                var verifyName=$(item).attr('name')
+                    , verifyType=$(item).attr('type')
+                    ,formElem=$(item).parents('.layui-form')//获取当前所在的form元素，如果存在的话
+                    ,verifyElem=formElem.find('input[name='+verifyName+']')//获取需要校验的元素
+                    ,isTrue= verifyElem.is(':checked')//是否命中校验
+                    ,focusElem = verifyElem.next().find('i.layui-icon');//焦点元素
+                if(!isTrue || !value){
+                    //定位焦点
+                    focusElem.css(verifyType=='radio'?{"color":"#FF5722"}:{"border-color":"#FF5722"});
+                    //对非输入框设置焦点
+                    focusElem.first().attr("tabIndex","1").css("outline","0").blur(function() {
+                        focusElem.css(verifyType=='radio'?{"color":""}:{"border-color":""});
+                    }).focus();
+                    return '必填项不能为空';
+                }
+            }
+        });
+
         form.on('select(companyname)', function(data){
             client_id = data.value;
             $.ajax({
@@ -161,6 +185,10 @@
                 tax = $(this).attr('ordinary');
             }else if ('{$good.tax_status}'==4) {
                 tax = $(this).attr('ticket');
+            }else if ('{$good.tax_status}'==5) {
+                tax = $(this).attr('dedicated_three');
+            }else if ('{$good.tax_status}'==6) {
+                tax = $(this).attr('dedicated_six');
             }else{
                 tax = 1;
             }
@@ -172,8 +200,7 @@
             $('input[name=good_price]').attr('value',lowest_price)
             $('input[name=good_price]').attr('min',lowest_price)
         });
-            $(window).on('load', function() {
-            form.on('submit(admin)', function(data) {
+        form.on('submit(admin)', function(data) {
                 // var price = "{$lowest_price}";
                 // var amount = $('input[name=good_amount]').val()
                 // var total_price = Number(price)*Number(amount)
@@ -185,49 +212,30 @@
                 // if(Number(prices) < Number(total_pricee)){
                 //     layer.msg('不能低于出库最低价');
                 // }else{
-                    $.ajax({
-                        url:"{:url('admin/WarehouseGoodLog/GoodOut')}",
-                        data:$('#admin').serialize(),
-                        type:'post',
-                        async: false,
-                        success:function(res) {
-                            if(res.code == 1) {
-                                layer.alert(res.msg, function(){
-                                    // location.href = res.url;
-                                    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-                                    parent.layer.close(index);
-                                })
-                            } else {
-                                layer.msg(res.msg);
-                            }
+            layer.confirm('确认客户:'+client_name, {
+                btn: ['确定', '取消'] //按钮
+            }, function (index) {
+                $.ajax({
+                    url:"{:url('admin/WarehouseGoodLog/GoodOut')}",
+                    data:$('#admin').serialize(),
+                    type:'post',
+                    async: false,
+                    success:function(res) {
+                        if(res.code == 1) {
+                            layer.alert(res.msg, function(){
+                                // location.href = res.url;
+                                var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                                parent.layer.close(index);
+                            })
+                        } else {
+                            layer.msg(res.msg);
                         }
-                    })
-                    return false;
-                // }
-
+                    }
+                })
+            }, function () {
             });
-        });
-        //自定义验证规则
-        form.verify({
-            otherReq: function(value,item){
-                var $ = layui.$;
-                var verifyName=$(item).attr('name')
-                    , verifyType=$(item).attr('type')
-                    ,formElem=$(item).parents('.layui-form')//获取当前所在的form元素，如果存在的话
-                    ,verifyElem=formElem.find('input[name='+verifyName+']')//获取需要校验的元素
-                    ,isTrue= verifyElem.is(':checked')//是否命中校验
-                    ,focusElem = verifyElem.next().find('i.layui-icon');//焦点元素
-                if(!isTrue || !value){
-                    //定位焦点
-                    focusElem.css(verifyType=='radio'?{"color":"#ff5722"}:{"border-color":"#FF5722"});
-                    //对非输入框设置焦点
-                    focusElem.first().attr("tabIndex","1").css("outline","0").blur(function() {
-                        focusElem.css(verifyType=='radio'?{"color":""}:{"border-color":""});
-                    }).focus();
-                    return '必填项不能为空';
-                }
-            }
-        });
+            return false;
+            });
     });
 
 </script>
@@ -257,44 +265,4 @@
             $('input[name=reason]').attr('lay-verify','')
         }
     }
-</script>
-<script>
-
-    layui.use('layer', function(){ //独立版的layer无需执行这一句
-        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-
-        //触发事件
-        var active = {
-
-            notice: function(){
-                //示范一个公告层
-                layer.open({
-                    type: 1
-                    ,title: false //不显示标题栏
-                    ,closeBtn: false
-                    ,area: '300px;'
-                    ,shade: 0.8
-                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-                    ,btn: ['提交', '返回']
-                    ,btnAlign: 'c'
-                    ,moveType: 1 //拖拽模式，0或者1
-                    ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">确认客户：'+client_name+'</div>'
-                    ,success: function(layero){
-                        var btn = layero.find('.layui-layer-btn');
-                        btn.find('.layui-layer-btn0').attr({
-
-                            'lay-submit':'lay-submit' ,
-                            'lay-filter':'admin'
-                        });
-                    }
-                });
-            }
-        };
-
-        $('#layerDemo .layui-btn').on('click', function(){
-            var othis = $(this), method = othis.data('method');
-            active[method] ? active[method].call(this, othis) : '';
-        });
-
-    });
 </script>

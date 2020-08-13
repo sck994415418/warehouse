@@ -159,22 +159,22 @@ class Main extends Permissions
             $data[$key]['id'] = $val['id'];
             $data[$key]['nickname'] = $val['nickname'];
             $data[$key]['good_total'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2])->sum('good_total');
-            $data[$key]['lowest_price'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $last_month], ['<=', $month_end]]])->sum('lowest_price');
+            $data[$key]['lowest_price'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $last_month], ['<=', $month_end]],'is_return'=>0])->sum('lowest_price');
             //查询本月业绩
             $month[$key]['id'] = $val['id'];
             $month[$key]['nickname'] = $val['nickname'];
-            $month[$key]['good_total'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $year_start], ['<=', $year_end]]])->sum('good_total');
-            $month[$key]['lowest_price'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $year_start], ['<=', $year_end]]])->sum('lowest_price');
+            $month[$key]['good_total'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $year_start], ['<=', $year_end]],'is_return'=>0])->sum('good_total');
+            $month[$key]['lowest_price'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $year_start], ['<=', $year_end]],'is_return'=>0])->sum('lowest_price');
             //查询本季度
             $quarter[$key]['id'] = $val['id'];
             $quarter[$key]['nickname'] = $val['nickname'];
-            $quarter[$key]['good_total'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $quarter_start], ['<=', $quarter_end]]])->sum('good_total');
-            $quarter[$key]['lowest_price'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $quarter_start], ['<=', $quarter_end]]])->sum('lowest_price');
+            $quarter[$key]['good_total'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $quarter_start], ['<=', $quarter_end]],'is_return'=>0])->sum('good_total');
+            $quarter[$key]['lowest_price'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $quarter_start], ['<=', $quarter_end]],'is_return'=>0])->sum('lowest_price');
             //查询上季度
             $preceding[$key]['id'] = $val['id'];
             $preceding[$key]['nickname'] = $val['nickname'];
             $preceding[$key]['good_total'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $preceding_quarter], ['<=', $preceding_quarter_end]]])->sum('good_total');
-            $preceding[$key]['lowest_price'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $preceding_quarter], ['<=', $preceding_quarter_end]]])->sum('lowest_price');
+            $preceding[$key]['lowest_price'] = $logModel->where(['admin_id' => $val['id'], 'good_status' => 2, 'create_time' => [['>=', $preceding_quarter], ['<=', $preceding_quarter_end]],'is_return'=>0])->sum('lowest_price');
         }
         $a = $this->arraySort($data, 'good_total', SORT_DESC);
         $arr2[0] = array_column($a, 'nickname');
@@ -211,7 +211,7 @@ class Main extends Permissions
                     if($val['good_total'] == 0){
                         $val['good_total'] = 1;
                     }
-                    $c[$k]['increase'] =round(($v['good_total']-$val['good_total'])/$val['good_total']*100,2).'%';
+                    $c[$k]['increase'] =round(($v['good_total']-$val['good_total'])/$val['good_total']*100,2).'%'; ;
                 }
             }
         }

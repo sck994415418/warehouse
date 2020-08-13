@@ -89,7 +89,7 @@
                   <a href="javascript:" title="查看供应商" class="layui-btn layui-btn-xs layui-btn-primary supplier_details" data-url="{:url('admin/supplier/supplier_details')}?supplier_id={$vo.supplier_id}">
                     &nbsp;<i class="fa fa-home">&nbsp;</i>
                   </a>
-                  <a href="{:url('admin/supplier/publish',['supplier_id'=>$vo.supplier_id])}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
+                  <a href="{:url('admin/supplier/edit')}?type=supplier&id={$vo.supplier_id}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
                   <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary delete" supplier_id="{$vo.supplier_id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
                 </div>
               </td>

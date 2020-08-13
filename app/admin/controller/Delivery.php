@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\SckWarehouseGood as WarehouseGoodModel;
+use app\admin\model\SckWarehouseGoodLog;
 use think\Session;
 use app\admin\controller\Exel;
 use PHPExcel;
@@ -81,7 +82,7 @@ class Delivery extends Permissions
             $data = db('sck_warehouse_good_log')
                 ->alias('swgl')
                 ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
-                ->where(['log_id' => ['in', $data['data']]])
+                ->where(['log_id' => ['in', $data['data']],'is_delivery'=>0])
                 ->update(['swgl.is_delivery'=>1,'swg.good_number' => WarehouseGoodModel::raw('swg.good_number-swgl.good_amount')]);
             if($data){
                 addlog($data['data']);
@@ -97,7 +98,6 @@ class Delivery extends Permissions
 //    导出excel信息
     public function excel(){
         $id = request()->get();
-
         $arr = db('sck_warehouse_good_log')
             ->alias('swgl')
             ->where(['swgl.log_id' => ['in', $id['data']]])
@@ -131,12 +131,123 @@ class Delivery extends Permissions
                 $data[$k]['explain']=0;
                 $data[$k]['identification']=0;
             }
-//            dump($data);die;
+
             addlog();
             (new Exel())->excelExport('清单表',$head,$data);
 //            (new Exel())->outdata('清单表',$data,$head,$keys);
         } else {
             $this->error("未知错误,请重新选择");
         }
+    }
+
+    //    导出excel信息
+    public function excelall(){
+        $id = request()->get();
+
+        $arr = db('sck_warehouse_good_log')
+            ->alias('swgl')
+            ->where(['swgl.log_id' => ['in', $id['data']]])
+            ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
+            ->join('sck_client sc','sc.client_id = swgl.client_id','left')
+            ->field('swgl.*,swg.good_coding,swg.good_sku,sc.client_company')
+            ->select();
+
+        if ($arr) {
+            $head = ['商品名称', '商品规格', '商品编码', '出货日期', '出货数量', '出货单价', '合计', '客户', '备注'];
+            $keys=['good_name','good_sku','good_coding','create_time','good_amount','good_price','good_total','client_company','good_desc'];
+            foreach($arr as $k=>$v){
+                $data[$k]['good_name'] = $v['good_name'];
+                $data[$k]['good_sku'] = $v['good_sku'];
+                $data[$k]['good_coding'] = $v['good_coding'];
+                $data[$k]['time'] = date('Y-m-d H:i:s',$v['create_time']);
+                $data[$k]['good_amount'] = $v['good_amount'];
+                $data[$k]['good_price'] =$v['good_price'];
+                $data[$k]['good_total'] =$v['good_total'];
+                $data[$k]['client']= $v['client_company'];
+                $data[$k]['good_desc']=$v['good_desc'];
+            }
+
+            addlog();
+            (new Exel())->excelExport('出库记录',$head,$data);
+//            (new Exel())->outdata('清单表',$arr,$head,$keys);
+        } else {
+            $this->error("未知错误,请重新选择");
+        }
+    }
+
+    //    导出excel信息
+    public function inventory(){
+        $id = request()->get();
+
+//        $arr = db('sck_warehouse_good_log')
+//            ->alias('swgl')
+//            ->where(['swgl.log_id' => ['in', $id['data']]])
+//            ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
+//            ->join('sck_client sc','sc.client_id = swgl.client_id','left')
+//            ->field('swgl.*,swg.good_coding,swg.good_sku,sc.client_company')
+//            ->select();
+        $model = new SckWarehouseGoodLog();
+        $arr = $model
+            ->alias('swgl')
+            ->where(['swgl.log_id' => ['in', $id['data']]])
+            ->join('sck_warehouse_good swg', 'swg.good_id = swgl.good_id', 'LEFT')
+            ->join('sck_warehouse_good_log_pay swgp', 'swgp.log_id = swgl.log_id', 'LEFT')
+            ->join('sck_client sc', 'sc.client_id = swgl.client_id')
+            ->field('swgl.*,swgl.log_id as id,swg.good_name,swg.good_price as goods_price,swg.good_total as goods_total,swg.tax_status,swg.good_brand,swgp.pay_price,swgp.pay_total,sc.client_name,sc.client_company')
+            ->order('id desc')
+            ->select();
+        if ($arr) {
+            $head = ['ID', '商品名称', '出库数量', '商品成本单价', '商品出库单价', '商品成本总价', '商品出库总价', '利润', '出库人','客户名称','客户公司','发票','出库公司','出库时间','已付金额','应付金额'];
+            $keys=['id','good_name','good_amount','goods_price','good_price','good_total','lowest_price','nickname','client_name','client_company','tax_status','company','create_time','pay_price','pay_total',''];
+            foreach($arr as $k=>$v){
+                $data[$k]['id'] = $v['id'];
+                $data[$k]['good_name'] = $v['good_name'];
+                $data[$k]['good_amount'] = $v['good_amount'];
+                $data[$k]['goods_price'] = $v['goods_price'];
+                $data[$k]['good_price'] = $v['good_price'];
+                $data[$k]['goods_amount'] =$v['good_amount']*$v['goods_price'];
+                $data[$k]['good_total'] =$v['good_total'];
+                $data[$k]['lowest_price']= $v['lowest_price'];
+                $data[$k]['nickname']=$v['nickname']->nickname;
+                $data[$k]['client_name']=$v['client_name'];
+                $data[$k]['client_company']=$v['client_company'];
+                $data[$k]['tax_status']=$this->tax($v['tax_status']);
+                $data[$k]['company']=$v['company'];
+                $data[$k]['create_time']=$v['create_time'];
+                $data[$k]['pay_price']=$v['pay_price'];
+                $data[$k]['pay_total']=$v['pay_total'];
+            }
+            addlog();
+            (new Exel())->excelExport('出库记录',$head,$data);
+//            (new Exel())->outdata('清单表',$arr,$head,$keys);
+        } else {
+            $this->error("未知错误,请重新选择");
+        }
+    }
+    public function tax($status){
+        switch ($status) {
+            case "1":
+                $agency = "专票";
+                break;
+            case "2":
+                $agency = "专票1%";
+                break;
+            case "3":
+                $agency = "普票";
+                break;
+            case "4":
+                $agency = "无票";
+                break;
+            case "5":
+                $agency = "专票3%";
+                break;
+            case "6":
+                $agency = "专票6%";
+                break;
+            default:
+                $agency = "未知";
+                break;
+        }
+        return $agency;
     }
 }

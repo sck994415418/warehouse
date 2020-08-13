@@ -14,4 +14,7 @@ class SckWarehouseGood extends Model
     {
         return $this->belongsTo('SckWarehouseGoodCategory','category_id','category_id');
     }
+    public function project(){
+        return $this->belongsTo('Project','project_id','id');
+    }
 }

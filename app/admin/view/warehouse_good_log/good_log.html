@@ -181,7 +181,7 @@
             {volist name="data" id="vo"}
             <tr>
                 {if !empty($good_status) and $good_status == 2 /}
-                <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
+                <th><input lay-skin="primary" type="checkbox"  name="log_id[]" value='{$vo.log_id}'/></th>
                 {/if}
                 <td>{$vo.log_id}</td>
                 <td>{$vo.good_id}</td>
@@ -256,7 +256,7 @@
             {if $vo.good_status==2}
             <tr>
                 {if !empty($good_status) and $good_status == 2 /}
-                <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
+                <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}' {if @$vo.is_return==1}disabled=''{/if}/></th>
                 {/if}
                 <td>{$vo.log_id}</td>
                 <td>{$vo.good_id}</td>
@@ -335,6 +335,11 @@
             </tbody>
         </table>
         <!--  <button class="layui-btn layui-btn-sm" lay-submit lay-filter="admin">更新排序</button>-->
+        {if !empty($good_status) and $good_status == 2 /}
+        <a href="javascript:" class="layui-btn excelall" style="float: left; margin-left: 10px;" data-url="">
+            数据导出
+        </a>
+        {/if}
     </form>
     <div style="padding:0 20px;">{$data->render()}</div>
 
@@ -392,7 +397,11 @@
         form.on('checkbox(allChoose)', function (data) {
             var child = $("tr input[type='checkbox']");
             child.each(function (index, item) {
-                item.checked = data.elem.checked;
+                console.log(item.disabled)
+                if(item.disabled != true){
+
+                    item.checked = data.elem.checked;
+                }
             });
             form.render('checkbox');
         });
@@ -422,6 +431,20 @@
             return false;
         }
         window.location.href = '/admin/Delivery/excel?data=' + arr;
+
+    })
+    $('.excelall').click(function () {
+        var arr = [];
+
+        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+            arr[i] = $(this).val();
+
+        });
+        if(arr == '' || arr == undefined || arr == null){
+            layer.msg('请选择！',{icon:-1});
+            return false;
+        }
+        window.location.href = '/admin/Delivery/excelall?data=' + arr;
 
     })
     $('.out').click(function () {

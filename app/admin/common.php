@@ -159,3 +159,21 @@ if (!function_exists('array_column')) {
         return $data;
     }
 }
+/*
+  * 获取所有上级
+  * @param $id String 待查找的id
+  * @return String | NULL 失败返回null
+  */
+function getSup($data, $parent_username)
+{
+    $arr = array();
+    foreach ($data as $key => $val) {
+        $res = Db::name("sck_warehouse_good_category")->where("category_id",$val['parent_id'])->select();
+        if ($val['category_id'] == $parent_username) {
+            $val['parent'] = getSup($res, $val['parent_id']);
+            $arr[] = $val;
+        }
+    }
+    return $arr;
+}
+

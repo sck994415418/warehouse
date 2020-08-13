@@ -1,147 +1,373 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>layui</title>
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css"  media="all">
-  <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all" />
-  <link rel="stylesheet" href="__CSS__/admin.css"  media="all">
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css" media="all"/>
+    <link rel="stylesheet" href="__CSS__/admin.css" media="all">
 </head>
 <body style="padding:10px;">
-  <div class="tplay-body-div"> 
-      <div class="layui-tab">
+<div class="tplay-body-div">
+    <div class="layui-tab">
         <ul class="layui-tab-title">
-          <li><a href="{:url('admin/WarehouseGood/index')}" class="a_menu">商品列表</a></li>
-          <li class="layui-this">添加商品</li>
+            <li><a href="{:url('admin/WarehouseGood/index')}" class="a_menu">商品列表</a></li>
+            <li class="layui-this">修改商品</li>
         </ul>
-      </div>
+    </div>
     <form class="layui-form" id="admin">
 
-      <div class="layui-form-item">
-        <label class="layui-form-label">商品名称</label>
-        <div class="layui-input-inline">
-          <input name="good_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.good_name"}value="{$data.good_name}"{/notempty}>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品名称</label>
+            <div class="layui-input-inline">
+                <input name="good_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"
+                       type="text" {notempty name="$data.good_name" }value="{$data.good_name}" {/notempty}>
+            </div>
         </div>
-      </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">修改原因</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入原因" name="apply" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="type" value="commodity">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">商品备注</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" name="good_desc"
+                          class="layui-textarea">{$data.good_desc|default=''}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item address_box">
+            <label class="layui-form-label">商品分类</label>
+            <div>
+                {$category_data[0]['parent'][0]['parent'][0]['category_name']}->{$category_data[0]['parent'][0]['category_name']}->{$category_data[0]['category_name']}
+            </div>
+            <div class="layui-input-inline province_div">
+                <select lay-search="" name="category_id" lay-verify="required" class="one" lay-filter="one">
+                    <option value="">请选择</option>
+                    {if !empty($category)}
+                    {foreach name="category" item="v"}
+                    <option value="{$v.category_id}">{$v.category_name}</option>
+                    {/foreach}
+                    {/if}
+                </select>
+            </div>
+            <div class="layui-input-inline two_div">
 
-      <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">商品备注</label>
-        <div class="layui-input-block">
-          <textarea placeholder="请输入内容" name="good_desc" class="layui-textarea">{$data.good_desc|default=''}</textarea>
+            </div>
+            <div class="layui-input-inline three_div">
+
+            </div>
         </div>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">库存预警值</label>
-        <div class="layui-input-inline">
-          <input name="good_warn" lay-verify="required" min="0" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" value="{$data.good_warn|default=''}" type="number">
+        <div class="layui-form-item">
+            <label class="layui-form-label">规格型号</label>
+            <div class="layui-input-inline">
+                <input name="good_sku" value="{$data.good_sku}" placeholder="请输入" autocomplete="off" class="layui-input"
+                       type="text">
+            </div>
         </div>
-      </div>
-<!--      <div class="layui-form-item">-->
-<!--        <label class="layui-form-label">商品规格型号</label>-->
-<!--        <div class="layui-input-inline">-->
-<!--          <input name="good_sku" lay-verify="required"  placeholder="请输入" autocomplete="off" class="layui-input" type="text" value="{$data.good_sku|default=''}">-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="layui-form-item">-->
-<!--        <label class="layui-form-label">商品单价</label>-->
-<!--        <div class="layui-input-inline">-->
-<!--          <input name="good_price" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$data.good_price|default=''}">-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="layui-form-item">-->
-<!--        <label class="layui-form-label">商品库存</label>-->
-<!--        <div class="layui-input-inline">-->
-<!--          <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$data.good_amount|default=''}">-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="layui-form-item">-->
-<!--        <label class="layui-form-label">商品总价</label>-->
-<!--        <div class="layui-input-inline">-->
-<!--          <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$data.good_total|default=''}">-->
-<!--        </div>-->
-<!--      </div>-->
-      <div class="layui-form-item">
-        <label class="layui-form-label">积压提醒</label>
-        <div class="layui-input-inline">
-          <input name="good_warn_day" lay-verify="required" min="0" value="{$data.good_warn_day|default=''}" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="单位/天" autocomplete="off" class="layui-input" type="number">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品编码</label>
+            <div class="layui-input-inline">
+                <input name="good_coding" value="{$data.good_coding}" placeholder="请输入" autocomplete="off"
+                       class="layui-input" type="text">
+            </div>
         </div>
-        <div class="layui-form-mid layui-word-aux">单位/天,0为不提醒</div>
-      </div>
-      <input type="hidden" name="good_id" value="{$data.good_id}">
-      <div class="layui-form-item">
-        <div class="layui-input-block">
-          <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
-          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品剩余数量</label>
+            <div class="layui-input-inline">
+                <input name="good_number" value="{$data.good_number}" placeholder="请输入" autocomplete="off"
+                       class="layui-input" type="text">
+            </div>
         </div>
-      </div>
-      
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品入库数量</label>
+            <div class="layui-input-inline">
+                <input name="good_amount" value="{$data.good_amount}" placeholder="请输入" autocomplete="off"
+                       class="layui-input" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品入库单价</label>
+            <div class="layui-input-inline">
+                <input name="good_price" value="{$data.good_price}" placeholder="请输入" autocomplete="off"
+                       class="layui-input" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品入库总价</label>
+            <div class="layui-input-inline">
+                <input name="good_total" value="{$data.good_total}" placeholder="请输入" autocomplete="off"
+                       class="layui-input" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">库存预警值</label>
+            <div class="layui-input-inline">
+                <input name="good_warn" lay-verify="required" min="0" step="1"
+                       onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入"
+                       autocomplete="off" class="layui-input" value="{$data.good_warn|default=''}" type="number">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">仓库位置</label>
+            <div class="layui-input-inline">
+                <input name="good_position" value="{$data.good_position}" placeholder="请输入" autocomplete="off"
+                       class="layui-input" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">积压提醒</label>
+            <div class="layui-input-inline">
+                <input name="good_warn_day" lay-verify="required" min="0" value="{$data.good_warn_day|default=''}"
+                       step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="单位/天"
+                       autocomplete="off" class="layui-input" type="number">
+            </div>
+            <div class="layui-form-mid layui-word-aux">单位/天,0为不提醒</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品品牌</label>
+            <div class="layui-input-inline">
+                <input name="good_brand" value="{$data.good_brand}" placeholder="请输入" autocomplete="off"
+                       class="layui-input" type="text">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择发票</label>
+            <div class="layui-input-inline">
+                <select name="project_id" lay-search="">
+                    <option value="">请选择发票</option>
+                    <option value="1">专票13%</option>
+                    <option value="6">专票6%</option>
+                    <option value="5">专票3%</option>
+                    <option value="2">专票1%</option>
+                    <option value="3">普票</option>
+                    <option value="4">无票</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">项目</label>
+            <div class="layui-input-inline">
+                <select name="project_id" lay-search="">
+                    <option value="">{$data.project.project}</option>
+                    {if !empty($project)}
+                    {foreach name="project" item="v"}
+                    <option value="{$v.id}">{$v.project}</option>
+                    {/foreach}
+                    {/if}
+                </select>
+            </div>
+            <div class="layui-form-mid layui-word-aux">如该商品需要绑定项目请选择需要绑定得项目，如不需要绑定请忽略。</div>
+        </div>
+        <input type="hidden" name="good_id" value="{$data.good_id}">
+
+        <div id="log" class="layui-form">
+            <table class="layui-table" lay-size="sm">
+                <thead>
+
+                <tr>
+                    <th>
+                        <div class="checkallbox">
+                            <input lay-skin="primary" type="checkbox" id="checkall" name="" lay-filter="allChoose" value="">
+                        </div>
+                    </th>
+                    <th>ID</th>
+                    <th>商品ID</th>
+                    <th>商品名称</th>
+                    <th>商品备注</th>
+                    <th>入库/出库数量</th>
+                    <th>入库/出库单价</th>
+                    <th>入库/出库总价</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                {foreach name="log" item="v"}
+                <tr style="width: 100%;">
+                    <th><input lay-skin="primary" type="checkbox" name="log_id[]" value="{$v.log_id}">
+                    </th>
+                    <td>{$v.log_id}</td>
+                    <td>{$v.good_id}</td>
+                    <td>{$v.good_name}</td>
+                    <td>{$v.good_desc}</td>
+                    <td>{$v.good_amount}</td>
+                    <td>{$v.good_price}</td>
+                    <td>{$v.good_total}</td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="admin">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
     </form>
-
-
-
-    </div>
+</div>
 </body>
 </html>
 <script src="__PUBLIC__/layui/layui.js"></script>
 <script src="__PUBLIC__/jquery/jquery.min.js"></script>
 <script>
-  var message;
-  layui.config({
-    base: '__JS__/',
-    version: '1.0.1'
-  }).use(['app', 'message'], function() {
-    var app = layui.app,
+    var message;
+    layui.config({
+        base: '__JS__/',
+        version: '1.0.1'
+    }).use(['app', 'message'], function () {
+        var app = layui.app,
             $ = layui.jquery,
             layer = layui.layer;
-    //将message设置为全局以便子页面调用
-    message = layui.message;
-    //主入口
-    app.set({
-      type: 'iframe'
-    }).init();
-  });
+        //将message设置为全局以便子页面调用
+        message = layui.message;
+        //主入口
+        app.set({
+            type: 'iframe'
+        }).init();
+    });
 </script>
 <script>
-  layui.use(['layer', 'form'], function() {
-    var layer = layui.layer,
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer,
             $ = layui.jquery,
             form = layui.form;
-    $(window).on('load', function() {
-      form.on('submit(admin)', function(data) {
-        $.ajax({
-          url:"{:url('admin/WarehouseGood/edit')}",
-          data:$('#admin').serialize(),
-          type:'post',
-          async: false,
-          success:function(res) {
-            if(res.code == 1) {
-              layer.alert(res.msg, function(index){
-                history.back()
-              })
-            } else {
-              layer.msg(res.msg);
-            }
-          }
-        })
-        return false;
-      });
+        $(window).on('load', function () {
+            form.on('submit(admin)', function (data) {
+                $.ajax({
+                    url:"{:url('admin/Audit/add')}",
+                    data:$('#admin').serialize(),
+                    type:'post',
+                    async: false,
+                    success:function(res) {
+                        if(res.code == 1) {
+                            layer.alert(res.msg)
+                        } else {
+                            layer.msg(res.msg);
+                        }
+                    }
+                })
+                // $.ajax({
+                //     url: "{:url('admin/WarehouseGood/edit')}",
+                //     data: $('#admin').serialize(),
+                //     type: 'post',
+                //     async: false,
+                //     success: function (res) {
+                //         if (res.code == 1) {
+                //             layer.alert(res.msg, function (index) {
+                //                 history.back()
+                //             })
+                //         } else {
+                //             layer.msg(res.msg);
+                //         }
+                //     }
+                // })
+                return false;
+            });
+        });
     });
-  });
 </script>
 <script>
-  $('input[name=good_price],input[name=good_amount]').bind('input propertychange', function() {
-    total_price();
-  });
-  $('input[name=good_price],input[name=good_amount]').click(function() {
-    total_price();
-  });
-  function total_price() {
-    var price = $('input[name=good_price]').val()
-    var amount = $('input[name=good_amount]').val()
-    var total_price = Number(price)*Number(amount)
-    $('input[name=good_total]').val(total_price)
-  }
+    $('input[name=good_price],input[name=good_amount]').bind('input propertychange', function () {
+        total_price();
+    });
+    $('input[name=good_price],input[name=good_amount]').click(function () {
+        total_price();
+    });
+
+    function total_price() {
+        var price = $('input[name=good_price]').val()
+        var amount = $('input[name=good_amount]').val()
+        var total_price = Number(price) * Number(amount)
+        $('input[name=good_total]').val(total_price)
+    }
+</script>
+<script>
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+        var form = layui.form;
+        //选择省时触发事件获取其下市数据
+        form.on('select(one)', function (data) {
+            var item = $(this).parents('.layui-form-item')
+            // console.log(item)
+            if (data.value == '' || data.value == undefined || data.value == null) {
+                $('.two_div').html('')
+                $('.three_div').html('')
+                return false;
+            }
+            $('.two_div').html('')
+            $('.three_div').html('')
+            address(data, item)
+        });
+        form.on('select(city)', function (data) {
+            var item = $(this).parents('.layui-form-item')
+            // console.log(item)
+            if (data.value == '' || data.value == undefined || data.value == null) {
+                $('.three_div').html('')
+                return false;
+            }
+            $('.three_div').html('')
+            address_qu(data, item)
+        });
+
+        // $(window).on('load', function() {
+        //   var item = $(this)
+        //   var data=[];
+        //   data.value="{$data.user_sheng|default=''}";
+        //   address(data,item)
+        // });
+
+        function address(data, item) {
+            layer.load()
+            $.getJSON("{:url('admin/WarehouseGoodCategory/two')}?category_id=" + data.value, function (data) {
+                if (data.code == '1') {
+                    var str = '          <select lay-verify="required" name="category_id" class="two" lay-search="" lay-filter="city">\n' +
+                        '            <option value="">请选择市</option>\n' +
+                        '          </select>\n';
+                    $('.two_div').html(str)
+                    var optionstring = "";
+                    $.each(data.data, function (i, item) {
+                        optionstring += "<option value=\"" + item.category_id + "\">" + item.category_name + "</option>";
+                    });
+                    $(".two").html('<option value=""></option>' + optionstring);
+                    form.render('select');
+                    layer.closeAll()
+                } else {
+                    layer.closeAll()
+                    // layer.msg(data.msg);
+                }
+
+            });
+        }
+
+        function address_qu(data, item) {
+            layer.load()
+            $.getJSON("{:url('admin/WarehouseGoodCategory/three')}?category_id=" + data.value, function (data) {
+                if (data.code == '1') {
+                    var str = '          <select lay-verify="required" name="category_id" class="three" lay-search="" lay-filter="qu">\n' +
+                        '            <option value="">请选择区/县</option>\n' +
+                        '          </select>\n';
+                    $('.three_div').html(str)
+                    var optionstring = "";
+                    $.each(data.data, function (i, item) {
+                        optionstring += "<option value=\"" + item.category_id + "\">" + item.category_name + "</option>";
+                    });
+                    $(".three").html('<option value=""></option>' + optionstring);
+                    form.render('select');
+                    layer.closeAll()
+                } else {
+                    layer.closeAll()
+                    // layer.msg(data.msg);
+                }
+
+            });
+        }
+
+    });
 </script>

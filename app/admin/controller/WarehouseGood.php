@@ -233,7 +233,20 @@ class WarehouseGood extends Permissions
 
             } else {
                 $data = $model->where('good_id', $good_id)->find();
+
+                $category_pid = db('sck_warehouse_good_category')->where(['category_id'=>$data['category_id']])->select();
+                $category_data = getSup($category_pid,$data['category_id']);
+                $category = db('sck_warehouse_good_category')
+                    ->where(['parent_id'=>0])
+                    ->select();
+                $project = db('project')->where(['status'=>1])->order('id desc')->select();
+                $this->assign('project',$project);
+//                dump($category_data);die;
                 $this->assign('data', $data);
+                $this->assign('category_data', $category_data);
+                $log = db('sck_warehouse_good_log')->where(['good_id'=>$good_id,'good_status'=>1])->select();
+                $this->assign('log',$log);
+                $this->assign('category', $category);
                 return $this->fetch();
             }
         } else {

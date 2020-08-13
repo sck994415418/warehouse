@@ -143,7 +143,7 @@ class WarehouseGoodLog extends Permissions
                         'add_time' => time(),
                         'status' => 0,
                         'client'=>$client['client_name'],
-                        'phone'=>$client['client_phone'],
+                        'phone'=>empty($client['client_phone'])?0:$client['client_phone'],
                         'good_name'=>$post['good_name'],
                         'good_id'=>$post['good_id'],
                         'new_price'=>$post['good_total'],
@@ -190,6 +190,12 @@ class WarehouseGoodLog extends Permissions
                 return $json;
 
             } else {
+                $advise_price = db('sck_warehouse_good_log')
+                    ->where(['good_id' => $good_id, 'good_status' => 2, 'good_price' => ['neq', 0]])
+                    ->order('create_time', 'desc')
+                    ->limit(1)
+                    ->column('good_price');
+                $advise_price = @$advise_price[0];
                 $good_log = db('sck_warehouse_good_log')
                     ->where(['good_id' => $good_id, 'good_status' => 1, 'good_amount' => ['neq', 0]])
                     ->order('create_time', 'desc')
@@ -241,7 +247,9 @@ class WarehouseGoodLog extends Permissions
                 $this->assign('lowest_price', $lowest_price);
                 $this->assign('good_id', $good_id);
                 $this->assign('good', $good);
+                $this->assign('advise_price', $advise_price);
                 $this->assign('client', $Client);
+
                 return $this->fetch();
             }
         } else {
@@ -375,6 +383,10 @@ class WarehouseGoodLog extends Permissions
             $where['supplier_id'] = $post['supplier_id'];
             $this->assign('search_supplier_id', $post['supplier_id']);
         }
+        if (isset($post['admin_id']) and !empty($post['admin_id'])) {
+            $where['admin_id'] = $post['admin_id'];
+            $this->assign('search_admin_id', $post['admin_id']);
+        }
         if (isset($post['client_id']) and !empty($post['client_id'])) {
             $where['client_id'] = $post['client_id'];
             $this->assign('search_client_id', $post['client_id']);
@@ -399,6 +411,7 @@ class WarehouseGoodLog extends Permissions
         $admin_id = Session::get('admin');
         if (isset($admin_id)) {
             $user_info = adminModel::get($admin_id);
+
             if ((int)$user_info['admin_power'] == 0) {
                 $where['admin_id'] = $admin_id;
             } elseif ((int)$user_info['admin_power'] == 1) {
@@ -465,6 +478,9 @@ class WarehouseGoodLog extends Permissions
         $this->assign('client', $Client);
         $this->assign('data', $data);
         $this->assign('good_status', $good_status);
+        $info['admin'] = Db::name('admin')->select();
+        $this->assign('admin',$info);
+
         return $this->fetch();
     }
 

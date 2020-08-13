@@ -19,4 +19,9 @@ class SckWarehouseGoodLog extends Model
     {
         return $this->belongsTo('SckWarehouseGoodLogPay','log_id','log_id');
     }
+    public function nickname()
+    {
+        //关联管理员表
+        return $this->belongsTo('Admin','admin_id','id');
+    }
 }

@@ -70,14 +70,14 @@ class Client extends Permissions
             ->where(['client_type' => 1])
             ->order('create_time desc')
             ->paginate(20)
-            ->each(function ($k,$v){
+            ->each(function ($k, $v) {
                 $k['client_total'] = db('sck_warehouse_good_log')
-                    ->where(['client_id'=>$k['client_id'],'good_status'=>2,'is_return'=>0])
+                    ->where(['client_id' => $k['client_id'], 'good_status' => 2, 'is_return' => 0])
                     ->sum('good_total');
                 $k['client_price'] = db('sck_warehouse_good_log_pay')
-                    ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
+                    ->where(['client_id' => $k['client_id'], 'pay_status' => 2])
                     ->sum('pay_price');
-                $k['client_money'] = $k['client_total']-$k['client_price'];
+                $k['client_money'] = $k['client_total'] - $k['client_price'];
 
             })
             : $model->where($where)
@@ -87,14 +87,14 @@ class Client extends Permissions
                 ->where(['client_type' => 1])
                 ->order('create_time desc')
                 ->paginate(20, false, ['query' => $this->request->param()])
-                ->each(function ($k,$v){
+                ->each(function ($k, $v) {
                     $k['client_total'] = db('sck_warehouse_good_log')
-                        ->where(['client_id'=>$k['client_id'],'good_status'=>2,'is_return'=>0])
+                        ->where(['client_id' => $k['client_id'], 'good_status' => 2, 'is_return' => 0])
                         ->sum('good_total');
                     $k['client_price'] = db('sck_warehouse_good_log_pay')
-                        ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
+                        ->where(['client_id' => $k['client_id'], 'pay_status' => 2])
                         ->sum('pay_price');
-                    $k['client_money'] = $k['client_total']-$k['client_price'];
+                    $k['client_money'] = $k['client_total'] - $k['client_price'];
                 });
 
         $address = db('address')
@@ -148,7 +148,7 @@ class Client extends Permissions
                     $this->error('提交失败：' . $validate->getError());
                 }
                 if (!empty($post['client_phone'])) {
-                    $name = $model->where(['client_phone' => $post['client_phone'], 'client_id' => ['neq', $post['client_id'],'client_type'=>1]])->select();
+                    $name = $model->where(['client_phone' => $post['client_phone'], 'client_id' => ['neq', $post['client_id'], 'client_type' => 1]])->select();
                 }
                 if (!empty($name)) {
                     return $this->error('提交失败：该客户手机已被添加');
@@ -175,7 +175,7 @@ class Client extends Permissions
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
                 }
-                $name = $model->where(['client_phone' => $post['client_phone'],'client_type'=>1])->select();
+                $name = $model->where(['client_phone' => $post['client_phone'], 'client_type' => 1])->select();
                 if (!empty($name)) {
                     return $this->error('提交失败：该客户手机已被添加');
                 }
@@ -215,6 +215,10 @@ class Client extends Permissions
     public function client_details()
     {
         $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
+        $admin_power = $this->request->has('admin_power') ? $this->request->param('admin_power') : 0;
+        if (!empty($admin_power) and  $admin_power == 'no') {
+            return $this->error('您没有权限查看该用户！');
+        }
         if (!empty($client_id)) {
             $model = new SckClient();
             $client = $model->get(['client_id' => $client_id]);
@@ -228,6 +232,7 @@ class Client extends Permissions
             return $this->error('页面错误，请重试！');
         }
     }
+
     public function client_details_sck()
     {
         $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
@@ -303,18 +308,18 @@ class Client extends Permissions
             ->where(['client_type' => 2])
             ->order('create_time desc')
             ->paginate(20)
-            ->each(function ($k,$v){
+            ->each(function ($k, $v) {
                 $k['client_total'] = db('sck_warehouse_good_log')
-                    ->where(['client_id'=>$k['client_id'],'good_status'=>2])
+                    ->where(['client_id' => $k['client_id'], 'good_status' => 2])
                     ->sum('good_total');
                 $k['client_price'] = db('sck_warehouse_good_log_pay')
-                    ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
+                    ->where(['client_id' => $k['client_id'], 'pay_status' => 2])
                     ->sum('pay_price');
                 $k['good_total_t'] = db('sck_warehouse_good_log')
-                    ->where(['client_id'=>$k['client_id'],'good_status'=>3])
+                    ->where(['client_id' => $k['client_id'], 'good_status' => 3])
                     ->sum('good_total');
-                $good_total_t = empty($k['good_total_t'])?0:$k['good_total_t'];
-                $k['client_money'] = $k['client_total']-$good_total_t-$k['client_price'];
+                $good_total_t = empty($k['good_total_t']) ? 0 : $k['good_total_t'];
+                $k['client_money'] = $k['client_total'] - $good_total_t - $k['client_price'];
             })
             : $model->where($where)
                 //================================================================================================
@@ -323,18 +328,18 @@ class Client extends Permissions
                 ->where(['client_type' => 2])
                 ->order('create_time desc')
                 ->paginate(20, false, ['query' => $this->request->param()])
-                ->each(function ($k,$v){
+                ->each(function ($k, $v) {
                     $k['client_total'] = db('sck_warehouse_good_log')
-                        ->where(['client_id'=>$k['client_id'],'good_status'=>2])
+                        ->where(['client_id' => $k['client_id'], 'good_status' => 2])
                         ->sum('good_total');
                     $k['client_price'] = db('sck_warehouse_good_log_pay')
-                        ->where(['client_id'=>$k['client_id'],'pay_status'=>2])
+                        ->where(['client_id' => $k['client_id'], 'pay_status' => 2])
                         ->sum('pay_price');
                     $k['good_total_t'] = db('sck_warehouse_good_log')
-                        ->where(['client_id'=>$k['client_id'],'good_status'=>3])
+                        ->where(['client_id' => $k['client_id'], 'good_status' => 3])
                         ->sum('good_total');
-                    $good_total_t = empty($k['good_total_t'])?0:$k['good_total_t'];
-                    $k['client_money'] = $k['client_total']-$good_total_t-$k['client_price'];
+                    $good_total_t = empty($k['good_total_t']) ? 0 : $k['good_total_t'];
+                    $k['client_money'] = $k['client_total'] - $good_total_t - $k['client_price'];
                 });
 
         $address = db('address')
@@ -348,6 +353,7 @@ class Client extends Permissions
         $this->assign('data', $data);
         return $this->fetch();
     }
+
     //渠道客户添加/修改
     public function ChannlPublish()
     {
@@ -386,7 +392,7 @@ class Client extends Permissions
                     $this->error('提交失败：' . $validate->getError());
                 }
                 if (!empty($post['client_phone'])) {
-                    $name = $model->where(['client_phone' => $post['client_phone'], 'client_id' => ['neq', $post['client_id']],'client_type'=>2])->select();
+                    $name = $model->where(['client_phone' => $post['client_phone'], 'client_id' => ['neq', $post['client_id']], 'client_type' => 2])->select();
                 }
                 if (!empty($name)) {
                     return $this->error('提交失败：该客户手机已被添加');
@@ -413,7 +419,7 @@ class Client extends Permissions
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
                 }
-                $name = $model->where(['client_phone' => $post['client_phone'],'client_type'=>2])->select();
+                $name = $model->where(['client_phone' => $post['client_phone'], 'client_type' => 2])->select();
                 if (!empty($name)) {
                     return $this->error('提交失败：该客户手机已被添加');
                 }
@@ -430,23 +436,68 @@ class Client extends Permissions
             }
         }
     }
+
 //    查看客户订单
-    public function order(){
+    public function order()
+    {
         $input = request()->get();
         $where['good_status'] = 2;
         $where['is_return'] = 0;
-        if(isset($input['time']) && !empty($input['time'])){
-            $start_time = strtotime(substr($input['time'],0,strripos($input['time'],' - ')));
-            $end_time = strtotime(substr($input['time'],strripos($input['time'],' - ')+3));
-            $where['create_time']=['between',[$start_time,$end_time]];
+        if (isset($input['time']) && !empty($input['time'])) {
+            $start_time = strtotime(substr($input['time'], 0, strripos($input['time'], ' - ')));
+            $end_time = strtotime(substr($input['time'], strripos($input['time'], ' - ') + 3));
+            $where['create_time'] = ['between', [$start_time, $end_time]];
         }
-        if(isset($input['client_id']) && !empty($input['client_id'])){
+        if (isset($input['client_id']) && !empty($input['client_id'])) {
             $where['client_id'] = $input['client_id'];
-            $this->assign('client_id',$input['client_id']);
+            $this->assign('client_id', $input['client_id']);
+        }
+
+        if (isset($input['keywords']) and !empty($input['keywords'])) {
+            $where['good_name'] = ['like', '%' . $input['keywords'] . '%'];
+            $this->assign('search_good_name', $input['keywords']);
         }
         $model = new WarehouseGoodLogModel();
-        $data = $model->where($where)->paginate(20,false,['query' => ['client_id'=>$input['client_id']]]);
+//        $data = $model->where($where)->paginate(20,false,['query' => ['client_id'=>$input['client_id']]]);
+        $data = $model->where($where)->order('log_id desc')->select();
 
-        return view('/client/order',['data'=>$data]);
+        if (isset($input['pay_monry']) && !empty($input['pay_monry'])) {
+
+            if ($input['pay_monry'] == 1) {
+                foreach ($data as $k => $v) {
+                    if (empty($v->goodlogpay->pay_price)) {
+                        $num = 0;
+                    } else {
+                        $num = $data[$k]->goodlogpay->pay_price;
+                    }
+                    if ($num >= 1) {
+                        unset($data[$k]);
+                    }
+                }
+            } elseif ($input['pay_monry'] == 2) {
+                foreach ($data as $k => $v) {
+                    if (empty($v->goodlogpay->pay_price)) {
+                        $num = 0;
+                    } else {
+                        $num = $data[$k]->goodlogpay->pay_price;
+                    }
+                    if ($num <= 0) {
+                        unset($data[$k]);
+                    }
+                }
+            }
+        }
+        return view('/client/order', ['data' => $data]);
+    }
+
+    public function edit($id)
+    {
+        $model = new SckClient();
+        $data = $model->where('client_id', $id)->find();
+        $address = db('address')
+            ->field('id1,id2 as address_id, name2 as address_name')
+            ->where(['id1' => 1, 'status' => 1])
+            ->column('id1,id2 as address_id,name2 as address_name');
+        return view('/client/edit', ['data' => $data, 'View_address' => $address]);
     }
 }

@@ -66,6 +66,8 @@
         <select name="tax_status" lay-verify="">
           <option value="">请选择发票</option>
           <option value="1">专票13%</option>
+          <option value="5">专票3%</option>
+          <option value="6">专票6%</option>
           <option value="2">专票1%</option>
           <option value="3">普票</option>
           <option value="4">无票</option>
@@ -101,6 +103,9 @@
             </th>
             <th>
               <div class="layui-table-cell"><span style="font-weight: bold">商品名称</span></div>
+            </th>
+            <th>
+              <div class="layui-table-cell"><span style="font-weight: bold">是否含票</span></div>
             </th>
             <th>
               <div class="layui-table-cell"><span style="font-weight: bold">商品备注</span></div>
@@ -149,6 +154,14 @@
               <div class="layui-table-cell ">{$vo.good_name}</div>
             </td>
             <td>
+              <div class="layui-table-cell ">
+                {eq name="$vo.tax_status" value="1"}专票13%{/eq}
+                {eq name="$vo.tax_status" value="2"/}专票1%{/eq}
+                {eq name="$vo.tax_status" value="3"/}普票{/eq}
+                {eq name="$vo.tax_status" value="4"/}无票{/eq}
+              </div>
+            </td>
+            <td>
               <div class="layui-table-cell ">{$vo.good_desc}</div>
             </td>
             <td>
@@ -191,7 +204,7 @@
                 <!--                <a href="javascript:" class="layui-btn layui-btn-xs  GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}">退货</a>-->
                 <a href="javascript:" class="layui-btn layui-btn-xs  GoodLog" data-url="{:url('admin/WarehouseGoodLog/GoodLog')}?good_id={$vo.good_id}">日志</a>
                 <a href="javascript:" class="layui-btn layui-btn-xs  supplier" data-url="{:url('admin/supplier/supplier_details')}?good_id={$vo.good_id}">供应商</a>
-                <a href="{:url('admin/WarehouseGood/edit',['good_id'=>$vo.good_id])}" class="layui-btn layui-btn-xs a_menu ">修改</a>
+                <a href="{:url('admin/WarehouseGood/edit')}?good_id={$vo.good_id}" class="layui-btn layui-btn-xs a_menu">修改</a>
                 <a href="javascript:" class="layui-btn layui-btn-xs " onclick="del(this,'{$vo.good_id}')">删除</a>
 
               </div>
@@ -252,7 +265,7 @@
                   <!--                <a href="javascript:" class="layui-btn layui-btn-xs  GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}">退货</a>-->
                   <a href="javascript:" class="layui-btn layui-btn-xs  GoodLog" data-url="{:url('admin/WarehouseGoodLog/GoodLog')}?good_id={$vo.good_id}">日志</a>
                   <a href="javascript:" class="layui-btn layui-btn-xs  supplier" data-url="{:url('admin/supplier/supplier_details')}?good_id={$vo.good_id}">供应商</a>
-                  <a href="{:url('admin/WarehouseGood/edit',['good_id'=>$vo.good_id])}" class="layui-btn layui-btn-xs a_menu ">修改</a>
+                  <a href="{:url('admin/WarehouseGood/edit')}?good_id={$vo.good_id}" class="layui-btn layui-btn-xs a_menu">修改</a>
                   <a href="javascript:" class="layui-btn layui-btn-xs " onclick="del(this,'{$vo.good_id}')">删除</a>
                 </div>
               </td>

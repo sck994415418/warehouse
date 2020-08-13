@@ -3,9 +3,9 @@
 namespace app\admin\controller;
 
 use app\admin\model\SckSupplier;
+use app\admin\model\SckSupplier as SupplierModel;
 use app\admin\model\SckWarehouseGoodLog;
 use think\Db;
-use app\admin\model\SckSupplier as SupplierModel;
 use think\Exception;
 use think\exception\PDOException;
 use think\Session;
@@ -236,6 +236,8 @@ class Supplier extends Permissions
             }
         }
     }
+
+
     public function supplier_details()
     {
         $supplier_id = $this->request->has('supplier_id') ? $this->request->param('supplier_id', 0, 'intval') : 0;
@@ -260,6 +262,19 @@ class Supplier extends Permissions
             return $this->fetch();
         }else{
             return $this->error('未找到该供应商！');
+        }
+    }
+
+    public function edit(){
+        if(request()->isGet()){
+            $id = request()->get();
+            $model = new SckSupplier();
+            $data = $model->where(['supplier_id'=>$id['id']])->find();
+            $address = db('address')
+                ->field('id1,id2 as address_id, name2 as address_name')
+                ->where(['id1' => 1, 'status' => 1])
+                ->column('id1,id2 as address_id,name2 as address_name');
+            return view('/supplier/edit',['data'=>$data,'View_address'=>$address]);
         }
     }
 }
