@@ -4,6 +4,7 @@ namespace app\admin\controller;
 
 use app\admin\model\SckWarehouseGood as WarehouseGoodModel;
 use app\admin\model\SckWarehouseGoodLog;
+use think\Db;
 use think\Session;
 use app\admin\controller\Exel;
 use PHPExcel;
@@ -83,13 +84,48 @@ class Delivery extends Permissions
                 ->alias('swgl')
                 ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
                 ->where(['log_id' => ['in', $data['data']],'is_delivery'=>0])
-                ->update(['swgl.is_delivery'=>1,'swg.good_number' => WarehouseGoodModel::raw('swg.good_number-swgl.good_amount')]);
+                ->update(['swgl.is_delivery'=>1]);
             if($data){
                 addlog($data['data']);
                 $this->success("出库成功");
             }else{
                 $this->error("出库失败");
             }
+        }else{
+            $this->error("请求错误");
+        }
+
+    }
+    //拒绝出库
+    public function good_out_no(){
+        if(request()->isPost()){
+            $data = request()->post();
+            Db::startTrans();
+            try {
+                $ok = db('sck_warehouse_good_log')
+                    ->alias('swgl')
+                    ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
+                    ->where(['log_id' => ['in', $data['data']],'is_delivery'=>0])
+                    ->update(['swgl.is_delivery'=>2,'swg.good_number' => WarehouseGoodModel::raw('swg.good_number+swgl.good_amount')]);
+                if ($ok) {
+                    $insert = db('sck_warehouse_good_log_pay')
+                        ->where(['log_id' => ['in', $data['data']],'pay_status'=>2])
+                        ->update(['pay_status' => 4]);
+                    if ($insert) {
+                        addlog(json($data['data']));
+                        $json = ['code' => 1, 'msg' => '拒绝出库成功！', 'url' => ''];
+                    } else {
+                        throw new \Exception('拒绝出库失败，请重试!');
+                    }
+                } else {
+                    throw new \Exception('拒绝出库失败，请重试!');
+                }
+                Db::commit();
+            } catch (\Exception $e) {
+                Db::rollback();
+                $json = ['code' => 0, 'msg' => $e->getMessage()];
+            }
+            return $json;
         }else{
             $this->error("请求错误");
         }
@@ -250,4 +286,172 @@ class Delivery extends Permissions
         }
         return $agency;
     }
+
+
+    //退货入库
+    public function good_return(){
+        if(request()->isPost()){
+            $data = request()->post();
+            $log = $data = db('sck_warehouse_good_log')
+                ->where(['log_id' => ['in', $data['data']],'is_return_enter'=>0])
+                ->select();
+            $GoodLogModel = new SckWarehouseGoodLog();
+            $error_arr = [];
+            $success_arr = 0;
+            $msg_data = null;
+            $msg = null;
+            Db::startTrans();
+            foreach ($log as $k=>$v){
+                try {
+                    $ok = db('sck_warehouse_good_log')->where(['log_id'=>$log[$k]['log_id']])->update(['is_return_enter'=>1]);
+                    if ($ok) {
+                        $insert = db('sck_warehouse_good')
+                            ->where(['good_id' => $log[$k]['good_id']])
+                            ->update(['good_number' => WarehouseGoodModel::raw('good_number+' . intval($log[$k]['good_amount'] . ''))]);
+                        $already_number = $GoodLogModel->where(['log_parent_id'=>$log[$k]['log_parent_id'],'good_id'=>$log[$k]['good_id'],'good_status'=>3])->sum('good_amount');
+                        $GoodLogModel->where('log_id', $log[$k]['log_id'])->update(['good_desc' => "退货产品，共计退回" . $already_number]);
+                        if ($insert) {
+                            addlog($log[$k]['log_id']);
+                            $success_arr++;
+//                            $json = ['code' => 1, 'msg' => '退货入库成功！', 'url' => ''];
+                        } else {
+                            $error_arr[] = $log[$k]['log_id'];
+//                            throw new \Exception('退货入库失败，请重试!');
+                        }
+                    } else {
+                        $error_arr[] = $log[$k]['log_id'];
+//                        throw new \Exception('退货入库失败，请重试!');
+                    }
+                    // 提交事务
+                    Db::commit();
+                } catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+
+                    $msg_data = $e->getMessage();
+                }
+            }
+            if(!empty($error_arr)){
+                $error_arr = implode($error_arr,',');
+                $error_arr = 'ID为['.$error_arr.']的记录退货入库失败！';
+            }else{
+                $error_arr = '';
+            }
+            $msg = $success_arr.'条数据退货入库成功！<br><br>'.$error_arr;
+            $json = ['code' => 0, 'msg' => $msg.$msg_data];
+            return $json;
+
+//            dump($log);die;
+//            $data = db('sck_warehouse_good_log')
+//                ->alias('swgl')
+//                ->join('sck_warehouse_good swg','swgl.good_id = swg.good_id')
+//                ->where(['log_id' => ['in', $data['data']],'is_delivery'=>0])
+//                ->update(['swgl.is_delivery'=>1]);
+//            if($data){
+//                addlog($data['data']);
+//                $this->success("出库成功");
+//            }else{
+//                $this->error("出库失败");
+//            }
+        }else{
+            $this->error("请求错误");
+        }
+
+    }
+    //入库审批
+    public function good_enter(){
+        if(request()->isPost()){
+            $data = request()->post();
+            $log = $data = db('sck_warehouse_good_log')
+                ->where(['log_id' => ['in', $data['data']],'is_good_enter'=>0])
+                ->select();
+            $error_arr = [];
+            $success_arr = 0;
+            $msg_data = null;
+            $msg = null;
+            $type = $this->request->has('type') ? $this->request->param('type', 0, 'intval') : 0;
+            if(isset($type) and $type == 1){
+                Db::startTrans();
+                foreach ($log as $k=>$v){
+                    try {
+                        $ok = db('sck_warehouse_good_log')->where(['log_id'=>$log[$k]['log_id']])->update(['is_good_enter'=>1]);
+                        if ($ok) {
+                            $insert = db('sck_warehouse_good')
+                                ->where(['good_id' => $log[$k]['good_id']])
+                                ->update(['good_number' => WarehouseGoodModel::raw('good_number+' . intval($log[$k]['good_amount'] . '')), 'good_amount' => WarehouseGoodModel::raw('good_amount+' .$log[$k]['good_amount'] . '')]);
+                            if ($insert) {
+                                addlog($log[$k]['log_id']);
+                                $success_arr++;
+//                            $json = ['code' => 1, 'msg' => '退货入库成功！', 'url' => ''];
+                            } else {
+                                $error_arr[] = $log[$k]['log_id'];
+//                            throw new \Exception('退货入库失败，请重试!');
+                            }
+                        } else {
+                            $error_arr[] = $log[$k]['log_id'];
+//                        throw new \Exception('退货入库失败，请重试!');
+                        }
+                        // 提交事务
+                        Db::commit();
+                    } catch (\Exception $e) {
+                        // 回滚事务
+                        Db::rollback();
+
+                        $msg_data = $e->getMessage();
+                    }
+                }
+                if(!empty($error_arr)){
+                    $error_arr = implode($error_arr,',');
+                    $error_arr = 'ID为['.$error_arr.']的记录入库失败！';
+                }else{
+                    $error_arr = '';
+                }
+                $msg = $success_arr.'条数据入库成功！<br><br>'.$error_arr;
+                $json = ['code' => 0, 'msg' => $msg.$msg_data];
+                return $json;
+            }elseif(isset($type) and $type == 0){
+                Db::startTrans();
+                foreach ($log as $k=>$v){
+                    try {
+                        $ok = db('sck_warehouse_good_log')->where(['log_id'=>$log[$k]['log_id']])->update(['is_good_enter'=>2]);
+                        if ($ok) {
+                            $insert = db('sck_warehouse_good_log_pay')->where('log_id',$log[$k]['log_id'])->update(['pay_status'=>5]);
+                            if ($insert) {
+                                addlog($log[$k]['log_id']);
+                                $success_arr++;
+//                            $json = ['code' => 1, 'msg' => '退货入库成功！', 'url' => ''];
+                            } else {
+                                $error_arr[] = $log[$k]['log_id'];
+//                            throw new \Exception('退货入库失败，请重试!');
+                            }
+                        } else {
+                            $error_arr[] = $log[$k]['log_id'];
+//                        throw new \Exception('退货入库失败，请重试!');
+                        }
+                        // 提交事务
+                        Db::commit();
+                    } catch (\Exception $e) {
+                        // 回滚事务
+                        Db::rollback();
+
+                        $msg_data = $e->getMessage();
+                    }
+                }
+                if(!empty($error_arr)){
+                    $error_arr = implode($error_arr,',');
+                    $error_arr = 'ID为['.$error_arr.']的记录拒绝入库失败！';
+                }else{
+                    $error_arr = '';
+                }
+                $msg = $success_arr.'条数据拒绝入库成功！<br><br>'.$error_arr;
+                $json = ['code' => 0, 'msg' => $msg.$msg_data];
+                return $json;
+            }
+
+        }else{
+            $this->error("请求错误");
+        }
+
+    }
+
 }

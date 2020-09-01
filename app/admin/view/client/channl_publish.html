@@ -22,15 +22,13 @@
 
 
     <input name="client_type" type="hidden" value="2">
-    {notempty name="$data"}
-    <input type="hidden" name="client_id" value="{$data.client_id}">
+    <input type="hidden" name="client_id" value="{$data.client_id|default=''}">
     <div class="layui-form-item layui-form-text">
       <label class="layui-form-label">客户备注</label>
       <div class="layui-input-block">
         <textarea placeholder="请输入内容" name="client_desc" class="layui-textarea">{$data.client_desc|default=''}</textarea>
       </div>
     </div>
-    {else/}
     <div class="layui-form-item">
       <label class="layui-form-label">负责人姓名</label>
       <div class="layui-input-inline">
@@ -115,7 +113,6 @@
         <input name="client_position_details" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" type="text" {notempty name="$data.client_position_details"}value="{$data.client_position_details}"{/notempty}>
       </div>
     </div>
-    {/notempty}
 
 
 
@@ -163,14 +160,17 @@
             form = layui.form;
     $(window).on('load', function() {
       form.on('submit(admin)', function(data) {
+        layer.load()
         $.ajax({
           url:"{:url('admin/client/ChannlPublish')}",
           data:$('#admin').serialize(),
           type:'post',
           async: false,
           success:function(res) {
+            layer.closeAll()
             if(res.code == 1) {
               layer.alert(res.msg, function(index){
+                layer.load()
                 location.href = res.url;
               })
             } else {

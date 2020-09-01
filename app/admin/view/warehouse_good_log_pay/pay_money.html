@@ -28,13 +28,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">应付金额</label>
             <div class="layui-input-inline">
-                <input name="pay_total" lay-verify="required" min="0" value="{$good_log.good_total}" readonly placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="pay_total" lay-verify="required" value="{$good_log.good_total}" readonly placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">已付金额</label>
             <div class="layui-input-inline">
-                <input name="pay_price" lay-verify="required" min="0" value="{$pay.pay_price|default=''}" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="pay_price" lay-verify="required" value="{$pay.pay_price|default=''}" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="pay_status" type="hidden" value="{$good_log.good_status|default=''}">
             </div>
         </div>
         <div class="layui-form-item">

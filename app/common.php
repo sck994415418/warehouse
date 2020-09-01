@@ -362,3 +362,20 @@ function address_funs($data=array())
     }
     return $address;
 }
+
+function getChildrenIds ($data,$pid)
+{
+    $arr = [];
+    foreach ($data as $k=>$v){
+        if($v['parent_id'] == $pid){
+            $res = getChildrenIds($data,$v['category_id']);
+            if(empty($res)){
+                $v['children'] = "";
+            }
+            $v['children'] = $res;
+
+            $arr[] = $v;
+        }
+    }
+    return $arr;
+}

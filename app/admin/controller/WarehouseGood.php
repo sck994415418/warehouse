@@ -18,120 +18,164 @@ class WarehouseGood extends Permissions
 {
     public function index()
     {
+//        $res = db('sck_warehouse_good_log')->where(['good_id'=>['in',[2293,2292,2291,2290]]])->update(['is_good_enter'=>0]);
+//        dump($res);die;
         $category = db('sck_warehouse_good_category')
             ->where(['parent_id'=>0])
             ->select();
         $this->assign('category',$category);
+
+        $project = db('project')->order('id desc')->select();
+        $this->assign('project', $project);
+        $this->assign('data', null);
+        return $this->fetch();
+    }
+
+    public function index_list(){
         $model = new WarehouseGoodModel();
-        $post = $this->request->param();
-        if (isset($post['keywords']) and !empty($post['keywords'])) {
-            $where['good_name | good_desc'] = ['like', '%' . $post['keywords'] . '%'];
+        $input = $this->request->param();
+        if (isset($input['keywords']) and !empty($input['keywords'])) {
+            $where['good_name | good_desc'] = ['like', '%' . $input['keywords'] . '%'];
+//            $this->assign('search_good_name', $input['keywords']);
         }
-        if (isset($post['tax_status']) and !empty($post['tax_status'])) {
-            $where['tax_status'] = $post['tax_status'];
+        if (isset($input['tax_status']) and !empty($input['tax_status'])) {
+            $where['tax_status'] = $input['tax_status'];
         }
-        if (isset($post['project_id']) and !empty($post['project_id'])) {
-            $where['project_id'] = $post['project_id'];
+        if (isset($input['project_id']) and !empty($input['project_id'])) {
+            $where['project_id'] = $input['project_id'];
         }
-        if (isset($post['good_arr']) and !empty($post['good_arr'])) {
-//            $post['good_arr'] = json_decode($post['good_arr'],true);
-            $post['good_arr'] = explode(',',$post['good_arr']);
-            $where['good_id'] = ['in',$post['good_arr']];
+        if (isset($input['good_arr']) and !empty($input['good_arr'])) {
+//            $input['good_arr'] = json_decode($input['good_arr'],true);
+            $input['good_arr'] = explode(',',$input['good_arr']);
+            $where['good_id'] = ['in',$input['good_arr']];
         }
-        if (isset($post['time']) and !empty($post['time'])) {
-            $start_time = strtotime(substr($post['time'],0,strripos($post['time'],' - ')));
-            $end_time = strtotime(substr($post['time'],strripos($post['time'],' - ')+3));
+        if (isset($input['time']) and !empty($input['time'])) {
+            $start_time = strtotime(substr($input['time'],0,strripos($input['time'],' - ')));
+            $end_time = strtotime(substr($input['time'],strripos($input['time'],' - ')+3));
             $where['create_time']=['between',[$start_time,$end_time]];
         }
-        if (isset($post['category_id']) and !empty($post['category_id'])) {
-            $where['category_id'] =  $post['category_id'];
+        if (isset($input['category_id_three']) and !empty($input['category_id_three'])) {
+            $where['category_id'] =  $input['category_id_three'];
+        }elseif(isset($input['category_id_two']) and !empty($input['category_id_two'])){
+            $category_id = $input['category_id_two'];
+            $category = db('sck_warehouse_good_category')->field('parent_id,category_id')->select();
+            $category_id = getChildrenIds($category,$category_id);
+            $category_id = array_column($category_id,'category_id');
+            $where['category_id'] =  ['in',$category_id];
+        }elseif(isset($input['category_id_one']) and !empty($input['category_id_one'])){
+            $category_id = $input['category_id_one'];
+            $category = db('sck_warehouse_good_category')->field('parent_id,category_id')->select();
+            $category_id = getChildrenIds($category,$category_id);
+            if(!empty($category_id)){
+                foreach ($category_id as $k=>$v){
+                    $category_id[$k] = array_column($category_id[$k]['children'],'category_id');
+                }
+                $category_id = array_reduce($category_id, 'array_merge', array());
+            }
+            $where['category_id'] =  ['in',$category_id];
+//            dump($category_id);die;
         }
-        if (isset($post['create_time']) and !empty($post['create_time'])) {
-            $min_time = strtotime($post['create_time']);
+
+        if (isset($input['create_time']) and !empty($input['create_time'])) {
+            $min_time = strtotime($input['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=', $min_time], ['<=', $max_time]];
         }
-        if(isset($post['good_coding']) && !empty($post['good_coding'])){
-            $where['good_coding'] =  $post['good_coding'];
+        if(isset($input['good_coding']) && !empty($input['good_coding'])){
+            $where['good_coding'] =  $input['good_coding'];
         }
         $where['good_delete'] = ['neq',1];
-        $data = empty($where) ? $model
+        if (isset($input['page']) and !empty($input['page'])) {
+            $page = $input['page'];
+        }else{
+            $page = 1;
+        }
+        if (isset($input['limit']) and !empty($input['limit'])) {
+            $number = $input['limit'];
+        }else{
+            $number = 10;
+        }
+        $data = $model
+            ->where(@$where)
             ->order('create_time desc')
-            ->paginate(10)
-            ->each(function ($k,$v){
-                if($k['good_warn_day']>0){
-                    $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$k['good_warn_day']));
+            ->page($page,$number)
+            ->select();
+        if(!empty($data)){
+            foreach ($data as $k=>$v){
+                if($data[$k]['good_number']<=0){
+                    $data[$k]['good_status_warn'] = '库存为空';
+                }elseif ($data[$k]['good_number']<=$data[$k]['good_warn']){
+                    $data[$k]['good_status_warn'] = '库存不足';
+                }
+                if(!empty($data[$k]['good_warn_day_warn']) and $data[$k]['good_warn_day_warn']==1){
+                    $data[$k]['good_status_warns'] = '库存积压';
+                }
+
+                $data[$k]['category_name'] = $data[$k]->category->category_name;
+                switch ($data[$k]['tax_status']){
+                    case '0':
+                        $data[$k]['tax_status']='';
+                        break;
+                    case '1':
+                        $data[$k]['tax_status']='专票13%';
+                        break;
+                    case '2':
+                        $data[$k]['tax_status']='专票1%';
+                        break;
+                    case '3':
+                        $data[$k]['tax_status']='普票';
+                        break;
+                    case '4':
+                        $data[$k]['tax_status']='无票';
+                        break;
+                    case '5':
+                        $data[$k]['tax_status']='专票3%';
+                        break;
+                    case '6':
+                        $data[$k]['tax_status']='专票6%';
+                        break;
+                    default:null;
+                }
+                if($data[$k]['good_warn_day']>0){
+                    $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$data[$k]['good_warn_day']));
                     $end_time = strtotime(date('Y-m-d H:i:s',time()));
-                    if($start_time>strtotime($k['create_time']) and $k['good_number']>0){
+                    if($start_time>strtotime($data[$k]['create_time']) and $data[$k]['good_number']>0){
                         $have = db('sck_warehouse_good_log')
-                            ->where(['good_id'=>$k['good_id'],'good_status'=>2])
+                            ->where(['good_id'=>$data[$k]['good_id'],'good_status'=>2])
                             ->whereTime('create_time','between',[$start_time,$end_time])
                             ->find();
                         if(empty($have)){
-                            $k['good_warn_day_warn']=1;
+                            $data[$k]['good_warn_day_warn']=1;
                         }else{
-                            $k['good_warn_day_warn']=0;
+                            $data[$k]['good_warn_day_warn']=0;
                         }
                     }else{
-                        $k['good_warn_day_warn']=0;
+                        $data[$k]['good_warn_day_warn']=0;
                     }
 
                 }
-
-
                 $good_log = db('sck_warehouse_good_log')
-                    ->where(['good_id'=>$k['good_id'],'good_status'=>1])
+                    ->where(['good_id'=>$data[$k]['good_id'],'good_status'=>1,'is_good_enter'=>1])
                     ->order('create_time','desc')
                     ->limit(2)
                     ->select();
                 if(empty($good_log)){
-                    $k['good_lowest_price']=0;
+                    $data[$k]['good_lowest_price']=0;
                 }else{
                     $total_price = array_sum(array_column($good_log,'good_total'));
                     $total_amount = array_sum(array_column($good_log,'good_amount'));
-                    $k['good_lowest_price'] = round($total_price/$total_amount,2);
+                    $data[$k]['good_lowest_price'] = $total_amount!==0?round($total_price/$total_amount,2).'元':0;
                 }
-            })
-            : $model->where($where)
-                ->order('create_time desc')
-                ->paginate(10, false, ['query' => $this->request->param()])
-                ->each(function ($k,$v){
-                    if($k['good_warn_day']>0){
-                        $start_time = strtotime(date('Y-m-d H:i:s',time()-3600*24*$k['good_warn_day']));
-                        $end_time = strtotime(date('Y-m-d H:i:s',time()));
-                        if($start_time>=strtotime($k['create_time']) and $k['good_number']>0){
-                            $have = db('sck_warehouse_good_log')
-                                ->where(['good_id'=>$k['good_id'],'good_status'=>2])
-                                ->whereTime('create_time','between',[$start_time,$end_time])
-                                ->find();
-                            if(empty($have)){
-                                $k['good_warn_day_warn']=1;
-                            }else{
-                                $k['good_warn_day_warn']=0;
-                            }
-                        }else{
-                            $k['good_warn_day_warn']=0;
-                        }
-                    }
-                    $good_log = db('sck_warehouse_good_log')
-                        ->where(['good_id'=>$k['good_id'],'good_status'=>1])
-                        ->order('create_time','desc')
-                        ->limit(2)
-                        ->select();
-                    if(empty($good_log)){
-                        $k['good_lowest_price']=0;
-                    }else{
-                        $total_price = array_sum(array_column($good_log,'good_total'));
-                        $total_amount = array_sum(array_column($good_log,'good_amount'));
-                        $k['good_lowest_price'] = round($total_price/$total_amount,2);
-                    }
-                });
-        $project = db('project')->order('id desc')->select();
-        $this->assign('data', $data);
-        $this->assign('project', $project);
-        return $this->fetch();
+            }
+        }
+        $data_count = $model->where(@$where)->count();
+        $res['code'] = 0;
+        $res['count'] = $data_count;
+        $res['data'] = $data;
+        $res['msg'] = null;
+        $res = json($res);
+        return $res;
     }
-
 
     public function publish()
     {
@@ -140,11 +184,14 @@ class WarehouseGood extends Permissions
             $post = $this->request->post();
             $validate = new Validate([
                 ['good_name', 'require', '商品名称不能为空'],
-                ['good_price', 'require', '商品单价不能为空'],
-                ['good_total', 'require', '商品总价不能为空'],
-                ['good_amount', 'require', '商品库存不能为空'],
+//                ['good_price', 'require', '商品单价不能为空'],
+//                ['good_total', 'require', '商品总价不能为空'],
+//                ['good_amount', 'require', '商品库存不能为空'],
             ]);
-            $post['good_number'] = $post['good_amount'];
+//            if($post['good_amount']<=0){
+//                $this->error('入库数量不能为0!');
+//            }
+//            $post['good_number'] = $post['good_amount'];
             if (!$validate->check($post)) {
                 $this->error('提交失败：' . $validate->getError());
             }
@@ -155,20 +202,23 @@ class WarehouseGood extends Permissions
             }
             $post['admin_id'] = $admin_id;
             $post['create_time'] = time();
+//            dump($post);die;
             Db::startTrans();
             try {
                 $ok = $model->allowField(true)->save($post);
                 $good_id = Db::name('sck_warehouse_good')->getLastInsID();
                 if($ok){
-                    $LogModel = new SckWarehouseGoodLog();
-                    $post['good_id'] = $good_id;
-                    $insert = $LogModel->allowField(true)->save($post);
-                    if($insert){
+//                    $LogModel = new SckWarehouseGoodLog();
+//                    $post['good_id'] = $good_id;
+//                    $post['good_status'] = 1;
+//                    $post['is_good_enter'] = 0;
+//                    $insert = $LogModel->allowField(true)->save($post);
+//                    if($insert){
                         addlog($good_id);
                         $json = ['code'=>1,'msg'=>'添加成功','url'=>'index'];
-                    }else{
-                        throw new \Exception('添加失败，请重试!');
-                    }
+//                    }else{
+//                        throw new \Exception('添加失败，请重试!');
+//                    }
                 }else{
                     throw new \Exception('添加失败，请重试!');
                 }
@@ -261,6 +311,7 @@ class WarehouseGood extends Permissions
      */
     public function delete()
     {
+//        return $this->success('删除成功', 'admin/WarehouseGood/index');
         if ($this->request->isAjax()) {
             $good_id = $this->request->has('good_id') ? $this->request->param('good_id', 0, 'intval') : 0;
             $model = new WarehouseGoodModel();

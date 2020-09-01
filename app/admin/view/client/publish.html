@@ -232,14 +232,17 @@
             form = layui.form;
     $(window).on('load', function() {
       form.on('submit(admin)', function(data) {
+        layer.load()
         $.ajax({
           url:"{:url('admin/client/publish')}",
           data:$('#admin').serialize(),
           type:'post',
           async: false,
           success:function(res) {
+            layer.closeAll()
             if(res.code == 1) {
               layer.alert(res.msg, function(index){
+                layer.load()
                 location.href = res.url;
               })
             } else {

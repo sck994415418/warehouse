@@ -31,10 +31,68 @@
       <li><a href="{:url('admin/WarehouseGood/import')}" class="a_menu">表格导入商品</a></li>
     </ul>
   </div>
-  <form class="layui-form serch" action="{:url('admin/WarehouseGood/index')}" style="height: 95px" method="post">
+  <div class="demoTable layui-form" style="display: inline-block">
+    <div class="layui-inline">
+      <input type="text" value="" name="keywords" lay-verify="title" autocomplete="off" placeholder="商品名称" class="layui-input layui-btn-sm">
+    </div>
+    <div class="layui-inline province_div">
+      <select name="category_id_one" lay-verify="" class="one" lay-filter="one">
+        <option value="">请选择分类</option>
+        {if !empty($category)}
+        {foreach name="category" item="v"}
+        <option value="{$v.category_id}" >{$v.category_name}</option>
+        {/foreach}
+        {/if}
+      </select>
+    </div>
+
+    <div class="layui-inline two_div">
+
+    </div>
+    <div class="layui-inline three_div">
+
+    </div>
+    <div class="layui-inline">
+      <div class="layui-input-inline">
+        <input type="text" name="time" class="layui-input" id="test6" placeholder=" 日期范围 ">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <input type="text" name="good_coding" lay-verify="title" autocomplete="off" placeholder="商品编号" class="layui-input layui-btn-sm">
+    </div>
+    <div class="layui-inline province_div">
+      <select name="tax_status" lay-verify="">
+        <option value="">请选择发票</option>
+        <option value="1">专票13%</option>
+        <option value="5">专票3%</option>
+        <option value="6">专票6%</option>
+        <option value="2">专票1%</option>
+        <option value="3">普票</option>
+        <option value="4">无票</option>
+      </select>
+    </div>
+    <div class="layui-inline province_div">
+      <select name="project_id" lay-search="" lay-verify="">
+        <option value="">项目商品</option>
+        {foreach name="project" item="v"}
+        <option value="{$v.id}">{$v.project}</option>
+        {/foreach}
+      </select>
+    </div>
+    <button class="layui-btn" id="search_form" type="button" data-type="reload">搜索</button>
+  </div>
+
+
+
+  <table class="layui-hide" id="test" lay-filter="test"></table>
+
+
+
+
+  <form class="layui-form serch" action="{:url('admin/WarehouseGood/index')}" style="height: 95px;display: none" method="post">
     <div class="layui-form-item" style="float: left;">
       <div class="layui-input-inline">
-        <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="商品名称" class="layui-input layui-btn-sm">
+        <input type="text" value="{$search_good_name|default=''}" name="keywords" lay-verify="title" autocomplete="off" placeholder="商品名称" class="layui-input layui-btn-sm">
       </div>
       <div class="layui-input-inline province_div">
         <select name="category_id" lay-verify="" class="one" lay-filter="one">
@@ -55,9 +113,9 @@
       </div>
       <div class="layui-inline">
         <label class="layui-form-label">日期范围</label>
-        <div class="layui-input-inline">
-          <input type="text" name="time" class="layui-input" id="test6" placeholder=" - ">
-        </div>
+<!--        <div class="layui-input-inline">-->
+<!--          <input type="text" name="time" class="layui-input" id="test6" placeholder=" - ">-->
+<!--        </div>-->
       </div>
       <div class="layui-input-inline">
         <input type="text" name="good_coding" lay-verify="title" autocomplete="off" placeholder="商品编号" class="layui-input layui-btn-sm">
@@ -84,247 +142,10 @@
       <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" onclick="" lay-filter="serch">立即提交</button>
     </div>
   </form>
-  <div class="layui-form" style="display: block">
-    <div class="layui-table-box">
-
-      <div class="layui-table-body layui-table-main" style="">
-        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
-          <tbody>
-          <tr>
-
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">ID</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">商品分类</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">商品品牌</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">商品名称</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">是否含票</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">商品备注</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">商品规格</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">库存余量</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">商品编码</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">最低出库价</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">仓库位置</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">积压报警天数</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">状态</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell"><span style="font-weight: bold">创建时间</span></div>
-            </th>
-            <th>
-              <div class="layui-table-cell laytable-cell-1-0-15"><span style="font-weight: bold">操作</span></div>
-            </th>
-
-          </tr>
-          {volist name="data" id="vo"}
-          <tr>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_id}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.category.category_name}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_brand|default='无'}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_name}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">
-                {eq name="$vo.tax_status" value="1"}专票13%{/eq}
-                {eq name="$vo.tax_status" value="2"/}专票1%{/eq}
-                {eq name="$vo.tax_status" value="3"/}普票{/eq}
-                {eq name="$vo.tax_status" value="4"/}无票{/eq}
-              </div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_desc}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_sku}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_number}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_coding}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell " style="color: green;">{$vo.good_lowest_price}元</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_position}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.good_warn_day}天</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{if $vo.good_number <= 0}
-                <span class="layui-badge layui-bg-red" title="库存为空" style="cursor:pointer;">!</span>
-                {elseif $vo.good_number<=$vo.good_warn/}
-                <span class="layui-badge layui-bg-orange" title="库存不足" style="cursor:pointer;">!</span>
-                {/if}
-                {if !empty($vo.good_warn_day_warn) and $vo.good_warn_day_warn == 1}
-                <span class="layui-badge layui-bg-black" title="库存积压" style="cursor:pointer;">!</span>
-                {/if}</div>
-            </td>
-            <td>
-              <div class="layui-table-cell ">{$vo.create_time|default=''}</div>
-            </td>
-
-            <td class="">
-
-              <div class="layui-table-cell laytable-cell-1-0-15">
-                <a href="javascript:" class="layui-btn layui-btn-xs GoodEnter" data-url="{:url('admin/WarehouseGoodLog/GoodEnter')}?good_id={$vo.good_id}">入库</a>
-                <a href="javascript:" class="layui-btn layui-btn-xs  {if $vo.good_number>0}GoodOut{else}NoGoodOut{/if}" data-url="{:url('admin/WarehouseGoodLog/GoodOut')}?good_id={$vo.good_id}">出库</a>
-                <!--                <a href="javascript:" class="layui-btn layui-btn-xs  GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}">退货</a>-->
-                <a href="javascript:" class="layui-btn layui-btn-xs  GoodLog" data-url="{:url('admin/WarehouseGoodLog/GoodLog')}?good_id={$vo.good_id}">日志</a>
-                <a href="javascript:" class="layui-btn layui-btn-xs  supplier" data-url="{:url('admin/supplier/supplier_details')}?good_id={$vo.good_id}">供应商</a>
-                <a href="{:url('admin/WarehouseGood/edit')}?good_id={$vo.good_id}" class="layui-btn layui-btn-xs a_menu">修改</a>
-                <a href="javascript:" class="layui-btn layui-btn-xs " onclick="del(this,'{$vo.good_id}')">删除</a>
-
-              </div>
-            </td>
-          </tr>
-          {/volist}
-
-          </tbody>
-        </table>
-      </div>
-      <div class="layui-table-fixed layui-table-fixed-l">
-        <div class="layui-table-header">
-          <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
-            <thead>
-            <tr>
-              <th data-field="id" data-key="1-0-2" class=" layui-unselect">
-                <div class="layui-table-cell"><span style="font-weight: bold">ID</span></div>
-              </th>
-            </tr>
-            </thead>
-          </table>
-        </div>
-        <div class="layui-table-body" style="">
-          <table cellspacing="0"  style="margin:0px 0px 0px 0px" cellpadding="0" border="0" class="layui-table">
-            <tbody>
-            {volist name="data" id="vo"}
-            <tr>
-              <td>
-                <div class="layui-table-cell">{$vo.good_id}</div>
-              </td>
-            </tr>
-            {/volist}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="layui-table-fixed layui-table-fixed-r" style="right: 0px;">
-        <div class="layui-table-header" style="overflow:auto">
-          <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
-            <thead>
-            <tr>
-              <th data-field="10" data-key="1-0-10" class=" layui-table-col-special">
-                <div class="layui-table-cell laytable-cell-1-0-15" align="center"><span style="font-weight: bold">操作</span></div>
-              </th>
-            </tr>
-            </thead>
-          </table>
-        </div>
-        <div class="layui-table-body" style="">
-          <table cellspacing="0" cellpadding="0"  style="margin:0px 0px 0px 0px" border="0" class="layui-table">
-            <tbody>
-            {volist name="data" id="vo"}
-            <tr>
-              <td class="">
-                <div class="layui-table-cell laytable-cell-1-0-15">
-                  <a href="javascript:" class="layui-btn layui-btn-xs GoodEnter" data-url="{:url('admin/WarehouseGoodLog/GoodEnter')}?good_id={$vo.good_id}">入库</a>
-                  <a href="javascript:" class="layui-btn layui-btn-xs  {if $vo.good_number>0}GoodOut{else}NoGoodOut{/if}" data-url="{:url('admin/WarehouseGoodLog/GoodOut')}?good_id={$vo.good_id}">出库</a>
-                  <!--                <a href="javascript:" class="layui-btn layui-btn-xs  GoodReturn" data-url="{:url('admin/WarehouseGoodLog/GoodReturn')}?good_id={$vo.good_id}">退货</a>-->
-                  <a href="javascript:" class="layui-btn layui-btn-xs  GoodLog" data-url="{:url('admin/WarehouseGoodLog/GoodLog')}?good_id={$vo.good_id}">日志</a>
-                  <a href="javascript:" class="layui-btn layui-btn-xs  supplier" data-url="{:url('admin/supplier/supplier_details')}?good_id={$vo.good_id}">供应商</a>
-                  <a href="{:url('admin/WarehouseGood/edit')}?good_id={$vo.good_id}" class="layui-btn layui-btn-xs a_menu">修改</a>
-                  <a href="javascript:" class="layui-btn layui-btn-xs " onclick="del(this,'{$vo.good_id}')">删除</a>
-                </div>
-              </td>
-            </tr>
-            {/volist}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <style>.laytable-cell-1-0-0 {
-      width: 48px;
-    }
-
-    .laytable-cell-1-0-1 {
-      width: 80px;
-    }
-
-    .laytable-cell-1-0-2 {
-      width: 80px;
-    }
-
-    .laytable-cell-1-0-3 {
-      width: 80px;
-    }
-
-    .laytable-cell-1-0-4 {
-      width: 80px;
-    }
-
-    .laytable-cell-1-0-5 {
-      width: 160px;
-    }
-
-    .laytable-cell-1-0-6 {
-      width: 80px;
-    }
-
-    .laytable-cell-1-0-7 {
-      width: 80px;
-    }
-
-    .laytable-cell-1-0-8 {
-      width: 135px;
-    }
-
-    .laytable-cell-1-0-9 {
-      width: 80px;
-    }
-
-    .laytable-cell-1-0-10 {
-      width: 178px;
-    }</style>
-  </div>
-  <div style="padding:0 20px;">{$data->render()}</div>
   {include file="public/foot"}
 </body>
 </html>
+
 <script type="text/javascript">
   $('.layui-btn,.layui-badge').hover(function () {
     var msg = $(this).attr('title')
@@ -334,90 +155,15 @@
       });
     }
   })
-  function del(obj,good_id){
-    layer.confirm('确认要删除吗？',function(index){
-      //发异步删除数据
-      $.ajax({
-        url:"{:url('admin/WarehouseGood/delete')}",
-        data:{good_id:good_id},
-        success:function(res) {
-          layer.msg(res.msg);
-          if(res.code == 1) {
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
-          }
-        }
-      })
+
+  layui.use('laydate', function(){
+    var laydate = layui.laydate;
+    //日期范围
+    laydate.render({
+      elem: '#test6'
+      ,range: true
     });
-  }
-  $(document).on('click','.GoodEnter',function () {
-    var url = $(this).data('url')
-    layer.open({
-      type: 2
-      ,title: '入库'
-      ,content:url
-      ,area: ['90%', '90%']
-      ,btn: ['关闭']
-      ,yes: function(index, layero){
-        layer.close(index)
-      }
-    })
-  })
-  $(document).on('click','.supplier',function () {
-    var url = $(this).data('url')
-    layer.open({
-      type: 2
-      ,title: '供应商'
-      ,content:url
-      ,area: ['90%', '90%']
-      ,btn: ['关闭']
-      ,yes: function(index, layero){
-        layer.close(index)
-      }
-    })
-  })
-  $(document).on('click','.GoodOut',function () {
-    var url = $(this).data('url')
-    layer.open({
-      type: 2
-      ,title: '出库'
-      ,content:url
-      ,area: ['90%', '90%']
-      ,btn: ['关闭']
-      ,yes: function(index, layero){
-        layer.close(index)
-      }
-    })
-  })
-  $(document).on('click','.NoGoodOut',function () {
-    layer.msg('该商品库存不足，不可出库，请联系管理员进行整理库存！')
-  })
-  $(document).on('click','.GoodLog',function () {
-    var url = $(this).data('url')
-    layer.open({
-      type: 2
-      ,title: '日志'
-      ,content:url
-      ,area: ['90%', '90%']
-      ,btn: ['关闭']
-      ,yes: function(index, layero){
-        layer.close(index)
-      }
-    })
-  })
-  $(document).on('click','.GoodReturn',function () {
-    var url = $(this).data('url')
-    layer.open({
-      type: 2
-      ,title: '退货'
-      ,content:url
-      ,area: ['90%', '90%']
-      ,btn: ['关闭']
-      ,yes: function(index, layero){
-        layer.close(index)
-      }
-    })
-  })
+  });
 </script>
 <script>
   layui.use(['form', 'layer'], function () {
@@ -425,6 +171,7 @@
     var form = layui.form;
     //选择省时触发事件获取其下市数据
     form.on('select(one)', function(data){
+      $('select[name=category_id_three]').val(null)
       var item = $(this).parents('.layui-form-item')
       // console.log(item)
       $('.two_div').html('')
@@ -452,7 +199,7 @@
       layer.load()
       $.getJSON("{:url('admin/WarehouseGoodCategory/two')}?category_id="+data.value, function(data){
         if(data.code == '1'){
-          var str= '          <select lay-verify="required" name="category_id" class="two" lay-filter="city">\n' +
+          var str= '          <select lay-verify="" name="category_id_two" class="two" lay-filter="city">\n' +
                   '            <option value="">请选择市</option>\n' +
                   '          </select>\n';
           $('.two_div').html(str)
@@ -461,6 +208,8 @@
             optionstring += "<option value=\"" + item.category_id + "\">" + item.category_name + "</option>";
           });
           $(".two").html('<option value=""></option>' + optionstring);
+          // $('select[name=category_id_three]').val(0);
+          $(".three").html('<option value="" selected></option>');
           form.render('select');
           layer.closeAll()
         }else{
@@ -470,10 +219,13 @@
       });
     }
     function address_qu(data,item){
+      if(data.value == undefined || data.value == null || data.value == ''){
+        return false;
+      }
       layer.load()
       $.getJSON("{:url('admin/WarehouseGoodCategory/three')}?category_id="+data.value, function(data){
         if(data.code == '1'){
-          var str='          <select lay-verify="required" name="category_id" class="three" lay-filter="qu">\n' +
+          var str='          <select lay-verify="" name="category_id_three" class="three" lay-filter="qu">\n' +
                   '            <option value="">请选择区/县</option>\n' +
                   '          </select>\n';
           $('.three_div').html(str)
@@ -492,13 +244,193 @@
     }
   });
 </script>
+
+<script type="text/html" id="good_status_warn">
+  {{#  if(d.good_status_warn === '库存为空'){ }}
+  <span class="layui-badge layui-bg-red" title="库存为空" style="cursor:pointer;">!</span>
+  {{#  } else if(d.good_status_warn === '库存不足'){ }}
+  <span class="layui-badge layui-bg-orange" title="库存不足" style="cursor:pointer;">!</span>
+  {{#  } }}
+  {{#  if(d.good_status_warns === '库存积压'){ }}
+  <span class="layui-badge layui-bg-black" title="库存积压" style="cursor:pointer;">!</span>
+  {{#  } }}
+</script>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs sck_lay_btn" lay-event="GoodEnter">入库</a>
+  <a class="layui-btn layui-btn-xs sck_lay_btn" lay-event="GoodOut">出库</a>
+  <a class="layui-btn layui-btn-xs sck_lay_btn" lay-event="GoodLog">日志</a>
+  <a class="layui-btn layui-btn-xs sck_lay_btn" lay-event="supplier">供应商</a>
+  <a class="layui-btn layui-btn-xs sck_lay_btn" lay-event="edit">修改</a>
+  <a class="layui-btn layui-btn-xs sck_lay_btn layui-btn-danger" lay-event="del" onclick="del(this,'{@$vo.good_id}')">删除</a>
+</script>
 <script>
-  layui.use('laydate', function(){
-    var laydate = layui.laydate;
-    //日期范围
-    laydate.render({
-      elem: '#test6'
-      ,range: true
+  layui.use(['form', 'layer','table'], function(){
+    var table = layui.table;
+    var form = layui.form;
+    // var arr = [];
+    // table.on('checkbox', function(obj){
+    //   var checkStatus = table.checkStatus('test');
+    //   arr = []
+    //   $(checkStatus.data).each(function (i) {
+    //     arr.push(checkStatus.data[i].id);
+    //   });
+    // });
+
+    table.render({
+      elem: '#test'
+      ,url:"{:url('admin/WarehouseGood/index_list')}"
+      ,title: '商品列表'
+      ,toolbar: '#toolbarDemo'
+      ,cols: [[
+        // {type: 'checkbox',field:'good_id', fixed: 'left'},
+        {field:'good_id', title:'ID',width:80, fixed: 'left', unresize: true, sort: true}
+        ,{field:'category_name', title:'商品分类',width:120}
+        ,{field:'good_brand', title:'商品品牌',width:120}
+        ,{field:'good_name', title:'商品名称',width:320}
+        ,{field:'tax_status', title:'是否含票',width:120}
+        ,{field:'good_desc', title:'商品备注',width:300}
+        ,{field:'good_sku', title:'商品规格',width:200}
+        ,{field:'good_number', title:'库存余量',  sort: true,width:120}
+        ,{field:'good_coding', title:'商品编码',width:150}
+        ,{field:'good_lowest_price', title:'最低出库价',style:'color: green;',  sort: true,width:150}
+        ,{field:'good_position', title:'仓库位置',width:150}
+        ,{field:'good_warn_day', title:'积压报警天数',width:150}
+        ,{field:'good_status_warn', title:'状态',templet: '#good_status_warn',width:80}
+        ,{field:'create_time', title:'创建时间',  sort: true,width:160}
+        ,{fixed: 'right', title:'操作',width:320, align:'center', toolbar: '#barDemo'}
+      ]]
+      ,page: true
+      // ,id: 'testReload'
     });
-  });
+
+//监听工具条
+    table.on('tool(test)', function(obj){
+      var data = obj.data;
+      if(obj.event === 'del'){
+        var good_id = obj.data.good_id;
+        layer.confirm('确认要删除吗？',function(index){
+          //发异步删除数据
+          layer.load()
+          $.ajax({
+            url:"{:url('admin/WarehouseGood/delete')}",
+            data:{good_id:good_id},
+            success:function(res) {
+              layer.closeAll()
+              if(res.code == 1) {
+                layer.load()
+                layer.alert(res.msg,{icon:-1}, function(index){
+                  layer.close(index);
+                  obj.del();
+                  layer.closeAll()
+                  // location.href = res.url;
+                })
+              } else {
+                layer.msg(res.msg);
+              }
+            }
+          })
+        });
+      } else if(obj.event === 'edit'){
+        var good_id = obj.data.good_id;
+        window.location.href = "{:url('admin/WarehouseGood/edit')}?good_id="+good_id
+      } else if(obj.event === 'supplier'){
+        var good_id = obj.data.good_id;
+        var url = "{:url('admin/supplier/supplier_details')}?good_id="+good_id
+        layer.open({
+          type: 2
+          ,title: '供应商'
+          ,content:url
+          ,area: ['90%', '90%']
+          ,btn: ['关闭']
+          ,yes: function(index, layero){
+            layer.close(index)
+          }
+        })
+      } else if(obj.event === 'GoodLog'){
+        var good_id = obj.data.good_id;
+        var url = "{:url('admin/WarehouseGoodLog/GoodLog')}?good_id="+good_id
+        layer.open({
+          type: 2
+          ,title: '日志'
+          ,content:url
+          ,area: ['90%', '90%']
+          ,btn: ['关闭']
+          ,yes: function(index, layero){
+            layer.close(index)
+          }
+        })
+      } else if(obj.event === 'GoodOut'){
+        var good_id = obj.data.good_id;
+        var good_number = obj.data.good_number;
+        var url = "{:url('admin/WarehouseGoodLog/GoodOut')}?good_id="+good_id
+        if(good_number>0){
+          layer.open({
+            type: 2
+            ,title: '出库'
+            ,content:url
+            ,area: ['90%', '90%']
+            ,btn: ['关闭']
+            ,yes: function(index, layero){
+              layer.close(index)
+            }
+          })
+        }else{
+          layer.msg('该商品库存不足，不可出库，请联系管理员进行整理库存！')
+        }
+      } else if(obj.event === 'GoodEnter'){
+        var good_id = obj.data.good_id;
+        var url = "{:url('admin/WarehouseGoodLog/GoodEnter')}?good_id="+good_id
+        layer.open({
+          type: 2
+          ,title: '出库'
+          ,content:url
+          ,area: ['90%', '90%']
+          ,btn: ['关闭']
+          ,yes: function(index, layero){
+            layer.close(index)
+          }
+        })
+      }
+    });
+
+
+    $('.sck_lay_btn').on('click', function(){
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+
+
+    $('#search_form').on('click', function(){
+      var keywords = $('input[name=keywords]');
+      var category_id_one = $('select[name=category_id_one]');
+      var category_id_two = $('select[name=category_id_two]');
+      var category_id_three = $('select[name=category_id_three]');
+      var time = $('input[name=time]');
+      var good_coding = $('input[name=good_coding]');
+      var tax_status = $('select[name=tax_status]');
+      var project_id = $('select[name=project_id]');
+      table.reload('test', {
+        url: "{:url('admin/WarehouseGood/index_list')}"
+        ,methods:"get"
+        ,request: {
+          pageName: 'page' //页码的参数名称，默认：page
+          ,limitName: 'limit' //每页数据量的参数名，默认：limit
+        }
+        ,where: {
+          keywords: keywords.val(),
+          category_id_one: category_id_one.val(),
+          category_id_two: category_id_two.val(),
+          category_id_three: category_id_three.val(),
+          time: time.val(),
+          good_coding: good_coding.val(),
+          tax_status: tax_status.val(),
+          project_id: project_id.val(),
+        }
+        ,page: {
+          curr: 1
+        }
+
+      });
+    })
+  })
 </script>

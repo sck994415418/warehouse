@@ -94,9 +94,14 @@
     <a href="javascript:" class="layui-btn excel" style="float: left; margin-left: 10px;" data-url="">
         导出
     </a>
-    <a href="javascript:" class="layui-btn out" style="float: left; margin-left: 10px;" data-url="">
-        确认出库
-    </a>
+<!--    <a href="javascript:" class="layui-btn out" style="float: left; margin-left: 10px;" data-url="">-->
+<!--        确认出库-->
+<!--    </a>-->
+        <button id="layerDemo" data-method="confirmTrans" class="layui-btn">确认出库</button>
+    {elseif !empty($good_status) and $good_status == 3 }
+        <button style="margin-left: 10px;" id="layerDemo_return" data-method="confirmTrans_return" class="layui-btn">确认退货入库</button>
+    {elseif !empty($good_status) and $good_status == 1 }
+        <button style="margin-left: 10px;" id="layerDemo_enter" data-method="confirmTrans_enter" class="layui-btn">确认入库</button>
     {/if}
     <form class="layui-form" id="admin">
         <table class="layui-table" lay-size="sm">
@@ -114,21 +119,22 @@
                 <col width="100">
                 <col width="80">
                 {elseif !empty($good_status) and $good_status == 1 /}
+                <col width="50">
                 <col width="60">
                 <col width="60">
                 <col width="">
                 <col width="">
-                <col width="50">
-                <col width="50">
+                <col width="80">
+                <col width="80">
                 <col width="100">
                 <col width="100">
-                <col width="100">
+                <col width="80">
                 <col width="100">
                 <col width="80">
                 {elseif !empty($good_status) and $good_status == 2}
                 <col width="20">
                 <col width="30">
-                <col width="30">
+                <col width="45">
                 <col width="250">
                 <col width="">
                 <col width="85">
@@ -140,13 +146,27 @@
                 <col width="60">
                 <col width="100">
                 <col width="185">
-                {else}
+                {elseif !empty($good_status) and $good_status == 3}
+                <col width="20">
+                <col width="30">
+                <col width="45">
+                <col width="250">
+                <col width="">
+                <col width="85">
+                <col width="40">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="60">
+                <col width="100">
+                <col width="185">
                 {/if}
 
             </colgroup>
             <thead>
             <tr>
-                {if !empty($good_status) and $good_status == 2 /}
+                {if !empty($good_status) and $good_status == 2 ||$good_status ==3||$good_status ==1 /}
                 <th>
                     <div class="checkallbox">
                         <input lay-skin="primary" type="checkbox" id="checkall" name="type" lay-filter="allChoose" value="checkall"/>
@@ -188,7 +208,10 @@
                 <td>{$vo.good_name}</td>
                 <td>{$vo.good_desc}</td>
                 <td>
-                    {eq name="$vo.good_status" value="1"}入库{/eq}
+                    {eq name="$vo.good_status" value="1"}
+                    {eq name="$vo.is_good_enter" value="1"}<span style="color: green;">已确认入库</span>{/eq}
+                    {eq name="$vo.is_good_enter" value="0"}<span style="color: red;">未确认入库</span>{/eq}
+                    {/eq}
                     {eq name="$vo.good_status" value="2"/}出库{/eq}
                     {eq name="$vo.good_status" value="3"/}退货{/eq}
                 </td>
@@ -202,7 +225,7 @@
                         {if $vo.good_status==2 || $vo.good_status==3}
                         <a href="javascript:" title="查看客户"
                            class="layui-btn layui-btn-xs layui-btn-primary client_details"
-                           data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
+                           data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}&client_power={$vo.client_power|default=''}">
                             &nbsp;<i class="fa fa-user">&nbsp;</i>
                         </a>
                         <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary pay_money"
@@ -224,7 +247,7 @@
             {volist name="data" id="vo"}
             {if $vo.good_status==1}
             <tr>
-                {if !empty($good_status) and $good_status == 2 /}
+                {if !empty($good_status) and $good_status == 1 /}
                 <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
                 {/if}
                 <td>{$vo.log_id}</td>
@@ -232,7 +255,11 @@
                 <td>{$vo.good_name}</td>
                 <td>{$vo.good_desc}</td>
                 <td>
-                    {eq name="$vo.good_status" value="1"}入库{/eq}
+                    {eq name="$vo.good_status" value="1"}
+                    {eq name="$vo.is_good_enter" value="2"}<span style="color: orange;">已拒绝入库</span>{/eq}
+                    {eq name="$vo.is_good_enter" value="1"}<span style="color: green;">已确认入库</span>{/eq}
+                    {eq name="$vo.is_good_enter" value="0"}<span style="color: red;">未确认入库</span>{/eq}
+                    {/eq}
                     {eq name="$vo.good_status" value="2"/}出库{/eq}
                     {eq name="$vo.good_status" value="3"/}退货{/eq}
                 </td>
@@ -266,6 +293,7 @@
                     {eq name="$vo.good_status" value="1"/}入库{/eq}
                     {eq name="$vo.good_status" value="2"/}
                     {eq name="$vo.is_delivery" value="1"}<span style="color: green;">已确认出库</span>{/eq}
+                    {eq name="$vo.is_delivery" value="2"}<span style="color: orange;">已拒绝出库</span>{/eq}
                     {eq name="$vo.is_delivery" value="0"}<span style="color: red;">未确认出库</span>{/eq}
                     {/eq}
                     {eq name="$vo.good_status" value="3"/}退货{/eq}
@@ -287,7 +315,7 @@
                     <div class="layui-btn-group">
                         <a href="javascript:" title="查看客户"
                            class="layui-btn layui-btn-xs layui-btn-primary client_details"
-                           data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
+                           data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}&client_power={$vo.client_power|default=''}">
                             &nbsp;<i class="fa fa-user">&nbsp;</i>
                         </a>
                         <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary pay_money"
@@ -306,7 +334,7 @@
                     {volist name="data" id="vo"}
                     {if $vo.good_status==3}
                     <tr>
-                        {if !empty($good_status) and $good_status == 2 /}
+                        {if !empty($good_status) and $good_status == 3 /}
                         <th><input lay-skin="primary" type="checkbox" name="log_id[]" value='{$vo.log_id}'/></th>
                         {/if}
                         <td>{$vo.log_id}</td>
@@ -316,14 +344,17 @@
                         <td>
                             {eq name="$vo.good_status" value="1"}入库{/eq}
                             {eq name="$vo.good_status" value="2"/}出库{/eq}
-                            {eq name="$vo.good_status" value="3"/}退货{/eq}
+                            {eq name="$vo.good_status" value="3"/}
+                            {eq name="$vo.is_return_enter" value="1"}<span style="color: green;">已确认退货入库</span>{/eq}
+                            {eq name="$vo.is_return_enter" value="0"}<span style="color: red;">未确认退货入库</span>{/eq}
+                            {/eq}
                         </td>
                         <td>{$vo.good_amount}</td>
                         <td>{$vo.admin.nickname}</td>
                         <td>{$vo.create_time|default=''}</td>
                         <td>
                             <a href="javascript:" title="查看客户" class="layui-btn layui-btn-xs layui-btn-primary client_details"
-                               data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
+                               data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}&client_power={$vo.client_power|default=''}">
                                 &nbsp;<i class="fa fa-user">&nbsp;</i>
                             </a>
 
@@ -397,7 +428,6 @@
         form.on('checkbox(allChoose)', function (data) {
             var child = $("tr input[type='checkbox']");
             child.each(function (index, item) {
-                console.log(item.disabled)
                 if(item.disabled != true){
 
                     item.checked = data.elem.checked;
@@ -420,6 +450,7 @@
 
     })
     $('.excel').click(function () {
+        layer.load()
         var arr = [];
 
         $("input:checkbox[name='log_id[]']:checked").each(function (i) {
@@ -430,6 +461,7 @@
             layer.msg('请选择！',{icon:-1});
             return false;
         }
+        layer.closeAll()
         window.location.href = '/admin/Delivery/excel?data=' + arr;
 
     })
@@ -447,35 +479,35 @@
         window.location.href = '/admin/Delivery/excelall?data=' + arr;
 
     })
-    $('.out').click(function () {
-        var arr = [];
-
-        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
-            arr[i] = $(this).val();
-
-        });
-        if(arr == '' || arr == undefined || arr == null){
-            layer.msg('请选择！',{icon:-1});
-            return false;
-        }
-        // window.location.href = '/admin/Delivery/log_print?data=' + arr;
-        $.ajax({
-            url: "{:url('admin/Delivery/good_out')}",
-            data: {data:arr},
-            type: 'post',
-            async: false,
-            success: function (res) {
-                layer.msg(res.msg);
-                // if (res.code == 1) {
-                //     layer.alert(res.msg, function (index) {
-                //         location.href = res.url;
-                //     })
-                // } else {
-                //     layer.msg(res.msg);
-                // }
-            }
-        })
-    })
+    // $('.out').click(function () {
+    //     var arr = [];
+    //
+    //     $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+    //         arr[i] = $(this).val();
+    //
+    //     });
+    //     if(arr == '' || arr == undefined || arr == null){
+    //         layer.msg('请选择！',{icon:-1});
+    //         return false;
+    //     }
+    //     // window.location.href = '/admin/Delivery/log_print?data=' + arr;
+    //     $.ajax({
+    //         url: "{:url('admin/Delivery/good_out')}",
+    //         data: {data:arr},
+    //         type: 'post',
+    //         async: false,
+    //         success: function (res) {
+    //             layer.msg(res.msg);
+    //             // if (res.code == 1) {
+    //             //     layer.alert(res.msg, function (index) {
+    //             //         location.href = res.url;
+    //             //     })
+    //             // } else {
+    //             //     layer.msg(res.msg);
+    //             // }
+    //         }
+    //     })
+    // })
     $(document).on('click', '.client_details', function () {
             var url = $(this).data('url')
             layer.open({
@@ -549,6 +581,203 @@
         laydate.render({
             elem: '#test6'
             , range: true
+        });
+
+    });
+</script>
+<script>
+    layui.use('layer', function(){ //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        //触发事件
+        var active = {
+            confirmTrans: function(){
+                //配置一个透明的询问框
+                layer.msg('是否确认出库？', {
+                    btn: ['确认出库', '拒绝出库']
+                    ,yes: function(){
+                        layer.load()
+                        var arr = [];
+
+                        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+                            arr[i] = $(this).val();
+
+                        });
+                        if(arr == '' || arr == undefined || arr == null){
+                            layer.msg('请选择！',{icon:-1},function () {
+                                layer.closeAll()
+                            });
+                            return false;
+                        }
+                        // window.location.href = '/admin/Delivery/log_print?data=' + arr;
+                        $.ajax({
+                            url: "{:url('admin/Delivery/good_out')}",
+                            data: {data:arr},
+                            type: 'post',
+                            async: false,
+                            success: function (res) {
+                                layer.closeAll()
+                                layer.msg(res.msg,{icon:-1},function () {
+                                    window.location.reload()
+                                });
+                            }
+                        })
+                    }
+                    ,btn2: function(){
+                        layer.load()
+                        var arr = [];
+
+                        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+                            arr[i] = $(this).val();
+
+                        });
+                        if(arr == '' || arr == undefined || arr == null){
+                            layer.msg('请选择！',{icon:-1},function () {
+                                layer.closeAll()
+                            });
+                            return false;
+                        }
+                        // window.location.href = '/admin/Delivery/log_print?data=' + arr;
+                        $.ajax({
+                            url: "{:url('admin/Delivery/good_out_no')}",
+                            data: {data:arr},
+                            type: 'post',
+                            async: false,
+                            success: function (res) {
+                                layer.closeAll()
+                                layer.msg(res.msg,{icon:-1},function () {
+                                    window.location.reload()
+                                });
+                            }
+                        })
+                    }
+                });
+            }
+
+            ,confirmTrans_return: function(){
+                //配置一个透明的询问框
+                layer.open({
+                    type: 1
+                    ,title: false //不显示标题栏
+                    ,closeBtn: false
+                    ,area: '300px;'
+                    ,shade: 0.8
+                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,btn: ['确认退货入库','返回']
+                    ,btnAlign: 'c'
+                    ,moveType: 1 //拖拽模式，0或者1
+                    ,content: "<div style=\"padding: 50px; line-height: 22px; font-weight: bold; background-color: #393D49; color: #fff; font-weight: 300;\">是否确认退货入库？</div>"
+                    ,yes: function(layero){
+                        layer.load()
+                        var arr = [];
+
+                        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+                            arr[i] = $(this).val();
+
+                        });
+                        if(arr == '' || arr == undefined || arr == null){
+                            layer.msg('请选择！',{icon:-1},function () {
+                                layer.closeAll()
+                            });
+                            return false;
+                        }
+                        $.ajax({
+                            url: "{:url('admin/Delivery/good_return')}",
+                            data: {data:arr},
+                            type: 'post',
+                            async: false,
+                            success: function (res) {
+                                layer.closeAll()
+                                layer.msg(res.msg,{icon:-1},function () {
+                                    window.location.reload()
+                                });
+                            }
+                        })
+                    }
+                    ,btn2: function(index, layero){
+                        layer.close(index)
+                    }
+                });
+                return false;
+            }
+            ,confirmTrans_enter: function(){
+                //配置一个透明的询问框
+                layer.open({
+                    type: 1
+                    ,title: false //不显示标题栏
+                    ,closeBtn: false
+                    ,area: '300px;'
+                    ,shade: 0.8
+                    ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,btn: ['确认入库','拒绝入库','关闭']
+                    ,btnAlign: 'c'
+                    ,moveType: 1 //拖拽模式，0或者1
+                    ,content: "<div style=\"padding: 50px; line-height: 22px; font-weight: bold; background-color: #393D49; color: #fff; font-weight: 300;\">是否确认入库？</div>"
+                    ,yes: function(layero){
+                        layer.load()
+                        var arr = [];
+
+                        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+                            arr[i] = $(this).val();
+
+                        });
+                        if(arr == '' || arr == undefined || arr == null){
+                            layer.msg('请选择！',{icon:-1},function () {
+                                layer.closeAll()
+                            });
+                            return false;
+                        }
+                        $.ajax({
+                            url: "{:url('admin/Delivery/good_enter')}?type=1",
+                            data: {data:arr},
+                            type: 'post',
+                            async: false,
+                            success: function (res) {
+                                layer.closeAll()
+                                layer.msg(res.msg,{icon:-1},function () {
+                                    window.location.reload()
+                                });
+                            }
+                        })
+                    }
+                    ,btn2: function(index, layero){
+                        layer.load()
+                        var arr = [];
+
+                        $("input:checkbox[name='log_id[]']:checked").each(function (i) {
+                            arr[i] = $(this).val();
+
+                        });
+                        if(arr == '' || arr == undefined || arr == null){
+                            layer.msg('请选择！',{icon:-1},function () {
+                                layer.closeAll()
+                            });
+                            return false;
+                        }
+                        $.ajax({
+                            url: "{:url('admin/Delivery/good_enter')}?type=0",
+                            data: {data:arr},
+                            type: 'post',
+                            async: false,
+                            success: function (res) {
+                                layer.closeAll()
+                                layer.msg(res.msg,{icon:-1},function () {
+                                    window.location.reload()
+                                });
+                            }
+                        })
+                    }
+                    ,btn3: function(index, layero){
+                        layer.close(index)
+                    }
+                });
+            }
+
+        };
+
+        $('#layerDemo,#layerDemo_return,#layerDemo_enter').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
         });
 
     });

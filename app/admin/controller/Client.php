@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\SckClient;
+use app\admin\model\SckClientPaylog;
 use app\admin\model\SckWarehouseGoodLog as WarehouseGoodLogModel;
 use think\Db;
 use app\admin\model\SckClient as ClientModel;
@@ -19,6 +20,7 @@ class Client extends Permissions
         $post = $this->request->param();
         if (isset($post['keywords']) and !empty($post['keywords'])) {
             $where['client_name|client_company|client_phone|client_wechat'] = ['like', '%' . $post['keywords'] . '%'];
+            $this->assign('keywords',$post['keywords']);
         }
         if (isset($post['client_position_id']) and $post['client_position_id'] > 0) {
             $new_client_position_id = substr($post['client_position_id'], 0, $post['num']);
@@ -71,13 +73,16 @@ class Client extends Permissions
             ->order('create_time desc')
             ->paginate(20)
             ->each(function ($k, $v) {
-                $k['client_total'] = db('sck_warehouse_good_log')
-                    ->where(['client_id' => $k['client_id'], 'good_status' => 2, 'is_return' => 0])
-                    ->sum('good_total');
-                $k['client_price'] = db('sck_warehouse_good_log_pay')
-                    ->where(['client_id' => $k['client_id'], 'pay_status' => 2])
+                $k['client_total'] = db('sck_warehouse_good_log_pay')
+                    ->where(['client_id' => $k['client_id'], 'pay_status' =>['in',[2,3]]])
+                    ->sum('pay_total');
+                db('sck_client')->where(['client_id' => $k['client_id']])->update(['client_total'=>$k['client_total']]);
+                $k['client_pay'] = db('sck_warehouse_good_log_pay')
+                    ->where(['client_id' => $k['client_id'], 'pay_status' =>['in',[2,3]]])
                     ->sum('pay_price');
-                $k['client_money'] = $k['client_total'] - $k['client_price'];
+                db('sck_client')->where(['client_id' => $k['client_id']])->update(['client_pay'=>$k['client_pay']]);
+                $k['client_cost'] = $k['client_total'] - $k['client_pay'];
+                db('sck_client')->where(['client_id' => $k['client_id']])->update(['client_cost'=>$k['client_cost']]);
 
             })
             : $model->where($where)
@@ -88,13 +93,16 @@ class Client extends Permissions
                 ->order('create_time desc')
                 ->paginate(20, false, ['query' => $this->request->param()])
                 ->each(function ($k, $v) {
-                    $k['client_total'] = db('sck_warehouse_good_log')
-                        ->where(['client_id' => $k['client_id'], 'good_status' => 2, 'is_return' => 0])
-                        ->sum('good_total');
-                    $k['client_price'] = db('sck_warehouse_good_log_pay')
-                        ->where(['client_id' => $k['client_id'], 'pay_status' => 2])
+                    $k['client_total'] = db('sck_warehouse_good_log_pay')
+                        ->where(['client_id' => $k['client_id'], 'pay_status' =>['in',[2,3]]])
+                        ->sum('pay_total');
+                    db('sck_client')->where(['client_id' => $k['client_id']])->update(['client_total'=>$k['client_total']]);
+                    $k['client_pay'] = db('sck_warehouse_good_log_pay')
+                        ->where(['client_id' => $k['client_id'], 'pay_status' =>['in',[2,3]]])
                         ->sum('pay_price');
-                    $k['client_money'] = $k['client_total'] - $k['client_price'];
+                    db('sck_client')->where(['client_id' => $k['client_id']])->update(['client_pay'=>$k['client_pay']]);
+                    $k['client_cost'] = $k['client_total'] - $k['client_pay'];
+                    db('sck_client')->where(['client_id' => $k['client_id']])->update(['client_cost'=>$k['client_cost']]);
                 });
 
         $address = db('address')
@@ -106,6 +114,7 @@ class Client extends Permissions
             ->select();
         $this->assign('View_address', $address);
         $this->assign('data', $data);
+
 //        dump($data);die;
         return $this->fetch();
     }
@@ -158,7 +167,7 @@ class Client extends Permissions
                     return $this->error('修改失败');
                 } else {
                     addlog($model->client_id);
-                    return $this->success('修改信息成功', 'admin/client/index');
+                    return $this->success('修改信息成功');
                 }
             } else {
                 $data = $model->where('client_id', $client_id)->find();
@@ -185,7 +194,7 @@ class Client extends Permissions
                     return $this->error('添加失败');
                 } else {
                     addlog($model->client_id);
-                    return $this->success('添加成功', 'admin/client/index');
+                    return $this->success('添加成功');
                 }
             } else {
                 return $this->fetch();
@@ -215,9 +224,9 @@ class Client extends Permissions
     public function client_details()
     {
         $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
-        $admin_power = $this->request->has('admin_power') ? $this->request->param('admin_power') : 0;
-        if (!empty($admin_power) and  $admin_power == 'no') {
-            return $this->error('您没有权限查看该用户！');
+        $admin_power = $this->request->has('client_power') ? $this->request->param('client_power', 0, 'intval') : 0;
+        if (!empty($admin_power) and  $admin_power == 1) {
+            return $this->error('您没有权限查看他人用户！');
         }
         if (!empty($client_id)) {
             $model = new SckClient();
@@ -231,6 +240,71 @@ class Client extends Permissions
         } else {
             return $this->error('页面错误，请重试！');
         }
+    }
+
+    public function paylog()
+    {
+        $client_id = $this->request->has('client_id') ? $this->request->param('client_id', 0, 'intval') : 0;
+        $type = $this->request->has('type') ? $this->request->param('type') : null;
+        if(!isset($type) || empty($type)){
+            if (!empty($client_id)) {
+                $model = new SckClient();
+                $client = $model->get(['client_id' => $client_id]);
+                if (!empty($client)) {
+                    $this->assign('client_id',$client_id);
+                    return $this->fetch();
+                } else {
+                    return $this->error('未找到该客户！');
+                }
+            } else {
+                return $this->error('页面错误，请重试！');
+            }
+        }elseif(isset($type) and $type == 'getlist'){
+            $input = request()->get();
+            if (isset($input['page']) and !empty($input['page'])) {
+                $page = $input['page'];
+            }else{
+                $page = 1;
+            }
+            if (isset($input['limit']) and !empty($input['limit'])) {
+                $number = $input['limit'];
+            }else{
+                $number = 20;
+            }
+            if (isset($input['time']) and !empty($input['time'])) {
+                $start_time = strtotime(substr($input['time'], 0, strripos($input['time'], ' - ')));
+                $end_time = strtotime(substr($input['time'], strripos($input['time'], ' - ') + 3));
+                $where['swgl.create_time'] = ['between', [$start_time, $end_time]];
+            }
+            $model = new SckClientPaylog();
+            $data = $model
+                ->where(['client_id' => $client_id])
+                ->where(@$where)
+                ->order('create_time desc')
+                ->page($page,$number)->select();
+            $data_count = $model
+                ->where(['client_id' => $client_id])
+                ->where(@$where)
+                ->order('create_time desc')
+                ->page($page,$number)->count();
+            if(!empty($data)){
+                foreach ($data as $k=>$v){
+                    $data[$k]['nickname'] = $data[$k]->admin->nickname;
+                    $data[$k]['client_name'] = $data[$k]->sckclient->client_name;
+                }
+            }
+//            dump($data);die;
+            $res['code'] = 1;
+            $res['count'] = $data_count;
+            $res['data'] = $data;
+            $res['msg'] = null;
+            $res = json($res);
+            return $res;
+        }
+        if (!empty($admin_power) and  $admin_power == 1) {
+            return $this->error('您没有权限查看他人用户！');
+        }
+
     }
 
     public function client_details_sck()
@@ -402,7 +476,7 @@ class Client extends Permissions
                     return $this->error('修改失败');
                 } else {
                     addlog($model->client_id);
-                    return $this->success('修改信息成功', 'admin/client/channl');
+                    return $this->success('修改信息成功');
                 }
             } else {
                 $data = $model->where('client_id', $client_id)->find();
@@ -429,7 +503,7 @@ class Client extends Permissions
                     return $this->error('添加失败');
                 } else {
                     addlog($model->client_id);
-                    return $this->success('添加成功', 'admin/client/channl');
+                    return $this->success('添加成功');
                 }
             } else {
                 return $this->fetch();
@@ -441,8 +515,8 @@ class Client extends Permissions
     public function order()
     {
         $input = request()->get();
-        $where['good_status'] = 2;
-        $where['is_return'] = 0;
+        $where['good_status'] = ['in',[2,3]];
+//        $where['is_return'] = 0;
         if (isset($input['time']) && !empty($input['time'])) {
             $start_time = strtotime(substr($input['time'], 0, strripos($input['time'], ' - ')));
             $end_time = strtotime(substr($input['time'], strripos($input['time'], ' - ') + 3));
@@ -487,6 +561,7 @@ class Client extends Permissions
                 }
             }
         }
+//        dump($data);die;
         return view('/client/order', ['data' => $data]);
     }
 
@@ -500,4 +575,5 @@ class Client extends Permissions
             ->column('id1,id2 as address_id,name2 as address_name');
         return view('/client/edit', ['data' => $data, 'View_address' => $address]);
     }
+
 }

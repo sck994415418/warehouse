@@ -20,6 +20,7 @@ class WarehouseGoodLog extends Permissions
 {
     public function GoodEnter()
     {
+
         $good_id = $this->request->has('good_id') ? $this->request->param('good_id', 0, 'intval') : 0;
         if ($good_id > 0) {
             $good = db('sck_warehouse_good')
@@ -48,22 +49,27 @@ class WarehouseGoodLog extends Permissions
                 }
                 $post['admin_id'] = $admin_id;
                 $post['good_status'] = 1;
+                $post['is_good_enter'] = 0;
                 if (!$validate->check($post)) {
                     $this->error('提交失败：' . $validate->getError());
                 }
                 Db::startTrans();
                 try {
                     $ok = $GoodLogModel->allowField(true)->save($post);
+//                    $log_id = db('sck_warehouse_good_log')->insertGetId($post);
                     if ($ok) {
-                        $insert = db('sck_warehouse_good')
-                            ->where(['good_id' => $good_id])
-                            ->update(['good_number' => WarehouseGoodModel::raw('good_number+' . $post['good_amount'] . ''), 'good_amount' => WarehouseGoodModel::raw('good_amount+' . $post['good_amount'] . ''), 'tax_status' => $post['tax_status']]);
-                        if ($insert) {
+//                        $insert = db('sck_warehouse_good')
+//                            ->where(['good_id' => $good_id])
+//                            ->update(['good_number' => WarehouseGoodModel::raw('good_number+' . $post['good_amount'] . ''), 'good_amount' => WarehouseGoodModel::raw('good_amount+' . $post['good_amount'] . '')]);
+//                        if ($insert) {
+//                            $insert_pay_data = [
+//                                'log_id'=>
+//                            ];
                             addlog($good_id);
                             $json = ['code' => 1, 'msg' => '入库成功！', 'url' => ''];
-                        } else {
-                            throw new \Exception('入库失败，请重试!');
-                        }
+//                        } else {
+//                            throw new \Exception('入库失败，请重试!');
+//                        }
                     } else {
                         throw new \Exception('入库失败，请重试!');
                     }
@@ -126,15 +132,16 @@ class WarehouseGoodLog extends Permissions
                 if ($good['good_number'] < $post['good_amount']) {
                     return $this->error('该商品库存剩余' . $good['good_number'] . ',不足以出库！');
                 }
-                if ($post['pay'] > $post['good_total']) {
-                    return $this->error('该商品付款商品金额有误');
-                }
+//                if ($post['pay'] > $post['good_total']) {
+//                    return $this->error('该商品付款商品金额有误');
+//                }
                 $post['create_time'] = time();
                 $post['update_time'] = time();
 //                unset($post['lowest_price']);
                 $low = $post['lowest_price'];
                 $post['lowest_price'] = $post['good_total'] - $post['lowest_price'];
-                $pay_money = $post['pay'];
+//                $pay_money = $post['pay'];
+//                dump($post);die;
                 if (isset($post['reason']) && !empty($post['reason'])) {
                     $client=db('sck_client')->where(['client_id'=>$post['client_id']])->find();
                     $arr = [
@@ -152,26 +159,28 @@ class WarehouseGoodLog extends Permissions
                     ];
                     db('reason')->insert($arr);
                 }
-                unset($post['pay'], $post['reason']);
+//                unset($post['pay'], $post['reason']);
+                unset($post['reason']);
                 try {
                     $ok = $GoodLogModel->insertGetId($post);
-                    $arr = [
-                        'log_id' => $ok,
-                        'good_id' => $post['good_id'],
-                        'create_time' => time(),
-                        'update_time' => time(),
-                        'pay_price' => $pay_money,
-                        'pay_total' => $post['good_total'],
-                        'pay_status' => 2,
-                        'admin_id' => $admin_id,
-                        'client_id' => $post['client_id']
-                    ];
+//                    $arr = [
+//                        'log_id' => $ok,
+//                        'good_id' => $post['good_id'],
+//                        'create_time' => time(),
+//                        'update_time' => time(),
+//                        'pay_price' => $pay_money,
+//                        'pay_total' => $post['good_total'],
+//                        'pay_status' => 2,
+//                        'admin_id' => $admin_id,
+//                        'client_id' => $post['client_id']
+//                    ];
                     if ($ok) {
-                        $pay = $GoodLogPayModel->insert($arr);
-//                        $insert = db('sck_warehouse_good')
-//                            ->where(['good_id' => $good_id])
-//                            ->update(['good_number' => WarehouseGoodModel::raw('good_number-'.$post['good_amount'].'')]);
-                        if ($pay) {
+//                        $pay = $GoodLogPayModel->insert($arr);
+                        $insert = db('sck_warehouse_good')
+                            ->where(['good_id' => $good_id])
+                            ->update(['good_number' => WarehouseGoodModel::raw('good_number-'.$post['good_amount'].'')]);
+                        if ($insert) {
+
                             addlog($good_id);
                             $json = ['code' => 1, 'msg' => '出库成功！', 'url' => ''];
                         } else {
@@ -270,11 +279,25 @@ class WarehouseGoodLog extends Permissions
                     ['good_name', 'require', '商品名称不能为空'],
 //                    ['good_price', 'require', '商品单价不能为空'],
 //                    ['good_total', 'require', '商品总价不能为空'],
-                    ['good_amount', 'require', '入库数量不能为空'],
+                    ['good_amount', 'require', '退货数量不能为空'],
                 ]);
                 $num = $GoodLogModel->where(['log_id'=>$post['log_id']])->value('good_amount');
+                $is_return = $GoodLogModel->where(['log_id'=>$post['log_id']])->value('is_delivery');
+                if($is_return!=1){
+                    return $this->error('该商品未确认出库，不可退货！');
+                }
+                if($post['good_amount']<=0){
+                    return $this->error('退货数量不能为0');
+                }
+                $already_number = $GoodLogModel->where(['log_parent_id'=>$post['log_id'],'good_id'=>$good_id,'good_status'=>3])->sum('good_amount');
+                $can_return = (int)$num-(int)$already_number-$post['good_amount'];
+                if($can_return<0){
+                    $can_return = (int)$num-(int)$already_number;
+                    $can_return = $can_return>=0?$can_return:0;
+                    return $this->error('该出库记录可退货'.$can_return.'件！');
+                }
                 if ($num < $post['good_amount']) {
-                    return $this->error('该商品库存剩余' . $num . ',不足以出库！');
+                    return $this->error('退货数不能大于出库数！');
                 }
                 $admin_id = Session::get('admin');
                 if (!$admin_id) {
@@ -287,24 +310,33 @@ class WarehouseGoodLog extends Permissions
                     $this->error('提交失败：' . $validate->getError());
                 }
                 $log_id = $post['log_id'];
+                $post['log_parent_id'] = $post['log_id'];
                 unset($post['log_id']);
                 Db::startTrans();
                 try {
-                    $post['good_total'] = round($post['good_price'] * $post['good_amount'], 2);
+                    $post['good_total'] = round($post['good_price'] * $post['good_amount'], 2)*-1;
+                    $post['lowest_price'] = round($post['good_total']*-1 - $post['cost_total'], 2)*-1;
+                    $post['cost_price'] = round($post['cost_price'], 2)*-1;
+                    $post['cost_total'] = round($post['cost_total'], 2)*-1;
                     $post['create_time'] = time();
                     $post['update_time'] = time();
+//                    dump($post);die;
+
                     $ok = $GoodLogModel->allowField(true)->insert($post);
                     if ($ok) {
-                        $insert = db('sck_warehouse_good')
-                            ->where(['good_id' => $good_id])
-                            ->update(['good_number' => WarehouseGoodModel::raw('good_number+' . intval($post['good_amount'] . ''))]);
+//                        $insert = db('sck_warehouse_good')
+//                            ->where(['good_id' => $good_id])
+//                            ->update(['good_number' => WarehouseGoodModel::raw('good_number+' . intval($post['good_amount'] . ''))]);
 
 //                        if($num['good_amount'] != $post['good_amount']){
-                        $GoodLogModel->where('log_id', $log_id)->update(['is_return' => 1, 'good_desc' => "退货产品，共计退回" . $post['good_amount']]);
-                        $pay = db('sck_warehouse_good_log_pay')->where(['log_id' => $log_id])->find();
-                        if ($pay) {
-                            db('sck_warehouse_good_log_pay')->where(['log_id' => $log_id])->update(['pay_status' => 3]);
-                        }
+//                        $already_number = $GoodLogModel->where(['log_parent_id'=>$post['log_parent_id'],'good_id'=>$good_id,'good_status'=>3])->sum('good_amount');
+
+//                        $insert =$GoodLogModel->where('log_id', $log_id)->update(['is_return' => 1, 'good_desc' => "退货产品，共计退回" . $already_number]);
+                        $insert =$GoodLogModel->where('log_id', $log_id)->update(['is_return' => 1]);
+//                        $pay = db('sck_warehouse_good_log_pay')->where(['log_id' => $log_id])->find();
+//                        if ($pay) {
+//                            db('sck_warehouse_good_log_pay')->where(['log_id' => $log_id])->update(['pay_status' => 3]);
+//                        }
 //                        }else{
 //                            $GoodLogModel->where('log_id',$log_id)->delete();
 //                        }
@@ -354,9 +386,12 @@ class WarehouseGoodLog extends Permissions
                     $clients = $ClientModel->where(['client_id' => $client_id['client_id']])->find();
                     $this->assign('clients', $clients);
                     $this->assign("good_price", $client_id['good_price']);
+//                    $this->assign("good_amount", $client_id['good_amount']);
                     $this->assign('goods_name', $client_id['good_name']);
-//
+                    $Log = $GoodLogModel->where(['log_id' => $client_id['log_id']])->find();
+                    $this->assign('Log', $Log);
                 }
+//                dump($Log);die;
                 $Client = $ClientModel
 //                    ->where(['client_position_id' => ['in',$street_ids]])
                     ->order('create_time desc')
@@ -398,7 +433,6 @@ class WarehouseGoodLog extends Permissions
             $min_time = strtotime($post['create_time']);
             $max_time = $min_time + 24 * 60 * 60;
             $where['create_time'] = [['>=', $min_time], ['<=', $max_time]];
-
         }
         if (isset($post['time']) and !empty($post['time'])) {
             $start_time = strtotime(substr($post['time'], 0, strripos($post['time'], ' - ')));
@@ -464,10 +498,40 @@ class WarehouseGoodLog extends Permissions
         $data = empty($where) ? $model
             ->order('create_time desc')
             ->paginate(20, false, ['query' => $this->request->param()])
+            ->each(function ($k,$v){
+                $admin_id = Session::get('admin');
+                $user_info = adminModel::get($admin_id);
+//                dump((int)$user_info['admin_power']);
+//                dump((int)$user_info['client_power']);die;
+                if ((int)$user_info['admin_power'] == 1) {
+                    if((int)$user_info['client_power']!==1){
+                        if($k['admin_id'] !== $admin_id){
+                            $k['client_power'] = 1 ;
+                        }
+                    }
+
+                }
+            })
             : $model->where($where)
                 ->order('create_time desc')
-                ->paginate(20, false, ['query' => $this->request->param()]);
-//        dump($data);die;
+                ->paginate(20, false, ['query' => $this->request->param()])->each(function ($k,$v){
+                    $admin_id = Session::get('admin');
+                    $user_info = adminModel::get($admin_id);
+//                    dump((int)$user_info['admin_power']);
+//                    dump((int)$user_info['client_power']);die;
+                    if ((int)$user_info['admin_power'] == 1) {
+                        if((int)$user_info['client_power']!==1){
+                            if($k['admin_id'] !== $admin_id){
+                                $k['client_power'] = 1 ;
+                            }
+                        }
+                    }
+                });
+
+
+
+
+
         $supplier = db('sck_supplier')->select();
         $this->assign('supplier', $supplier);
         $ClientModel = new SckClient();

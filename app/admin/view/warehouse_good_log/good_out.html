@@ -45,6 +45,8 @@
             <label class="layui-form-label">最低出库价</label>
             <div class="layui-input-inline">
                 <input name="good_price" lay-verify="required" min="{$lowest_price}" value="{$good_log.good_price|default=$lowest_price}" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="cost_price" value="{$good_log.good_price|default=$lowest_price}" type="hidden">
+                <input name="cost_total" value="{$good_log.good_price|default=$lowest_price}" type="hidden">
             </div>
             <div class="layui-form-mid layui-word-aux">最低出库价{$lowest_price}   ;  建议零售价{$advise_price|default=$lowest_price}</div>
         </div>
@@ -65,7 +67,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">出库成本总价</label>
             <div class="layui-input-inline">
-                <input name="lowest_price" readonly lay-verify="required" min="lowest_price"  placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$lowest_price}">
+                <input name="lowest_price" readonly lay-verify="required" min=""  placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$lowest_price}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -74,21 +76,21 @@
                 <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">付款金额</label>
-            <div class="layui-input-inline">
-                <input name="pay" type="text" lay-verify="required" min="0" value="{$good_log.pay|default=''}" placeholder="请输入" autocomplete="off" class="layui-input">
-            </div>
-        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">付款金额</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input name="pay" type="text" lay-verify="required" min="0" value="{$good_log.pay|default=''}" placeholder="请输入" autocomplete="off" class="layui-input">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="layui-form-item">
             <label class="layui-form-label">选择客户</label>
             <div class="layui-input-inline">
                 <select lay-filter="companyname" name="client_id" lay-verify="required" lay-search="">
                     <option value="">直接选择或搜索选择</option>
                     {if !empty($client)}
-                    {foreach name="client" item="v"}
-                    <option value="{$v.client_id}" {if @$good_log.client_id==$v.client_id}selected{/if}>{$v.client_name}({$v.client_company})</option>
-                    {/foreach}
+                        {foreach name="client" item="v"}
+                            <option value="{$v.client_id}" {if @$good_log.client_id==$v.client_id}selected{/if}>{$v.client_name}({$v.client_company})</option>
+                        {/foreach}
                     {/if}
                 </select>
             </div>
@@ -135,7 +137,7 @@
     var total_pricee = total_prices.toFixed(2);
     var client_id = '';
     var client_name = '';
-    lowest_price = total_pricee
+    var lowest_price = total_pricee
     layui.use(['layer', 'form'], function() {
         var layer = layui.layer,
             $ = layui.jquery,
@@ -178,9 +180,9 @@
         });
         form.on('radio(companys)', function (data) {
             if('{$good.tax_status}'==1) {
-                 tax = $(this).attr('special_invoice');
+                tax = $(this).attr('special_invoice');
             }else if ('{$good.tax_status}'==2) {
-                 tax = $(this).attr('dedicated');
+                tax = $(this).attr('dedicated');
             }else if ('{$good.tax_status}'==3) {
                 tax = $(this).attr('ordinary');
             }else if ('{$good.tax_status}'==4) {
@@ -192,13 +194,17 @@
             }else{
                 tax = 1;
             }
-            var amount = $('input[name=good_amount]').val()
-            var total_prices = Number(price)*Number(tax)*Number(amount);
-            var total_pricee = total_prices.toFixed(2);
-            lowest_price = total_pricee
-            $('input[name=lowest_price]').val(lowest_price)
-            $('input[name=good_price]').attr('value',lowest_price)
-            $('input[name=good_price]').attr('min',lowest_price)
+
+            // var amount = $('input[name=good_amount]').val()
+            // var total_prices = Number(price)*Number(tax)*Number(amount);
+            // var total_pricee = total_prices.toFixed(2);
+            // lowest_price = total_pricee
+            // $('input[name=lowest_price]').val(lowest_price)
+            // console.log(lowest_price)
+            // $('input[name=good_price]').attr('value',lowest_price)
+            // $('input[name=good_price]').attr('min',lowest_price)
+            total_price();
+
         });
         form.on('submit(admin)', function(data) {
                 // var price = "{$lowest_price}";
@@ -215,12 +221,14 @@
             layer.confirm('确认客户:'+client_name, {
                 btn: ['确定', '取消'] //按钮
             }, function (index) {
+                layer.load()
                 $.ajax({
                     url:"{:url('admin/WarehouseGoodLog/GoodOut')}",
                     data:$('#admin').serialize(),
                     type:'post',
                     async: false,
                     success:function(res) {
+                        layer.closeAll()
                         if(res.code == 1) {
                             layer.alert(res.msg, function(){
                                 // location.href = res.url;
@@ -238,26 +246,30 @@
             });
     });
 
-</script>
-<script>
     total_price();
     $('input[name=good_price],input[name=good_amount]').bind('input propertychange', function() {
+        // var price_tax = Number(price)*Number(tax)
+        // $('input[name=good_price]').val(price_tax)
         total_price();
     });
     $('input[name=good_price],input[name=good_amount]').click(function() {
         total_price();
     });
-    function total_price(tax) {
-        var price = $('input[name=good_price]').val()
+    function total_price() {
+        var price = "{$lowest_price|default='0'}";
+        var price_tax = Number(price)*Number(tax)
         var amount = $('input[name=good_amount]').val()
-        var total_price = Number(price)*Number(amount)
-        var total_price = total_price.toFixed(2);
-        $('input[name=good_total]').val(total_price)
-        var prices = lowest_price;
-        var total_price = Number(prices)*Number(amount)
-        var total_price = total_price.toFixed(2);
-        $('input[name=lowest_price]').val(total_price)
-        if(Number(price)<Number(prices)){
+        $('input[name=good_total]').val(price_tax)
+        var price_new = $('input[name=good_price]').val();
+        var total = amount*price_new
+        total = total.toFixed(2);
+        var total_tax = amount*price_tax
+        total_tax = total_tax.toFixed(2);
+        $('input[name=lowest_price]').val(total_tax)
+        $('input[name=cost_total]').val(total_tax)
+        $('input[name=cost_price]').val(price_tax)
+        $('input[name=good_total]').val(total)
+        if(Number(price_new)<Number(price_tax)){
             $('.reason').css('display','block')
             $('input[name=reason]').attr('lay-verify','required')
         }else{

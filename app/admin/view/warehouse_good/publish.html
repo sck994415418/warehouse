@@ -90,18 +90,18 @@
           <input autocomplete="off" class="layui-input" lay-verify=""  min="0" name="good_position" placeholder="请输入" type="text">
         </div>
       </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">商品单价</label>
-        <div class="layui-input-inline">
-          <input name="good_price" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">商品数量</label>
-        <div class="layui-input-inline">
-          <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
-        </div>
-      </div>
+<!--      <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">商品单价</label>-->
+<!--        <div class="layui-input-inline">-->
+<!--          <input name="good_price" lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">商品数量</label>-->
+<!--        <div class="layui-input-inline">-->
+<!--          <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="layui-form-item">
         <label class="layui-form-label">是否含票</label>
         <div class="layui-input-block">
@@ -115,12 +115,12 @@
           <input name="tax_status" lay-verify="otherReq"  placeholder="专票" autocomplete="off" class="layui-input" type="radio" title="专票13%" value="1">
         </div>
       </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">商品总价</label>
-        <div class="layui-input-inline">
-          <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">
-        </div>
-      </div>
+<!--      <div class="layui-form-item">-->
+<!--        <label class="layui-form-label">商品总价</label>-->
+<!--        <div class="layui-input-inline">-->
+<!--          <input name="good_total" readonly lay-verify="required" min="0"  placeholder="请输入" autocomplete="off" class="layui-input" type="number">-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="layui-form-item">
         <label class="layui-form-label">项目</label>
         <div class="layui-input-inline">
@@ -188,14 +188,17 @@
             form = layui.form;
     $(window).on('load', function() {
       form.on('submit(admin)', function(data) {
+        layer.load()
         $.ajax({
           url:"{:url('admin/WarehouseGood/publish')}",
           data:$('#admin').serialize(),
           type:'post',
           async: false,
           success:function(res) {
+            layer.closeAll()
             if(res.code == 1) {
               layer.alert(res.msg, function(index){
+                layer.load()
                 location.href = res.url;
               })
             } else {

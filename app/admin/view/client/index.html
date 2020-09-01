@@ -34,7 +34,7 @@
   <form class="layui-form serch" action="{:url('admin/client/index')}" method="post">
     <div class="layui-form-item" style="float: left;">
       <div class="layui-input-inline">
-        <input type="text" name="keywords" lay-verify="title" autocomplete="off" placeholder="用户名/电话/微信" class="layui-input layui-btn-sm">
+        <input type="text" name="keywords" value="{$keywords|default=''}" lay-verify="title" autocomplete="off" placeholder="用户名/电话/微信" class="layui-input layui-btn-sm">
       </div>
       <div class="layui-input-inline province_div" style="width: 100px">
         <select name="client_position_id" lay-verify="" class="province" lay-filter="province">
@@ -70,13 +70,16 @@
       <button class="layui-btn layui-btn-danger layui-btn-sm" lay-submit="" onclick="layer.load()" lay-filter="serch">立即提交</button>
     </div>
   </form>
+<!--    <div class="layui-form-item">-->
+<!--      <button class="layui-btn layui-btn-sm reload_money" lay-event="getCheckData">更新客户金额</button>-->
+<!--    </div>-->
   <form class="layui-form" id="admin">
 
     <table class="layui-table" lay-size="sm">
       <colgroup>
         <col width="45">
         <col width="90">
-        <col width="120">
+        <col width="">
         <col width="45">
         <col width="45">
         <col width="">
@@ -86,7 +89,7 @@
 
         <col width="90">
         <col width="100">
-        <col width="120">
+        <col width="210">
       </colgroup>
       <thead>
         <tr>
@@ -116,7 +119,7 @@
               {eq name="$vo.client_sex" value="1"/}男{/eq}
               {eq name="$vo.client_sex" value="2"/}女{/eq}
             </td>
-            <td>{$vo.client_money|default=''}</td>
+            <td>{$vo.client_cost|default='0'}</td>
             <td>{$vo.client_desc|default=''}</td>
             <td>{$vo.address.name2|default=''}{$vo.address.name3|default=''}{$vo.address.name4|default=''}</td>
             <td>{$vo.client_position_details|default='暂无'}</td>
@@ -124,12 +127,11 @@
             <td>{$vo.update_time|default=''}</td>
             <td class="operation-menu">
               <div class="layui-btn-group">
-                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary client_details" data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">
-                  查看客户
-                </a>
-                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary client_details" data-url="{:url('admin/client/order')}?client_id={$vo.client_id}">查看订单</a>
-                <a href="{:url('admin/client/edit')}?type=client&id={$vo.client_id}" class="layui-btn layui-btn-xs a_menu layui-btn-primary" style="margin-right: 0;font-size:12px;">修改</a>
-                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-primary delete" client_id="{$vo.client_id}" style="margin-right: 0;font-size:12px;">删除</a>
+                <button type="button" class="layui-btn layui-btn-xs client_details" data-url="{:url('admin/client/client_details')}?client_id={$vo.client_id}">详情</button>
+                <button type="button" class="layui-btn layui-btn-xs order_details" data-url="{:url('admin/client/order')}?client_id={$vo.client_id}">订单</button>
+                <button type="button" class="layui-btn layui-btn-xs paylog" data-url="{:url('admin/client/paylog')}?client_id={$vo.client_id}">账单</button>
+                <a href="{:url('admin/client/edit')}?type=client&id={$vo.client_id}" class="layui-btn layui-btn-xs a_menu"><i class="layui-icon"></i></a>
+                <a href="javascript:" class="layui-btn layui-btn-xs layui-btn-danger delete" client_id="{$vo.client_id}" style="margin-right: 0;font-size:12px;"><i class="layui-icon"></i></a>
               </div>
             </td>
           </tr>
@@ -259,12 +261,67 @@
       type: 2
       ,title: '客户详情'
       ,content:url
-      ,area: ['95%', '95%']
+      ,area: ['100%', '100%']
       ,btn: ['关闭']
       ,yes: function(index, layero){
         layer.close(index)
       }
     })
+  })
+  $(document).on('click','.order_details',function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2
+      ,title: '订单记录'
+      ,content:url
+      ,area: ['100%', '100%']
+      ,btn: ['关闭']
+      ,yes: function(index, layero){
+        layer.close(index)
+      }
+    })
+  })
+  $(document).on('click','.paylog',function () {
+    var url = $(this).data('url')
+    layer.open({
+      type: 2
+      ,title: '账单'
+      ,content:url
+      ,area: ['100%', '100%']
+      ,btn: ['关闭']
+      ,yes: function(index, layero){
+        layer.close(index)
+      }
+    })
+  })
+  $(document).on('click', '.reload_money', function () {
+
+
+    layer.open({
+      type: 1
+      ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+      ,id: 'layerDemo' //防止重复弹出
+      ,content: '<div style="padding: 20px 50px;">'+ '是否更新所有客户金额明细？' +'</div>'
+      ,btn: ['确认更新','返回']
+      ,btnAlign: 'c' //按钮居中
+      ,shade: 0 //不显示遮罩
+      ,yes: function(){
+        $.ajax({
+          url: "{:url('admin/Client/reload_money')}",
+          data: {},
+          type: 'post',
+          async: false,
+          success: function (res) {
+            layer.msg(res.msg,{icon:-1},function () {
+              window.location.reload()
+            });
+          }
+        })
+      }
+      ,btn2: function(){
+        layer.close(index)
+      }
+    });
   })
 </script>
 <script language="Javascript">

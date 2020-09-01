@@ -47,7 +47,7 @@
                 {$category_data[0]['parent'][0]['parent'][0]['category_name']}->{$category_data[0]['parent'][0]['category_name']}->{$category_data[0]['category_name']}
             </div>
             <div class="layui-input-inline province_div">
-                <select lay-search="" name="category_id" lay-verify="required" class="one" lay-filter="one">
+                <select lay-search="" name="category_id" class="one" lay-filter="one">
                     <option value="">请选择</option>
                     {if !empty($category)}
                     {foreach name="category" item="v"}
@@ -80,29 +80,29 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品剩余数量</label>
             <div class="layui-input-inline">
-                <input name="good_number" value="{$data.good_number}" placeholder="请输入" autocomplete="off"
+                <input name="good_number" readonly value="{$data.good_number}" placeholder="请输入" autocomplete="off"
                        class="layui-input" type="text">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">商品入库数量</label>
+<!--            <label class="layui-form-label">商品入库数量</label>-->
             <div class="layui-input-inline">
                 <input name="good_amount" value="{$data.good_amount}" placeholder="请输入" autocomplete="off"
-                       class="layui-input" type="text">
+                       class="layui-input" type="hidden">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">商品入库单价</label>
             <div class="layui-input-inline">
                 <input name="good_price" value="{$data.good_price}" placeholder="请输入" autocomplete="off"
-                       class="layui-input" type="text">
+                       class="layui-input" type="number">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">商品入库总价</label>
             <div class="layui-input-inline">
                 <input name="good_total" value="{$data.good_total}" placeholder="请输入" autocomplete="off"
-                       class="layui-input" type="text">
+                       class="layui-input" readonly type="number">
             </div>
         </div>
         <div class="layui-form-item">
@@ -140,7 +140,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">选择发票</label>
             <div class="layui-input-inline">
-                <select name="project_id" lay-search="">
+                <select name="tax_status" lay-search="">
                     <option value="">请选择发票</option>
                     <option value="1">专票13%</option>
                     <option value="6">专票6%</option>
@@ -240,14 +240,19 @@
             form = layui.form;
         $(window).on('load', function () {
             form.on('submit(admin)', function (data) {
+                layer.load()
                 $.ajax({
                     url:"{:url('admin/Audit/add')}",
                     data:$('#admin').serialize(),
                     type:'post',
                     async: false,
                     success:function(res) {
+                        layer.closeAll()
                         if(res.code == 1) {
-                            layer.alert(res.msg)
+                            layer.alert(res.msg, function(index){
+                                layer.load()
+                                location.href = res.url;
+                            })
                         } else {
                             layer.msg(res.msg);
                         }

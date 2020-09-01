@@ -36,13 +36,16 @@
         <div class="layui-form-item">
             <label class="layui-form-label">退货价格</label>
             <div class="layui-input-inline">
-                <input name="good_price" lay-verify="required" min="{$good_price|default='0'}" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$good_price|default='0'}">
+                <input name="good_price" lay-verify="required" readonly min="{$good_price|default='0'}" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number" value="{$good_price|default='0'}">
+                <input name="cost_price" value="{$Log.cost_price|default=''}" type="hidden">
+                <input name="cost_total" value="{$Log.cost_total|default=''}" type="hidden">
+                <input name="company" value="{$Log.company|default=''}" type="hidden">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">退货数量</label>
             <div class="layui-input-inline">
-                <input name="good_amount" lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
+                <input name="good_amount" value="{$good_amount|default='0'}"  lay-verify="required" min="1" step="1" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" placeholder="请输入" autocomplete="off" class="layui-input" type="number">
             </div>
         </div>
         <input type="hidden" name="log_id" value="{$log_id}">
@@ -134,8 +137,11 @@
     });
     function total_price() {
         var price = $('input[name=good_price]').val()
+        var price_new = $('input[name=cost_price]').val()
         var amount = $('input[name=good_amount]').val()
         var total_price = Number(price)*Number(amount)
+        var total_price_new = Number(price_new)*Number(amount)
         $('input[name=good_total]').val(total_price)
+        $('input[name=cost_total]').val(total_price_new)
     }
 </script>
